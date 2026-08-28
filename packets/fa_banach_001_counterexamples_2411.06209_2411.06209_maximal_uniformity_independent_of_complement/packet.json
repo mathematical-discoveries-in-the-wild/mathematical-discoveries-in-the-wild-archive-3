@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2411.06209",
+  "author_list": [
+    "Adam Czornik",
+    "Konrad Kitzing",
+    "Stefan Siegmund"
+  ],
+  "claim_short": "The conjecture is false. A stronger transfer theorem holds: if",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2411.06209v2",
+    "source_url": "https://arxiv.org/abs/2411.06209v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_negative_solution_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/",
+  "packet_title": "Maximal unstable uniformity is independent of the complement",
+  "primary_arxiv_id": "2411.06209",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0533",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2411.06209_2411.06209_maximal_uniformity_independent_of_complement/files/solution_packet.pdf",
+  "source_authors": "Adam Czornik, Konrad Kitzing, Stefan Siegmund",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2411.06209_maximal_uniformity_independent_of_complement/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2411.06209v2",
+  "source_question": "",
+  "source_title": "Dichotomies uniform on subspaces and formulas for dichotomy spectra",
+  "source_url": "https://arxiv.org/abs/2411.06209v2",
+  "source_year": "2024",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\M}{M_3(\C)}
+
+\definecolor{statusbg}{RGB}{239,246,255}
+\definecolor{statusrule}{RGB}{37,99,235}
+
+\title{The q-pure-map conjecture on $M_3(\C)$\\
+\large A literature-implied full solution of the $n=3$ subcase}
+\author{Automated Mathematics Run \texttt{fa\_banach\_001}, lane 2}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\colorbox{statusbg}{\parbox{0.94\textwidth}{%
+\textbf{Status.} Literature-implied answer (full $n=3$ subcase), likely valid.
+The implication assembled below was not found stated explicitly in the cited papers.
+The conjecture for $n\geq4$ remains outside the scope of this note.}}
+
+\section{Source conjecture and exact scope}
+
+In the concluding paragraph of arXiv:0905.2708v2, PDF page 37,
+Jankowski asks for all unital q-pure maps $\phi:M_n(\C)\to M_n(\C)$ and
+states the conjecture that every such map is invertible or has rank one
+\cite{Jankowski2009}.  The same paragraph notes that the $n=2$ case is
+proved in later work and suggests using the limit map for $n=3$.
+
+This note proves exactly that next case.
+
+\begin{theorem}[The $n=3$ case]\label{thm:main}
+If $\phi:M_3(\C)\to M_3(\C)$ is unital and q-pure, then either
+$\rank\phi=1$ or $\phi$ is invertible.
+\end{theorem}
+
+Here q-pure has the source-paper meaning: the q-subordinates of $\phi$ are
+precisely $0$ and
+\[
+  \phi^{(s)}=\phi(I+s\phi)^{-1},\qquad s\geq0.
+\]
+
+\section{Identification mechanism}
+
+The proof joins two results that were developed for different purposes.
+The 2010 paper classifies every possible limit idempotent
+\[
+  L_\phi=\lim_{s\to\infty}s\phi(I+s\phi)^{-1}
+\]
+for a unital q-positive map on $M_3(\C)$, and proves that a q-positive map
+annihilating a nonzero positive matrix is not q-pure
+\cite[Theorem 3.9, Corollary 3.10, Proposition 4.5]{Jankowski2010}.
+The 2018 paper proves that the range of a finite-dimensional, index-zero,
+q-pure q-weight is a factor under its Choi--Effros product
+\cite[Theorem 5.7]{JMP2018}.
+
+The bridge is supplied by the boundary-weight double already constructed in
+the source paper.  The next lemma records the bridge explicitly because this
+is the nontrivial identification on which the result depends.
+
+\begin{lemma}[Boundary-weight bridge]\label{lem:bridge}
+Let $\phi:M_n(\C)\to M_n(\C)$ be unital and q-pure.  Choose a normalized
+unbounded vector boundary weight $\nu$ of the form required in Lemma 4.3 of
+\cite{Jankowski2009}, and let $\omega$ be the q-weight dual to the boundary
+weight map of the double $(\phi,\nu)$. Then:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+  \item $\omega$ is q-pure and has index zero;
+  \item $\ran\omega=\ran\phi$;
+  \item the Choi--Effros limit of $\omega$ is $L_\phi$.
+\end{enumerate}
+Consequently $\ran\phi$, with product $A\star B=L_\phi(AB)$, is a factor.
+\end{lemma}
+
+\begin{proof}
+The source paper defines the dual q-weight by
+\[
+  \omega(A)=\phi\bigl(\Omega_\nu(A)\bigr),
+\]
+where $\Omega_\nu$ applies $\nu$ entrywise.  Lemma 4.3 of
+\cite{Jankowski2009} says that every subordinate CP-flow of the flow induced
+by $(\phi,\nu)$ is induced by $(\psi,\nu)$ for a q-subordinate
+$\psi\leq_q\phi$.  Since q-purity of $\phi$ makes all such $\psi$ belong to
+the chain $\{0\}\cup\{\phi^{(s)}:s\geq0\}$, the q-subordinates of $\omega$
+are totally ordered.  Thus $\omega$ is q-pure in the sense of
+\cite[Definition 1.2]{JMP2018}.  Corollary 3.3 of
+\cite{Jankowski2009} gives index zero.
+
+Normalization gives $\nu(I-\Lambda(1))=1$.  For every $B=(b_{ij})\in
+M_n(\C)$, the matrix $A=(b_{ij}(I-\Lambda(1)))$ belongs to the null boundary
+algebra and satisfies $\Omega_\nu(A)=B$.  Hence $\Omega_\nu$ is onto and
+$\ran\omega=\ran\phi$.
+
+For $t>0$, put $s_t=\nu_t(\Lambda(1))$.  Equation (3) in
+\cite{Jankowski2009} gives the generalized boundary representation
+\[
+  \pi_t^\#=\phi(I+s_t\phi)^{-1}\Omega_{\nu_t}.
+\]
+Since $\Omega_{\nu_t}(\Lambda(B))=s_tB$,
+\[
+  \pi_t^\#\Lambda(B)=s_t\phi(I+s_t\phi)^{-1}(B).
+\]
+Unboundedness of $\nu$ implies $s_t\to\infty$ as $t\downarrow0$, so the
+right-hand side converges to $L_\phi(B)$.  This proves (iii).
+The final assertion is now exactly Theorem 5.7 of \cite{JMP2018}.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}}
+
+\begin{proof}
+For a unital q-positive $\phi$ on $M_3(\C)$, the 2010 limit-map lemma shows
+that $L_\phi$ is a unital completely positive idempotent and that
+\[
+  \ran L_\phi=\ran\phi,
+  \qquad
+  \ker L_\phi=\ker\phi.
+\]
+Theorem 3.9 of \cite{Jankowski2010} classifies such idempotents up to unitary
+conjugacy.  Proposition 4.5 of the same paper excludes every case in which
+$L_\phi$ annihilates a nonzero positive matrix: equality of kernels would
+make $\phi$ annihilate that matrix, contradicting q-purity.
+
+Thus, apart from a faithful rank-one map, the only possible classified forms
+for $L_\phi$ are the following four forms (the labels are those of
+\cite{Jankowski2010}):
+\[
+\begin{array}{ccl}
+\text{(IV)}&L(A)=\operatorname{diag}(a_{11},a_{22},a_{33}),
+  &\ran L\cong\C^3,\\[2pt]
+\text{(V)}&L(A)=a_{11}\oplus
+  \begin{pmatrix}a_{22}&a_{23}\\a_{32}&a_{33}\end{pmatrix},
+  &\ran L\cong\C\oplus M_2(\C),\\[7pt]
+\text{(VI)}&L(A)=a_{11}\oplus bI_2,
+  \quad b=\lambda a_{22}+(1-\lambda)a_{33},
+  &\ran L\cong\C\oplus\C,\\[2pt]
+\text{(VII)}&L(A)=A,
+  &\ran L=M_3(\C).
+\end{array}
+\]
+In cases (IV)--(VI), the range is already closed under ordinary matrix
+multiplication and $L$ fixes every range element.  Therefore its
+Choi--Effros product $X\star Y=L(XY)$ is ordinary multiplication.  Each of
+$\C^3$, $\C\oplus M_2(\C)$, and $\C\oplus\C$ has nontrivial center, so none
+is a factor.  Lemma \ref{lem:bridge} eliminates these three cases.
+
+If $L_\phi$ is the faithful rank-one form, equality of ranges gives
+$\rank\phi=1$.  The only remaining case is (VII), where
+$\ran\phi=\ran L_\phi=M_3(\C)$.  Hence $\phi$ is a surjective linear
+endomorphism of the nine-dimensional vector space $M_3(\C)$ and is therefore
+invertible.  This proves the theorem.
+\end{proof}
+
+\section{Verification, limitations, and novelty check}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Internal consistency.} The range calculation uses an explicit
+  preimage under $\Omega_\nu$, and the limit calculation follows directly
+  from the source formula for $\pi_t^\#$. No computational or asymptotic
+  approximation is used.
+  \item \textbf{Classification check.} The three excluded nonfactor ranges
+  are respectively $\C^3$, $\C\oplus M_2(\C)$, and $\C^2$; the two surviving
+  factor ranges are $\C$ and $M_3(\C)$.
+  \item \textbf{Scope.} The proof settles the full $n=3$ subcase only. It
+  provides no classification for $n\geq4$.
+  \item \textbf{Bounded search.} The four lightweight run indexes, the exact
+  conjecture wording, the phrases ``q-pure $M_3$'' and ``unital q-pure maps,''
+  and the arXiv records/citation trail for 0905.2708, 1005.4404, 1106.2304,
+  and 1807.09824 were checked. The explicit $n=2$ result and the later q-weight
+  classification were found; no paper explicitly stating the $n=3$ matrix-map
+  corollary was located. Novelty confidence is therefore moderate, and the
+  result is labeled literature-implied rather than wholly new.
+  \item \textbf{Human-review focus.} Verify that Lemma 4.3 of the source paper
+  covers every q-weight subordinate under the standard CP-flow/q-weight
+  correspondence. Once that order transfer is accepted, the remaining steps
+  are formal consequences of the cited theorems.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{Jankowski2009}
+C.~Jankowski,
+\emph{On type II$_0$ $E_0$-semigroups induced by boundary weight doubles},
+arXiv:0905.2708v2. Source conjecture on PDF p.~37; boundary-weight construction,
+Corollary 3.3 and Lemma 4.3.
+
+\bibitem{Jankowski2010}
+C.~Jankowski,
+\emph{Unital q-positive maps on $M_2(\C)$ and a related $E_0$-semigroup result},
+arXiv:1005.4404v1. See Theorem 3.9 and Corollary 3.10 on PDF p.~20,
+and Proposition 4.5 on PDF p.~23.
+
+\bibitem{JMP2018}
+C.~Jankowski, D.~Markiewicz, and R.~T.~Powers,
+\emph{Classification of q-pure q-weight maps over finite dimensional Hilbert spaces},
+arXiv:1807.09824v1. See Definition 1.2 and Theorem 5.7 on PDF p.~44.
+\end{thebibliography}
+
+\end{document}

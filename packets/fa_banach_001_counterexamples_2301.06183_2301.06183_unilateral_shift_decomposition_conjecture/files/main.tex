@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\N}{\mathbb N}
+
+\title{The Unilateral Shift Obstructs the Nontrivial\\
+Frame-Orbit Decomposition Conjecture\\
+\large A scoped counterexample to the final conjecture of arXiv:2301.06183}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 9}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate counterexample, likely valid, pending expert review.  The printed
+statement is tautological if zero summands are allowed; its natural nontrivial
+reading, requiring at least two nonzero summands, is false.}}
+\end{center}
+
+\section{Source conjecture}
+
+For a separable Hilbert space $\Hh$, the source paper
+\cite{CheshmavarDallakiBaradaran} defines
+\[
+ E(\Hh)=\left\{T\in B(\Hh):
+ \{T^k\varphi\}_{k=0}^{\infty}\text{ is a frame for $\Hh$ for
+ some $\varphi\in\Hh$}\right\}.
+\]
+On page 11, its final conjecture states that, for every $T\in E(\Hh)$,
+there is a Hilbert direct-sum decomposition
+\[
+ \Hh=\bigoplus_{n\in\N}\Hh_n
+\]
+such that (i) $T\Hh_n\subseteq\Hh_n$, and (ii) for every $n$ there
+is $\varphi_n\in\Hh_n$ for which
+$\{T^k\varphi_n\}_{k=0}^{\infty}$ is a frame for $\Hh_n$.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The final conjecture on page 11 of the source paper.}
+\end{figure}
+
+\section{Idea of the counterexample}
+
+The unilateral shift is already the canonical example of an operator with a
+frame orbit: the orbit of its first basis vector is the entire standard
+orthonormal basis.  At the same time, the multiplicity-one shift cannot split
+into two nonzero invariant blocks.  Indeed, in an orthogonal decomposition
+into invariant summands, the complement of each summand is invariant as well,
+so its orthogonal projection commutes with the shift.  But the only orthogonal
+projections commuting with the multiplicity-one unilateral shift are $0$ and
+the identity.
+
+This proves that the only possible direct-sum presentation has one nonzero
+summand, namely the whole space.  Thus the conjecture has a sharp convention
+dichotomy: it is automatic if zero summands are admitted and false if the
+summands are required to give a genuine decomposition.
+
+\section{The literal convention}
+
+\begin{proposition}[Vacuity of the literal statement]\label{prop:literal}
+Suppose zero Hilbert spaces are allowed as direct summands and the zero orbit
+is regarded as a frame for the zero space.  Then the printed conjecture is
+true immediately for every $T\in E(\Hh)$.
+\end{proposition}
+
+\begin{proof}
+By the definition of $E(\Hh)$ there exists $\varphi\in\Hh$ such that
+$\{T^k\varphi\}_{k\ge0}$ is a frame for $\Hh$.  Set
+\[
+ \Hh_1=\Hh,\qquad \varphi_1=\varphi,
+ \qquad \Hh_n=\{0\},\quad \varphi_n=0\quad(n\ge2).
+\]
+Then $\Hh=\bigoplus_{n\in\N}\Hh_n$, every summand is invariant,
+and the frame inequalities on a zero space are vacuous.
+\end{proof}
+
+If the convention is instead that every displayed summand must be nonzero,
+the next theorem supplies a counterexample.
+
+\section{The unilateral-shift counterexample}
+
+Let $\Hh=\ell^2(\N_0)$ with standard orthonormal basis
+$(e_j)_{j\ge0}$, and let $S$ be the unilateral shift
+\[
+ Se_j=e_{j+1}\qquad(j\ge0).
+\]
+
+\begin{theorem}[Failure of every nontrivial decomposition]
+\label{thm:counterexample}
+The operator $S$ belongs to $E(\Hh)$, but $\Hh$ cannot be written as an
+orthogonal direct sum of two or more nonzero closed $S$-invariant subspaces.
+Consequently, the source conjecture is false under the natural interpretation
+that its countable family of summands is nonzero.
+\end{theorem}
+
+\begin{proof}
+First,
+\[
+ \{S^ke_0\}_{k=0}^{\infty}=\{e_k\}_{k=0}^{\infty}
+\]
+is an orthonormal basis for $\Hh$, hence a Parseval frame.  Therefore
+$S\in E(\Hh)$.
+
+Suppose that
+\[
+ \Hh=\bigoplus_{n\in I}\Hh_n
+\]
+is an orthogonal direct sum of closed $S$-invariant subspaces.  Fix $n$ and
+let $P_n$ be the orthogonal projection onto $\Hh_n$.  The orthogonal
+complement
+\[
+ \Hh_n^\perp=\bigoplus_{m\ne n}\Hh_m
+\]
+is also $S$-invariant: finite partial sums are carried into the same
+complement, and boundedness of $S$ passes this to the closure.  Thus $S$ is
+block diagonal relative to $\Hh_n\oplus\Hh_n^\perp$, so
+\begin{equation}\label{eq:commute}
+ P_nS=SP_n.
+\end{equation}
+Because $P_n=P_n^*$, taking adjoints in \eqref{eq:commute} also gives
+$S^*P_n=P_nS^*$.  Now
+\[
+ \ker S^*=\operatorname{span}\{e_0\},
+\]
+so $P_ne_0=ce_0$ for some scalar $c$.  Since $P_n$ is a projection,
+$c^2=c$, hence $c\in\{0,1\}$.  Finally, for every $k\ge0$,
+\[
+ P_ne_k=P_nS^ke_0=S^kP_ne_0=ce_k.
+\]
+Therefore $P_n=cI$.  Each $\Hh_n$ is consequently either $\{0\}$ or
+$\Hh$, and there cannot be two nonzero summands.  In particular, no
+countably infinite nonzero decomposition satisfying condition (i) exists;
+condition (ii) cannot repair this obstruction.
+\end{proof}
+
+\section{Even nonorthogonal topological sums fail}
+
+The use of ``direct sum of Hilbert spaces'' normally denotes an orthogonal
+Hilbert direct sum, which Theorem \ref{thm:counterexample} handles.  The same
+counterexample survives a broader bounded topological-direct-sum reading.
+
+\begin{proposition}\label{prop:topological}
+The commutant of the multiplicity-one unilateral shift contains no
+nontrivial idempotent.  Hence $\ell^2(\N_0)$ cannot be a bounded topological
+direct sum of two nonzero closed $S$-invariant subspaces either.
+\end{proposition}
+
+\begin{proof}
+Identify $\ell^2(\N_0)$ unitarily with the Hardy space $H^2(\mathbb D)$,
+so that $S$ becomes multiplication $M_z$ by the coordinate function.  If a
+bounded operator $A$ commutes with $M_z$, let $\psi=A1$.  For every polynomial
+$q$,
+\[
+ Aq=Aq(M_z)1=q(M_z)A1=q\psi.
+\]
+Boundedness and density show that $A=M_\psi$ for a bounded analytic
+multiplier $\psi\in H^\infty(\mathbb D)$.  If $A^2=A$, then
+$\psi^2=\psi$.  The analytic function $\psi$ takes values only in
+$\{0,1\}$, so connectedness of $\mathbb D$ forces it to be constant.  Thus
+$A=0$ or $A=I$.
+
+If $\Hh=M\dotplus N$ were a bounded topological direct sum of two closed
+$S$-invariant subspaces, the coordinate projection onto $M$ along $N$ would
+be a bounded idempotent commuting with $S$, contradicting the preceding
+paragraph unless one summand were zero.
+\end{proof}
+
+\section{Verification and limitations}
+
+The counterexample is scoped to the only nontrivial reading of the printed
+conjecture: at least two nonzero summands.  It does not claim that the literal
+zero-summand convention is false; Proposition \ref{prop:literal} shows that
+version is automatic.
+
+The script \texttt{code/verify\_shift\_obstruction.py} checks the analogous
+matrix statements for truncated shifts in every dimension from 2 through 40.
+It verifies that the first-vector orbit has identity Gram matrix and that the
+joint commutant of the shift and its adjoint is one-dimensional.  These 39
+finite checks are designed to catch orientation and commutator mistakes; the
+infinite-dimensional proof above is exact and does not depend on them.
+
+The most important human-review question is semantic rather than analytic:
+whether the source authors intended all $\Hh_n$ to be nonzero.  Under that
+intention, Theorem \ref{thm:counterexample} is a complete disproof.  Without
+it, Proposition \ref{prop:literal} is a complete literal answer.
+
+\section{Bounded novelty check}
+
+On 27 August 2026, the run registry, solution, attempt, and proof-gap indexes
+were searched for arXiv:2301.06183, its title, unilateral-shift frame orbits,
+invariant-summand decompositions, and reducing-subspace variants.  Bounded
+exact-phrase, arXiv, title, and citation searches found the source paper, the
+related arXiv papers 2212.01921 and 2505.19303, and a 2025 article citing the
+source (doi:10.1007/s11785-025-01839-8).  No exact answer to the final
+conjecture surfaced; the available metadata and abstract of the citing paper
+concern other characterizations.  Novelty is plausible, not certified.
+
+\begin{thebibliography}{9}
+\bibitem{CheshmavarDallakiBaradaran}
+J. Cheshmavar, A. Dallaki, and J. Baradaran,
+\emph{On abstract results of operator representation of frames in Hilbert spaces},
+J. Pseudo-Differ. Oper. Appl. 14 (2023), article 30,
+arXiv:2301.06183v1, doi:10.1007/s11868-023-00524-8.
+\end{thebibliography}
+
+\end{document}

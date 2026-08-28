@@ -1,0 +1,349 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\M}{\mathsf M}
+\newcommand{\T}{\mathbb T}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Span}{\operatorname{span}}
+
+\title{Normal Targeting at Corank One:\\A Complete One-Column Criterion}
+\author{Automated mathematical discovery packet\\Run \texttt{fa\_banach\_001}, lane 8}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.90\linewidth}{\textbf{Status.} Likely valid partial result,
+subject to human review.  The general normal targeting problem remains open;
+this packet completely treats the subcase $\rank X=m-1$ over $\C$.}}
+\end{center}
+
+\begin{abstract}
+Given $X,Y\in\M_{m\times n}(\C)$, the normal targeting problem asks when a
+normal $A\in\M_m(\C)$ satisfies $AX=Y$.  We solve the maximal-rank singular
+case $\rank X=m-1$.  A compact singular value decomposition reduces the
+problem to completing one prescribed block column
+$\left[\begin{smallmatrix}B\\c^*\end{smallmatrix}\right]$ by one free column.
+Normality is equivalent to a positive rank-one defect identity and a single
+vector compatibility equation involving only one phase and one complex
+scalar.  When $B$ is normal, the latter condition says exactly that the
+eigenvalues of $B$ visible from $c$ lie on an affine line.  This gives an
+explicit $4\times4$ obstruction showing that the positive-semidefinite defect
+condition alone is not sufficient even when only one column is missing.
+\end{abstract}
+
+\section{Source question and scope}
+
+Bierly, Garcia, and Horn introduce the linear targeting problem and state in
+Section 10 that the normal case remains open \cite{BGH}.  The relevant source
+passage (p.~13) is reproduced below.
+
+\begin{center}
+\includegraphics[width=0.96\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+The question is:
+\begin{quote}
+Characterize those $X,Y\in\M_{m\times n}(\C)$ for which there is a normal
+$A\in\M_m(\C)$ satisfying $AX=Y$.
+\end{quote}
+The source solves several structured variants, including normal matrices with
+two prescribed spectral values, but not the unrestricted problem.  We treat
+the first rank below the invertible case: $\rank X=m-1$.  Since the source
+assumes $m\ge n$, this forces $n\in\{m-1,m\}$.
+
+\section{Proof intuition}
+
+The columns of $X$ determine the action of $A$ on the $(m-1)$-dimensional
+space $\Ran X$.  After choosing an orthonormal basis adapted to this space,
+every targeting matrix therefore has all but its last column fixed.  Write it
+as
+\[
+ \widehat A=\begin{bmatrix}B&d\\ c^*&\eta\end{bmatrix}.
+\]
+Comparing the upper-left and upper-right blocks of
+$\widehat A^*\widehat A$ and $\widehat A\widehat A^*$ gives the whole answer.
+The upper-left comparison says that the computable defect
+$B^*B-BB^*+cc^*$ must be $dd^*$, hence positive semidefinite of rank at most
+one.  If it has rank one, it determines $d$ up to a phase.  The upper-right
+comparison is then one explicit compatibility equation for that phase and
+$\eta$.  The bottom-right comparison follows automatically by taking traces.
+
+When $B$ is normal, the defect forces $d=\omega c$.  In a spectral basis for
+$B$, the compatibility equation says that
+$\lambda-\omega\overline\lambda$ is constant on every eigenvalue seen by
+$c$.  Geometrically this means precisely that those eigenvalues lie on one
+line in the complex plane.
+
+\section{The corank-one criterion}
+
+Let $r=m-1$.  Take a compact singular value decomposition
+\[
+ X=V_1\Sigma W_1^*,
+\]
+where $V_1\in\M_{m\times r}(\C)$ and
+$W_1\in\M_{n\times r}(\C)$ have orthonormal columns and
+$\Sigma\in\M_r(\C)$ is positive diagonal.  Complete $V_1$ to a unitary
+$V=[\,V_1\ v\,]$.  Assuming $\ker X\subseteq\ker Y$, set
+\[
+ Z:=YW_1\Sigma^{-1},\qquad
+ V^*Z=\begin{bmatrix}B\\c^*\end{bmatrix},
+ \quad B\in\M_r(\C),\ c\in\C^r,
+\]
+and define the Hermitian defect
+\[
+ H:=B^*B-BB^*+cc^*.
+\]
+
+\begin{theorem}[Complete criterion when $\rank X=m-1$]\label{thm:main}
+Let $X,Y\in\M_{m\times n}(\C)$, $m\ge n$, and $\rank X=m-1$.
+There is a normal $A\in\M_m(\C)$ satisfying $AX=Y$ if and only if:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\ker X\subseteq\ker Y$;
+\item $H$ is positive semidefinite and $\rank H\le1$; and
+\item if $\rank H=1$ and $h\in\C^r$ is any vector with $H=hh^*$,
+there are $\omega\in\T$ and $\eta\in\C$ such that
+\begin{equation}\label{eq:compat}
+ B^*(\omega h)+c\eta=Bc+(\omega h)\overline\eta.
+\end{equation}
+\end{enumerate}
+If $H=0$, condition \textup{(iii)} is vacuous.  In the rank-one case, every
+normal targeting matrix is obtained from a solution $(\omega,\eta)$ of
+\eqref{eq:compat} by
+\begin{equation}\label{eq:construction}
+ A=V\begin{bmatrix}B&\omega h\\c^*&\eta\end{bmatrix}V^*.
+\end{equation}
+When $H=0$, every $\eta\in\C$ gives a solution by using the same formula with
+the upper-right vector equal to zero.
+\end{theorem}
+
+\begin{proof}
+The inclusion $\ker X\subseteq\ker Y$ is necessary for any targeting matrix.
+It is equivalent to $\Ran Y^*\subseteq\Ran X^*=\Ran W_1$, and hence
+\begin{equation}\label{eq:Ysupport}
+ Y=YW_1W_1^*.
+\end{equation}
+Moreover, $AX=Y$ is equivalent to $AV_1=Z$.  Indeed, $AX=Y$ gives this after
+right multiplication by $W_1\Sigma^{-1}$, while the converse follows from
+\eqref{eq:Ysupport}:
+\[
+ AX=AV_1\Sigma W_1^*=Z\Sigma W_1^*=YW_1W_1^*=Y.
+\]
+Consequently every targeting matrix, and only a targeting matrix, has the
+form
+\[
+ A=V\widehat A V^*,\qquad
+ \widehat A=\begin{bmatrix}B&d\\c^*&\eta\end{bmatrix}
+\]
+for some $d\in\C^r$ and $\eta\in\C$.
+
+Direct multiplication gives
+\[
+ \widehat A^*\widehat A=
+ \begin{bmatrix}
+ B^*B+cc^*&B^*d+c\eta\\
+ d^*B+\overline\eta c^*&d^*d+|\eta|^2
+ \end{bmatrix}
+\]
+and
+\[
+ \widehat A\widehat A^*=
+ \begin{bmatrix}
+ BB^*+dd^*&Bc+d\overline\eta\\
+ c^*B^*+\eta d^*&c^*c+|\eta|^2
+ \end{bmatrix}.
+\]
+Thus the upper-left blocks agree exactly when
+\begin{equation}\label{eq:defect}
+ H=dd^*,
+\end{equation}
+and the upper-right blocks agree exactly when
+\begin{equation}\label{eq:cross}
+ B^*d+c\eta=Bc+d\overline\eta.
+\end{equation}
+Taking traces in \eqref{eq:defect}, and using
+$\operatorname{tr}(B^*B-BB^*)=0$, yields $d^*d=c^*c$; hence the bottom-right
+blocks then agree automatically.  The lower-left equality is the adjoint of
+\eqref{eq:cross}.  Therefore \eqref{eq:defect} and \eqref{eq:cross} are
+necessary and sufficient for normality.
+
+Equation \eqref{eq:defect} is solvable precisely when $H\ge0$ and
+$\rank H\le1$.  If $H=hh^*$ has rank one, all of its solutions are
+$d=\omega h$ with $\omega\in\T$, and \eqref{eq:cross} becomes
+\eqref{eq:compat}.  If $H=0$, then $d=0$; taking the trace also gives $c=0$,
+and $H=0$ reduces to $B^*B=BB^*$.  Hence \eqref{eq:cross} is automatic for
+every $\eta$.  This proves the criterion and construction.  Unitary
+conjugation by $V$ preserves normality.
+\end{proof}
+
+\begin{remark}[A three-real-variable test]
+Once $H$ has passed the rank-one test, the original $m^2$ normality equations
+have been reduced to \eqref{eq:compat}: one unit-modulus phase $\omega$ and
+one complex scalar $\eta$.  For fixed $\omega$, this is a real-linear system
+in $\Re\eta$ and $\Im\eta$.  Thus the criterion is directly checkable and
+constructive without optimizing over a full $m\times m$ matrix.
+\end{remark}
+
+\section{Closed form for a normal compression}
+
+Suppose now that $B$ is normal.  Let
+\[
+ B=U\operatorname{diag}(\lambda_1,\ldots,\lambda_r)U^*,
+ \qquad \widehat c=U^*c,
+\]
+and call
+\[
+ \Lambda_c:=\{\lambda_j:\widehat c_j\ne0\}
+\]
+the \emph{active spectrum} of $(B,c)$.  Equivalently, an eigenvalue is active
+when the spectral projection of $B$ at that eigenvalue does not annihilate
+$c$; this definition is independent of the chosen basis within repeated
+eigenspaces.
+
+\begin{corollary}[Affine-line criterion]\label{cor:line}
+If $B$ is normal, the prescribed block column
+$\left[\begin{smallmatrix}B\\c^*\end{smallmatrix}\right]$ has a normal
+one-column completion if and only if either $c=0$ or $\Lambda_c$ is contained
+in an affine line in $\C$.
+\end{corollary}
+
+\begin{proof}
+For normal $B$, $H=cc^*$.  When $c\ne0$, Theorem~\ref{thm:main} permits
+$h=c$, so $d=\omega c$ for some $\omega\in\T$.  In the spectral basis of
+$B$, equation \eqref{eq:compat} says, for every active index $j$,
+\begin{equation}\label{eq:spectral}
+ \lambda_j-\omega\overline{\lambda_j}
+ =\eta-\omega\overline\eta.
+\end{equation}
+Write $\omega=e^{2i\theta}$.  Multiplication by $e^{-i\theta}$ transforms
+the left side of \eqref{eq:spectral} into
+\[
+ e^{-i\theta}\lambda_j-e^{i\theta}\overline{\lambda_j}
+ =2i\,\operatorname{Im}(e^{-i\theta}\lambda_j).
+\]
+It is independent of $j$ precisely when all active eigenvalues have the same
+orthogonal coordinate relative to direction $e^{i\theta}$, that is, precisely
+when they lie on an affine line parallel to $e^{i\theta}$.  If such a line
+exists, choose $\eta$ on the same line; then \eqref{eq:spectral} holds and the
+construction in Theorem~\ref{thm:main} gives a normal completion.  The case
+$c=0$ is immediate.
+\end{proof}
+
+\section{A sharp four-dimensional obstruction}
+
+\begin{proposition}\label{prop:counterexample}
+Let
+\[
+ X=\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{bmatrix},\qquad
+ Y=\begin{bmatrix}0&0&0\\0&1&0\\0&0&i\\1&1&1\end{bmatrix}.
+\]
+Then $\rank X=3$, $\ker X\subseteq\ker Y$, and the source paper's necessary
+defect matrix $H(B,C)$ is positive semidefinite of rank one, but there is no
+normal $A\in\M_4(\C)$ with $AX=Y$.
+\end{proposition}
+
+\begin{proof}
+Here $V=I_4$, $\Sigma=I_3$,
+\[
+ B=\operatorname{diag}(0,1,i),\qquad c=(1,1,1)^T.
+\]
+Since $B$ is normal,
+\[
+ H=B^*B-BB^*+cc^*=cc^*\ge0,
+ \qquad \rank H=1.
+\]
+However, the active spectrum is $\{0,1,i\}$, which is not collinear, so
+Corollary~\ref{cor:line} rules out a normal completion.
+
+For a direct algebraic check, normality would force $d=\omega c$ with
+$\omega\in\T$ and
+\[
+ \lambda-\omega\overline\lambda
+ =\eta-\omega\overline\eta
+ \quad(\lambda\in\{0,1,i\}).
+\]
+The equation for $\lambda=0$ makes the common value zero.  The equation for
+$\lambda=1$ then forces $\omega=1$, while the equation for $\lambda=i$
+forces $\omega=-1$, a contradiction.
+\end{proof}
+
+The source already observes that its positive-semidefinite defect condition
+is not sufficient for general square border blocks of size at least three.
+Proposition~\ref{prop:counterexample} sharpens the phenomenon to a single
+missing column and gives the complete geometric reason in the normal-$B$
+case.  Within this family, three active noncollinear eigenvalues are necessary,
+so dimension four is minimal.
+
+\section{Verification notes}
+
+\begin{itemize}[leftmargin=*]
+\item The proof uses only compact SVD, direct block multiplication, and the
+spectral theorem for the normal-compression corollary.
+\item The potentially delicate $n=m$ case is covered by
+$\ker X\subseteq\ker Y$: it gives $Y=YW_1W_1^*$ even though $W_1$ is not
+square.
+\item The trace of the upper-left defect identity gives
+$\|d\|=\|c\|$, so no independent bottom-right condition is missing.
+\item The deterministic script \texttt{code/verify\_codim\_one.py} checks
+the two block residuals on a random unitarily diagonalized normal matrix,
+constructs a non-Hermitian positive example with collinear active spectrum,
+and verifies the rank-one defect and incompatible phases in
+Proposition~\ref{prop:counterexample}.
+\end{itemize}
+
+\section{Limitations and novelty audit}
+
+This is a partial result: it does not characterize normal targeting when
+$\operatorname{codim}\Ran X\ge2$.  In the nonnormal-$B$ case, the theorem
+leaves a one-phase compatibility test rather than eliminating that phase by a
+closed formula.
+
+A bounded search on 27 August 2026 used the exact arXiv id and title, the
+phrases ``normal targeting'', ``normal completion one missing column'', and
+``normal defect one'', and the authors' names.  It found the source paper and
+the established normal-defect-one literature, especially
+Kaliuzhnyi-Verbovetskyi, Spitkovsky, and Woerdeman \cite{KSW}.  That work
+classifies completions of a prescribed north-west block when both border
+vectors may vary.  Our targeting reduction instead prescribes the lower
+border $c^*$ and leaves only the upper border and corner free.  No source found
+in the bounded search stated the rank-$m-1$ targeting criterion, the active
+spectrum affine-line criterion, or the explicit $4\times4$ obstruction above.
+Absolute novelty is not claimed; the result is close in spirit to normal
+completion theory and may be derivable from a broader formulation not found
+in the search.
+
+\section{Human-review recommendation}
+
+Recommend expert review as a likely valid partial solution.  The two points
+most worth checking are (1) the row-space implication
+$Y=YW_1W_1^*$ under $\ker X\subseteq\ker Y$, and (2) the conjugations in
+equation \eqref{eq:compat}.  If those pass, the theorem gives an exact and
+constructive solution of the maximal-rank singular subcase and the
+four-dimensional example is a rigorous obstruction, not a numerical claim.
+
+\enlargethispage{3\baselineskip}
+\small
+\begin{thebibliography}{9}
+\bibitem{BGH}
+K. Bierly, S. R. Garcia, and R. A. Horn,
+\emph{The linear targeting problem}, arXiv:2408.10036, 2024 (revised 2025).
+
+\bibitem{KSW}
+D. S. Kaliuzhnyi-Verbovetskyi, I. M. Spitkovsky, and H. J. Woerdeman,
+\emph{Matrices with normal defect one}, Operators and Matrices
+\textbf{3} (2009), 427--450; arXiv:0903.0090.
+\end{thebibliography}
+
+\end{document}

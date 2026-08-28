@@ -1,0 +1,349 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dist}{\operatorname{dist}}
+
+\title{The sharp small-gap lower frame bound\\for finite exponential families}
+\author{Candidate full quantitative answer to arXiv:1308.5065}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\fcolorbox{blue!55!black}{blue!4}{\parbox{0.93\linewidth}{
+\textbf{Status.} Candidate full asymptotic answer, likely valid and awaiting human review.  For every fixed number of exponentials, the result gives the exact leading constant of the worst lower frame bound as the minimum gap tends to zero, proves that an arithmetic cluster is extremal, and characterizes every asymptotically extremizing configuration.
+}}
+
+\section{Source question}
+
+In Section 7.2, page 22 of \emph{Six problems in frame theory} \cite{Christensen}, Ole Christensen considers finite separated families
+\[
+   \bigl\{e^{i\lambda_jx}\bigr\}_{j=1}^{N}\subset L^2(-\pi,\pi).
+\]
+For adjacent gaps at least $0<\delta\leq1$, the paper quotes the lower frame bound
+\[
+  1.6\cdot 10^{-14}\left(\frac{\delta}{2}\right)^{2N+1}
+  \frac{1}{((N+1)!)^8},
+\]
+calls it ``obviously a very crude estimate,'' and asks:
+\begin{quote}
+\emph{How can better estimates for the lower frame bound of
+$\{e^{i\lambda_nx}\}_{n=1}^{N}$ be obtained?}
+\end{quote}
+
+\begin{center}
+\includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+\section{Extremal formulation and exact answer}
+
+For increasing real frequencies $\lambda=(\lambda_0,\ldots,\lambda_n)$, where $n=N-1$, write
+\[
+ A(\lambda):=\inf_{c\in\C^{N}\setminus\{0\}}
+ \frac{\displaystyle\int_{-\pi}^{\pi}
+   \left|\sum_{j=0}^{n}c_j e^{i\lambda_jx}\right|^2\,dx}
+ {\displaystyle\sum_{j=0}^{n}|c_j|^2}.
+\]
+This is the optimal lower Riesz bound, equivalently the optimal lower frame bound of the finite frame sequence.  Define the worst separated bound
+\[
+ m_N(\delta):=\inf\left\{A(\lambda):
+  \lambda_0<\cdots<\lambda_n,\quad
+  \lambda_{j+1}-\lambda_j\geq\delta\right\}.
+\]
+Set
+\begin{equation}\label{eq:KN}
+ K_N:=\frac{2\pi^{2n+1}4^n}
+ {(2n+1)\binom{2n}{n}^{3}},\qquad n=N-1.
+\end{equation}
+
+Let $C_{\rm TN}>1$ be an absolute constant for the Tur\'an--Nazarov inequality in the normalization
+\begin{equation}\label{eq:TN}
+ \sup_I |p|\leq
+ \left(\frac{C_{\rm TN}|I|}{|F|}\right)^{N-1}\sup_F|p|
+\end{equation}
+for an $N$-term exponential polynomial $p$ with real frequencies, a positive-measure subset $F$ of an interval $I$.  This is the form recorded in Theorem 2.1 of Bownik--Speegle \cite{BownikSpeegle}, quoting Nazarov \cite{Nazarov}.
+
+\begin{theorem}[Exact worst small-gap asymptotic]\label{thm:main}
+For every $N\geq1$,
+\begin{equation}\label{eq:exact}
+ \boxed{\displaystyle
+ \lim_{\delta\downarrow0}\frac{m_N(\delta)}{\delta^{2N-2}}
+ =K_N.}
+\end{equation}
+For every $0<\delta\leq1$ one also has the explicit estimate
+\begin{equation}\label{eq:explicit}
+ m_N(\delta)\geq \frac{\pi}{2}
+ \left(\frac{\delta}{4C_{\rm TN}}\right)^{2N-2}.
+\end{equation}
+The arithmetic cluster $(a,a+\delta,\ldots,a+n\delta)$ attains the asymptotic constant in \eqref{eq:exact}.  Conversely, if $\delta_r\downarrow0$ and admissible configurations $\lambda^{(r)}$ satisfy
+\[
+ \frac{A(\lambda^{(r)})}{\delta_r^{2n}}\longrightarrow K_N,
+\]
+then, after translating each configuration,
+\begin{equation}\label{eq:rigidity}
+ \max_{0\leq j\leq n}
+ \bigl|\lambda_j^{(r)}-\lambda_0^{(r)}-j\delta_r\bigr|
+ =o(\delta_r).
+\end{equation}
+Thus arithmetic spacing is the unique asymptotic worst geometry, up to translation.
+\end{theorem}
+
+For example, $K_1=2\pi$, $K_2=\pi^3/3$, and $K_3=4\pi^5/135$.  Formula \eqref{eq:exact} both removes the quoted factorial loss and replaces the gap power $2N+1$ by the optimal power $2N-2$, now with the exact leading coefficient.
+
+\section{Proof intuition}
+
+When all frequencies coalesce, replace the exponentials by their Newton divided differences.  The $k$th divided difference converges to $(ix)^k/k!$.  In the inverse Gram matrix, the last divided difference dominates, and its coefficient vector is the vector of barycentric weights
+\[
+ w_j=\prod_{k\ne j}(\lambda_j-\lambda_k)^{-1}.
+\]
+The analytic part of the leading constant is the squared distance of $x^n$ from lower-degree polynomials in $L^2(-\pi,\pi)$; the minimizer is the monic Legendre polynomial.  The geometric part is $\|w\|_2$.  Minimum separation gives a sharp termwise upper bound for every $|w_j|$, with simultaneous equality only for arithmetic spacing.
+
+There is one global issue: a minimizing sequence might split into several clusters or have gaps on different scales.  Grouping Newton divided differences cluster by cluster rules this out.  A configuration whose largest coalescing cluster has $q<N$ points has lower bound of order at least $\delta^{2q-2}$, which is much larger than $\delta^{2N-2}$.  Hence every true extremizing sequence is a single collapsing cluster, where the exact Legendre--barycentric calculation applies uniformly.
+
+\section{Two confluence lemmas}
+
+For distinct nodes $\lambda_0<\cdots<\lambda_n$, put
+\[
+ w_j(\lambda):=\frac{1}{\prod_{k\ne j}(\lambda_j-\lambda_k)},
+ \qquad w(\lambda)=(w_0,\ldots,w_n)^T,
+\]
+and let $h=\lambda_n-\lambda_0$.
+
+\begin{lemma}[Uniform one-cluster asymptotic]\label{lem:onecluster}
+For fixed $n$, uniformly over all distinct real nodes with $h\downarrow0$,
+\begin{equation}\label{eq:clusterasymp}
+ A(\lambda)=
+ \frac{D_n}{(n!)^2\|w(\lambda)\|_2^2}\bigl(1+O_n(h)\bigr),
+\end{equation}
+where $D_n$ is the squared $L^2(-\pi,\pi)$ norm of the monic Legendre polynomial of degree $n$:
+\begin{equation}\label{eq:Dn}
+ D_n=\frac{2\pi^{2n+1}4^n}
+ {(2n+1)\binom{2n}{n}^{2}}.
+\end{equation}
+The error in \eqref{eq:clusterasymp} is independent of the ratios between the gaps.
+\end{lemma}
+
+\begin{proof}
+Translation of every frequency multiplies the synthesis operator by a unitary function, so assume $\lambda_0=0$.  For $0\leq k\leq n$, define the Newton divided difference
+\[
+ f_k(x)=[\lambda_0,\ldots,\lambda_k]e^{i\lambda x}
+ =\sum_{j=0}^{k}
+ \frac{e^{i\lambda_jx}}
+ {\prod_{0\leq \ell\leq k,\ \ell\ne j}(\lambda_j-\lambda_\ell)}.
+\]
+The Hermite--Genocchi formula gives, uniformly in $L^2(-\pi,\pi)$,
+\begin{equation}\label{eq:ddlimit}
+ f_k(x)=\frac{(ix)^k}{k!}+O_n(h).
+\end{equation}
+Let $E$ be the synthesis operator whose columns are $e^{i\lambda_jx}$.  Let $W$ be the upper-triangular matrix whose $k$th column is the coefficient vector of $f_k$, and let $F=EW$.  If $G=E^*E$ and $H=F^*F$, then
+\begin{equation}\label{eq:inversefactor}
+ H=W^*GW,\qquad G^{-1}=WH^{-1}W^*.
+\end{equation}
+By \eqref{eq:ddlimit}, $H=H_0+O_n(h)$, where $H_0$ is the positive definite Gram matrix of
+\[
+ 1,\ ix,\ldots,\frac{(ix)^n}{n!}.
+\]
+
+Write $w^{(k)}$ for column $k$ of $W$.  The last column is $w^{(n)}=w(\lambda)$.  For $j\leq k<n$,
+\[
+ w_j^{(k)}=w_j^{(n)}\prod_{\ell=k+1}^{n}(\lambda_j-\lambda_\ell),
+\]
+and therefore
+\begin{equation}\label{eq:coldom}
+ \|w^{(k)}\|_2\leq h^{n-k}\|w^{(n)}\|_2.
+\end{equation}
+Consequently \eqref{eq:inversefactor}, after division by $\|w\|_2^2$, converges in operator norm, uniformly in the gap ratios, to the rank-one matrix
+\[
+ (H_0^{-1})_{nn}\,uu^*,\qquad u=\frac{w}{\|w\|_2}.
+\]
+Thus
+\begin{equation}\label{eq:lmaxinverse}
+ \lambda_{\max}(G^{-1})
+ =(H_0^{-1})_{nn}\|w\|_2^2\bigl(1+O_n(h)\bigr).
+\end{equation}
+
+The bottom-right entry of an inverse Gram matrix is the reciprocal squared distance of its last vector from the span of the preceding ones.  Hence
+\[
+ (H_0^{-1})_{nn}
+ =\dist\left(\frac{(ix)^n}{n!},
+       \operatorname{span}\{1,ix,\ldots,(ix)^{n-1}\}\right)^{-2}
+ =\frac{(n!)^2}{D_n}.
+\]
+Indeed, the monic polynomial realizing this distance is
+\[
+ Q_n(x)=\frac{2^n\pi^n}{\binom{2n}{n}}P_n(x/\pi),
+\]
+where $P_n$ is the usual Legendre polynomial.  Since
+$\int_{-1}^{1}P_n(t)^2dt=2/(2n+1)$, its norm is \eqref{eq:Dn}.  Finally $A(\lambda)=\lambda_{\min}(G)=\lambda_{\max}(G^{-1})^{-1}$, proving \eqref{eq:clusterasymp}.
+\end{proof}
+
+\begin{lemma}[Several clusters lose powers]\label{lem:multicluster}
+Let $\delta_r\downarrow0$, and let each $\lambda^{(r)}=(\lambda_0^{(r)},\ldots,\lambda_n^{(r)})$ have adjacent gaps at least $\delta_r$.  If the diameter of the configuration does not tend to zero, then, after passage to a subsequence, there is a $q\leq N-1$ and a constant $c>0$ such that
+\begin{equation}\label{eq:multicluster}
+ A(\lambda^{(r)})\geq c\,\delta_r^{2q-2}.
+\end{equation}
+In particular, $A(\lambda^{(r)})/\delta_r^{2N-2}\to\infty$.
+\end{lemma}
+
+\begin{proof}
+Pass to a subsequence so every pairwise frequency difference has a limit in the extended real line.  Partition the indices into maximal consecutive blocks for which all internal differences tend to zero.  The assumption gives at least two blocks; let $q\leq N-1$ be the largest block size.
+
+Inside each block, replace its exponentials by Newton divided differences of orders $0$ through one less than the block size.  Let $W_r$ be the resulting block-diagonal coefficient matrix and $H_r$ the Gram matrix of the resulting divided-difference functions.  Within a $k$th-order column, separation by $\delta_r$ gives
+\[
+ \left|\prod_{\ell\ne j}(\lambda_j^{(r)}-\lambda_\ell^{(r)})^{-1}\right|
+ \leq \frac{\delta_r^{-k}}{j!(k-j)!},
+\]
+so
+\begin{equation}\label{eq:Wbound}
+ \|W_r\|\leq C_N\delta_r^{-(q-1)}.
+\end{equation}
+
+The within-block divided differences converge to
+$e^{ia_rx}(ix)^k/k!$, where $a_r$ is the block center.  For block centers with bounded relative displacement, pass again so the displacements converge; the limiting confluent exponentials are linearly independent.  For centers whose relative displacement tends to infinity, all cross inner products tend to zero by the Riemann--Lebesgue lemma.  Thus $H_r$ converges, after grouping blocks with bounded relative displacement, to a block-diagonal positive definite Gram matrix.  In particular, $\|H_r^{-1}\|\leq C$.
+
+As in \eqref{eq:inversefactor}, $G_r^{-1}=W_rH_r^{-1}W_r^*$.  Therefore \eqref{eq:Wbound} gives
+\[
+ \lambda_{\max}(G_r^{-1})\leq C\delta_r^{-2q+2},
+\]
+which is equivalent to \eqref{eq:multicluster}.  Since $q-1\leq N-2$, division by $\delta_r^{2N-2}$ makes the lower bound diverge.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}}
+
+The case $N=1$ is immediate, so let $n=N-1\geq1$.
+
+\subsection*{The exact asymptotic}
+
+For an admissible close cluster, ordered separation gives
+\[
+ |\lambda_j-\lambda_k|\geq |j-k|\delta.
+\]
+Consequently, for $0\leq j\leq n$,
+\begin{equation}\label{eq:barybound}
+ |w_j(\lambda)|
+ \leq\frac{\delta^{-n}}{j!(n-j)!}.
+\end{equation}
+Vandermonde's identity now yields
+\begin{equation}\label{eq:wnorm}
+ \|w(\lambda)\|_2^2
+ \leq \delta^{-2n}\sum_{j=0}^{n}\frac{1}{j!^2(n-j)!^2}
+ =\frac{\delta^{-2n}}{(n!)^2}\binom{2n}{n}.
+\end{equation}
+Combining Lemma \ref{lem:onecluster}, \eqref{eq:Dn}, and \eqref{eq:wnorm} gives
+\begin{equation}\label{eq:liminfclose}
+ A(\lambda)\geq
+ K_N\delta^{2n}(1-o(1))
+\end{equation}
+uniformly over configurations whose diameter tends to zero.
+
+To obtain the unrestricted lower limit, choose $\delta_r\downarrow0$ and configurations within $o(\delta_r^{2n})$ of $m_N(\delta_r)$.  The arithmetic-cluster upper estimate below shows that their normalized bounds stay finite.  Lemma \ref{lem:multicluster} therefore forces their diameters to tend to zero, and \eqref{eq:liminfclose} applies.  Hence
+\[
+ \liminf_{\delta\downarrow0}\frac{m_N(\delta)}{\delta^{2n}}\geq K_N.
+\]
+
+For the reverse inequality, take $\lambda_j=j\delta$.  Then
+\[
+ w_j=\frac{(-1)^{n-j}\delta^{-n}}{j!(n-j)!},\qquad
+ (n!)^2\|w\|_2^2=\binom{2n}{n}\delta^{-2n}.
+\]
+Lemma \ref{lem:onecluster} gives
+\[
+ A(0,\delta,\ldots,n\delta)
+ =K_N\delta^{2n}(1+O_N(\delta)),
+\]
+which proves \eqref{eq:exact}.
+
+\subsection*{Rigidity}
+
+Suppose a sequence attains the limit $K_N$.  Lemma \ref{lem:multicluster} first forces its diameter to zero.  Equality in the limit of \eqref{eq:wnorm} then forces equality asymptotically in every nonnegative summand of that estimate.  In particular,
+\[
+ \prod_{k=1}^{n}\frac{\lambda_k^{(r)}-\lambda_0^{(r)}}{\delta_r}
+ \longrightarrow n!.
+\]
+Every factor on the left is at least $k$.  Hence each factor tends to $k$, which is precisely \eqref{eq:rigidity}.
+
+\subsection*{Explicit all-gap estimate}
+
+For completeness, fix admissible $\lambda$ and $c$, and put
+\[
+ p(x)=\sum_{j=0}^{n}c_j e^{i\lambda_jx},\quad
+ E=(-\pi,\pi),\quad L=\frac{4\pi}{\delta}.
+\]
+Let $I$ be the centered interval of length $L$.  The Montgomery--Vaughan estimate in the normalization recorded in the proof of Proposition 2.2 of \cite{BownikSpeegle} gives
+\begin{equation}\label{eq:MV}
+ \int_I|p|^2\geq\frac{L}{2}\sum_{j=0}^{n}|c_j|^2.
+\end{equation}
+The set
+\[
+ F=\left\{x\in E: |p(x)|^2\leq
+ \frac{2}{|E|}\int_E|p(t)|^2dt\right\}
+\]
+has measure at least $|E|/2$.  Applying \eqref{eq:TN} to $F\subset I$, then integrating the supremum over $I$, gives
+\[
+ \int_I|p|^2
+ \leq 2r(2C_{\rm TN}r)^{2n}\int_E|p|^2,
+ \qquad r=\frac{|I|}{|E|}=\frac{2}{\delta}.
+\]
+Combining this with \eqref{eq:MV} yields
+\[
+ \int_E|p|^2\geq
+ \frac{\pi}{2}\left(\frac{\delta}{4C_{\rm TN}}\right)^{2n}
+ \sum_{j=0}^{n}|c_j|^2.
+\]
+Taking infima proves \eqref{eq:explicit} and completes the theorem. \qed
+
+\section{Verification, literature boundary, and scope}
+
+The divided-difference factorization was checked symbolically at the matrix level, and a high-precision script evaluates the exact sinc Gram matrices for arithmetic and nonarithmetic clusters.  For $N=2,3,4$ it verifies convergence to \eqref{eq:KN}; it also verifies that several nonarithmetic shapes have strictly larger leading constants.  Computation is not used in the proof.
+
+A bounded search on 27 August 2026 covered the run's lightweight indexes; the exact source question; and combinations of finite exponential frames, sinc Gram matrices, prolate matrices, divided differences, clustered nodes, and smallest singular values.  The arithmetic-cluster constant itself is classical: Batenkov--Demanet--Goldman--Yomdin \cite{BatenkovEtAl} record Slepian's exact small-bandwidth prolate asymptotic, which agrees with \eqref{eq:KN}.  Later work proves sharp cluster-size exponents and geometry-dependent estimates \cite{BatenkovEtAl,KunisNagel,BatenkovGoldman}.  No source found in this bounded search states the exact unrestricted minimization \eqref{eq:exact}, the barycentric extremality of arithmetic spacing, or the rigidity conclusion \eqref{eq:rigidity}.  Because the ingredients are classical and the new step is their extremal synthesis, novelty confidence is moderate.
+
+The theorem fully resolves the natural fixed-$N$, small-gap extremal formulation of Christensen's question and supplies an explicit bound for every $0<\delta\leq1$.  It does not claim the exact value of $m_N(\delta)$ away from the small-gap limit, the best numerical all-gap constant, or the best simultaneous asymptotics when $N\to\infty$.  Those are separate refinements of the source's open-ended request.
+
+\section{Human-review recommendation}
+
+Review as a candidate full quantitative answer.  The most important checks are the uniformity in Lemma \ref{lem:onecluster}, the positive-definite confluent limit in Lemma \ref{lem:multicluster}, and the novelty boundary between the known prolate asymptotic and the unrestricted extremal/rigidity theorem proved here.
+
+\begin{thebibliography}{9}
+\bibitem{Christensen}
+O.~Christensen,
+\emph{Six problems in frame theory},
+arXiv:1308.5065 (2013), Section 7.2.
+
+\bibitem{BownikSpeegle}
+M.~Bownik and D.~Speegle,
+\emph{Linear independence of time-frequency translates of functions with faster than exponential decay},
+Bull. London Math. Soc. 45 (2013), 554--566; arXiv:1206.1657.
+
+\bibitem{Nazarov}
+F.~L.~Nazarov,
+\emph{Local estimates for exponential polynomials and their applications to inequalities of the uncertainty principle type},
+St. Petersburg Math. J. 5 (1994), 663--717.
+
+\bibitem{BatenkovEtAl}
+D.~Batenkov, L.~Demanet, G.~Goldman, and Y.~Yomdin,
+\emph{Conditioning of partial nonuniform Fourier matrices with clustered nodes},
+SIAM J. Matrix Anal. Appl. 41 (2020), 230--256; arXiv:1809.00658.
+
+\bibitem{KunisNagel}
+S.~Kunis and D.~Nagel,
+\emph{On the smallest singular value of multivariate Vandermonde matrices with clustered nodes},
+Linear Algebra Appl. 604 (2020), 1--20; arXiv:1907.07119.
+
+\bibitem{BatenkovGoldman}
+D.~Batenkov and G.~Goldman,
+\emph{Single-exponential bounds for the smallest singular value of Vandermonde matrices in the sub-Rayleigh regime},
+Appl. Comput. Harmon. Anal. 55 (2021), 426--439; arXiv:2107.09326.
+\end{thebibliography}
+
+\end{document}

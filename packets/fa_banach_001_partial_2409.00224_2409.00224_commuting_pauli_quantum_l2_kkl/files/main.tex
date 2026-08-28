@@ -1,0 +1,233 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=0.92in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\definecolor{accent}{RGB}{47,79,106}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Inf}{\operatorname{Inf}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\tr}{\operatorname{tr}}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{14pt}
+\lhead{Quantum $L^2$-KKL for commuting Pauli support}
+\rhead{Lane 4}
+\cfoot{\thepage}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \lhead{Quantum $L^2$-KKL for commuting Pauli support}%
+  \rhead{Lane 4}%
+  \cfoot{\thepage}%
+}
+
+\title{\color{accent}Quantum $L^2$-KKL for Observables\\
+with Commuting Pauli Support\\[3pt]
+\large A complementary substantial partial result}
+\author{Automated Mathematics Run \texttt{fa\_banach\_001}, lane 4}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\linewidth}{\textbf{Status.}
+\texttt{candidate\_partial\_likely\_valid}.  The full quantum $L^2$-KKL
+conjecture remains open.  This packet proves it for every balanced quantum
+Boolean observable whose Pauli-Fourier support is contained in an abelian
+Pauli subgroup.}}
+\end{center}
+
+\section{Source problem}
+
+Blecher, Gao, and Xu, \emph{Geometric influences on quantum Boolean cubes},
+arXiv:2409.00224, Section~7.1 on PDF page~35, state that the original
+Montanaro--Osborne quantum KKL conjecture for $L^2$-influence remains open.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+  \caption{The open-problem passage in Section 7.1 of the source paper.}
+\end{figure}
+
+In its balanced form, the conjecture asks whether every self-adjoint unitary
+$A\in M_2(\mathbb C)^{\otimes n}$ with normalized trace $\tau(A)=0$ satisfies
+\[
+  \max_{1\leq j\leq n}\Inf_j^2(A)
+  \geq c\frac{\log n}{n}
+\]
+for an absolute $c>0$.  Here $d_j$ removes the Pauli terms that are the
+identity on qubit $j$, and $\Inf_j^2(A)=\lVert d_jA\rVert_2^2$.
+
+\section{Statement and proof intuition}
+
+Write $\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}$ for the Hermitian Pauli basis,
+with irrelevant signs handled separately.  A Pauli-supported observable is
+called \emph{commuting} here if all Pauli strings with nonzero Fourier
+coefficient lie in a common abelian Pauli subgroup.
+
+The apparent obstacle is that a global Clifford diagonalizing that subgroup
+need not preserve physical qubits, so classical KKL cannot simply be quoted in
+the original coordinates.  The repair is linear-algebraic.  A rank-$m$
+commuting Pauli subgroup is an $m$-dimensional isotropic subspace of
+$\F_2^{2n}$.  Its $2n$ scalar $X/Z$ coordinate projections span the dual
+space, so $m$ of them form a dual basis.  Relabel the Fourier characters by
+that basis.  Classical KKL then finds a large influence in one chosen scalar
+projection, and that event is contained in ``the Pauli is nonidentity on the
+associated physical qubit.''  Thus the classical influence is bounded above
+by a genuine quantum influence.
+
+\begin{theorem}[Commuting-Pauli quantum KKL]\label{thm:main}
+There is an absolute constant $c>0$ with the following property.  Let
+$A=A^*$, $A^2=I$, and $\tau(A)=0$ on $n$ qubits.  If the Pauli-Fourier support
+of $A$ is contained in an abelian Pauli subgroup, then
+\[
+  \max_{1\leq j\leq n}\Inf_j^2(A)
+  \geq c\frac{\log(n+1)}{n}.
+\]
+Consequently the Montanaro--Osborne conjecture holds for this entire class.
+\end{theorem}
+
+\section{Proof}
+
+Choose independent commuting Hermitian Pauli strings
+$P_1,\ldots,P_m$ generating the subgroup spanned by the Fourier support, and
+put
+\[
+ P_\xi=P_1^{\xi_1}\cdots P_m^{\xi_m},\qquad \xi\in\F_2^m.
+\]
+The generators may be chosen independent modulo scalar phases, so the
+$P_\xi$ are distinct Pauli-basis elements and $m\leq n$.  The latter bound is
+also the standard fact that an isotropic subspace of the symplectic space
+$\F_2^{2n}$ has dimension at most $n$.
+
+Expand
+\[
+ A=\sum_{\xi\in\F_2^m}a_\xi P_\xi.
+\]
+The commuting generators have all $2^m$ joint sign patterns, each with equal
+multiplicity $2^{n-m}$.  Indeed, the joint spectral projector for
+$x\in\{\pm1\}^m$ is
+\[
+ E_x=2^{-m}\prod_{r=1}^m(I+x_rP_r),
+\]
+and $\tr(E_x)=2^{n-m}$ because every nonidentity Pauli string is traceless.
+Hence $A$ is the functional calculus of
+\[
+ f(x)=\sum_{\xi\in\F_2^m}a_\xi x^\xi.
+\]
+The conditions $A^2=I$ and $\tau(A)=0$ say respectively that
+$f:\{\pm1\}^m\to\{\pm1\}$ is Boolean and balanced.  Moreover $a_\xi$ are
+exactly its Walsh--Fourier coefficients.
+
+Represent an element $P_\xi$ modulo phase by its binary symplectic vector
+\[
+ \rho(\xi)=(x_1(\xi),\ldots,x_n(\xi),z_1(\xi),\ldots,z_n(\xi))
+ \in\F_2^{2n}.
+\]
+The linear map $\rho:\F_2^m\to\F_2^{2n}$ is injective.  Therefore its
+$2n$ scalar coordinate functionals span $(\F_2^m)^*$.  Select a basis
+$\ell_1,\ldots,\ell_m$ from these functionals.  For each $r$, let $j(r)$ be
+the physical qubit from whose $X$- or $Z$-coordinate $\ell_r$ was selected.
+
+The map
+\[
+ T:\F_2^m\longrightarrow\F_2^m,
+ \qquad T\xi=(\ell_1(\xi),\ldots,\ell_m(\xi))
+\]
+is invertible.  An invertible linear change of Boolean variables induces the
+dual relabeling of Walsh characters.  Thus there is a balanced Boolean
+function $g$ on $m$ bits such that
+\[
+ \widehat g(T\xi)=a_\xi\qquad(\xi\in\F_2^m).
+\]
+For its $r$-th classical influence,
+\begin{align*}
+ \Inf_r(g)
+ &=\sum_{\eta:\eta_r=1}|\widehat g(\eta)|^2
+   =\sum_{\xi:\ell_r(\xi)=1}|a_\xi|^2\\
+ &\leq \sum_{\xi:\,(x_{j(r)}(\xi),z_{j(r)}(\xi))\ne(0,0)}|a_\xi|^2
+   =\Inf_{j(r)}^2(A).
+\end{align*}
+The inequality holds because a nonzero selected scalar coordinate forces the
+Pauli string to be nonidentity on that qubit; the last equality is Pauli
+orthogonality.
+
+The classical KKL theorem, in a form valid for all $m\geq1$, gives an absolute
+$c_0>0$ such that
+\[
+ \max_{1\leq r\leq m}\Inf_r(g)
+ \geq c_0\frac{\log(m+1)}{m}\operatorname{Var}(g)
+ =c_0\frac{\log(m+1)}{m}.
+\]
+Finally, $t\mapsto\log(t+1)/t$ decreases on $(0,\infty)$ and $m\leq n$.
+Combining the last two displays proves Theorem~\ref{thm:main} with $c=c_0$.
+\qed
+
+\section{Verification and limitations}
+
+The proof was checked in two independent ways.  First, the only dimension
+count is the injective-map identity
+$\operatorname{rank}(\rho)=\operatorname{rank}(\rho^*)=m$, which guarantees
+the selected dual basis.  Second, the accompanying script
+\texttt{code/verify\_commuting\_transfer.py} generates small random isotropic
+Pauli subspaces and balanced Boolean functions and verifies the exact transfer
+inequality $\Inf_r(g)\leq\Inf_{j(r)}^2(A)$ for every selected coordinate.  The
+script is a consistency check, not part of the proof.
+
+This result is complementary to the existing run packet for arXiv:2209.07279
+on anticommuting Pauli support, which obtains the stronger order $n^{-1/2}$.
+Neither
+theorem handles a general unitary Pauli expansion, where commuting products
+from different parts of the support can cancel in the equations imposed by
+$A^2=I$.
+
+\section{Novelty check and review recommendation}
+
+A bounded search through 27 August 2026 used the source arXiv id and the exact
+phrases ``commuting Pauli quantum KKL'', ``abelian Pauli influence KKL'',
+``Pauli support KKL'', and ``stabilizer quantum KKL''.  It recovered the known
+$L^p$, $p<2$, quantum KKL papers and this run's anticommuting partial result,
+but no theorem matching the commuting-support reduction above.  Novelty
+confidence is moderate rather than definitive: the proof is short enough that
+it may be folklore through stabilizer diagonalization.
+
+\paragraph{Human-review recommendation.}
+Review as a likely-valid substantial partial result.  The highest-value checks
+are: (i) that independent commuting Pauli generators realize all joint sign
+patterns; (ii) that the $2n$ local scalar projections span the dual of their
+isotropic subspace; and (iii) the direction of the influence comparison after
+the Fourier-coordinate change.
+
+\begin{thebibliography}{9}
+\bibitem{BGX}
+D. P. Blecher, L. Gao, and B. Xu,
+\emph{Geometric influences on quantum Boolean cubes},
+arXiv:2409.00224.
+
+\bibitem{MO}
+A. Montanaro and T. J. Osborne,
+\emph{Quantum Boolean functions},
+Chicago J. Theoret. Comput. Sci. (2010), arXiv:0810.2435.
+
+\bibitem{KKL}
+J. Kahn, G. Kalai, and N. Linial,
+\emph{The influence of variables on Boolean functions},
+Proc. 29th IEEE Symposium on Foundations of Computer Science (1988), 68--80.
+
+\bibitem{RWZ}
+C. Rouz\'e, M. Wirth, and H. Zhang,
+\emph{Quantum Talagrand, KKL and Friedgut's theorems and the learnability of
+quantum Boolean functions}, Comm. Math. Phys. 405 (2024), Article 95;
+arXiv:2209.07279.
+\end{thebibliography}
+
+\end{document}

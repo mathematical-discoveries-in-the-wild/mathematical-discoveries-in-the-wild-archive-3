@@ -1,0 +1,228 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{deepblue}{RGB}{24,67,104}
+\definecolor{softblue}{RGB}{236,244,250}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\Leb}{\mathcal L^1}
+
+\title{\textbf{Tight Tangent Parabolas Characterize 3-Convexity}\\
+\large A full solution of Problem 1 in arXiv:2305.04353}
+\author{Agent lane 2 (\texttt{agent\_lane\_02})\\Model: GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent
+\colorbox{softblue}{\parbox{0.94\linewidth}{
+\textbf{Status: full solution, likely valid.}
+The answer to Problem 1 is affirmative under exactly the stated continuity
+and differentiability assumptions.  Expert review should focus on the local
+BV/mollification bridge in Lemma~\ref{lem:regularize}.
+}}
+
+\section{Source question}
+
+Marinescu and Niculescu ask the following in Problem 1 on page 9 of
+\cite{MarinescuNiculescu2023}.  A \emph{tight tangent parabola} at
+$c\in\interior I$ is a quadratic polynomial $P_c$ tangent to $f$ at $c$ such
+that
+\[
+ P_c(x)\ge f(x)\quad(x\le c),
+ \qquad
+ P_c(x)\le f(x)\quad(x\ge c),
+\]
+whenever the points lie in $I$.
+
+\begin{quote}
+Suppose that $f$ is continuous on $I$ and differentiable on $\interior I$,
+and admits at every point $c\in\interior I$ a tight tangent parabola.  Is $f$
+necessarily $3$-convex?
+\end{quote}
+
+Here $3$-convexity means nonnegativity of every third divided difference
+$[x_0,x_1,x_2,x_3;f]$ for $x_0<x_1<x_2<x_3$ in $I$.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.98\linewidth]{figures/open_problem_crop.png}
+  \caption{The tightness convention and complete Problem 1, rendered from
+  page 9 of the source PDF.}
+\end{figure}
+
+\clearpage
+\section{Proof intuition}
+
+At symmetric points around $c$, the even part of any tangent parabola cancels.
+Its one-sided position relative to the graph therefore forces the central
+secant slope of $f$ to dominate $f'(c)$.  For a $C^1$ function this is close
+to a standard characterization of $3$-convexity, but the problem assumes only
+differentiability and a derivative need not be continuous.
+
+The regularity gap can nevertheless be closed without strengthening the
+hypotheses.  A fixed-radius central-secant bound makes $f'$ locally bounded
+above.  Hence $f$ is locally of bounded variation and the singular part of
+its distributional derivative is nonpositive.  Convolution with a
+nonnegative mollifier can only lower the derivative, so the central-secant
+inequality survives smoothing.  For the smooth approximants it immediately
+forces a nonnegative third derivative.  Passing to the limit completes the
+argument.
+
+\section{The affirmative solution}
+
+\begin{lemma}[The midpoint inequality]\label{lem:midpoint}
+Under the hypotheses of Problem 1, for every $c\in\interior I$ and every
+$h>0$ for which $c-h,c+h\in I$,
+\begin{equation}\label{eq:central}
+ f'(c)\le \frac{f(c+h)-f(c-h)}{2h}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write the tight tangent parabola at $c$ as
+\[
+ P_c(x)=f(c)+f'(c)(x-c)+A_c(x-c)^2.
+\]
+Tightness gives $P_c(c-h)\ge f(c-h)$ and
+$P_c(c+h)\le f(c+h)$.  Subtracting these two inequalities yields
+\[
+ f(c+h)-f(c-h)
+ \ge P_c(c+h)-P_c(c-h)=2h f'(c),
+\]
+because the constant and quadratic terms cancel.
+\end{proof}
+
+\begin{lemma}[Regularization preserves the midpoint inequality]
+\label{lem:regularize}
+Let $U$ be an open interval and let $f:U\to\R$ be differentiable and satisfy
+\eqref{eq:central} whenever the symmetric interval is contained in $U$.
+On every compact subinterval of $U$, the standard nonnegative mollifications
+$f_\varepsilon$ are defined for all sufficiently small $\varepsilon$ and
+satisfy the same inequality.  Consequently,
+\[
+ f_\varepsilon'''\ge0.
+\]
+\end{lemma}
+
+\begin{proof}
+Work locally.  Choose compact intervals $J\subset\interior K\subset U$.
+There is an $h_0>0$ such that $x\pm h_0\in U$ for every $x\in K$.
+Applying \eqref{eq:central} with this fixed $h_0$, and using continuity of
+$f$ on the relevant compact set, gives a constant $M$ such that
+$f'(x)\le M$ on $K$.
+
+The mean value theorem now shows that $x\mapsto f(x)-Mx$ is nonincreasing on
+$K$.  Thus $f$ is of bounded variation there.  In the local Lebesgue
+decomposition of its distributional derivative,
+\begin{equation}\label{eq:BV}
+ Df=f'\,\Leb+\nu,
+\end{equation}
+the singular measure $\nu$ is nonpositive.  Indeed, the absolutely continuous
+density is the classical derivative almost everywhere, while the singular
+part of $D(f-Mx)\le0$ is precisely $\nu$.
+
+Let $\rho_\varepsilon\ge0$ be a smooth standard mollifier, with support small
+enough that all convolutions below are local to $K$, and put
+$f_\varepsilon=f*\rho_\varepsilon$ on $J$.  From \eqref{eq:BV},
+\begin{equation}\label{eq:conv-derivative}
+ f_\varepsilon'
+   =(f'\,\Leb)*\rho_\varepsilon+\nu*\rho_\varepsilon
+   \le f'*\rho_\varepsilon.
+\end{equation}
+For every sufficiently small $h>0$, convolving \eqref{eq:central} and using
+commutation with translations gives
+\[
+ f'*\rho_\varepsilon(x)
+ \le \frac{f_\varepsilon(x+h)-f_\varepsilon(x-h)}{2h}.
+\]
+Together with \eqref{eq:conv-derivative}, this is \eqref{eq:central} for
+$f_\varepsilon$.  Taylor expansion at $x$ gives
+\[
+ \frac{f_\varepsilon(x+h)-f_\varepsilon(x-h)}{2h}
+ =f_\varepsilon'(x)+\frac{h^2}{6}f_\varepsilon'''(x)+o(h^2).
+\]
+Subtract $f_\varepsilon'(x)$, divide by $h^2$, and let $h\downarrow0$ to
+obtain $f_\varepsilon'''(x)\ge0$.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Let $I$ be an interval and let $f:I\to\R$ be continuous on $I$ and
+differentiable on $\interior I$.  If $f$ admits a tight tangent parabola at
+every point of $\interior I$, then $f$ is $3$-convex on $I$.
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:midpoint} gives \eqref{eq:central}.  Fix four points
+$x_0<x_1<x_2<x_3$ in $\interior I$ and choose compact
+$J\subset\interior I$ containing them in its interior.  By
+Lemma~\ref{lem:regularize}, each sufficiently fine mollification has
+$f_\varepsilon'''\ge0$ near $J$.  The generalized mean value theorem for
+divided differences therefore gives
+\[
+ [x_0,x_1,x_2,x_3;f_\varepsilon]\ge0.
+\]
+As $\varepsilon\downarrow0$, continuity of $f$ gives locally uniform
+convergence $f_\varepsilon\to f$.  A divided difference at fixed distinct
+nodes is a finite linear combination of the four function values, hence
+\[
+ [x_0,x_1,x_2,x_3;f]\ge0.
+\]
+This proves $3$-convexity for interior nodes.  If $I$ contains one or both
+endpoints, approximate them by interior nodes and use continuity once more.
+\end{proof}
+
+\section{What the proof uses---and does not use}
+
+The coefficient $A_c$ may depend arbitrarily on $c$ and need not be locally
+bounded.  It disappears in Lemma~\ref{lem:midpoint}.  No second derivative,
+absolute continuity, or a priori continuity of $f'$ is assumed.  Possible
+singular BV behavior is retained in the measure $\nu$; its sign, rather than
+its absence, is what makes the smoothing step work.
+
+\section{Verification and novelty status}
+
+The formal verification report checks the cancellation, the BV decomposition,
+the convolution inequality, the Taylor limit, and passage of divided
+differences to the limit.  The principal human-review point is the sign of the
+singular part in \eqref{eq:BV}; it follows locally from
+$D(f-Mx)\le0$.
+
+Before promotion, the run indexes were searched by arXiv id, title, and core
+terms.  Bounded web searches on 26 August 2026 used the exact title, the arXiv
+id, the quoted problem, both authors, and combinations of ``tight tangent
+parabola'' with ``3-convex''.  They found the source and its journal version,
+but no distinct later paper explicitly resolving Problem 1.  This is bounded
+novelty evidence, not a claim of exhaustive priority.
+
+\section{Human-review recommendation}
+
+The packet should be reviewed as a claimed full affirmative solution.  The
+midpoint cancellation is elementary; the only nontrivial audit item is the
+local BV regularization in Lemma~\ref{lem:regularize}.  In particular, a review
+should confirm both inequality directions in \eqref{eq:conv-derivative} before
+publication or external circulation.
+
+\begin{thebibliography}{9}
+\bibitem{MarinescuNiculescu2023}
+D.-S. Marinescu and C. P. Niculescu,
+\emph{Old and new on the 3-convex functions},
+arXiv:2305.04353, 2023.
+
+\bibitem{EvansGariepy}
+L. C. Evans and R. F. Gariepy,
+\emph{Measure Theory and Fine Properties of Functions}, revised ed.,
+CRC Press, 2015.
+Standard reference for BV derivatives, Lebesgue decomposition, and
+mollification.
+\end{thebibliography}
+
+\end{document}

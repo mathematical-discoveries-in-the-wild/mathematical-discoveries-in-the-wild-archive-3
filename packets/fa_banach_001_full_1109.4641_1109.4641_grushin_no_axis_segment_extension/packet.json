@@ -1,0 +1,62 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1109.4641",
+  "author_list": [
+    "Noel DeJarnette",
+    "Piotr Hajlasz",
+    "Anton Lukyanenko",
+    "Jeremy Tyson"
+  ],
+  "claim_short": "Let G be the first Grushin plane and Y={(0,y)} its singular axis. If phi:S^1 -> G is Lipschitz and no nondegenerate segment of Y is contained in a bounded component of R^2 \\ phi(S^1), then phi has a Lipschitz extension to the disk. This gives a full affirmative answer to Question 8.7.",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 4,
+  "database_packet_path": "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1109.4641v3",
+    "source_url": "https://arxiv.org/abs/1109.4641v3"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_likely_valid_grushin_extension | review_focus=The packet isolates the two nonstandard ingredients as explicit lemmas. Reviewers should check:",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/",
+  "packet_title": "Full affirmative answer to the Grushin-plane filling question",
+  "primary_arxiv_id": "1109.4641",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0712",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_1109.4641_1109.4641_grushin_no_axis_segment_extension/files/solution_packet.pdf",
+  "source_authors": "Noel DeJarnette, Piotr Hajlasz, Anton Lukyanenko, Jeremy Tyson",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/1109.4641_grushin_no_axis_segment_extension/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1109.4641v3",
+  "source_question": "",
+  "source_title": "On the lack of density of Lipschitz mappings in Sobolev spaces with Heisenberg target",
+  "source_url": "https://arxiv.org/abs/1109.4641v3",
+  "source_year": "2011",
+  "verification_status": "unverified"
+}

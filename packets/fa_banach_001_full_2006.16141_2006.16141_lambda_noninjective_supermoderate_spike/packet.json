@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2006.16141",
+  "author_list": [
+    "Diksha Tiwari",
+    "Paolo Giordano"
+  ],
+  "claim_short": "For every gauge pair satisfying the source hypothesis sigma >= rho^*, the natural linear map",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2006.16141v3",
+    "source_url": "https://arxiv.org/abs/2006.16141v3"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_solution_likely_valid_needs_human_review",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/",
+  "packet_title": "Noninjectivity of the natural hyperseries map",
+  "primary_arxiv_id": "2006.16141",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0988",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2006.16141_2006.16141_lambda_noninjective_supermoderate_spike/files/solution_packet.pdf",
+  "source_authors": "Diksha Tiwari, Paolo Giordano",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2006.16141_lambda_noninjective_supermoderate_spike/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2006.16141v3",
+  "source_question": "",
+  "source_title": "Hyperseries in the non-Archimedean ring of Colombeau generalized numbers",
+  "source_url": "https://arxiv.org/abs/2006.16141v3",
+  "source_year": "2020",
+  "verification_status": "unverified"
+}

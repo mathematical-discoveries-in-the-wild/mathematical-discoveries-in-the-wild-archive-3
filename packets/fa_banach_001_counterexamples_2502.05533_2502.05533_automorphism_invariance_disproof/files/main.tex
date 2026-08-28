@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\D}{\mathbb D}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Aut}{\operatorname{Aut}(\D)}
+\newcommand{\BMOA}{\operatorname{BMOA}}
+\newcommand{\VMOA}{\operatorname{VMOA}}
+\newcommand{\Hp}{H^p}
+\newcommand{\gammaP}{\gamma_p}
+
+\title{Automorphism invariance for arbitrary increasing radial weights\\
+\large A disproof of Conjecture 2 in arXiv:2502.05533}
+\author{Automated Mathematics Run \texttt{fa\_banach\_001}\\Agent \texttt{agent\_lane\_05} (GPT5.6)}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{\textbf{Status.} Candidate counterexample/disproof; proof judged likely valid and awaiting human review.}}
+\end{center}
+
+\section{Source question}
+
+Norrbo's paper \cite{Norrbo2025} defines, for a positive radial weight $v$ and $1\le p<\infty$,
+\[
+ \gamma_p(f,a)=\|f\circ\sigma_a-f(a)\|_{H^p},\qquad
+ \|f\|_{*,v,p}=\sup_{a\in\D}v(a)\gamma_p(f,a),
+\]
+where $\sigma_a(z)=(a-z)/(1-\overline a z)$. The space $\BMOA_{v,p}$ consists of the $f\in H^p$ for which this seminorm is finite; $\BMOA_v$ denotes the case $p=2$.
+
+Conjecture 2 on page 39 predicts that some increasing radial weight fails to preserve membership under composition by a disk automorphism:
+
+\begin{quote}
+There exists an increasing, radial (not admissible) weight $v:\D\to(0,\infty)$, $\widehat\phi\in\Aut$ and $f\in\BMOA_v$ such that $f\circ\widehat\phi\notin\BMOA_v$.
+\end{quote}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+\caption{Conjecture 2 and its equivalent divergence formulation in the source paper \cite[p.~39]{Norrbo2025}.}
+\end{figure}
+
+The theorem below proves that no such example exists.
+
+\section{Proof intuition}
+
+The oscillation $\gamma_p(f,a)$ is stable when its center moves a bounded pseudohyperbolic distance. A fixed disk automorphism changes $1-|a|$ only by a constant factor, although it may rotate the center by nearly $\pi$. If $b=\phi(a)$ lies farther inside the disk than $a$, replace $b$ by the point $c$ on the same ray with $|c|=|a|$. The comparable boundary depths make $b$ and $c$ pseudohyperbolically close. Thus $\gamma_p(f,b)$ is controlled by $\gamma_p(f,c)$, and radiality gives $v(c)=v(a)$. If $b$ lies farther out than $a$, monotonicity gives $v(a)\le v(b)$ directly. These two cases exhaust the disk.
+
+\section{Formal result}
+
+Write
+\[
+ \|f\|_{\BMOA_{v,p}}=|f(0)|+\|f\|_{*,v,p}.
+\]
+
+\begin{lemma}[local comparison of oscillations]\label{lem:local}
+For $1\le p<\infty$ and $0\le q<1$, there is a constant $M_{p,q}$ such that
+\[
+ \gamma_p(f,z)\le M_{p,q}\gamma_p(f,w)
+\]
+for every $f\in H^p$ and every $z,w\in\D$ satisfying
+\[
+ \rho(z,w):=|\sigma_w(z)|\le q.
+\]
+\end{lemma}
+
+\begin{proof}
+Put $\eta=\sigma_w(z)$ and
+\[
+ g=f\circ\sigma_w-f(w).
+\]
+Then $g(0)=0$, $\|g\|_{H^p}=\gamma_p(f,w)$, and automorphism covariance of $\gamma_p$ gives
+\[
+ \gamma_p(f,z)=\gamma_p(g,\eta).
+\]
+For $|\eta|\le q$, the boundary change-of-variables formula for $\sigma_\eta$ and the estimate
+\[
+ P_\eta(\zeta)\le \frac{1+q}{1-q}\qquad(\zeta\in\T)
+\]
+give
+\[
+ \|g\circ\sigma_\eta\|_{H^p}
+ \le \left(\frac{1+q}{1-q}\right)^{1/p}\|g\|_{H^p}.
+\]
+The Hardy point-evaluation estimate also gives
+\[
+ |g(\eta)|\le (1-q^2)^{-1/p}\|g\|_{H^p}.
+\]
+Minkowski's inequality now yields
+\[
+ \gamma_p(g,\eta)
+ \le \left[\left(\frac{1+q}{1-q}\right)^{1/p}+(1-q^2)^{-1/p}\right]\|g\|_{H^p}.
+\]
+This proves the lemma.
+\end{proof}
+
+\begin{theorem}[unconditional automorphism invariance]\label{thm:main}
+Let $1\le p<\infty$, and let $v:\D\to(0,\infty)$ be radial and nondecreasing in the radius. For every $\phi\in\Aut$, composition induces bounded isomorphisms
+\[
+ C_\phi:\BMOA_{v,p}\longrightarrow\BMOA_{v,p}
+ \quad\text{and}\quad
+ C_\phi:\VMOA_{v,p}\longrightarrow\VMOA_{v,p}.
+\]
+No admissibility, doubling, or regular-growth assumption on $v$ is required.
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+ \phi(z)=\lambda\frac{\alpha-z}{1-\overline\alpha z},
+ \qquad |\lambda|=1,\quad \alpha\in\D,
+\]
+and set
+\[
+ K=\frac{1+|\alpha|}{1-|\alpha|}.
+\]
+The standard automorphism identity gives, for $b=\phi(a)$,
+\[
+ \frac{1-|b|^2}{1-|a|^2}
+ =\frac{1-|\alpha|^2}{|1-\overline\alpha a|^2}
+ \in[K^{-1},K].
+\]
+Since $1\le 1+|z|\le2$, it follows that
+\begin{equation}\label{eq:depth}
+ \frac{1-|b|}{1-|a|}\in[(2K)^{-1},2K]
+ \qquad(a\in\D).
+\end{equation}
+
+We also use exact automorphism covariance:
+\begin{equation}\label{eq:covariance}
+ \gamma_p(f\circ\phi,a)=\gamma_p(f,\phi(a)).
+\end{equation}
+Indeed, $\phi\circ\sigma_a$ and $\sigma_{\phi(a)}$ differ only by precomposition with a rotation, and the $H^p$ norm is rotation invariant.
+
+Fix $a\in\D$ and put $b=\phi(a)$. There are two cases.
+
+If $|a|\le|b|$, monotonicity gives
+\[
+ v(a)\gamma_p(f,b)\le v(b)\gamma_p(f,b)\le\|f\|_{*,v,p}.
+\]
+
+Suppose $|a|>|b|$. Let $c$ be the point on the ray from $0$ through $b$ with $|c|=|a|$; if $b=0$, choose any argument for $c$. Put $s=|b|$ and $t=|c|=|a|$. From \eqref{eq:depth},
+\[
+ \frac{1-t}{1-s}\ge m:=\frac1{2K}.
+\]
+Because $b$ and $c$ lie on the same radius,
+\[
+ \rho(b,c)=\frac{t-s}{1-st}
+ =\frac{(1-s)-(1-t)}{(1-s)+(1-t)-(1-s)(1-t)}
+ \le 1-\frac{1-t}{1-s}\le1-m<1.
+\]
+The same bound holds when $b=0$. Lemma \ref{lem:local}, radiality, and $|c|=|a|$ therefore give
+\[
+ v(a)\gamma_p(f,b)=v(c)\gamma_p(f,b)
+ \le M_{p,1-m}\,v(c)\gamma_p(f,c)
+ \le M_{p,1-m}\|f\|_{*,v,p}.
+\]
+Together with \eqref{eq:covariance}, the two cases show
+\[
+ \|f\circ\phi\|_{*,v,p}\le C_{p,\phi}\|f\|_{*,v,p}.
+\]
+
+The full norm is also controlled. At $a=0$, the seminorm controls the nonconstant $H^p$ part, so
+\[
+ \|f\|_{H^p}\le |f(0)|+v(0)^{-1}\|f\|_{*,v,p}.
+\]
+Composition by the fixed automorphism $\phi$ and evaluation at the fixed point $\phi(0)$ are bounded on $H^p$. Hence $C_\phi$ is bounded on $\BMOA_{v,p}$. Applying the same argument to $\phi^{-1}$ proves that it is an isomorphism.
+
+Finally, suppose $f\in\VMOA_{v,p}$ and $|a|\to1$. Formula \eqref{eq:depth} implies $|b|=|\phi(a)|\to1$. In the first case above, the controlling quantity is $v(b)\gamma_p(f,b)\to0$. In the second case, $|c|=|a|\to1$, and the controlling quantity is $v(c)\gamma_p(f,c)\to0$. Thus $f\circ\phi\in\VMOA_{v,p}$; applying the result to $\phi^{-1}$ again gives an isomorphism.
+\end{proof}
+
+\section{Consequence for the source conjecture}
+
+Taking $p=2$ in Theorem \ref{thm:main} shows that for every increasing radial weight $v$, every $\widehat\phi\in\Aut$, and every $f\in\BMOA_v$, one has
+\[
+ f\circ\widehat\phi\in\BMOA_v.
+\]
+This is the logical negation of the existence statement in Conjecture 2. Therefore Conjecture 2 is false.
+
+\section{Verification and limitations}
+
+The proof is self-contained and uses no computational or conditional step. The local oscillation lemma, the boundary-depth comparison, the case $\phi(a)=0$, the inverse automorphism, and the vanishing condition were checked separately. The result concerns only Conjecture 2; the other conjectures in the source paper are untouched.
+
+A bounded novelty search on 27 August 2026 covered the run's lightweight indexes, the exact arXiv identifier and paper title, and web queries combining ``weighted BMOA'', ``increasing radial weight'', and ``automorphism composition''. It found the source preprint and 2025 journal article but no later solution or disproof of Conjecture 2. This was not an exhaustive publication-level search.
+
+\section{Human-review recommendation}
+
+Review as a full disproof of Conjecture 2. The most important checks are equations \eqref{eq:covariance} and \eqref{eq:depth}, followed by the radial comparison point in the second case of the proof.
+
+\begin{thebibliography}{9}
+\bibitem{Norrbo2025}
+D. Norrbo,
+\emph{Compactness and related properties of weighted composition operators on weighted BMOA spaces},
+Bulletin des Sciences Math\'ematiques \textbf{203} (2025), 103642;
+arXiv:2502.05533.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\E}{\mathbf E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\op}{\mathrm{op}}
+
+\title{The Gaussian Row--Column Equivalence in arXiv:1203.3713\\
+Follows by Symmetric Block Dilation}
+\author{agent\_lane\_03}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Status}
+
+\textbf{Status: literature\_implied\_answer (full Gaussian question).}
+The implication below completely proves the Gaussian equivalence suggested
+by Riemer--Sch\"utt.  It is not claimed as a new result: it is a direct
+reformulation of a later theorem of Lata\l a--van Handel--Youssef.
+
+\section*{Source question}
+
+Let $A=(a_{ij})\in\R^{n\times n}$ be deterministic, let $(g_{ij})$ be
+independent standard Gaussian variables, and put $G=(a_{ij}g_{ij})$.  Define
+\[
+ R(G)=\max_i\Big(\sum_jG_{ij}^2\Big)^{1/2},\qquad
+ C(G)=\max_j\Big(\sum_iG_{ij}^2\Big)^{1/2}.
+\]
+On page 3 of arXiv:1203.3713, immediately after display (2), Riemer and
+Sch\"utt write that they know no matrix for which $\E\|G\|_{\op}$ is not of
+the same order as that display, namely
+\begin{equation}\label{eq:question}
+                    \E R(G)+\E C(G).
+\end{equation}
+Thus the suggested dimension-free equivalence is
+\[
+                 \E\|G\|_{\op}\asymp \E R(G)+\E C(G),
+\]
+with universal constants, uniformly over $n$ and $A$.
+
+\section*{Supporting theorem}
+
+Lata\l a--van Handel--Youssef prove the following in
+\cite[Theorem 3.1, p.~16]{LVHY}; it is the probabilistic form of their main
+Theorem 1.1.  If $X$ is a symmetric matrix whose upper-triangular entries
+are independent centered Gaussian variables, then, for every
+$2\le p\le\infty$,
+\[
+ \E\|X\|_{S_p}\asymp
+ \E\left[\left(\sum_i\left(\sum_jX_{ij}^2\right)^{p/2}\right)^{1/p}\right].
+\]
+At $p=\infty$ this reads
+\begin{equation}\label{eq:LVHY}
+        \E\|X\|_{\op}\asymp
+        \E\max_i\Big(\sum_jX_{ij}^2\Big)^{1/2},
+\end{equation}
+with universal constants.
+
+\section*{Identification and complete deduction}
+
+Form the symmetric $2n\times2n$ block dilation
+\[
+                 X=\begin{pmatrix}0&G\\G^{\mathsf T}&0\end{pmatrix}.
+\]
+The entries in the upper-right block are precisely the independent Gaussian
+variables $a_{ij}g_{ij}$; all other upper-triangular entries are deterministic
+zeros.  Hence $X$ satisfies the hypotheses of \eqref{eq:LVHY}.  Moreover,
+\[
+ X^2=\begin{pmatrix}GG^{\mathsf T}&0\\0&G^{\mathsf T}G\end{pmatrix},
+ \qquad \|X\|_{\op}=\|G\|_{\op},
+\]
+and inspection of its two row blocks gives
+\[
+       \max_{k\le2n}\Big(\sum_{\ell\le2n}X_{k\ell}^2\Big)^{1/2}
+       =\max\{R(G),C(G)\}.
+\]
+Applying \eqref{eq:LVHY} therefore yields
+\begin{equation}\label{eq:max}
+              \E\|G\|_{\op}\asymp \E\max\{R(G),C(G)\}.
+\end{equation}
+Finally, pointwise,
+\[
+ \max\{R,C\}\le R+C\le2\max\{R,C\}.
+\]
+Taking expectations in this inequality and combining with \eqref{eq:max}
+proves
+\[
+ \boxed{\displaystyle
+ \E\|G\|_{\op}\asymp \E R(G)+\E C(G)}.
+\]
+This is exactly the equivalence suggested after display (2) of
+arXiv:1203.3713.
+
+\section*{Provenance, scope, and search evidence}
+
+The supporting authors explicitly state that their $p=\infty$ theorem
+settles Lata\l a's symmetric Gaussian conjecture.  In the inspected source,
+they do not explicitly identify the Riemer--Sch\"utt row--column formulation;
+the rectangular statement is obtained here by the standard block-dilation
+identification.  The correct status is therefore
+\texttt{literature\_implied\_answer}, not a new proof of the run.
+
+The result covers every deterministic coefficient matrix with independent
+standard Gaussian multipliers.  It does not settle the source paper's
+separate estimate for arbitrary independent mean-zero entries.  The bounded
+status search covered the run indexes for arXiv:1203.3713 and the phrases
+``Gaussian matrix'', ``row norm'', ``column norm'', and ``Lata\l a'', then
+checked the exact arXiv sources 1203.3713 and 1711.00807.  A prior run packet
+for Lata\l a's symmetric conjecture led to the decisive Theorem 3.1.
+
+\begin{thebibliography}{9}
+\bibitem{RS}
+S.~Riemer and C.~Sch\"utt,
+\emph{On the Expectation of the Norm of Random Matrices with
+Non-Identically Distributed Entries}, arXiv:1203.3713 (2012),
+\url{https://arxiv.org/abs/1203.3713}.
+
+\bibitem{LVHY}
+R.~Lata\l a, R.~van Handel, and P.~Youssef,
+\emph{The dimension-free structure of nonhomogeneous random matrices},
+Invent. Math. \textbf{214} (2018), 1031--1080; arXiv:1711.00807,
+\url{https://arxiv.org/abs/1711.00807}.
+\end{thebibliography}
+
+\end{document}

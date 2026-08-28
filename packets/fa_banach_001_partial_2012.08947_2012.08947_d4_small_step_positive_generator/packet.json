@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2012.08947",
+  "author_list": [
+    "Viet Hung Hoang",
+    "Kilian Raschel",
+    "Pierre Tarrago"
+  ],
+  "claim_short": "",
+  "claim_type": "partial",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/files/figures/conjecture_1_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/files/figures/conjecture_1_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2012.08947v2",
+    "source_url": "https://arxiv.org/abs/2012.08947v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "",
+  "needs_manual_summary": "yes",
+  "notes": "",
+  "novelty_status": "unknown",
+  "packet_class": "partial",
+  "packet_path": "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/",
+  "packet_title": "The positive generator for reflection-symmetric small-step walks",
+  "primary_arxiv_id": "2012.08947",
+  "proof_status": "unknown",
+  "readme_path": "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/files/README.md",
+  "result_class": "partial",
+  "result_id": "fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:2532",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_partial_2012.08947_2012.08947_d4_small_step_positive_generator/files/solution_packet.pdf",
+  "source_authors": "Viet Hung Hoang, Kilian Raschel, Pierre Tarrago",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/partial/2012.08947_d4_small_step_positive_generator/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2012.08947v2",
+  "source_question": "",
+  "source_title": "Constructing discrete harmonic functions in wedges",
+  "source_url": "https://arxiv.org/abs/2012.08947v2",
+  "source_year": "2020",
+  "verification_status": "unverified"
+}

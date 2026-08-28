@@ -1,0 +1,271 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Mfour}{M_4(\mathbb C)}
+\newcommand{\Sptwo}{S_4^2}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Rmap}{\mathcal R}
+
+\title{A Positive Contraction Which Is Not $\ell^1$-Contractive}
+\author{Solution packet for arXiv:1907.03995}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Le Merdy and Zadeh ask whether every positive contraction between
+noncommutative $L^p$-spaces is $\ell^1$-contractive.  We give a negative
+answer for $p=2$ on $M_4(\mathbb C)$.  A four-dimensional map is a positive
+Hilbert--Schmidt contraction, whereas an explicit
+three-term sequence has $\ell^1$-amplification ratio
+$\sqrt{2/\sqrt3}>1$.  Every norm in the argument is computed exactly.
+\end{abstract}
+
+\section{The source question}
+
+For a finite sequence $(z_n)$ in $S_4^2$, the norm used in the source is
+\begin{equation}\label{eq:l1norm}
+ \|(z_n)\|_{S_4^2(\ell^1)}
+ =\inf_{z_n=a_nb_n}
+ \left(\left\|\sum_n a_na_n^*\right\|_2
+       \left\|\sum_n b_n^*b_n\right\|_2\right)^{1/2}.
+\end{equation}
+Here $\|\cdot\|_2$ is the Hilbert--Schmidt norm.  This is the finite
+version of the factorization formula in Lemma 2.3 of the published paper
+(Lemma 2.6 in the arXiv source)~\cite{LMZ}.  Immediately after Remark 5.2,
+the authors write: ``We do not know if any positive contraction is
+$\ell^1$-contractive.''
+
+\begin{center}
+ \includegraphics[width=0.94\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+\section{Proof intuition}
+
+The skew unitary $U$ sends each vector to an orthogonal partner.  Hence, on
+a rank-one positive input, $T$ subtracts two orthogonal rank-one projections
+from the scalar matrix that dominates both; this is the mechanism behind
+positivity.  On the Hilbert--Schmidt space, the transpose-twist is an
+involutive isometry, so its orthogonal eigenspace decomposition makes the
+contraction estimate immediate.
+
+The failure of $\ell^1$-contractivity is driven by row-column incidence.
+The three input matrices admit an efficient weighted factorization, while
+their images form a $2$-regular bipartite pattern.  Entrywise
+Cauchy--Schwarz gives sharp lower bounds for the two factorization norms,
+and the forced output norm is strictly larger than the input norm.
+
+\section{The positive contraction}
+
+Let
+\[
+ J=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+ U=\begin{pmatrix}J&0\\0&J\end{pmatrix},
+\]
+and define $T:\Mfour\to\Mfour$ by
+\begin{equation}\label{eq:T}
+ T(x)=\frac12\bigl(\Tr(x)I_4-x-Ux^{\mathsf T}U^*\bigr).
+\end{equation}
+
+\begin{lemma}\label{lem:positive}
+$T$ is positive and $\|T\|_{S_4^2\to S_4^2}=1$.
+\end{lemma}
+
+\begin{proof}
+It suffices for positivity to take $x=\xi\xi^*\geq0$.  Put
+$\eta=U\overline\xi$.  Since $U$ is unitary and $U^{\mathsf T}=-U$,
+\[
+ \|\eta\|=\|\xi\|,
+ \qquad \xi^*\eta=\overline\xi^{\mathsf T}U\overline\xi=0.
+\]
+Consequently
+\[
+ 2T(\xi\xi^*)=\|\xi\|^2I_4-\xi\xi^*-\eta\eta^*\geq0.
+\]
+Every positive matrix is a sum of positive rank-one matrices, so $T$ is
+positive.
+
+For the norm, set $\Rmap(x)=Ux^{\mathsf T}U^*$ and
+$P(x)=\Tr(x)I_4/4$.  The map $\Rmap$ is a Hilbert--Schmidt unitary
+involution, hence a self-adjoint involution, and it fixes $I_4$.  Thus
+\[
+ T=2P-\frac{I+\Rmap}{2}
+\]
+acts on the mutually orthogonal spaces
+\[
+ \mathbb CI_4,\qquad
+ \{x:\Tr x=0,\ \Rmap x=x\},\qquad
+ \{x:\Rmap x=-x\}
+\]
+by the scalars $1,-1,0$, respectively.  Hence $\|T\|=1$.
+\end{proof}
+
+\section{The exact amplification ratio}
+
+Write $E_{ij}$ for the standard matrix units and set
+\begin{equation}\label{eq:x}
+ x_1=E_{41}-E_{23},\qquad
+ x_2=-(E_{11}+E_{22}),\qquad
+ x_3=E_{31}+E_{24}.
+\end{equation}
+Directly from $Ue_1=-e_2$, $Ue_2=e_1$, $Ue_3=-e_4$ and
+$Ue_4=e_3$, one obtains
+\begin{equation}\label{eq:y}
+ y_1:=T(x_1)=-x_1,\qquad
+ y_2:=T(x_2)=-(E_{33}+E_{44}),\qquad
+ y_3:=T(x_3)=-x_3.
+\end{equation}
+
+\begin{lemma}\label{lem:input}
+\[
+ \|(x_1,x_2,x_3)\|_{S_4^2(\ell^1)}=\sqrt{6\sqrt3}.
+\]
+\end{lemma}
+
+\begin{proof}
+For the upper bound, let
+\begin{align*}
+ a_1&=3^{1/4}E_{41}-E_{23},
+ &b_1&=3^{-1/4}E_{11}+E_{33},\\
+ a_2&=-(3^{1/4}E_{11}+E_{22}),
+ &b_2&=3^{-1/4}E_{11}+E_{22},\\
+ a_3&=3^{1/4}E_{31}+E_{24},
+ &b_3&=3^{-1/4}E_{11}+E_{44}.
+\end{align*}
+Then $x_n=a_nb_n$ and
+\[
+ \sum a_na_n^*=\operatorname{diag}(\sqrt3,3,\sqrt3,\sqrt3),
+ \qquad
+ \sum b_n^*b_n=\operatorname{diag}(\sqrt3,1,1,1).
+\]
+Their Hilbert--Schmidt norms are $\sqrt{18}$ and $\sqrt6$, giving
+the claimed upper bound through \eqref{eq:l1norm}.
+
+For the reverse inequality, consider an arbitrary factorization
+$x_n=c_nd_n$, and put
+\[
+ \alpha_{n,i}=(c_nc_n^*)_{ii},\qquad
+ \beta_{n,j}=(d_n^*d_n)_{jj}.
+\]
+Entrywise Cauchy--Schwarz gives
+$|(x_n)_{ij}|^2\leq\alpha_{n,i}\beta_{n,j}$.
+For the six nonzero entries in \eqref{eq:x}, define
+\begin{align*}
+ (p_1,p_2,p_3)&=(\alpha_{1,4},\alpha_{2,1},\alpha_{3,3}),
+ &(q_1,q_2,q_3)&=(\alpha_{1,2},\alpha_{2,2},\alpha_{3,2}),\\
+ (r_1,r_2,r_3)&=(\beta_{1,1},\beta_{2,1},\beta_{3,1}),
+ &(s_1,s_2,s_3)&=(\beta_{1,3},\beta_{2,2},\beta_{3,4}).
+\end{align*}
+Then $p_nr_n\geq1$ and $q_ns_n\geq1$.  If
+\[
+ P=(\textstyle\sum p_n^2)^{1/2},\quad Q=\sum q_n,
+ \quad R=\sum r_n,\quad S=(\textstyle\sum s_n^2)^{1/2},
+\]
+the diagonal entries imply
+\[
+ \left\|\sum c_nc_n^*\right\|_2\geq\sqrt{P^2+Q^2},
+ \qquad
+ \left\|\sum d_n^*d_n\right\|_2\geq\sqrt{R^2+S^2}.
+\]
+Moreover, Cauchy--Schwarz gives
+\[
+ PR\geq \Bigl(\sum p_n^2\Bigr)^{1/2}\sum\frac1{p_n}
+ \geq3\sqrt3,
+ \qquad
+ QS\geq \sum q_n\Bigl(\sum\frac1{q_n^2}\Bigr)^{1/2}
+ \geq3\sqrt3.
+\]
+Therefore the product of the last two Hilbert--Schmidt norms is at least
+\[
+ \sqrt{P^2+Q^2}\sqrt{R^2+S^2}\geq PR+QS\geq6\sqrt3.
+\]
+Taking the square root and then the infimum in \eqref{eq:l1norm} proves
+the lower bound.
+\end{proof}
+
+\begin{lemma}\label{lem:output}
+\[
+ \|(y_1,y_2,y_3)\|_{S_4^2(\ell^1)}=2\sqrt3.
+\]
+\end{lemma}
+
+\begin{proof}
+For the upper bound factor $y_n=c_nd_n$ with
+\[
+ (c_1,c_2,c_3)=(y_1,y_2,y_3),\qquad
+ (d_1,d_2,d_3)=(E_{11}+E_{33},E_{33}+E_{44},E_{11}+E_{44}).
+\]
+Then
+\[
+ \sum c_nc_n^*=\operatorname{diag}(0,2,2,2),
+ \qquad
+ \sum d_n^*d_n=\operatorname{diag}(2,0,2,2),
+\]
+and both Hilbert--Schmidt norms equal $\sqrt{12}$.
+
+For the lower bound, take any factorization and attach to each of the six
+unit-modulus entries of $(y_1,y_2,y_3)$ the quantities
+$\alpha_e=(c_nc_n^*)_{ii}$ and
+$\beta_e=(d_n^*d_n)_{jj}$ at its row and column.  Thus
+$\alpha_e\beta_e\geq1$.  The six entries form a $2$-regular bipartite
+graph on the three rows $\{2,3,4\}$ and three columns $\{1,3,4\}$.
+Let $u_i$ and $v_j$ be the sums of the incident $\alpha_e$ and
+$\beta_e$, respectively.  Then
+\[
+ 6\leq\sum_e\sqrt{\alpha_e\beta_e}
+ \leq\sqrt{\Bigl(\sum_i u_i\Bigr)\Bigl(\sum_j v_j\Bigr)}.
+\]
+Since $\sum_i u_i\leq\sqrt3\|u\|_2$ and similarly for $v$,
+while the diagonal entries give
+\[
+ \left\|\sum c_nc_n^*\right\|_2\geq\|u\|_2,
+ \qquad
+ \left\|\sum d_n^*d_n\right\|_2\geq\|v\|_2,
+\]
+the product of these Hilbert--Schmidt norms is at least $12$.
+Formula \eqref{eq:l1norm} proves the result.
+\end{proof}
+
+\begin{theorem}
+There is a positive contraction on a noncommutative $L^2$-space which is
+not $\ell^1$-contractive.  In particular, the question of Le Merdy and
+Zadeh has a negative answer.
+\end{theorem}
+
+\begin{proof}
+Use $T$ from \eqref{eq:T}.  Lemma \ref{lem:positive} shows that it is a
+positive contraction on $S_4^2$.  Lemmas \ref{lem:input} and
+\ref{lem:output} give
+\[
+ \frac{\|(T(x_1),T(x_2),T(x_3))\|_{S_4^2(\ell^1)}}
+ {\|(x_1,x_2,x_3)\|_{S_4^2(\ell^1)}}
+ =\frac{2\sqrt3}{\sqrt{6\sqrt3}}
+ =\sqrt{\frac2{\sqrt3}}>1.
+\]
+\end{proof}
+
+\section{Scope and review notes}
+
+The counterexample uses the unnormalized trace on $M_4(\mathbb C)$ and
+$p=2$, both allowed by the source setup.  The proof is finite-dimensional
+and exact; the numerical search that suggested the three matrices is not
+used.  A bounded exact-phrase and citing-work search performed on 27 August
+2026 found no later resolution of the question.  This is a provisional
+novelty check, not a definitive literature claim.
+
+\begin{thebibliography}{9}
+\bibitem{LMZ}
+C.~Le Merdy and S.~Zadeh,
+\emph{$\ell^1$-contractive maps on noncommutative $L^p$-spaces},
+J. Operator Theory \textbf{85} (2021), 417--442;
+arXiv:1907.03995.
+\end{thebibliography}
+
+\end{document}

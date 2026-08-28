@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2307.03064",
+  "author_list": [
+    "Jean-Christophe Bourin"
+  ],
+  "claim_short": "2307.03064 Jean-Christophe Bourin A Journey into Matrix Analysis Question 5.2.9 separable Banach space strong operator topology SOT sums of two idempotents. Candidate full counterexample likely valid: choose a closed subspace X of the Gowers-Maurey hereditarily indecomposable space without the compact approximation property, supplied by Allexandrov Kutzarova Plichko 1999. Every idempotent on X is finite-rank or...",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2307.03064v1",
+    "source_url": "https://arxiv.org/abs/2307.03064v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/",
+  "packet_title": "Counterexample packet: two idempotents do not suffice on every separable Banach space",
+  "primary_arxiv_id": "2307.03064",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0460",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2307.03064_2307.03064_two_idempotent_sot_banach_counterexample/files/solution_packet.pdf",
+  "source_authors": "Jean-Christophe Bourin",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2307.03064_two_idempotent_sot_banach_counterexample/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2307.03064v1",
+  "source_question": "",
+  "source_title": "A Journey into Matrix Analysis",
+  "source_url": "https://arxiv.org/abs/2307.03064v1",
+  "source_year": "2023",
+  "verification_status": "unverified"
+}

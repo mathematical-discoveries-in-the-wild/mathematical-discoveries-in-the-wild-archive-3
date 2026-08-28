@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1204.0620",
+  "author_list": [
+    "Ronald G. Douglas",
+    "Kai Wang"
+  ],
+  "claim_short": "In every complex dimension n >= 3, take",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/figures/open_problem_continuation.png",
+      "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1204.0620v1",
+    "source_url": "https://arxiv.org/abs/1204.0620v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid_needs_human_review",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/",
+  "packet_title": "Principal polynomial submodule projections need not almost commute",
+  "primary_arxiv_id": "1204.0620",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0095",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1204.0620_1204.0620_principal_submodule_projections_not_almost_commuting/files/solution_packet.pdf",
+  "source_authors": "Ronald G. Douglas, Kai Wang",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1204.0620_principal_submodule_projections_not_almost_commuting/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1204.0620v1",
+  "source_question": "Ronald G. Douglas and Kai Wang, *Some Remarks On Essentially Normal Submodules*, arXiv:1204.0620. At the bottom of printed page 7, continuing onto page 8, the authors suggest that for polynomials p,q the orthogonal projections onto the principal submodules [p] and [q] of the Hardy, Bergman, or Drury-Arveson module on the unit ball might always almost commute. Here “almost commute” means that their commutator is...",
+  "source_title": "Some Remarks On Essentially Normal Submodules",
+  "source_url": "https://arxiv.org/abs/1204.0620v1",
+  "source_year": "2012",
+  "verification_status": "unverified"
+}

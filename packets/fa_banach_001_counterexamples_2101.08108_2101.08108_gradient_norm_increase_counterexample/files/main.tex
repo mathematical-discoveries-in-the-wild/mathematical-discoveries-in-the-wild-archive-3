@@ -1,0 +1,190 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.73in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\DX}{\Delta_{\mathbb X}}
+\newcommand{\Dp}{\mathbb D^+}
+\newcommand{\Dm}{\mathbb D^-}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\title{The conjectured grid-gradient monotonicity can fail}
+\author{Candidate counterexample for arXiv:2101.08108}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\vspace{-1.2em}
+\begin{center}
+\fbox{\parbox{0.94\textwidth}{\textbf{Status.}
+Candidate counterexample, likely valid, pending expert review.  This concerns
+only the fourth bullet of source Remark~4.2.}}
+\end{center}
+
+\section*{Source conjecture}
+
+Bottazzi studies the hyperfinite Neumann grid flow
+\begin{equation}\label{eq:flow}
+ u_t=\DX\,{}^*\!\phi(u)
+\end{equation}
+and states four conjectural regularity properties in Remark~4.2.  The final
+one asserts that the $L^2$ norm of
+$\mathbb D^\pm{}^*\!\phi(u(t,\cdot))$ is nonincreasing in time
+\cite[p.~18]{Bottazzi}.
+
+\begin{center}
+\includegraphics[width=0.92\textwidth]{figures/open_problem_crop.png}
+\end{center}
+\vspace{-0.6em}
+\textbf{Transcription of the target bullet.} ``The $L^2$ norm of
+$\mathbb D^\pm{}^*\!\phi(u(t,\cdot))$ is nonincreasing in time.''
+
+\section*{Counterexample}
+
+Define the standard function
+\begin{equation}\label{eq:phi}
+ \phi(s)=
+ \begin{cases}
+  4s,&s\leq0,\\
+  s(2-s)^2,&0\leq s\leq2,\\
+  0,&s\geq2.
+ \end{cases}
+\end{equation}
+The values and first derivatives match at $0$ and $2$, so $\phi\in C^1(\mathbb
+R)$ and is globally Lipschitz.  It satisfies $\phi(0)=0$ and $\phi(s)\geq0$
+for $s\geq0$, as required in the source.  On the middle interval,
+\begin{equation}\label{eq:dphi}
+ \phi'(s)=(2-s)(2-3s),
+\end{equation}
+which is strictly negative for $2/3<s<2$ and vanishes at $s=2$.
+
+Take $\Omega=(0,1)$ and its source hyperfinite grid.  Choose a nonzero
+$C_c^\infty((1/4,3/4))$ bump, restrict its nonstandard extension to the
+grid, and call the resulting internal grid function $\rho$.  After rescaling,
+\[
+ 0\leq\rho\leq1,
+ \qquad \operatorname{supp}\rho\subset[1/4,3/4],
+\]
+and set
+\begin{equation}\label{eq:u0}
+ u_0=2-\frac12\rho,\qquad v_0={}^*\!\phi(u_0).
+\end{equation}
+This is a nonnegative bounded initial datum satisfying source hypothesis
+(5').  It is already a grid function, so the initial projection fixes it.
+Its discrete derivatives have finite norms, and $v_0$ vanishes in a boundary
+layer.
+
+\begin{theorem}\label{thm:counterexample}
+For the source solution of \eqref{eq:flow} with \eqref{eq:phi} and
+\eqref{eq:u0}, both functions
+\[
+ t\longmapsto\|\Dp{}^*\!\phi(u(t,\cdot))\|_2,
+ \qquad
+ t\longmapsto\|\Dm{}^*\!\phi(u(t,\cdot))\|_2
+\]
+have positive right derivative at $t=0$.  In particular, the fourth
+conjectural bullet of Remark~4.2 in \cite{Bottazzi} is false.
+\end{theorem}
+
+\section*{Proof Intuition}
+
+The expected Lyapunov calculation contains an extra factor that determines
+the sign.  If $v=\phi(u)$, grid integration by parts gives
+\[
+ \frac{d}{dt}\frac12\|\mathbb Dv\|_2^2
+ =-\ip{\phi'(u)\DX v}{\DX v}.
+\]
+This is nonpositive on an increasing branch of $\phi$, but it is
+\emph{positive} on a decreasing branch.  We place all nonconstant activity
+inside such a branch and make $v$ zero near the boundary, eliminating every
+possible boundary-convention issue.
+
+\section*{Proof}
+
+Put $v(t)={}^*\!\phi(u(t))$ and
+\[
+ E_+(t)=\frac12\|\Dp v(t)\|_2^2.
+\]
+Both $v_0$ and
+$v_t(0)={}^*\!\phi'(u_0)u_t(0)$ vanish in a grid boundary layer: outside
+$\operatorname{supp}\rho$ we have $u_0=2$, hence $v_0=0$ and
+$\phi'(u_0)=0$.  Thus the source Neumann Laplacian agrees on the relevant
+support with $\Dm\Dp$, and hyperfinite summation by parts has no boundary
+term.  Differentiating exactly and using \eqref{eq:flow},
+\begin{align}
+ E_+'(0)
+ &=\ip{\Dp v_0}{\Dp v_t(0)}
+   =-\ip{\DX v_0}{v_t(0)} \notag\\
+ &=-\ip{\DX v_0}{{}^*\!\phi'(u_0)\DX v_0}
+   =-\int_{\Omega_{\mathbb X}}
+       {}^*\!\phi'(u_0(x))|\DX v_0(x)|^2\,d\mathbb X.
+ \label{eq:energy}
+\end{align}
+
+Where $\rho(x)>0$, equation \eqref{eq:u0} gives
+$3/2\leq u_0(x)<2$, so \eqref{eq:dphi} gives
+$\phi'(u_0(x))<0$.  Where $\rho(x)=0$, one has $u_0(x)=2$ and
+$\phi'(u_0(x))=0$.  Therefore every summand in the final expression in
+\eqref{eq:energy} is nonnegative.
+
+At least one summand is strictly positive.  Indeed, $v_0$ is nonzero and
+compactly supported in the connected grid.  If $\DX v_0$ vanished at every
+point where $v_0>0$, applying the discrete maximum principle at a positive
+maximum and propagating equality along its positive component would force
+that component to meet a zero point with the same positive value, a
+contradiction.  Hence
+\[
+ E_+'(0)>0.
+\]
+The initial gradient is nonzero, so its norm itself has positive right
+derivative.  Replacing $\Dp$ by $\Dm$ gives the same energy by shifting the
+hyperfinite sum; boundary terms again vanish.  This proves the theorem. \qed
+
+\section*{Exact five-node check}
+
+The sign is already visible with unit mesh on a five-node Neumann path.  Take
+\[
+ u=(2,2,3/2,2,2),\qquad
+ v=\phi(u)=(0,0,3/8,0,0).
+\]
+Then
+\[
+ \Delta v=(0,3/8,-3/4,3/8,0),\qquad
+ \frac12\|D^+v\|_2^2=\frac9{64},
+\]
+and direct differentiation gives
+\[
+ E_+'(0)=-\sum_j\phi'(u_j)(\Delta v_j)^2=\frac{45}{64}>0.
+\]
+The supplied verifier performs this calculation with exact rational
+arithmetic.  Mesh scaling only multiplies the derivative by a positive power.
+
+\section*{Verification, scope, and novelty}
+
+The hypotheses on $\phi$ and $u_0$, the chain rule, the Neumann localization,
+both difference directions, and the strict sign were audited separately.
+This counterexample affects only the fourth bullet of Remark~4.2; the three
+Dirac-Young-measure bullets and the paper's main theorems are untouched.
+
+A bounded search on 27 August 2026 checked the run indexes, official arXiv
+record, published Springer version, exact phrases from the conjecture, and
+erratum/correction queries.  The published version retains the statement, and
+no explicit correction or counterexample was found.  Novelty is plausible but
+remains provisional pending a broader expert literature review.
+
+\begin{thebibliography}{9}
+\bibitem{Bottazzi}
+E. Bottazzi,
+\emph{Describing limits of integrable functions as grid functions of
+nonstandard analysis}, Partial Differential Equations and Applications
+\textbf{2} (2021), article 51; arXiv:2101.08108.
+\end{thebibliography}
+
+\end{document}

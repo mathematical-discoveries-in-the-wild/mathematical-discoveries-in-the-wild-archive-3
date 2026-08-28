@@ -1,0 +1,378 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Sn}{S_n}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\ord}{\operatorname{ord}}
+
+\title{Exact Enumeration and Scalar Recurrences for\\Left-Right Orbits of Subsets of Permutations}
+\author{Candidate full solution for arXiv:2503.09542}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{blue!45!black}{blue!4}{\parbox{0.91\textwidth}{
+\textbf{Status: candidate full solution, likely valid.}
+The formula below determines every $f_{n,k}$ in Question 3.5 of
+Kushwaha--Tripathi~\cite{KT}.  A constructive Wronskian elimination then
+gives a scalar finite-shift recurrence in $k$ for every fixed $n$.
+}}
+\end{center}
+
+\section{Source question}
+
+Kushwaha and Tripathi define $\mathcal P_{n,k}=\{A\subseteq S_n:|A|=k\}$
+and declare $A\sim B$ if $B=\mu A\nu$ for some $\mu,\nu\in S_n$.
+Their Question 3.5 (PDF page 12, source label \texttt{ques:Equivalence}) is:
+
+\begin{quote}
+Determine the number of equivalence classes in $\mathcal P_{n,k}$ under
+$\sim$, that is, determine
+$f_{n,k}=|\mathcal P_{n,k}/\!\sim|$. Does $f_{n,k}$ satisfy some recurrence?
+\end{quote}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The definition and Question 3.5 in the source paper, PDF page 12.}
+\end{figure}
+
+\section{Notation and explicit formula}
+
+Write a partition $\lambda\vdash n$ as
+$\lambda=(1^{m_1}2^{m_2}\cdots)$ and put
+\[
+ z_\lambda=\prod_{j\geq 1}j^{m_j}m_j!.
+\]
+Thus $z_\lambda$ is the centralizer size of a permutation of type $\lambda$.
+For $r\geq1$, let $\lambda^{[r]}$ be the cycle type of the $r$-th power
+of such a permutation. Explicitly, every part $j$ of $\lambda$ is replaced
+by $\gcd(j,r)$ parts of size $j/\gcd(j,r)$. Also set
+\[
+ o(\lambda)=\mathop{\mathrm{lcm}}\{j:m_j>0\}.
+\]
+
+For $\lambda,\eta\vdash n$, let
+$L_{\lambda,\eta}=\mathrm{lcm}(o(\lambda),o(\eta))$. For every
+$r\mid L_{\lambda,\eta}$ define
+\[
+ a_r(\lambda,\eta)=
+ \begin{cases}
+ z_{\lambda^{[r]}},&\lambda^{[r]}=\eta^{[r]},\\
+ 0,&\lambda^{[r]}\neq\eta^{[r]},
+ \end{cases}
+\]
+and, for every $\ell\mid L_{\lambda,\eta}$, define
+\[
+ c_\ell(\lambda,\eta)
+ =\frac1\ell\sum_{r\mid\ell}
+ \mu_{\mathrm M}(\ell/r)a_r(\lambda,\eta),
+\]
+where $\mu_{\mathrm M}$ is the number-theoretic Moebius function.
+
+\begin{theorem}[Exact orbit formula]
+For every $n\geq1$ and $0\leq k\leq n!$,
+\begin{equation}\label{eq:main}
+\boxed{
+f_{n,k}=
+\sum_{\lambda,\eta\vdash n}\frac1{z_\lambda z_\eta}
+[x^k]\prod_{\ell\mid L_{\lambda,\eta}}
+(1+x^\ell)^{c_\ell(\lambda,\eta)}.}
+\end{equation}
+In particular, the right-hand side is a finite explicit determination of
+$f_{n,k}$ in terms of partitions of $n$.
+\end{theorem}
+
+\section{Proof intuition}
+
+Replace the paper's right multiplier by its inverse, which does not change
+the equivalence relation.  A pair $(\mu,\nu)$ then permutes $S_n$ by
+$\sigma\mapsto\mu\sigma\nu^{-1}$. A subset is fixed precisely when it is a
+union of cycles of this permutation, so its size-generating polynomial is a
+product of factors $1+x^{\text{cycle length}}$.
+
+The only non-obvious input is that all of those cycle lengths can be recovered
+without iterating through $S_n$. The fixed points of the $r$-th power are
+exactly the conjugators between $\nu^r$ and $\mu^r$. Their number is either
+zero or the centralizer size of their common power type. Moebius inversion
+turns these fixed-point counts into exact action-cycle counts. Burnside's
+lemma then averages the fixed-subset polynomial, and grouping the average by
+the two conjugacy types gives~\eqref{eq:main}.
+
+For the recurrence clause, regard the finitely many fixed-subset polynomials
+as an explicitly known polynomial space. A basis and its Wronskian produce a
+scalar differential equation annihilating every polynomial in that space,
+including $F_n(x)=\sum_k f_{n,k}x^k$. Coefficient extraction gives a recurrence
+for $f_{n,k}$ whose coefficients are computed only from the partition data,
+not from a previously expanded row of orbit counts.
+
+\section{Proof}
+
+For $\mu,\nu\in S_n$, define a permutation of the set $S_n$ by
+\[
+ T_{\mu,\nu}(\sigma)=\mu\sigma\nu^{-1}.
+\]
+These transformations give the usual $S_n\times S_n$ action, and their
+orbits on $k$-subsets are exactly the equivalence classes in the question.
+
+Suppose $\mu$ and $\nu$ have cycle types $\lambda$ and $\eta$. Since
+\[
+ T_{\mu,\nu}^{r}(\sigma)=\mu^r\sigma\nu^{-r},
+\]
+we have
+\begin{align*}
+ \sigma\in\Fix(T_{\mu,\nu}^{r})
+ &\Longleftrightarrow \mu^r\sigma\nu^{-r}=\sigma\\
+ &\Longleftrightarrow \mu^r=\sigma\nu^r\sigma^{-1}.
+\end{align*}
+Thus there are no fixed points unless
+$\lambda^{[r]}=\eta^{[r]}$. If the two power types agree, the set of
+conjugators is a coset of the centralizer of $\nu^r$, and hence
+\begin{equation}\label{eq:fixpower}
+ |\Fix(T_{\mu,\nu}^{r})|=a_r(\lambda,\eta).
+\end{equation}
+
+Let $C_\ell$ denote the number of $\ell$-cycles of $T_{\mu,\nu}$. Its
+order divides $L_{\lambda,\eta}$. For each $r\mid L_{\lambda,\eta}$,
+a cycle of length $\ell$ contributes all of its $\ell$ points to
+$\Fix(T^r)$ exactly when $\ell\mid r$. Therefore
+\[
+ a_r(\lambda,\eta)=\sum_{\ell\mid r}\ell C_\ell.
+\]
+Moebius inversion gives
+\[
+ C_\ell=\frac1\ell\sum_{r\mid\ell}
+ \mu_{\mathrm M}(\ell/r)a_r(\lambda,\eta)
+ =c_\ell(\lambda,\eta).
+\]
+This also proves directly that every $c_\ell(\lambda,\eta)$ defined above
+is a nonnegative integer.
+
+A subset of $S_n$ is fixed by $T_{\mu,\nu}$ if and only if it is a union
+of cycles of $T_{\mu,\nu}$. Consequently, the number of its fixed subsets
+of size $k$ is
+\begin{equation}\label{eq:fixedsubset}
+ [x^k]\prod_{\ell\mid L_{\lambda,\eta}}
+ (1+x^\ell)^{c_\ell(\lambda,\eta)}.
+\end{equation}
+
+Burnside's lemma~\cite{Cameron} averages~\eqref{eq:fixedsubset} over the
+$(n!)^2$ pairs $(\mu,\nu)$. There are $n!/z_\lambda$ permutations of type
+$\lambda$ and $n!/z_\eta$ permutations of type $\eta$. Grouping the
+average by $(\lambda,\eta)$ therefore replaces the multiplicity divided by
+$(n!)^2$ by $1/(z_\lambda z_\eta)$, which yields~\eqref{eq:main}. \qed
+
+\section{The scalar recurrence}
+
+Equation~\eqref{eq:main} gives the whole row generating polynomial
+\[
+ F_n(x)=\sum_{k=0}^{n!}f_{n,k}x^k
+ =\sum_{\lambda,\eta\vdash n}\frac1{z_\lambda z_\eta}
+ \prod_{\ell\mid L_{\lambda,\eta}}
+ (1+x^\ell)^{c_\ell(\lambda,\eta)}.
+\]
+It immediately provides an exact algorithm indexed by $p(n)^2$ pairs of
+partitions, rather than by the $\binom{n!}{k}$ subsets in the original
+definition. It also recovers the source's complement symmetry
+$f_{n,k}=f_{n,n!-k}$, because every factor in a fixed-subset polynomial is
+palindromic of total degree $n!$.
+
+Set
+\[
+ Q_{\lambda,\eta}(x)=
+ \prod_{\ell\mid L_{\lambda,\eta}}
+ (1+x^\ell)^{c_\ell(\lambda,\eta)}
+\]
+and let $V_n$ be the rational linear span of all these polynomials. Since
+every $Q_{\lambda,\eta}$ is given explicitly by cycle-type data, a basis
+$Q_1,\ldots,Q_{m_n}$ of $V_n$ is obtained constructively by row reduction
+of their coefficient vectors.
+
+For $0\leq j\leq m_n$, define
+\begin{equation}\label{eq:Aj}
+A_{n,j}(x)=(-1)^{m_n+j}
+\det\!\left(Q_i^{(r)}(x)\right)_{
+\substack{0\leq r\leq m_n,\ r\neq j\\1\leq i\leq m_n}}.
+\end{equation}
+In particular, $A_{n,m_n}$ is the Wronskian of the chosen basis and is
+nonzero over the characteristic-zero field $\mathbb Q$~\cite{Ince}.
+
+\begin{theorem}[Constructive scalar recurrence]\label{thm:recurrence}
+For every fixed $n$, the row generating polynomial satisfies
+\begin{equation}\label{eq:ode}
+ \sum_{j=0}^{m_n}A_{n,j}(x)F_n^{(j)}(x)=0.
+\end{equation}
+Write $A_{n,j}(x)=\sum_t a_{n,j,t}x^t$, extend $f_{n,q}=0$ outside
+$0\leq q\leq n!$, and write
+$q^{\underline{j}}=q(q-1)\cdots(q-j+1)$. Then, for every $r\geq0$,
+\begin{equation}\label{eq:scalarrecurrence}
+\boxed{
+\sum_{j=0}^{m_n}\sum_t
+a_{n,j,t}(r+j-t)^{\underline{j}}f_{n,r+j-t}=0.}
+\end{equation}
+The polynomials $A_{n,j}$, hence all coefficients in this scalar recurrence,
+are computed from the partition power-types in the orbit formula without
+using the values of $f_{n,k}$.
+\end{theorem}
+
+\begin{proof}
+Append a last column consisting of $y,y',\ldots,y^{(m_n)}$ to the derivative
+matrix of $Q_1,\ldots,Q_{m_n}$. Expanding its determinant along that last
+column gives the left side of~\eqref{eq:ode}. If $y\in V_n$, the columns are
+linearly dependent, so the determinant vanishes. Formula~\eqref{eq:main}
+places $F_n$ in $V_n$, proving~\eqref{eq:ode}. The coefficient of $x^r$ in
+$x^tF_n^{(j)}(x)$ is
+$(r+j-t)^{\underline{j}}f_{n,r+j-t}$. Extracting $[x^r]$ proves
+\eqref{eq:scalarrecurrence}.
+\end{proof}
+
+There is also a lower-dimensional practical recurrence before scalar
+elimination. If
+$q_{\lambda,\eta,k}=[x^k]Q_{\lambda,\eta}(x)$, put
+\[
+b_{\lambda,\eta,s}=
+\sum_{\ell\mid s}(-1)^{s/\ell-1}\ell c_\ell(\lambda,\eta).
+\]
+The logarithmic derivative of $Q_{\lambda,\eta}$ gives
+\begin{equation}\label{eq:auxrecurrence}
+q_{\lambda,\eta,0}=1,\qquad
+kq_{\lambda,\eta,k}=
+\sum_{s=1}^{k}b_{\lambda,\eta,s}q_{\lambda,\eta,k-s},
+\end{equation}
+and the desired scalar count is the weighted sum
+$f_{n,k}=\sum_{\lambda,\eta\vdash n}(z_\lambda z_\eta)^{-1}
+q_{\lambda,\eta,k}$. Thus both the scalar existence statement and an
+efficient recursive computation are explicit.
+
+\subsection*{Example: the complete recurrence for $n=3$}
+
+For $n=3$, the six distinct fixed-subset polynomials span a
+four-dimensional space. Wronskian elimination gives
+\begin{align*}
+0={}&(x^2-1)^3F_3^{(4)}-12x(x^2-1)^2F_3^{(3)}
++12(x^2-1)(6x^2-1)F_3''\\
+&-120x(2x^2-1)F_3'+360x^2F_3.
+\end{align*}
+Equivalently, with $f_{3,q}=0$ outside $0\leq q\leq6$, for every $r\geq0$,
+\begin{align*}
+0={}&-(r+1)(r+2)(r+3)(r+4)f_{3,r+4}\\
+&+3(r-4)(r-1)(r+1)(r+2)f_{3,r+2}\\
+&-3r(r-6)(r-5)(r-3)f_{3,r}\\
+&+(r-8)(r-7)(r-6)(r-5)f_{3,r-2}.
+\end{align*}
+Together with $(f_{3,0},f_{3,1},f_{3,2},f_{3,3})=(1,1,2,2)$, the cases
+$r=0,1,2$ produce the rest of the row $(2,1,1)$.
+
+\section{Scope}
+
+Theorem~\ref{thm:recurrence} answers the recurrence clause in the natural
+coefficient direction: for every fixed $n$, $k\mapsto f_{n,k}$ satisfies a
+constructively specified scalar finite-shift recurrence. It does not assert
+a low-order recurrence uniform in $n$, nor a recurrence coupling different
+values of $n$. The source question asks only whether $f_{n,k}$ satisfies
+``some recurrence'' and does not prescribe such stronger uniformity.
+The paper's random linear-independence conjecture and Gram-matrix positivity
+question are also outside the scope of this result.
+
+\section{Exact computational verification}
+
+The included script \texttt{code/verifier.py} implements every term in
+\eqref{eq:main} with integer and rational arithmetic. Run from the repository
+root:
+\begin{verbatim}
+conda run --no-capture-output -n sandbox python \
+  runs/fa_banach_001/solutions/full/\
+  2503.09542_orbit_count_cycle_index_formula/code/verifier.py
+\end{verbatim}
+It reproduces every source-table value through $n=5$, $k=12$:
+\begin{center}
+\begin{tabular}{@{}ccl@{}}
+\toprule
+$n$ & tested $k$ & final tested value \\
+\midrule
+2 & $0\leq k\leq2$ & $f_{2,2}=1$ \\
+3 & $0\leq k\leq6$ & $f_{3,6}=1$ \\
+4 & $0\leq k\leq12$ & $f_{4,12}=5050$ \\
+5 & $0\leq k\leq12$ & $f_{5,12}=732149722382$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+As a second check, the script directly enumerates the cycles of
+$\sigma\mapsto\mu\sigma\nu$ for all 39 pairs of conjugacy types across
+$1\leq n\leq4$ and compares them to the power-type/Moebius formula. All
+comparisons agree. These tests are consistency evidence; the proof does not
+depend on them.
+
+The second script \texttt{code/recurrence\_verifier.py} computes the
+dimensions of the explicit fixed-subset polynomial spans for $1\leq n\leq5$:
+\[
+\begin{array}{c|ccccc}
+n&1&2&3&4&5\\ \hline
+m_n&1&2&4&10&19
+\end{array}
+\]
+It constructs the Wronskian operator for $n=3$ and verifies both the displayed
+differential equation and every coefficient-recurrence residual exactly.
+Run it with
+\begin{verbatim}
+conda run --no-capture-output -n sandbox python \
+  runs/fa_banach_001/solutions/full/\
+  2503.09542_orbit_count_cycle_index_formula/code/recurrence_verifier.py
+\end{verbatim}
+
+\section{Novelty audit and review recommendation}
+
+The bounded search (performed 26 August 2026) covered the run registry and
+solution indexes; arXiv id 2503.09542; the exact title and question wording;
+searches for left-right subset orbits together with Burnside, cycle-index,
+Wronskian, and recurrence
+keywords; and OEIS A381842~\cite{OEIS}. The source contains no occurrence of
+``Burnside'', ``Polya'', or ``cycle index''. The OEIS entry, last modified
+16 July 2026, lists only $f_{n,2}=p(n)-1$, complement symmetry, and initial
+values. A fresh recurrence-focused search on 26 August 2026 found no later
+paper or matching formula.
+
+Novelty confidence is nevertheless only \emph{moderate}: this is a natural
+finite-group enumeration argument and could appear in older literature under
+different terminology such as two-sided translations of subsets. Human review
+should first verify equations~\eqref{eq:fixpower},~\eqref{eq:fixedsubset},
+and the Wronskian elimination in Theorem~\ref{thm:recurrence},
+then commission a specialist historical search before any public novelty
+claim. The mathematical validity of both the formula and recurrence appears
+high. A reviewer should also confirm that recurrence in $k$ is the intended
+reading of the source's deliberately unspecified recurrence clause.
+
+\begin{thebibliography}{9}
+\bibitem{KT}
+A. Kushwaha and R. Tripathi,
+\emph{A note on Erd\H{o}s matrices and Marcus--Ree inequality},
+Linear Algebra Appl. \textbf{725} (2025), 223--247;
+\href{https://arxiv.org/abs/2503.09542}{arXiv:2503.09542}.
+
+\bibitem{Cameron}
+P. J. Cameron,
+\emph{Combinatorics: Topics, Techniques, Algorithms},
+Cambridge University Press, 1994.
+
+\bibitem{Ince}
+E. L. Ince,
+\emph{Ordinary Differential Equations},
+Dover Publications, 1956.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+\href{https://oeis.org/A381842}{A381842}, accessed 26 August 2026.
+\end{thebibliography}
+
+\end{document}

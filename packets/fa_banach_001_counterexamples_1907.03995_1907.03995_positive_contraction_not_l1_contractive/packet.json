@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1907.03995",
+  "author_list": [
+    "Christian Le Merdy",
+    "Safoura Zadeh"
+  ],
+  "claim_short": "The answer is no, already for the Hilbert-Schmidt class S_4^2.",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1186,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1907.03995v3",
+    "source_url": "https://arxiv.org/abs/1907.03995v3"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/",
+  "packet_title": "A positive contraction need not be ell^1-contractive",
+  "primary_arxiv_id": "1907.03995",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0268",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1907.03995_1907.03995_positive_contraction_not_l1_contractive/files/solution_packet.pdf",
+  "source_authors": "Christian Le Merdy, Safoura Zadeh",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1907.03995_positive_contraction_not_l1_contractive/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1907.03995v3",
+  "source_question": "Christian Le Merdy and Safoura Zadeh, *ell^1-contractive maps on noncommutative L^p-spaces*, arXiv:1907.03995. Immediately after Remark 5.2 on printed page 21, the authors ask whether every positive contraction is ell^1-contractive: “We do not know if any positive contraction is ell^1-contractive.”",
+  "source_title": "$\\ell^1$-contractive maps on noncommutative $L^p$-spaces",
+  "source_url": "https://arxiv.org/abs/1907.03995v3",
+  "source_year": "2019",
+  "verification_status": "unverified"
+}

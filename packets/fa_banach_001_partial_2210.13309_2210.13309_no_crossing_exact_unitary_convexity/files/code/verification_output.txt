@@ -1,0 +1,8 @@
+n=2: dephase=1.110e-16 unitary=1.948e-15 reconstruction=1.657e-15
+n=3: dephase=6.473e-16 unitary=2.298e-15 reconstruction=4.502e-15
+n=4: dephase=3.759e-16 unitary=2.140e-15 reconstruction=2.882e-15
+n=5: dephase=9.216e-16 unitary=3.931e-15 reconstruction=3.213e-15
+n=6: dephase=2.319e-15 unitary=4.029e-15 reconstruction=5.064e-15
+n=7: dephase=1.454e-15 unitary=6.873e-15 reconstruction=7.118e-15
+n=8: dephase=1.556e-15 unitary=3.701e-15 reconstruction=4.147e-15
+all dephasing and conjugation checks passed

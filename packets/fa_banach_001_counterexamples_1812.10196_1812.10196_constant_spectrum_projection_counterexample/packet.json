@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1812.10196",
+  "author_list": [
+    "Julian Bailey"
+  ],
+  "claim_short": "1812.10196 Bailey Kato square root systems matrix potential reverse Holder W2 constant spectrum projection-valued rank-one orthogonal projection diag one minus indicator ball indicator ball spectral eigenvalues Schatten norms trace eigenspace geometry 2207.05790 matrix B2 2401.00479",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1417,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1812.10196v4",
+    "source_url": "https://arxiv.org/abs/1812.10196v4"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_counterexample_to_pointwise_spectral_reverse_holder_criteria_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/",
+  "packet_title": "Constant-spectrum matrix counterexample",
+  "primary_arxiv_id": "1812.10196",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0252",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1812.10196_1812.10196_constant_spectrum_projection_counterexample/files/solution_packet.pdf",
+  "source_authors": "Julian Bailey",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1812.10196_constant_spectrum_projection_counterexample/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1812.10196v4",
+  "source_question": "",
+  "source_title": "The Kato Square Root Problem for Divergence Form Operators with Potential",
+  "source_url": "https://arxiv.org/abs/1812.10196v4",
+  "source_year": "2018",
+  "verification_status": "unverified"
+}

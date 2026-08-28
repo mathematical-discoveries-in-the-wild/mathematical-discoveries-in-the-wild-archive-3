@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\title{Solel's TRO-range conjecture was refuted by arXiv:math/0510641}
+\author{Literature-status note for \texttt{fa\_banach\_001}}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+\texttt{literature\_already\_answered\_negative}.  No new mathematical
+result is claimed by this packet.
+
+\section*{Original conjecture}
+
+Let $\mathcal D\subseteq B(\mathcal H)$ be a maximal abelian selfadjoint
+algebra (MASA).  Katavolos and Paulsen record on PDF page 2 of
+arXiv:math/0301298 the conjecture of Solel that if
+\[
+ P:B(\mathcal H)\longrightarrow B(\mathcal H)
+\]
+is a contractive idempotent $\mathcal D$-bimodule map, then its range
+$\mathcal M=P(B(\mathcal H))$ is a ternary ring of operators in the inherited
+product:
+\[
+ \mathcal M\mathcal M^*\mathcal M\subseteq\mathcal M.
+\]
+Solel had proved this under the additional assumption that $P$ is
+weak-star continuous.  The conjecture asked whether the same conclusion
+holds without that normality assumption \cite{KP2003}.
+
+\section*{Explicit later counterexample}
+
+Paulsen's arXiv:math/0510641 says in its abstract and introduction that it
+constructs a counterexample to precisely this conjecture \cite{P2005}.
+The construction has two stages.
+
+First, Theorem 2.15 on PDF page 10 produces a unital, completely positive,
+idempotent, $\mathbb Z$-equivariant map
+\[
+ \Phi:\ell^\infty(\mathbb Z)\longrightarrow\ell^\infty(\mathbb Z)
+\]
+whose range is not a $C^*$-subalgebra.  The proof uses the
+$\mathbb Z$-injective envelope of $C(\mathbb T)$ to obtain two distinct
+equivariant embeddings and averages them; the resulting range fails
+multiplicative closure.
+
+Second, Theorem 3.1 on PDF page 12 lifts any such $\Phi$ to a unital
+completely positive $L^\infty(\mathbb T)$-bimodule map
+\[
+ \Gamma:B(L^2(\mathbb T))\longrightarrow B(L^2(\mathbb T)),
+\]
+and preserves idempotence.  Corollary 3.2 on PDF pages 12--13 states that the
+range of the lifted $\Gamma$ is not a $C^*$-subalgebra.
+
+This refutes the conjecture exactly.  Complete positivity and unitality imply
+$\|\Gamma\|=1$, so $\Gamma$ is contractive.  Its idempotent range contains
+$I$.  If that range were a TRO, then for range elements $A,B$ the ternary
+products
+\[
+ A I^* B=AB,\qquad I A^* I=A^*
+\]
+would make it a $C^*$-subalgebra, contrary to Corollary 3.2.  The construction
+is non-weak-star-continuous, so Solel's positive normal-case theorem remains
+intact.
+
+\section*{Scope and search}
+
+The four run indexes, both exact titles, and exact MASA/TRO conjecture phrases
+were checked through 26 August 2026.  arXiv:math/0510641 is a direct explicit
+answer, not an inferred consequence.  This packet does not claim to settle
+the other questions in arXiv:math/0301298 concerning norm gaps, a general
+symbol calculus, or the commutator ideals of the restriction maps.
+
+\begin{thebibliography}{9}
+\bibitem{KP2003}
+A.~Katavolos and V.~I.~Paulsen,
+\emph{On the ranges of bimodule projections},
+Canad. Math. Bull. \textbf{48} (2005), 97--111;
+arXiv:math/0301298,
+\url{https://arxiv.org/abs/math/0301298}.
+
+\bibitem{P2005}
+V.~I.~Paulsen,
+\emph{Equivariant Maps and Bimodule Projections},
+J. Funct. Anal. \textbf{240} (2006), 495--507;
+arXiv:math/0510641,
+\url{https://arxiv.org/abs/math/0510641}.
+\end{thebibliography}
+
+\end{document}

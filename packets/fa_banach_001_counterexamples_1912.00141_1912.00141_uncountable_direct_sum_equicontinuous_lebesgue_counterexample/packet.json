@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1912.00141",
+  "author_list": [
+    "Omid Zabeti"
+  ],
+  "claim_short": "The general continuous-operator version of the source paper's Theorem 5 is false.",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1912.00141v3",
+    "source_url": "https://arxiv.org/abs/1912.00141v3"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/",
+  "packet_title": "Counterexample packet: equicontinuous operator topology need not be Lebesgue",
+  "primary_arxiv_id": "1912.00141",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0281",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1912.00141_1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/files/solution_packet.pdf",
+  "source_authors": "Omid Zabeti",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1912.00141_uncountable_direct_sum_equicontinuous_lebesgue_counterexample/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1912.00141v3",
+  "source_question": "",
+  "source_title": "$AM$-spaces from a locally solid vector lattice point of view with applications",
+  "source_url": "https://arxiv.org/abs/1912.00141v3",
+  "source_year": "2019",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Bclass}{\mathcal B}
+\newcommand{\NCFB}{\mathcal{NCFB}}
+\newcommand{\CFB}{\mathcal{CFB}}
+\newcommand{\D}{\mathbb D}
+\newcommand{\K}{\mathcal K}
+
+\title{A restriction argument for the connected-domain\\
+construction question in $\NCFB_n(\Omega)$}
+\author{Candidate solution packet for arXiv:1910.10538}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black}{gray!8}{\parbox{0.91\textwidth}{
+\textbf{Status.} Candidate full solution to Question 1 as literally stated,
+subject to human review.  The construction retains strong irreducibility, but
+does not retain the additional spectral equalities in Theorem 3.10 of the
+source paper.}}
+\end{center}
+
+\begin{abstract}
+Jiang, Ji, and Wu ask whether one can construct an operator in
+$\NCFB_n(\Omega)$ when the bounded planar domain $\Omega$ is connected rather
+than simply connected.  The answer to this literal construction question is
+yes.  Take the paper's strongly irreducible example on a disk containing
+$\Omega$ and restrict its Cowen--Douglas base domain to $\Omega$.  The only
+point needing proof is that the spanning axiom in the Cowen--Douglas
+definition survives restriction to a nonempty open subset; this follows from
+the identity theorem for a local holomorphic frame.  All additional
+$\CFB/\NCFB$ conditions are properties of the same operator and block
+decomposition, and hence are unchanged.
+\end{abstract}
+
+\section{Source question}
+
+The source is C.~Jiang, K.~Ji, and J.~Wu, \emph{Similarity Invariants of
+Essentially normal Cowen--Douglas Operators and Chern Polynomials},
+arXiv:1910.10538v1, Section~6, PDF page~27 \cite{JJW}.  The question is:
+\begin{quote}
+``Can we construct an operator in $\NCFB_n(\Omega)$ when $\Omega$ is
+connected?''
+\end{quote}
+The source context assumes throughout that $\Omega$ is a bounded, open,
+connected subset of $\mathbb C$.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The two questions at the end of the source paper.  This packet
+  answers Question 1.}
+\end{figure}
+
+\section{Definitions and proof intuition}
+
+For a connected open set $U\subset\mathbb C$, an operator $A$ belongs to
+$\Bclass_m(U)$ when, for every $w\in U$, the operator $A-wI$ is onto,
+$\dim\ker(A-wI)=m$, and
+\[
+ \overline{\operatorname{span}}\{\ker(A-wI):w\in U\}=\mathcal H.
+\]
+The source defines $\NCFB_n(U)$ as a subclass of the essentially normal
+operators in $\CFB_n(U)$, with an upper-triangular block decomposition and
+specified idempotents whose Calkin images are self-adjoint \cite{JJW}.
+
+\paragraph{Proof intuition.}
+Cowen--Douglas membership is local except for the spanning axiom.  If a vector
+is orthogonal to every eigenvector over a nonempty open subset, pair it with a
+local holomorphic frame.  The resulting scalar holomorphic functions vanish
+on an open set, so the identity theorem propagates their vanishing throughout
+the larger connected domain.  Thus the smaller family of eigenspaces is
+already total.  Starting with the source paper's disk example, we may
+therefore forget all eigenvalues outside $\Omega$ without changing the
+operator.  The flag relations, Property~(H), essential normality, and the
+idempotents do not depend on which base domain we use.
+
+\section{The restriction lemma}
+
+\begin{lemma}[Restriction of the Cowen--Douglas base]
+\label{lem:restriction}
+Let $U\subset\mathbb C$ be connected and open, let $V\subset U$ be nonempty
+and open, and let $A\in\Bclass_m(U)$.  If $V$ is connected (as in the usual
+definition of a Cowen--Douglas domain), then $A\in\Bclass_m(V)$.
+\end{lemma}
+
+\begin{proof}
+For $w\in V$, surjectivity of $A-wI$ and the equality
+$\dim\ker(A-wI)=m$ follow immediately from $A\in\Bclass_m(U)$.  It remains to
+prove totality.
+
+Suppose $h\in\mathcal H$ is orthogonal to $\ker(A-wI)$ for every $w\in V$.
+Fix $w_0\in V$ and $u\in U$.  Since an open connected subset of $\mathbb C$
+is path connected, choose a path in $U$ from $w_0$ to $u$.  Cover its compact
+image by a finite chain of open disks
+\[
+ W_0,W_1,\ldots,W_N\Subset U
+\]
+such that $W_0\cap V$ is nonempty and open, $u\in W_N$, and every
+$W_{j-1}\cap W_j$ is nonempty and open.  Shrinking the disks if necessary,
+the Cowen--Douglas bundle has a holomorphic frame
+$\gamma_{j,1},\ldots,\gamma_{j,m}$ on each $W_j$.
+
+On $W_0$, each scalar holomorphic function
+$w\mapsto\langle\gamma_{0,k}(w),h\rangle$ vanishes on $W_0\cap V$.
+The identity theorem makes it vanish on all of $W_0$.  Consequently $h$ is
+orthogonal to every fiber over $W_0\cap W_1$.  Applying the identity theorem
+to a frame on $W_1$ gives the same conclusion throughout $W_1$.  Induction
+along the chain shows that $h\perp\ker(A-uI)$.  As $u\in U$ was arbitrary,
+$h$ is orthogonal to all Cowen--Douglas fibers over $U$; their totality gives
+$h=0$.  Hence the fibers over $V$ are total.
+\end{proof}
+
+\section{Full answer to Question 1}
+
+\begin{theorem}
+\label{thm:main}
+Let $\Omega\subset\mathbb C$ be a bounded, nonempty, connected open set and
+let $n\geq1$.  Then $\NCFB_n(\Omega)$ is nonempty.  In fact, it contains a
+strongly irreducible operator.
+\end{theorem}
+
+\begin{proof}
+The unit-disk part of Theorem~3.10 in the source paper constructs a strongly
+irreducible operator $A\in\NCFB_n(\D)$ \cite{JJW}.  Choose $b\in\mathbb C$ and $R>0$ such that
+$\Omega\subset U:=b+R\D$, and set
+\[
+ T=bI+RA.
+\]
+We first record directly that $T\in\NCFB_n(U)$.  The Cowen--Douglas
+conditions transfer under $w=b+Rz$, because
+\[
+ T-wI=R(A-zI),\qquad \ker(T-wI)=\ker(A-zI).
+\]
+Essential normality is preserved since
+\[
+ [T^*,T]=R^2[A^*,A]\in\K(\mathcal H).
+\]
+Use for $T$ the same upper-triangular block decomposition and idempotents as
+for $A$.  If $A_{k,j}=C_{k,j}A_{k,k+1}\cdots A_{j-1,j}$, then for $k<j$
+\[
+ T_{k,j}=RA_{k,j}
+ =R^{1-(j-k)}C_{k,j}T_{k,k+1}\cdots T_{j-1,j},
+\]
+and the relevant commutants are unchanged by the affine transformation.  For
+adjacent diagonal blocks,
+\[
+ \tau_{T_{j,j},T_{j+1,j+1}}
+ =R\,\tau_{A_{j,j},A_{j+1,j+1}},
+\]
+so both the kernel and the range in Property~(H) are unchanged.  The Calkin
+conditions on the idempotents are literally the same.  Thus all defining
+$\CFB_n$ and $\NCFB_n$ conditions persist.  Finally,
+$\{T\}'=\{A\}'$, so $T$ is strongly irreducible.
+
+Apply Lemma~\ref{lem:restriction} first to $T\in\Bclass_n(U)$ and then to
+each diagonal block $T_{j,j}\in\Bclass_1(U)$.  It follows that
+$T\in\Bclass_n(\Omega)$ and $T_{j,j}\in\Bclass_1(\Omega)$.  Every remaining
+$\CFB_n/\NCFB_n$ condition uses only $T$, its fixed block decomposition,
+Property~(H), essential normality, and the same idempotents; none depends on
+enlarging or shrinking the Cowen--Douglas base domain.  Therefore
+$T\in\NCFB_n(\Omega)$, and its strong irreducibility was already established.
+\end{proof}
+
+\section{Verification and limitations}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Hypothesis check.}  Boundedness of $\Omega$ is part of the
+source paper's standing setup and ensures that a containing disk exists.
+For an unbounded $\Omega$, no bounded operator can lie in $\Bclass_n(\Omega)$,
+since every $w\in\Omega$ would be an eigenvalue.
+\item \textbf{Cowen--Douglas check.}  Lemma~\ref{lem:restriction} separately
+verifies the only nonlocal axiom, totality.  The other two axioms are inherited
+pointwise.
+\item \textbf{Structure check.}  The proof explicitly tracks affine scaling
+of the upper-triangular products and of the Rosenblum maps used in
+Property~(H); the idempotents and their Calkin images do not change.
+\item \textbf{What is not claimed.}  The constructed operator has the
+spectrum of the containing-disk model, not necessarily
+$\overline\Omega$.  Hence this packet does not extend all three extra
+conclusions of source Theorem~3.10 to multiply connected domains.  It answers
+the final section's literal Question~1, and it does not address Question~2.
+\end{itemize}
+
+\section{Bounded novelty check}
+
+On 27 August 2026, the run-wide registry, solution, attempt, and proof-gap
+indexes were searched for arXiv:1910.10538, the exact title, $\NCFB_n$, and
+connected-domain Cowen--Douglas keywords.  A web/arXiv search used the exact
+question and the queries ``NCFB Cowen Douglas connected'', the exact source
+title with ``citations'', and ``Cowen--Douglas NCFB connected domain''.  This
+located the 2022 journal publication and later papers on Cowen--Douglas flag
+classes, but no later source explicitly answering Question~1 or presenting
+this restriction argument.  The search is bounded and cannot certify novelty;
+the mathematical claim should be reviewed independently, especially because
+the argument is short.
+
+\section{Human-review recommendation}
+
+Check three points: (i) the analytic-continuation step in
+Lemma~\ref{lem:restriction}; (ii) the scaling of condition~(2) in the
+$\CFB_n$ definition and of Property~(H); and (iii) that the intended reading
+of Question~1 is its literal nonemptiness/construction statement, rather than
+the stronger spectrum-preserving analogue of Theorem~3.10.  If those checks
+pass, Theorem~\ref{thm:main} is a complete affirmative answer to Question~1.
+
+\begin{thebibliography}{9}
+\bibitem{JJW}
+C.~Jiang, K.~Ji, and J.~Wu,
+\emph{Similarity Invariants of Essentially normal Cowen--Douglas Operators
+and Chern Polynomials}, arXiv:1910.10538v1 (2019); Israel J. Math.
+\textbf{248} (2022), 229--270,
+\url{https://arxiv.org/abs/1910.10538}.
+\end{thebibliography}
+
+\end{document}

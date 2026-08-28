@@ -1,0 +1,363 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.76in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,graphicx,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\A}{\mathcal A}
+\newcommand{\Icoeff}{I_E}
+\newcommand{\Kcomp}{\mathcal K}
+\newcommand{\Ladj}{\mathcal L}
+\newcommand{\spn}{\operatorname{span}}
+\newcommand{\ran}{\operatorname{Ran}}
+
+\title{Complete classification of adjointable\\closed-submodule preservers}
+\author{Candidate full-result packet for \texttt{fa\_banach\_001}\\
+\texttt{agent\_lane\_03}, model GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For an arbitrary right Hilbert $\A$-module $E$, put
+$\Icoeff=\overline{\spn}\langle E,E\rangle$.  We prove that an adjointable
+operator $T$ leaves every norm-closed right $\A$-submodule invariant if and
+only if
+\[
+                 Tx=xz\qquad(x\in E)
+\]
+for a unique $z\in Z(M(\Icoeff))$.  No injectivity, surjectivity, nonzero,
+unitality, finite generation, or orthonormal-vector hypothesis is needed.
+For full modules this is exactly multiplication by $Z(M(\A))$.  Consequently,
+after the necessary nonzero repair, Sharifi's requested coefficient belongs to
+$\A$ for every full module precisely when $\A$ is unital.  The proof turns
+closed submodules into closed right ideals of $\Kcomp(E)$, proves that a
+multiplier preserving every closed right ideal is central, and transfers the
+center through the Hilbert-module Morita equivalence.
+\end{abstract}
+
+\section{Source question and normalization}
+
+Sharifi's Problem~2.16 in arXiv:2506.01161, PDF page 11, asks for which
+$C^*$-algebras universal closed-submodule invariance forces a bounded
+adjointable operator to be a coefficient morphism $I.a$ with nonzero
+$a\in\A$ \cite{Sharifi}.
+
+\begin{center}
+\includegraphics[width=0.90\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+The displayed source statement has two necessary normalizations.  First, the
+zero operator preserves every submodule, so either $T\ne0$ (as in the intended
+injective reading used by Frank) must be assumed or the zero coefficient must
+be allowed.  Second, for nonunital $\A$ the identity operator is implemented
+by $1_{M(\A)}$, which need not belong to $\A$.  The natural coefficient space
+is therefore the center of the multiplier algebra.  The theorem below gives
+the exact answer, including non-full modules.
+
+Frank's later arXiv:2507.11206 explicitly cites Problem~2.16.  Its
+Theorem~1.2 proves the conclusion for \emph{bijective bounded module
+morphisms} on full modules, and the paper states that the merely injective
+bounded-module case is out of reach \cite{Frank}.  The result below does not
+conflict with that boundary: it uses the source problem's stronger
+\emph{adjointability} hypothesis in an essential way.
+
+\section{Idea of the proof}
+
+The compact-operator algebra $B=\Kcomp_{\Icoeff}(E)$ is the correct surrogate
+for the scalar field.  Every closed submodule $M\subset E$ determines the
+closed right ideal of compact operators whose ranges lie in $M$, and every
+closed right ideal arises this way.  Thus the hypothesis says that the
+multiplier of $B$ induced by $T$ preserves every closed right ideal of $B$.
+
+The key rigidity step is purely $C^*$-algebraic.  If a multiplier $b$ of a
+$C^*$-algebra preserves every closed right ideal, then every open support
+projection in the bidual is invariant under $b$.  Were an irreducible image of
+$b$ nonscalar, Kadison transitivity would produce a positive element whose
+support contains a vector $\xi$ but not $b\xi$, contradicting that invariance.
+Hence $b$ is central.  Finally, the centers of the two multiplier algebras on
+opposite sides of a full Hilbert module agree: centrality on $\Kcomp(E)$ is
+equivalent to right multiplication by a unique element of
+$Z(M(\Icoeff))$.  We include direct proofs of every module-theoretic passage.
+
+\section{Three structural lemmas}
+
+Throughout, Hilbert-module inner products are linear in the second variable,
+and $\theta_{x,y}(w)=x\langle y,w\rangle$.
+
+\begin{lemma}[Submodules and right ideals]\label{lem:correspondence}
+Let $E$ be a full right Hilbert $I$-module and put $B=\Kcomp_I(E)$.  For a
+closed right ideal $J\subset B$, set
+\[
+ M_J=\overline{\spn}\{Sx:S\in J,\ x\in E\}.
+\]
+Then
+\[
+ J=\Kcomp(E,M_J):=
+ \overline{\spn}\{\theta_{m,y}:m\in M_J,\ y\in E\}.
+\]
+In particular, if $U\in\Ladj_I(E)$ leaves every closed submodule invariant,
+then the multiplier of $B$ induced by $U$ leaves every closed right ideal of
+$B$ invariant.  The underlying submodule/right-$M$-ideal correspondence is
+also recorded in \cite[Theorem~6.6]{BEZ}.
+\end{lemma}
+
+\begin{proof}
+The space $M_J$ is a closed $I$-submodule.  If $m$ is a limit of finite sums
+of vectors $Sx$ with $S\in J$, then
+$\theta_{Sx,y}=S\theta_{x,y}\in J$; hence
+$\Kcomp(E,M_J)\subset J$.  Conversely, take a finite-rank approximate
+identity $(e_\lambda)$ for $B$.  If $S\in J$, then
+$Se_\lambda\to S$, and every $Se_\lambda$ is a finite sum of operators
+$\theta_{Sx,y}$ with $Sx\in M_J$.  Thus $J\subset\Kcomp(E,M_J)$.
+
+Now suppose $U(M_J)\subset M_J$.  For $S\in J$, the operator $US$ is compact
+and has range in $M_J$.  Applying the same finite-rank approximation to $US$
+shows $US\in\Kcomp(E,M_J)=J$.  Under the standard identification
+$\Ladj_I(E)=M(B)$, this says precisely that the corresponding multiplier
+left-multiplies $J$ into itself.
+\end{proof}
+
+\begin{lemma}[Right-ideal rigidity]\label{lem:rightideal}
+Let $B$ be a $C^*$-algebra and $b\in M(B)$.  If
+\[
+                    bJ\subset J
+\]
+for every norm-closed right ideal $J$ of $B$, then $b\in Z(M(B))$.
+\end{lemma}
+
+\begin{proof}
+Let $a\in B_+$, let $p=s(a)\in B^{**}$ be its support projection, and let
+$J=\overline{aB}=pB^{**}\cap B$.  The weak-star closure of $J$ is $pB^{**}$.
+These standard support-projection facts are recalled, for example, in
+\cite{Pedersen}.  The hypothesis and weak-star continuity of left
+multiplication therefore give
+\[
+                 b(pB^{**})\subset pB^{**},
+                 \qquad (1-p)bp=0.                 \tag{1}
+\]
+
+Let $\pi:B\to\mathcal B(H)$ be an irreducible nondegenerate representation,
+extended to $M(B)$ and normally to $B^{**}$.  Suppose $\pi(b)$ is not scalar.
+Then some unit vector $\xi$ has
+\[
+ \pi(b)\xi=\lambda\xi+\mu\zeta,
+ \qquad \zeta\perp\xi,\quad \mu\ne0.
+\]
+Kadison transitivity \cite{KadisonRingrose} supplies a self-adjoint $c\in B$
+whose restriction to
+$\spn\{\xi,\zeta\}$ is the orthogonal projection onto $\mathbb C\xi$.
+Put $a=c^2$ and $p=s(a)$.  Then
+\[
+ \pi^{**}(p)\xi=\xi,\qquad \pi^{**}(p)\zeta=0.
+\]
+Applying $\pi^{**}$ to (1) forces $\pi(b)\xi$ to lie in
+$\pi^{**}(p)H$, contradicting its nonzero $\zeta$ component.  Hence
+$\pi(b)$ is scalar for every irreducible $\pi$.
+
+For $x\in B$, the commutator $[b,x]$ belongs to $B$ and is annihilated by
+every irreducible representation.  Irreducible representations separate the
+points of a $C^*$-algebra, so $[b,x]=0$ for all $x\in B$.  Thus
+$b\in Z(M(B))$.
+\end{proof}
+
+\begin{lemma}[Transfer of the center]\label{lem:centertransfer}
+Let $E$ be a full right Hilbert $I$-module.  If
+$U\in\Ladj_I(E)$ commutes with $\Kcomp_I(E)$, then there is a unique
+$z\in Z(M(I))$ such that $Ux=xz$ for every $x\in E$.
+\end{lemma}
+
+\begin{proof}
+Write $I_0=\spn\langle E,E\rangle$.  For
+$a=\sum_k\langle x_k,y_k\rangle\in I_0$, define
+\[
+             L_U(a)=\sum_k\langle x_k,Uy_k\rangle.       \tag{2}
+\]
+This is well-defined.  Indeed, for $w\in E$,
+\begin{align*}
+ wL_U(a)
+ &=\sum_k\theta_{w,x_k}Uy_k
+  =\sum_k U\theta_{w,x_k}y_k
+  =U(wa).
+                                                               \tag{3}
+\end{align*}
+If $a=0$, the right side vanishes for every $w$; fullness makes the right
+action of $I$ faithful, so $L_U(a)=0$.
+
+Fullness also gives
+$\|d\|=\sup_{\|w\|\le1}\|wd\|$ for $d\in I$.  Consequently (3) yields
+\[
+       \|L_U(a)\|\le \|U\|\,\|a\|.
+\]
+Thus $L_U$ extends boundedly to $I$, and (2) shows
+$L_U(ab)=L_U(a)b$.  Perform the same construction for $U^*$ and set
+\[
+              R_U(a)=L_{U^*}(a^*)^*.
+\]
+For $a=\langle x,y\rangle\in I_0$ and $b\in I$, equation (3) gives
+\[
+ aL_U(b)=\langle x,U(yb)\rangle
+        =\langle U^*x,y\rangle b
+        =R_U(a)b.
+\]
+Density extends this identity to all $a,b\in I$.  Hence $(L_U,R_U)$ is a
+double centralizer, represented by a unique $z\in M(I)$ with
+$L_U(a)=za$ and $R_U(a)=az$.
+
+Let $(u_\lambda)$ be an approximate identity of $I$.  Equation (3), first on
+$I_0$ and then by continuity, gives
+\[
+ wzu_\lambda=wL_U(u_\lambda)=U(wu_\lambda).
+\]
+Passing to the limit yields $Uw=wz$.  Applying this identity to $wa$ and
+using $I$-linearity of $U$ gives
+\[
+             w(az-za)=0\qquad(w\in E,\ a\in I).
+\]
+Faithfulness implies $az=za$ for every $a\in I$, so $z\in Z(M(I))$.
+If $Ez=0$, then $Iz=0$ by fullness and hence $z=0$, proving uniqueness.
+\end{proof}
+
+\section{Exact classification}
+
+\begin{theorem}\label{thm:main}
+Let $\A$ be an arbitrary $C^*$-algebra, let $E\ne0$ be a right Hilbert
+$\A$-module, and put
+\[
+            \Icoeff=\overline{\spn}\langle E,E\rangle\triangleleft\A.
+\]
+For $T\in\Ladj_\A(E)$, the following are equivalent:
+\begin{enumerate}
+ \item every norm-closed right $\A$-submodule of $E$ is $T$-invariant;
+ \item there is a unique $z\in Z(M(\Icoeff))$ such that
+       $Tx=xz$ for every $x\in E$.
+\end{enumerate}
+Here the nondegenerate right $\Icoeff$-action on $E$ is extended canonically
+to $M(\Icoeff)$.
+\end{theorem}
+
+\begin{proof}
+The module $E$ is full over $\Icoeff$.  Moreover, its closed
+$\A$-submodules and closed $\Icoeff$-submodules coincide.  Only one direction
+needs comment: if $M$ is a closed $\Icoeff$-submodule, $(u_\lambda)$ is an
+approximate identity of $\Icoeff$, $x\in M$, and $a\in\A$, then
+\[
+        xa=\lim_\lambda (xu_\lambda)a
+          =\lim_\lambda x(u_\lambda a)\in M,
+\]
+because $u_\lambda a\in\Icoeff$.  Thus $M$ is an $\A$-submodule.
+
+Assume (1) and put $B=\Kcomp_{\Icoeff}(E)$.  Adjointability identifies
+$T$ with a multiplier $b\in M(B)$: left multiplication on $B$ is
+$S\mapsto TS$, and right multiplication is $S\mapsto ST$
+\cite{Lance}.  By Lemma~\ref{lem:correspondence}, $b$ preserves every closed right ideal of
+$B$.  Lemma~\ref{lem:rightideal} gives $b\in Z(M(B))$, so $T$ commutes with
+$B$.  Lemma~\ref{lem:centertransfer} now supplies a unique
+$z\in Z(M(\Icoeff))$ such that $Tx=xz$.
+
+Conversely, let $z\in Z(M(\Icoeff))$.  The action of every $a\in\A$ on the
+ideal $\Icoeff$ is a multiplier, so it commutes with $z$.  Hence $R_z(x)=xz$
+is $\A$-linear and adjointable, with adjoint $R_{z^*}$.  If $M$ is a closed
+$\A$-submodule and $(u_\lambda)$ is an approximate identity of $\Icoeff$,
+then
+\[
+             xz=\lim_\lambda x(zu_\lambda)\in M
+             \qquad(x\in M),
+\]
+because $zu_\lambda\in\Icoeff\subset\A$.  Thus every closed submodule is
+$R_z$-invariant.
+\end{proof}
+
+\begin{corollary}[Full modules and Sharifi's coefficient]\label{cor:source}
+If $E$ is full over $\A$, then the preservers in
+Theorem~\ref{thm:main} are exactly
+\[
+                  \{R_z:z\in Z(M(\A))\}.
+\]
+No injectivity is required.  If $T$ is nonzero (in particular, injective), its
+coefficient $z$ is nonzero.  The demand that every such coefficient belong to
+$\A$ for every full $E$ holds exactly for unital $\A$.
+\end{corollary}
+
+\begin{proof}
+Fullness says $\Icoeff=\A$.  If $\A$ is unital, then
+$M(\A)=\A$.  Conversely, if $\A$ is nonunital, the identity operator on any
+full module preserves every submodule and corresponds to
+$1_{M(\A)}\notin\A$.  If it were $R_a$ for some $a\in\A$, fullness would give
+$ba=b$ on a dense span and hence on all $b\in\A$, making $a$ a unit, a
+contradiction.
+\end{proof}
+
+For a fixed non-full module, Theorem~\ref{thm:main} is also an exact answer to
+the coefficient question: all preservers are implemented by elements of
+$Z(M(\Icoeff))$, and all are implemented by coefficients from $\A$ precisely
+when the canonical map $\A\to M(\Icoeff)$ contains this center in its range.
+The literal nonzero-coefficient version of the source statement still needs
+$T\ne0$: on a nonzero full module, $T=0$ cannot be implemented by a nonzero
+coefficient.
+
+\section{Verification and novelty bounds}
+
+The proof is analytic.  The accompanying exact finite-matrix checker verifies
+the centrality conclusion in $M_d(\mathbb Q)$ for $1\le d\le7$ and rechecks
+the earlier graph-submodule models; it is a regression test, not part of the
+proof.  The separate file \texttt{verification.md} gives an adversarial audit
+of the ideal correspondence, open-projection argument, Morita-center transfer,
+and source quantifiers.
+
+The local registry, solution, attempt, and proof-gap indexes were searched for
+arXiv:2506.01161, arXiv:2507.11206, closed-submodule preservers, closed right
+ideals, central multipliers, and one-sided $M$-ideals.  Bounded web/arXiv
+searches used the close phrases ``every closed submodule'', ``adjointable'',
+``central multiplier'', and ``every closed right ideal''.  They located
+Frank's bijective theorem, the standard submodule/right-ideal correspondence,
+and the operator-space fact that closed Hilbert-module submodules are complete
+right $M$-ideals \cite{BEZ}, but no theorem stating the adjointable
+classification proved here.  This is bounded novelty evidence, not a
+publication-novelty guarantee.
+
+Human review should concentrate on Lemma~\ref{lem:rightideal}, especially the
+passage from right-ideal invariance to $(1-p)bp=0$, and on the double-centralizer
+construction in Lemma~\ref{lem:centertransfer}.  Subject to that review, the
+verdict is \texttt{candidate\_full\_result\_likely\_valid}.
+
+\begin{thebibliography}{9}
+\bibitem{Sharifi}
+K.~Sharifi,
+\emph{Invariant submodules of modular operators and Lomonosov type theorem
+for Hilbert $C^*$-modules}, arXiv:2506.01161 (2025),
+\url{https://arxiv.org/abs/2506.01161}.
+
+\bibitem{Frank}
+M.~Frank,
+\emph{$C^*$-submodule preserving module mappings on Hilbert $C^*$-modules},
+arXiv:2507.11206 (2025; current version),
+\url{https://arxiv.org/abs/2507.11206}.
+
+\bibitem{Lance}
+E.~C.~Lance,
+\emph{Hilbert $C^*$-Modules: A Toolkit for Operator Algebraists},
+London Mathematical Society Lecture Note Series 210, Cambridge University
+Press, 1995.
+
+\bibitem{Pedersen}
+G.~K.~Pedersen,
+\emph{$C^*$-Algebras and Their Automorphism Groups},
+Academic Press, 1979.
+
+\bibitem{KadisonRingrose}
+R.~V.~Kadison and J.~R.~Ringrose,
+\emph{Fundamentals of the Theory of Operator Algebras, Vol.~I},
+Academic Press, 1983.
+
+\bibitem{BEZ}
+D.~P.~Blecher, E.~G.~Effros, and V.~Zarikian,
+\emph{One-sided $M$-ideals and multipliers in operator spaces, I},
+Pacific J. Math. 206 (2002), 287--319;
+arXiv:math/0012105.
+\end{thebibliography}
+
+\end{document}

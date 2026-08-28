@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2109.01521",
+  "author_list": [
+    "Jérôme Le Rousseau",
+    "Emmanuel Wend-Benedo Zongo"
+  ],
+  "claim_short": "The answer is affirmative under exactly the source hypotheses. The missing observation is that self-adjoint nonnegativity automatically supplies the parameter Lopatinskii-Shapiro condition for the augmented operator D_s^4 + Delta^2. Failure at a nonzero parameter would yield a decaying negative-energy frozen boundary mode. A localized boundary-layer construction, followed by a lower-order trace correction, would...",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 4,
+  "database_packet_path": "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2109.01521v2",
+    "source_url": "https://arxiv.org/abs/2109.01521v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=full | review_focus=The main point for expert verification is Lemma 1 in the packet: the standard semiclassical trace correction for a boundary layer whose principal boundary traces vanish, including the pure normal parameter ray. The scaling is recorded explicitly and linked...",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/",
+  "packet_title": "General-boundary spectral inequality for the bi-Laplacian",
+  "primary_arxiv_id": "2109.01521",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1051",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2109.01521_2109.01521_general_boundary_spectral_inequality/files/solution_packet.pdf",
+  "source_authors": "Jérôme Le Rousseau, Emmanuel Wend-Benedo Zongo",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2109.01521_general_boundary_spectral_inequality/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2109.01521v2",
+  "source_question": "J. Le Rousseau and E. Wend-Benedo Zongo, *Stabilization of the damped plate equation under general boundary conditions*, arXiv:2109.01521v2, Section 1.6.2, page 8.",
+  "source_title": "Stabilization of the damped plate equation under general boundary conditions",
+  "source_url": "https://arxiv.org/abs/2109.01521v2",
+  "source_year": "2021",
+  "verification_status": "unverified"
+}

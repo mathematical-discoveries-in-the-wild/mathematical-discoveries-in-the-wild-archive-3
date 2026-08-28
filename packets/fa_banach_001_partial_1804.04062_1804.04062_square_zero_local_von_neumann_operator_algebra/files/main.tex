@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!65!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\A}{\mathcal A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\D}{\mathbb D}
+\newcommand{\C}{\mathbb C}
+\emergencystretch=3em
+
+\title{Square-zero local Banach algebras satisfying von Neumann's inequality\\
+are isometrically operator algebras}
+\author{Partial-result packet for arXiv:1804.04062}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\begin{minipage}{0.91\textwidth}
+\textbf{Status: candidate partial result, likely valid.}
+The general question remains open.  The result below gives a complete
+affirmative answer for every normalized unital algebra
+$\A=\C1\oplus X$ whose closed codimension-one ideal satisfies $X^2=0$,
+without a dimension assumption.
+\end{minipage}}
+\end{center}
+
+\section{Source question}
+
+Badea, Crouzeix, and Klaja ask whether every normalized unital complex Banach
+algebra satisfying the one-variable von Neumann inequality is isometrically
+isomorphic to a closed algebra of Hilbert-space operators
+\cite[p.~4]{BCK}.  Explicitly, their hypothesis is
+\[
+  \|a\|\leq 1 \quad\Longrightarrow\quad
+  \|p(a)\|\leq \max_{|z|\leq1}|p(z)|
+  \qquad(p\in\C[z]).
+\]
+The source passage is reproduced below.
+
+\begin{center}
+\includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+The non-unital analogue is false, but the normalized unit is the obstruction
+to simply adjoining an identity to those counterexamples.  The source's
+general unital question was still recorded as open in 2025
+\cite[p.~31]{CT}.
+
+\section{Partial theorem}
+
+\subsection*{Proof intuition}
+
+Write an element as $\lambda1+x$, with $x^2=0$.  Holomorphic functional
+calculus then remembers only the value and first derivative of a disk map:
+$f(\lambda1+x)=f(\lambda)1+f'(\lambda)x$.  A disk automorphism sending
+$\lambda$ to zero expands the radical direction by exactly
+$(1-|\lambda|^2)^{-1}$.  Its inverse gives the reverse inclusion, so the entire
+unit ball is forced by its central slice.  That forced ball is precisely the
+contraction ball of a $2\times2$ upper-triangular block operator.  Embedding the
+Banach space $X$ isometrically as diagonal Hilbert-space operators completes
+the representation.
+
+\begin{theorem}[square-zero local class]\label{thm:main}
+Let $\A$ be a complex unital Banach algebra with $\|1\|=1$.  Suppose
+\[
+  \A=\C1\oplus X,
+\]
+where $X$ is a closed two-sided ideal and $X^2=\{0\}$.  If $\A$ satisfies von
+Neumann's inequality, then, writing $q(x)=\|x\|_{\A}$ for $x\in X$, one has
+\begin{equation}\label{eq:ball}
+  \|\lambda1+x\|_{\A}\leq1
+  \quad\Longleftrightarrow\quad
+  |\lambda|^2+q(x)\leq1.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:norm}
+  \|\lambda1+x\|_{\A}
+  =\frac{q(x)+\sqrt{q(x)^2+4|\lambda|^2}}{2}.
+\end{equation}
+Moreover, there are a Hilbert space $H$ and a linear isometry
+$J:X\to\B(H)$ such that
+\begin{equation}\label{eq:rep}
+  \Pi(\lambda1+x)=
+  \begin{pmatrix}
+    \lambda I_H&Jx\\
+    0&\lambda I_H
+  \end{pmatrix}
+\end{equation}
+is a unital isometric algebra homomorphism
+$\A\to\B(H\oplus H)$.  Its range is closed, so $\A$ is an operator algebra.
+\end{theorem}
+
+\section{Proof}
+
+\begin{lemma}[disk-algebra functional calculus]\label{lem:disk}
+If $a$ is in the closed unit ball of a unital Banach algebra satisfying von
+Neumann's inequality, then
+\[
+  \|f(a)\|\leq\|f\|_{\infty,\overline\D}
+  \qquad(f\in A(\D)).
+\]
+In particular this holds for every automorphism of $\D$.
+\end{lemma}
+
+\begin{proof}
+Choose polynomials converging uniformly to $f$ on $\overline\D$.  Applying the
+given inequality to differences shows that their values at $a$ are Cauchy and
+that the limit has norm at most $\|f\|_\infty$.  For a function holomorphic on
+a neighborhood of $\overline\D$, this limit agrees with the usual holomorphic
+functional calculus.
+\end{proof}
+
+\begin{lemma}[forced fibers of the unit ball]\label{lem:fibers}
+Under the assumptions of Theorem~\ref{thm:main}, formula~\eqref{eq:ball}
+holds.
+\end{lemma}
+
+\begin{proof}
+Let $a=\lambda1+x$ be in the closed unit ball.  The quotient character
+$\A\to\A/X\cong\C$ has norm one, so $|\lambda|\leq1$.
+
+First suppose $|\lambda|<1$ and set
+\[
+  \phi_\lambda(z)=\frac{z-\lambda}{1-\overline\lambda z}.
+\]
+Because $X^2=0$, polynomial calculus, followed by uniform approximation,
+gives
+\[
+ f(\lambda1+x)=f(\lambda)1+f'(\lambda)x
+\]
+for every function used here.  Lemma~\ref{lem:disk} therefore yields
+\[
+ \left\|\phi_\lambda(a)\right\|
+ =\left\|\frac{x}{1-|\lambda|^2}\right\|\leq1,
+\]
+and hence $q(x)\leq1-|\lambda|^2$.
+
+Conversely, assume $q(x)\leq1-|\lambda|^2$.  Then
+$y=x/(1-|\lambda|^2)$ is in the unit ball.  The inverse disk automorphism
+\[
+  \psi_\lambda(z)=\frac{z+\lambda}{1+\overline\lambda z}
+\]
+satisfies $\psi_\lambda(0)=\lambda$ and
+$\psi_\lambda'(0)=1-|\lambda|^2$.  Thus
+\[
+  \psi_\lambda(y)=\lambda1+x
+\]
+is again in the unit ball by Lemma~\ref{lem:disk}.
+
+It remains to treat $|\lambda|=1$.  For each $n\geq1$, von Neumann's
+inequality applied to $z^n$ gives
+\[
+  \left\|\lambda^{-n}a^n\right\|
+  =\left\|1+n\lambda^{-1}x\right\|\leq1.
+\]
+Consequently $nq(x)\leq2$, for every $n$, and $x=0$.  This proves both
+directions of~\eqref{eq:ball}.
+\end{proof}
+
+The norm formula~\eqref{eq:norm} now follows by taking the Minkowski
+functional of~\eqref{eq:ball}: the least $t>0$ for which
+$|\lambda|^2/t^2+q(x)/t\leq1$ is the positive root of
+$t^2-q(x)t-|\lambda|^2=0$.
+
+\begin{lemma}[upper-triangular contraction test]\label{lem:block}
+For a Hilbert-space operator $S$ and $\lambda\in\C$, put
+\[
+ M_{\lambda,S}=\begin{pmatrix}\lambda I&S\\0&\lambda I\end{pmatrix}.
+\]
+Then
+\[
+ \|M_{\lambda,S}\|\leq1
+ \quad\Longleftrightarrow\quad
+ |\lambda|\leq1\ \text{ and }\ \|S\|\leq1-|\lambda|^2.
+\]
+\end{lemma}
+
+\begin{proof}
+For $|\lambda|<1$, let $c=1-|\lambda|^2$.  The upper-left corner of
+$I-M_{\lambda,S}^*M_{\lambda,S}$ is $cI>0$, and its Schur complement is
+\[
+ cI-S^*S-\frac{|\lambda|^2}{c}S^*S
+ =cI-\frac1cS^*S.
+\]
+Thus positivity is equivalent to $S^*S\leq c^2I$.  If $|\lambda|=1$,
+positivity forces $S=0$; if $|\lambda|>1$, the spectral radius already exceeds
+one.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Only the representation remains.  Let $K$ be the closed unit ball of $X^*$
+and put $H=\ell_2(K)$.  The canonical diagonal map
+\[
+  (Jx)e_\varphi=\varphi(x)e_\varphi\qquad(\varphi\in K)
+\]
+is a linear isometry $X\to\B(H)$ by Hahn--Banach.  Since $X^2=0$, direct
+block multiplication shows that~\eqref{eq:rep} is a unital algebra
+homomorphism.  Lemma~\ref{lem:block}, $\|Jx\|=q(x)$, and
+Lemma~\ref{lem:fibers} show that $\Pi$ preserves the closed unit ball exactly.
+Therefore $\Pi$ is an isometry.  Its range is closed because $\A$ is complete.
+\end{proof}
+
+\section{Verification, scope, and novelty audit}
+
+The block calculation was also checked in 2,000 seeded random complex matrix
+cases by \nolinkurl{code/verify_block_contraction.py}; the largest discrepancy
+between the computed singular-value norm and formula~\eqref{eq:norm} was at
+floating-point roundoff.  This computation is only a regression check; the
+Schur-complement argument is the proof.
+
+The theorem covers arbitrary-dimensional (including nonreflexive) square-zero
+radicals, but it requires a one-dimensional semisimple quotient and does not
+settle the source question for general radicals or multiple characters.
+
+For novelty, the run searched its solution, attempt, proof-gap, and registry
+indexes for arXiv:1804.04062 and the core terms.  Bounded exact-phrase searches
+for the unital question, two-dimensional algebras, dual numbers, square-zero
+ideals, and radical-square-zero algebras recovered Nakazi--Yamamoto's complete
+two-dimensional theorem \cite{NY} and Paulsen--Solazzo's semisimple
+$\C^k$ analysis \cite{PS}, but no arbitrary-dimensional theorem with
+$\A=\C1\oplus X$, $X^2=0$.  Chirvasitu--Thompson still describe the general
+unital characterization as unknown in 2025 \cite{CT}.  Novelty is therefore
+plausible but provisional; a specialist literature review is recommended.
+
+\paragraph{Human-review focus.}
+Verify the passage from polynomial to disk-algebra functional calculus, the
+two inclusions in the fiber formula, and whether the arbitrary-dimensional
+square-zero statement appears under different terminology in the operator
+algebra literature.
+
+\begin{thebibliography}{9}
+\bibitem{BCK}
+C.~Badea, M.~Crouzeix, and H.~Klaja,
+\emph{Spectral sets and operator radii}, arXiv:1804.04062 (2018).
+
+\bibitem{NY}
+T.~Nakazi and T.~Yamamoto,
+\emph{Two dimensional commutative Banach algebras and von Neumann inequality},
+Linear Algebra Appl. 341 (2002), 273--290.
+
+\bibitem{PS}
+V.~I.~Paulsen and J.~P.~Solazzo,
+\emph{Interpolation and balls in $\C^k$},
+J. Operator Theory 60 (2008), 379--398.
+
+\bibitem{CT}
+A.~Chirvasitu and I.~Thompson,
+\emph{Local presentability and monadicity of forgetful functors for operator
+algebraic categories}, arXiv:2507.23152 (2025).
+\end{thebibliography}
+
+\end{document}

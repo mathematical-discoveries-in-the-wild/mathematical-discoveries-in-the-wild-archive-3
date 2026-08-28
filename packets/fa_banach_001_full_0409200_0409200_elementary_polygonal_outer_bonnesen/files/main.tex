@@ -1,0 +1,281 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.78in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,graphicx,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\area}{\operatorname{area}}
+\newcommand{\perim}{\operatorname{per}}
+\newcommand{\conv}{\operatorname{conv}}
+
+\title{An elementary polygonal proof of the outer-anticircle Bonnesen inequality}
+\author{Candidate solution for \texttt{fa\_banach\_001}\\
+\texttt{agent\_lane\_03}, model GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Martini and Swanepoel asked for an elementary polygonal proof of their
+inequality
+\[
+ \area(C)+\area(\sigma I)\leq \sigma\perim(C),
+\]
+where $\sigma I$ is a smallest anticircle containing a planar convex body
+$C$.  We give such a proof.  On a common polygonal normal fan, the difference
+between the two sides is the quadratic area form applied to the support
+deficit $h_I-h_C$.  Minimum circumscription supplies zero deficits whose
+angular gaps are at most $\pi$.  An exact two-angle completion-of-squares
+identity makes the quadratic form nonpositive on every such gap.  A common
+circumscribed-polygon approximation finishes the proof for arbitrary convex
+bodies.  No mixed-area inequality is used.
+\end{abstract}
+
+\section{Source request}
+
+Martini and Swanepoel, \emph{Antinorms and Radon curves},
+arXiv:math/0409200 (published in \emph{Aequationes Mathematicae} 72 (2006),
+110--138), prove in Theorem~15 that, when $\sigma I$ is a smallest
+anticircle containing $C$,
+\[
+ \area(C)+\area(\sigma I)\leq\sigma\perim(C). \tag{13}
+\]
+At the top of PDF page 19 they ask for an elementary proof involving
+polygons, rather than the proof through Blaschke's inequality \cite{MS}.
+
+\begin{center}
+ \includegraphics[width=0.94\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+\section{Idea of the Proof}
+
+Minimum circumscription forces the common supporting directions of $C$ and
+$I$ to surround the origin; two or three of them therefore cut the full
+normal circle into arcs of length at most $\pi$.  For polygons on a common
+normal fan, area is an explicit quadratic form $Q$ in the support numbers,
+and perimeter is its polarization against the support vector of $I$.  Thus
+the desired deficit is simply $Q(h_I-h_C)$.  The support deficit vanishes at
+the selected contacts.  On each intervening arc, $-2Q$ is a discrete
+Dirichlet energy, and a two-angle completion of squares makes that energy
+nonnegative.  Circumscribed polygonal approximation retains the balanced
+contacts and passes the result to arbitrary convex bodies.
+
+\section{Statement and normalization}
+
+Fix linear coordinates in which the given oriented area form is the standard
+determinant, and use the associated Euclidean scalar product only to
+parametrize supporting directions.  Let $I$ be the unit anticircle of a
+Minkowski norm.  We use the elementary Steiner identity
+\begin{equation}\label{eq:steiner}
+ \area(A+tI)=\area(A)+t\perim(A)+t^2\area(I),\qquad t\geq0.
+\end{equation}
+For polygons this follows directly by adding the edge strips and corner
+triangles; equivalently, $\perim(A)$ is twice the polarization of the area
+quadratic form evaluated at $A$ and $I$.  This identity is also established
+in the antinorm framework of the source paper \cite{MS}.
+
+Translate the smallest containing anticircle to have center $0$ and dilate
+by $1/\sigma$.  It is enough to prove the following normalized statement.
+
+\begin{theorem}\label{thm:main}
+Let $C\subseteq I$, and assume that no translate of $rI$ contains $C$ for
+any $r<1$.  Then
+\[
+ \area(C)+\area(I)\leq\perim(C).
+\]
+\end{theorem}
+
+We first isolate the only consequence of minimum circumscription that will
+be needed.  For a convex body $A$, write $h_A(u)=\max_{x\in A}\langle
+x,u\rangle$.
+
+\begin{lemma}[balanced contact normals]\label{lem:contact}
+Under the hypotheses of Theorem~\ref{thm:main}, there are two or three unit
+directions $u_j$ such that
+\[
+ h_C(u_j)=h_I(u_j)
+ \quad\text{and}\quad
+ 0\in\conv\left\{\frac{u_j}{h_I(u_j)}\right\}.
+\]
+In particular, in their cyclic order, the angular gap between consecutive
+selected directions is at most $\pi$.
+\end{lemma}
+
+\begin{proof}
+For a proposed center $x$, the least radius of a translate centered at $x$
+which contains $C$ is
+\[
+ R(x)=\max_{u\in S^1}
+ \frac{h_C(u)-\langle x,u\rangle}{h_I(u)}.
+\]
+The hypothesis says that $R$ has its minimum value $1$ at $x=0$.  Its active
+directions there are exactly
+\[
+ \mathcal A=\{u:h_C(u)=h_I(u)\}.
+\]
+If $0$ were outside
+$\conv\{u/h_I(u):u\in\mathcal A\}$, strict separation and compactness would
+give a vector $v$ such that $\langle v,u\rangle/h_I(u)>0$ uniformly on the
+active set.  By continuity, the same strict decrease of the quotient under
+$x=\varepsilon v$ holds on a neighborhood $U$ of the active set.  On the
+compact complement $S^1\setminus U$, the quotient at $x=0$ is at most
+$1-\eta$ for some $\eta>0$, so it remains below $1$ for sufficiently small
+$\varepsilon>0$.  Consequently $R(\varepsilon v)<1$, contradicting
+minimality.  Carath\'eodory's theorem in the plane now selects at most three
+active directions.  A set of directions whose convex hull contains $0$
+cannot lie in an open semicircle, which is the final assertion.
+\end{proof}
+
+\section{The discrete inequality}
+
+For $0<\alpha<\pi$, define
+\begin{equation}\label{eq:ealpha}
+ E_\alpha(x,y)=
+ \frac{\cos\alpha(x^2+y^2)-2xy}{\sin\alpha}.
+\end{equation}
+
+\begin{lemma}[discrete Dirichlet inequality]\label{lem:energy}
+Let $\alpha_0,\ldots,\alpha_{m-1}>0$ and
+$\Theta=\sum_i\alpha_i\leq\pi$.  If $x_0=x_m=0$, then
+\[
+ \sum_{i=0}^{m-1}E_{\alpha_i}(x_i,x_{i+1})\geq0.
+\]
+\end{lemma}
+
+\begin{proof}
+For $a,b>0$ with $a+b<\pi$, direct expansion and
+$\cot a+\cot b=\sin(a+b)/(\sin a\sin b)$ give the exact identity
+\begin{align}\label{eq:merge}
+ &E_a(x,z)+E_b(z,y)-E_{a+b}(x,y)\\
+ &\quad=
+ \frac{\sin(a+b)}{\sin a\sin b}
+ \left(z-\frac{x\sin b+y\sin a}{\sin(a+b)}\right)^2\geq0.\nonumber
+\end{align}
+If $\Theta<\pi$, repeatedly merge adjacent intervals using
+\eqref{eq:merge}.  The sum is bounded below by
+$E_\Theta(x_0,x_m)=E_\Theta(0,0)=0$.  If $\Theta=\pi$, replace every
+$\alpha_i$ by $t\alpha_i$, apply the strict case for $0<t<1$, and let
+$t\uparrow1$.
+\end{proof}
+
+\section{Polygonal proof}
+
+Suppose first that $C$ and $I$ are polygons.  Take a common cyclic normal
+fan containing every side normal of both polygons, the contact normals from
+Lemma~\ref{lem:contact}, and enough extra directions that adjacent angles
+are below $\pi$.  Write
+\[
+ u_i=(\cos\theta_i,\sin\theta_i),\qquad
+ \alpha_i=\theta_{i+1}-\theta_i\in(0,\pi),
+\]
+with indices read cyclically, and let $h_i$ be the support number of a
+polygon at $u_i$.  Intersecting the supporting half-planes recovers the
+polygon; an inserted direction merely gives a possibly degenerate side.
+
+The intersection of the two adjacent support lines gives the standard
+support-number area formula
+\begin{equation}\label{eq:Q}
+ Q(h)=
+ \sum_i\frac{h_i h_{i+1}}{\sin\alpha_i}
+ -\frac12\sum_i h_i^2
+ \bigl(\cot\alpha_{i-1}+\cot\alpha_i\bigr).
+\end{equation}
+Indeed, substituting those line intersections into the shoelace formula
+gives \eqref{eq:Q} term by term.  Thus $Q(h_A)=\area(A)$.  Let $B$ be the
+polarization of $Q$.  Support numbers add under Minkowski addition, so
+\eqref{eq:steiner} (or direct strip decomposition) gives
+\begin{equation}\label{eq:perpol}
+ \perim(C)=2B(h_C,h_I).
+\end{equation}
+
+Set $c_i=h_C(u_i)$, $k_i=h_I(u_i)$ and $d_i=k_i-c_i\geq0$.  Quadraticity and
+\eqref{eq:perpol} show that the desired inequality is exactly
+\begin{equation}\label{eq:deficitQ}
+ \area(C)+\area(I)-\perim(C)
+ =Q(c)+Q(k)-2B(c,k)=Q(k-c)=Q(d)\leq0.
+\end{equation}
+Expanding \eqref{eq:Q} in edge form gives
+\begin{equation}\label{eq:energyQ}
+ -2Q(d)=\sum_i E_{\alpha_i}(d_i,d_{i+1}).
+\end{equation}
+
+At each selected contact normal, $d_i=0$.  Those zero entries split the
+cyclic sum in \eqref{eq:energyQ} into paths.  By
+Lemma~\ref{lem:contact}, the total angle of each path is at most $\pi$.
+Lemma~\ref{lem:energy} makes every path energy nonnegative.  Hence
+$-2Q(d)\geq0$, proving \eqref{eq:deficitQ} and Theorem~\ref{thm:main} for
+polygons.
+
+\section{Passage to arbitrary convex bodies}
+
+Choose finite symmetric direction sets $\mathcal U_n\subset S^1$ whose mesh
+tends to zero and which all contain the selected contact directions from
+Lemma~\ref{lem:contact}.  Define simultaneous circumscribed polygons
+\[
+ C_n=\bigcap_{u\in\mathcal U_n}
+ \{x:\langle x,u\rangle\leq h_C(u)\},\qquad
+ I_n=\bigcap_{u\in\mathcal U_n}
+ \{x:\langle x,u\rangle\leq h_I(u)\}.
+\]
+Then $C_n\subseteq I_n$, and both sequences converge in Hausdorff distance
+to $C$ and $I$.  The chosen contact constraints remain equalities for both
+polygons.  Moreover $I_n$ is still a minimum-radius containing homothet for
+$C_n$: if $C_n\subseteq x+rI_n$, take convex coefficients $\lambda_j$ from
+Lemma~\ref{lem:contact} and apply the support inequalities at the selected
+contacts to obtain
+\[
+ 1\leq r+\left\langle x,
+ \sum_j\lambda_j\frac{u_j}{h_I(u_j)}\right\rangle=r.
+\]
+The polygonal argument above is a purely convex statement about a pair
+$(C,I)$ with $I$ centrally symmetric: its right side is $2B(C,I)$, and the
+only hypotheses used are containment and minimum homothety.  Since
+$\mathcal U_n$ is symmetric, $I_n$ is centrally symmetric, so that argument
+applied to $(C_n,I_n)$ gives
+\[
+ \area(C_n)+\area(I_n)\leq 2B(C_n,I_n).
+\]
+Area and its polarization are continuous under planar Hausdorff convergence.
+Letting $n\to\infty$ and using \eqref{eq:steiner} yields
+\[
+ \area(C)+\area(I)\leq2B(C,I)=\perim(C).
+\]
+This proves the normalized theorem.  Undoing the translation and the
+dilation by $1/\sigma$ gives
+\[
+ \boxed{\area(C)+\area(\sigma I)\leq\sigma\perim(C)}.
+\]
+
+\section*{Novelty and scope}
+
+The theorem is classical; only the elementary proof was requested.  The
+four run indexes, exact-title citations in the local parsed arXiv corpus, and
+current exact-phrase searches for the missing polygonal proof were checked on
+26 August 2026.  They located mixed-area proofs and papers citing
+arXiv:math/0409200 for other antinorm facts, but no later proof matching the
+argument above.  This is bounded novelty evidence, not a guarantee of
+publication novelty.
+
+\section*{Verification and review recommendation}
+
+The accompanying script \texttt{code/verify\_discrete\_energy.py} checks the
+merge identity, random zero-endpoint path energies, the identity
+$Q=-E/2$, and the support-number area formula against shoelace area.  With
+20,000 trials and seed 20260826 all checks pass.  These computations are
+consistency checks, not part of the proof.  Human review should concentrate
+on the support-number formula when redundant normals are inserted, the
+balanced-contact argument for translated homothets, and the simultaneous
+circumscribed-polygon limit.
+
+\begin{thebibliography}{9}
+\bibitem{MS}
+H.~Martini and K.~J.~Swanepoel,
+\emph{Antinorms and Radon curves},
+Aequationes Math. \textbf{72} (2006), 110--138;
+arXiv:math/0409200,
+\url{https://arxiv.org/abs/math/0409200}.
+\end{thebibliography}
+
+\end{document}

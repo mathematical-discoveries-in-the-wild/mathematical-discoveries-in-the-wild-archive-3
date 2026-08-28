@@ -1,0 +1,310 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\A}{\mathcal A}
+\newcommand{\Bnet}{\mathcal B}
+\newcommand{\F}{\mathcal F}
+\newcommand{\UCP}{\operatorname{UCP}}
+\newcommand{\QuOp}{\operatorname{QuOp}}
+\newcommand{\Prob}{\operatorname{P}}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\Extr}{\operatorname{Extr}}
+
+\title{Poincar\'e-Covariant Quantum Operations\\as a Double-Coset Hypergroup}
+\author{Candidate solution packet for arXiv:2303.15171, Problem 5.6}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Giorgetti asks whether the relative quantum operations of a Haag-dual full
+Poincar\'e-covariant subnet $\Bnet\subset\A$ form the double-coset hypergroup
+$G/\!/H$ supplied by Doplicher--Roberts reconstruction and subsystem
+classification.  We prove the assertion in precisely that standard regime.
+The local discrete-subfactor theorem identifies the maps on each double cone
+with the probability measures on $G/\!/H$.  Compatibility makes the local
+representing measures equal, and gauge--Poincar\'e commutation gives the
+converse construction.  Thus
+\[
+  \UCP(\A\mid\Bnet)\cong \Prob(G/\!/H),\qquad
+  \QuOp(\A\mid\Bnet)\cong G/\!/H
+\]
+affinely, topologically, and with the compact-hypergroup operations.
+\end{abstract}
+
+\section{The source problem and its intended scope}
+
+The source is Luca Giorgetti, \emph{Quantum Operations in Algebraic QFT},
+arXiv:2303.15171~\cite{Gio}.  Problem 5.6 on printed page 9 reads as follows.
+
+\begin{center}
+ \includegraphics[width=0.98\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+In transcription: if $(\A,U,\Omega)$ is a Poincar\'e-covariant net of local
+observables and $\Bnet\subset\A$ is a Haag-dual full Poincar\'e-covariant
+subnet, prove
+\[
+        \QuOp(\A\mid\Bnet)\cong G/\!/H,
+\]
+where $G$ is the Doplicher--Roberts compact gauge group of $\Bnet$ and
+$H<G$ is closed.
+
+The notation in the problem already invokes Doplicher--Roberts reconstruction
+and the Carpi--Conti subsystem classification.  Those theorems have standing
+hypotheses beyond the short list in the survey's Definition 5.1.  We therefore
+state the exact structural conclusion that the proof uses.  This both covers
+the intended classified setting and prevents those extra hypotheses from
+being silently assumed.  In particular, the result applies whenever the
+classification cited immediately before Problem 5.6 supplies
+\begin{equation}\label{eq:fixedpoint}
+     \Bnet=\F^G\subset \F^H=\A,
+\end{equation}
+with its standard local irreducibility, discreteness, and locality properties
+for the type $\mathrm{III}$ inclusions.  Carpi--Conti obtain precisely this
+fixed-point description under their standing AQFT assumptions
+\cite[Theorem 5.2]{CC}; compare the discussion in
+\cite[Example 9.26]{BDG}.
+
+\section{Idea of the proof}
+
+For a fixed double cone $O$, the hard operator-algebraic work is already
+contained in the local theorem of Bischoff--Del Vecchio--Giorgetti: all UCP
+maps on $\F(O)^H$ fixing $\F(O)^G$ are uniquely parametrized by probability
+measures on $G/\!/H$~\cite[Section 9.2, Proposition 9.7]{BDG}.
+
+The apparent global obstruction is that a coherent family could conceivably
+choose a different measure $\mu_O$ for every $O$.  If $O_1\subset O_2$,
+however, compatibility identifies the restrictions of the two maps on
+$\A(O_1)$.  The local parametrization at $O_1$ is injective, so
+$\mu_{O_1}=\mu_{O_2}$.  Any two double cones are contained in a third; hence
+one measure parametrizes the entire family.  Conversely, averaging the global
+gauge automorphisms against one fixed bi-$H$-invariant measure is automatically
+compatible and vacuum preserving.  Internal gauge symmetries commute with
+$U$, so this family is Poincar\'e covariant.  Taking extreme points changes
+the probability simplex into its Dirac masses, namely $G/\!/H$ itself.
+
+\section{The local parametrization}
+
+Let $K:=G/\!/H=H\backslash G/H$, let $q:G\to K$ be the quotient map, and let
+$m_H$ be normalized Haar measure on $H$.  A probability measure $\mu$ on
+$K$ has the canonical bi-$H$-invariant lift
+\begin{equation}\label{eq:lift}
+ \widetilde\mu
+  :=\int_K m_H*\delta_g*m_H\,d\mu(HgH)\in\Prob(G).
+\end{equation}
+The right-hand side is independent of the representative $g$.
+
+Write $\alpha:G\to\operatorname{Aut}(\F)$ for the gauge action.  For a double
+cone $O$ and $x\in\A(O)=\F(O)^H$, set
+\begin{equation}\label{eq:theta}
+ \Theta_O(\mu)(x):=\int_G\alpha_g(x)\,d\widetilde\mu(g).
+\end{equation}
+Bi-$H$-invariance makes the output $H$-fixed, while every element of
+$\Bnet(O)=\F(O)^G$ is fixed pointwise.  Proposition 9.7 of~\cite{BDG}, applied
+to
+\[
+       \F(O)^G\subset\F(O)^H,
+\]
+states that
+\begin{equation}\label{eq:localhomeo}
+ \Theta_O:\Prob(K)\longrightarrow
+ \{\psi:\A(O)\to\A(O):\psi\text{ is normal UCP and }
+                       \psi|_{\Bnet(O)}=\mathrm{id}\}
+\end{equation}
+is an affine homeomorphism.  In this local discrete setting the maps on the
+right are automatically faithful, vacuum preserving, and vacuum-adjointable;
+see the UCP characterization preceding the compact-hypergroup construction
+in~\cite[Sections 6--7]{BDG}.  The same proposition identifies composition
+and vacuum adjoint with the double-coset convolution and involution.
+
+Because the gauge action is a net action, for $O_1\subset O_2$ one has the
+crucial naturality identity
+\begin{equation}\label{eq:naturality}
+ \Theta_{O_2}(\mu)|_{\A(O_1)}=\Theta_{O_1}(\mu).
+\end{equation}
+
+\section{The global theorem}
+
+Equip $\UCP(\A\mid\Bnet)$ with the pointwise ultraweak topology used in the
+source: its members are compatible, vacuum-preserving, Poincar\'e-covariant
+families of normal faithful UCP maps that fix $\Bnet$ pointwise.
+
+\begin{theorem}\label{thm:main}
+Assume the fixed-point realization \eqref{eq:fixedpoint}, where $G$ acts
+faithfully and minimally by unbroken internal symmetries of the complete field
+net $\F$, $H<G$ is closed, and each inclusion
+$\F(O)^G\subset\F(O)^H$ has the irreducible local discrete type
+$\mathrm{III}$ properties used in Proposition 9.7 of~\cite{BDG}.  Then
+\begin{equation}\label{eq:globalhomeo}
+ \Theta:\Prob(G/\!/H)\longrightarrow\UCP(\A\mid\Bnet),
+ \qquad \Theta(\mu):=\{\Theta_O(\mu)\}_{O},
+\end{equation}
+is an affine homeomorphism.  It intertwines convolution and involution.
+Consequently
+\[
+       \QuOp(\A\mid\Bnet)\cong G/\!/H
+\]
+as a compact hypergroup.
+\end{theorem}
+
+\begin{proof}
+We prove existence, surjectivity, topology, and extremality in turn.
+
+\smallskip\noindent
+\emph{The integral construction gives a global family.}
+Equation~\eqref{eq:theta} is normal, unital, and completely positive.  Gauge
+automorphisms preserve the vacuum state, hence so does their average.  The
+local vacuum state is faithful, so a vacuum-preserving positive map cannot
+annihilate a nonzero positive element; thus the map is faithful.  It fixes
+$\Bnet(O)$ pointwise.  Naturality~\eqref{eq:naturality} gives compatibility.
+
+The action of the unbroken internal gauge group commutes with the Poincar\'e
+representation:
+\[
+ \Ad U(p)\circ\alpha_g=\alpha_g\circ\Ad U(p)
+ \qquad(p\in\mathcal P,\ g\in G).
+\]
+Using this identity under the integral gives
+\[
+ \Ad U(p)\circ\Theta_O(\mu)\circ\Ad U(p)^{-1}
+      =\Theta_{pO}(\mu),
+\]
+so $\Theta(\mu)\in\UCP(\A\mid\Bnet)$.
+
+\smallskip\noindent
+\emph{Every global family has one representing measure.}
+Let $\Phi=\{\phi_O\}_O\in\UCP(\A\mid\Bnet)$.  By the local affine
+homeomorphism~\eqref{eq:localhomeo}, for each $O$ there is a unique
+$\mu_O\in\Prob(K)$ such that
+\[
+                    \phi_O=\Theta_O(\mu_O).
+\]
+If $O_1\subset O_2$, compatibility and~\eqref{eq:naturality} give
+\[
+ \Theta_{O_1}(\mu_{O_1})=\phi_{O_1}
+ =\phi_{O_2}|_{\A(O_1)}
+ =\Theta_{O_1}(\mu_{O_2}).
+\]
+Injectivity of $\Theta_{O_1}$ yields $\mu_{O_1}=\mu_{O_2}$.  Given arbitrary
+double cones $O_1,O_2$, choose a double cone $O_3$ containing both.  The
+previous argument gives $\mu_{O_1}=\mu_{O_3}=\mu_{O_2}$.  Thus all $\mu_O$
+equal one measure $\mu$, and $\Phi=\Theta(\mu)$.  This proves surjectivity;
+injectivity follows already from any single $\Theta_O$.
+
+\smallskip\noindent
+\emph{Topology and operations.}
+For every $O$, the coordinate map $\Theta_O$ is continuous, so $\Theta$ is
+continuous for the product point-ultraweak topology.  Fixing one double cone
+$O_0$, the inverse is the composition of evaluation at $O_0$ with
+$\Theta_{O_0}^{-1}$, hence is continuous.  Therefore~\eqref{eq:globalhomeo}
+is an affine homeomorphism.  The local result gives
+\[
+ \Theta_O(\mu*\nu)=\Theta_O(\mu)\circ\Theta_O(\nu),
+ \qquad
+ \Theta_O(\mu^*)=\Theta_O(\mu)^{\sharp}.
+\]
+Equality in every double cone proves the corresponding global identities.
+
+\smallskip\noindent
+\emph{Extreme points.}
+The extreme points of $\Prob(K)$ are exactly the Dirac measures, so the
+extreme points of the relative convex set are $\Theta(\delta_k)$, $k\in K$.
+It remains only to match this with the source convention
+\[
+ \QuOp(\A\mid\Bnet)
+ =\QuOp(\A)\cap\{\Phi:\Phi|_{\Bnet}=\mathrm{id}\}.
+\]
+The relative set is a face of $\UCP(\A)$.  Indeed, suppose
+$\Phi=t\Phi_1+(1-t)\Phi_2$, $0<t<1$, and $\Phi$ fixes $\Bnet$.  For every
+unitary $u\in\Bnet(O)$,
+\[
+       u=t\phi_{1,O}(u)+(1-t)\phi_{2,O}(u).
+\]
+The two terms on the right are contractions, while a unitary is an extreme
+point of the unit ball of a unital $C^*$-algebra.  Hence
+$\phi_{1,O}(u)=\phi_{2,O}(u)=u$.  Since every element of a unital
+$C^*$-algebra is a linear combination of unitaries, both $\Phi_i$ fix
+$\Bnet$.  Thus extremes of the relative set are precisely its elements that
+are extreme in $\UCP(\A)$, completing the identification with $K$.
+\end{proof}
+
+\begin{corollary}[Problem 5.6 in the classified AQFT regime]
+Under the standing Doplicher--Roberts and Carpi--Conti hypotheses invoked in
+Problem 5.6, its proposed conclusion holds:
+\[
+                   \QuOp(\A\mid\Bnet)\cong G/\!/H.
+\]
+In particular, it is compact and carries the asserted double-coset
+hypergroup structure.
+\end{corollary}
+
+\begin{proof}
+The cited subsystem classification supplies~\eqref{eq:fixedpoint}, with $G$
+the Doplicher--Roberts gauge group of $\Bnet$ and $H<G$ closed
+\cite[Theorem 5.2]{CC}.  The associated local fixed-point subfactors are the
+double-coset examples of~\cite[Section 9.2 and Example 9.26]{BDG}.  Apply
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{Verification, limitations, and novelty check}
+
+The proof has no numerical component.  Its only substantive external inputs
+are (a) the fixed-point realization from subsystem classification and (b) the
+local affine homeomorphism of Proposition 9.7 in~\cite{BDG}.  Once these are
+in place, the new local-to-global step uses only compatibility, injectivity,
+and the fact that double cones are directed.  The face argument above also
+checks explicitly that taking relative extreme points agrees with the source
+definition.
+
+The scope is important.  If one reads only the minimal axioms in the survey's
+definition of a local net, without the standard assumptions required for
+Doplicher--Roberts reconstruction and the Carpi--Conti classification, the
+fixed-point presentation need not be available and the group $G$ asserted in
+the problem may not be defined.  The packet makes no claim for that broader
+reading; it proves the problem in the very classified regime named in its
+statement and preceding paragraph.
+
+A bounded novelty search on 27 August 2026 covered the run's local indexes and
+live exact-title, exact-phrase, arXiv-id, author/keyword, and
+``$\QuOp(\A\mid\Bnet)$'' searches.  It found the source paper, the conformal-net
+antecedent, and the local-subfactor theorem, but no later paper claiming the
+Poincar\'e-covariant global result.  This is evidence for novelty, not an
+exhaustive literature certification.
+
+The recommended human check is the precise transfer from the standing
+hypotheses intended by Problem 5.6 to the local hypotheses of Proposition 9.7.
+The accompanying \texttt{verification.md} gives a line-by-line dependency
+audit.
+
+\begin{thebibliography}{9}
+
+\bibitem{Gio}
+L. Giorgetti,
+\emph{Quantum Operations in Algebraic QFT},
+arXiv:2303.15171 (2023), Problem 5.6.
+
+\bibitem{BDG}
+M. Bischoff, S. Del Vecchio, and L. Giorgetti,
+\emph{Compact hypergroups from discrete subfactors},
+J. Funct. Anal. \textbf{281} (2021), 109004;
+arXiv:2007.12384.
+
+\bibitem{CC}
+S. Carpi and R. Conti,
+\emph{Classification of subsystems for graded-local nets with trivial
+superselection structure},
+Comm. Math. Phys. \textbf{253} (2005), 423--449;
+arXiv:math/0312033.
+
+\end{thebibliography}
+
+\end{document}

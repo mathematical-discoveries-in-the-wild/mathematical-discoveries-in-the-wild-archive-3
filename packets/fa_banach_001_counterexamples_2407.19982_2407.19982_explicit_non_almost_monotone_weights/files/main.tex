@@ -1,0 +1,236 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Nzero}{\mathbb N_0}
+\newcommand{\vTwo}{v_2}
+
+\title{Explicit weights on $\N$ and $\N^2$ that are not almost monotone}
+\author{Candidate full answer to item (4) of arXiv:2407.19982}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate full answer by explicit counterexample, likely valid, awaiting
+specialist review. The source question has an affirmative answer: there are
+weights on both $\N$ and $\N^2$ which are not almost monotone.}}
+\end{center}
+
+\section{Source question and definitions}
+
+Dabhi calls a map $\omega:\N^2\to[1,\infty)$ a weight when
+\[
+ \omega(m_1m_2,n_1n_2)
+ \leq \omega(m_1,n_1)\omega(m_2,n_2).
+\]
+It is admissible when
+\[
+ \lim_{r\to\infty}\omega(m^r,n^r)^{1/r}=1
+ \qquad ((m,n)\in\N^2).
+\]
+It is almost monotone when it is admissible, or when there is $K>0$ such that
+\[
+ \omega(m_1,n_1)\leq K\omega(m_2,n_2)
+\]
+whenever $m_1\mid m_2$ or $n_1\mid n_2$ \cite{Dabhi}. For $\N$, the
+analogous definitions use $\omega(ab)\leq\omega(a)\omega(b)$,
+admissibility along every sequence of powers, and the divisibility relation.
+
+In concluding remark (4) on page 15, the paper asks:
+\begin{quote}
+``We do not know whether there is a weight $\omega$ on $\N^2$ or $\N$
+which is not an almost monotone weight.''
+\end{quote}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.98\textwidth]{figures/open_problem_crop.png}
+ \caption{The multidimensional definition and item (4) on page 15 of the
+ source paper. The earlier $\N^2$ definition on page 2 includes the uniform
+ factor $K$ used above.}
+\end{figure}
+
+\section{Proof intuition}
+
+The construction separates two requirements that might at first seem to
+force each other. A linear term in the exponent of the weight produces
+nontrivial spectral growth and hence nonadmissibility. A second, sublinear
+term creates unbounded downward jumps along divisibility.
+
+For the second term, write an integer in base 4 and evaluate the same digit
+string in base 2. This digit cost is subadditive: when two base-4 expansions
+are added, every carry replaces four copies of cost $2^i$ by one copy of cost
+$2^{i+1}$, so the cost decreases. Nevertheless, just before a power of 4 all
+digits are 3, while at the power of 4 only one digit is nonzero. This creates
+an arbitrarily large downward jump. Combining the linear term with this digit
+cost gives exactly the two properties needed.
+
+\section{The digit-cost lemma}
+
+For $r\in\Nzero$, let
+\[
+ r=\sum_{i=0}^J d_i4^i,\qquad d_i\in\{0,1,2,3\},
+\]
+be its base-4 expansion, and define
+\[
+ c(r):=\sum_{i=0}^Jd_i2^i.
+\]
+
+\begin{lemma}\label{lem:cost}
+The function $c:\Nzero\to\Nzero$ is subadditive. Moreover,
+\[
+ \frac{c(r)}r\longrightarrow0,
+ \qquad
+ c(4^j-1)=3(2^j-1),
+ \qquad
+ c(4^j)=2^j.
+\]
+\end{lemma}
+
+\begin{proof}
+Place the base-4 digits of two integers on top of each other. Before carrying,
+the digit cost of their sum is exactly the sum of their two digit costs. A
+carry at position $i$ replaces four units at that position by one unit at
+position $i+1$. Its contribution to the digit cost therefore changes from
+$4\cdot2^i$ to $2^{i+1}$ and cannot increase. After all carries, the resulting
+cost is $c(r+s)$, proving
+\[
+ c(r+s)\leq c(r)+c(s).
+\]
+
+If $4^J\leq r<4^{J+1}$, then
+\[
+ c(r)\leq3\sum_{i=0}^J2^i=3(2^{J+1}-1),
+\]
+whereas $r\geq4^J$. Thus $c(r)/r\leq6/2^J$, which tends to zero.
+Finally, $4^j-1$ has $j$ base-4 digits, all equal to 3, while $4^j$ has a
+single digit 1 at position $j$. The two exact formulas follow.
+\end{proof}
+
+\section{Full answer}
+
+Let $\vTwo(n)$ denote the exponent of 2 in the prime factorization of $n$,
+with $\vTwo(1)=0$.
+
+\begin{theorem}\label{thm:answer}
+Define
+\[
+ \phi(r):=r+c(r)\quad(r\in\Nzero),
+ \qquad
+ \boxed{\ \omega(n):=2^{\phi(\vTwo(n))}\quad(n\in\N).\ }
+\]
+Then $\omega$ is a weight on the multiplicative semigroup $\N$, but it is not
+almost monotone. Furthermore,
+\[
+ \Omega(m,n):=\omega(m)
+\]
+is a weight on $\N^2$ which is not almost monotone. Consequently item (4) of
+the source paper has an affirmative answer for both $\N$ and $\N^2$.
+\end{theorem}
+
+\begin{proof}
+The function $\phi$ is nonnegative and subadditive by
+Lemma~\ref{lem:cost}. Since $\vTwo(ab)=\vTwo(a)+\vTwo(b)$,
+\[
+ \omega(ab)
+ =2^{\phi(\vTwo(a)+\vTwo(b))}
+ \leq2^{\phi(\vTwo(a))+\phi(\vTwo(b))}
+ =\omega(a)\omega(b).
+\]
+Thus $\omega:\N\to[1,\infty)$ is a weight.
+
+It is not admissible. Indeed, Lemma~\ref{lem:cost} gives
+\[
+ \lim_{r\to\infty}\omega(2^r)^{1/r}
+ =\lim_{r\to\infty}2^{(r+c(r))/r}=2>1.
+\]
+It remains to rule out the other branch of almost monotonicity. For $j\geq1$,
+put
+\[
+ a_j=2^{4^j-1},\qquad b_j=2^{4^j}.
+\]
+Then $a_j\mid b_j$, while the exact formulas in Lemma~\ref{lem:cost} give
+\begin{align*}
+ \phi(4^j-1)-\phi(4^j)
+ &= (4^j-1)+3(2^j-1)-(4^j+2^j)\\
+ &=2^{j+1}-4.
+\end{align*}
+Hence
+\[
+ \frac{\omega(a_j)}{\omega(b_j)}
+ =2^{2^{j+1}-4}\longrightarrow\infty.
+\]
+No constant $K$ can satisfy $\omega(a)\leq K\omega(b)$ whenever $a\mid b$.
+Because $\omega$ is also nonadmissible, it is not almost monotone.
+
+For $\Omega(m,n)=\omega(m)$, submultiplicativity follows immediately from
+that of $\omega$. It is nonadmissible because
+\[
+ \lim_{r\to\infty}\Omega(2^r,1)^{1/r}=2.
+\]
+Finally, $(a_j,1)$ divides $(b_j,1)$ coordinatewise and
+\[
+ \frac{\Omega(a_j,1)}{\Omega(b_j,1)}
+ =\frac{\omega(a_j)}{\omega(b_j)}\longrightarrow\infty.
+\]
+Thus $\Omega$ fails the uniform almost-monotonicity inequality even on this
+one-coordinate chain. This proves the claim on $\N^2$.
+\end{proof}
+
+\section{Verification, scope, and novelty check}
+
+The proof has three independent audit points. First, base-4 carrying proves
+subadditivity of $c$. Second, $c(r)=o(r)$ makes the linear term determine the
+nonadmissible spectral growth. Third, the explicit pair of consecutive
+exponents $4^j-1,4^j$ gives an unbounded downward ratio along divisibility.
+The lift to $\N^2$ preserves all three properties.
+
+A bounded exhaustive check verified $c(r+s)\leq c(r)+c(s)$ for all
+$0\leq r,s\leq1000$ and verified the exact jump formula for $1\leq j\leq12$.
+This is only a sanity check; the carry argument is the proof.
+
+The page-15 multidimensional restatement mentions $K>0$ but omits $K$ from
+the following displayed comparison, whereas the formal $\N^2$ definition on
+page 2 includes it. The construction above has ratios tending to infinity,
+so it fails both the literal monotone comparison and the more permissive
+uniform-$K$ comparison. The disjunction ``admissible or uniformly monotone''
+is also handled explicitly: the weight fails both branches.
+
+A bounded novelty check through 26 August 2026 searched the run's registry,
+solution, attempt, and proof-gap indexes; the exact phrase ``not an almost
+monotone weight''; the source title, author, and arXiv id; and arXiv searches
+combining ``almost monotone'', ``weight'', and ``Dirichlet''. The search found
+the source preprint and its 2026 journal publication, but no independent paper
+answering item (4). The construction is elementary, so this search does not
+establish historical priority beyond those bounds. Novelty confidence is
+therefore moderate, while mathematical confidence is high.
+
+The highest-value specialist check is to verify the carry argument and the
+source-definition match. Under either natural reading of the page-15 wording,
+the proof is complete.
+
+\begingroup
+\small
+\begin{thebibliography}{9}
+\bibitem{Dabhi}
+P. A. Dabhi,
+\emph{On inversion of absolutely convergent weighted Dirichlet series in two
+variables}, arXiv:2407.19982 (2024); Mathematica Bohemica, first online
+27 January 2026.
+\end{thebibliography}
+\endgroup
+
+\end{document}

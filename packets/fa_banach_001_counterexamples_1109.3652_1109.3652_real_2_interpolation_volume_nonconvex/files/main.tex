@@ -1,0 +1,307 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=0.92in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sone}{\mathbb S^1}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\vol}{\operatorname{Vol}}
+
+\title{A Two-Dimensional Counterexample to Convexity\\
+Along Real $2$-Interpolations}
+\author{Automatic Math Discovery Run \texttt{fa\_banach\_001}\\Model: GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{red!55!black}{red!3}{\parbox{0.91\textwidth}{
+\textbf{Status.} Candidate full negative answer, likely valid, under the
+nontrivial smooth-norm interpretation intended by the source.  An explicit
+$C^\omega_+$ unconditional planar body gives a negative second variation;
+Cauchy--Kowalevski turns it into an actual local real $2$-interpolation family
+with nonconvex logarithmic partition function.
+}}
+\end{center}
+
+\begin{abstract}
+Cordero-Erausquin and Klartag conjectured that
+$\alpha(t)=-\log\int_{\R^n}e^{-F_t}$ is convex along real
+$2$-interpolation families whose endpoints are even, convex, and
+$2$-homogeneous.  We disprove the conjecture already in dimension two.  Let
+$K$ have support function
+$h(\theta)=1-\frac1{100}\cos(4\theta)$ and let the homogeneous initial speed
+have boundary value $a(\theta)=\cos(2\theta)$.  Cone coordinates reduce the
+required second-variation inequality to
+\[
+ \int_0^{2\pi}h^2(a')^2\,d\theta
+ \geq4\int_0^{2\pi}a^2h(h+h'')\,d\theta.
+\]
+The exact left-minus-right deficit is
+$8\pi\varepsilon(3+4\varepsilon)=-148\pi/625<0$ for
+$\varepsilon=-1/100$.  The homogeneous interpolation equation is an analytic
+noncharacteristic PDE in angular coordinates, so the Cauchy--Kowalevski
+theorem produces a short analytic $2$-interpolation through this datum.
+After affine time rescaling, its two endpoints are unconditional smooth norm
+squares on $[0,1]$, while $\alpha''(1/2)<0$.
+\end{abstract}
+
+\section{Source conjecture}
+
+The source is Cordero-Erausquin and Klartag~\cite{CEK}, arXiv:1109.3652,
+published in \emph{Geometric Aspects of Functional Analysis}, Lecture Notes
+in Mathematics 2050 (2012), 151--168.  Conjecture 10 on PDF page 11 states
+that if the endpoints of a real $2$-interpolation are even, convex, and
+$2$-homogeneous norm squares, then the associated function $\alpha$ is
+convex.
+
+More precisely, the source asks whether, for
+$F_i(x)=\lambda_i\|x\|_{K_i}^2$ with centrally symmetric convex bodies
+$K_i$, ``the function $\alpha$ associated with the $2$-interpolation family
+is convex.''  The source notes that evenness, convexity, and homogeneity
+propagate along the interpolation.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.98\textwidth]{figures/open_problem_crop.png}
+ \caption{Conjecture 10 and its motivation in the source, PDF page 11.}
+\end{figure}
+
+For a sufficiently regular family $F(t,x)$, real $2$-interpolation means
+\begin{equation}\label{eq:pde}
+ \partial_{tt}F
+ =\frac12(\Hess_xF)^{-1}\nabla_x\partial_tF\cdot
+ \nabla_x\partial_tF,
+\end{equation}
+and
+\begin{equation}\label{eq:alpha}
+ \alpha(t)=-\log\int_{\R^2}e^{-F(t,x)}\,dx.
+\end{equation}
+Differentiation under the integral gives, with
+$d\mu_F=e^{-F}dx/\int e^{-F}$,
+\begin{equation}\label{eq:secondvariation}
+ \alpha''(t)=\frac12\int
+ (\Hess F)^{-1}\nabla u\cdot\nabla u\,d\mu_F
+ -\Var_{\mu_F}(u),\qquad u=\partial_tF.
+\end{equation}
+
+\section{Idea of the proof}
+
+For a smooth strictly convex body $K\subset\R^2$, put
+$F=\|\cdot\|_K^2/2$.  Polar integration separates the Gaussian radial
+variable from the cone measure on $\partial K$.  If a $2$-homogeneous speed
+$u$ has boundary value $a$, then the strengthened Brascamp--Lieb inequality
+needed in~\eqref{eq:secondvariation} becomes a Poincar\'e inequality on the
+centro-affine circle with spectral constant $4=2n$.
+
+The Euclidean circle has exactly this constant, with equality for quadratic
+speeds.  But the constant is not stable under nonellipsoidal perturbation.
+For the fourth Fourier perturbation
+$h=1+\varepsilon\cos4\theta$, the quadratic-looking test
+$a=\cos2\theta$ has Rayleigh deficit
+$8\pi\varepsilon(3+4\varepsilon)$.  A small negative $\varepsilon$ preserves
+strict convexity and makes the deficit negative.  This proves negative
+curvature of $\alpha$ at one time.  Analytic local existence for the
+interpolation PDE then converts the infinitesimal datum into a genuine family
+and hence a counterexample with two honest endpoints.
+
+\section{The explicit counterexample}
+
+\begin{theorem}\label{thm:main}
+There exist $C^\omega_+$ unconditional centrally symmetric convex bodies
+$K_0,K_1\subset\R^2$ and a real $2$-interpolation family
+\[
+ F_s(x)=\frac12\|x\|_{K_s}^2,\qquad 0\leq s\leq1,
+\]
+with endpoints $F_0,F_1$, such that the function in~\eqref{eq:alpha} is not
+convex.  More precisely, the family may be chosen analytic on
+$(0,1)\times(\R^2\setminus\{0\})$ and satisfies
+$\alpha''(1/2)<0$.
+\end{theorem}
+
+We split the proof into the geometric computation and the local-existence
+step.
+
+\begin{lemma}[Cone-coordinate second variation]\label{lem:cone}
+Let $K\subset\R^2$ be $C^\infty_+$ and centrally symmetric.  Write its
+support function as $h(\theta)$ and its inverse Gauss parametrization as
+\[
+ X(\theta)=h(\theta)n(\theta)+h'(\theta)t(\theta),
+ \quad n=(\cos\theta,\sin\theta),\quad
+ t=(-\sin\theta,\cos\theta).
+\]
+Put $q=h+h''$, $F_*=\|\cdot\|_K^2/2$, and define the $2$-homogeneous
+function $u_*$ by
+\[
+ u_*(rX(\theta))=r^2a(\theta),\qquad r>0.
+\]
+If $\int_0^{2\pi}a hq\,d\theta=0$, then the second variation prescribed by
+the interpolation equation at the Cauchy datum $(F_*,u_*)$ is
+\begin{equation}\label{eq:deficit}
+ \alpha''(0)=\frac{A-4D}{M},
+ \quad
+ A=\int_0^{2\pi}h^2(a')^2\,d\theta,
+ \quad D=\int_0^{2\pi}a^2hq\,d\theta,
+ \quad M=\int_0^{2\pi}hq\,d\theta.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The Jacobian of $x=rX(\theta)$ is
+\[
+ dx=r\det(X,X')\,dr\,d\theta=rh q\,dr\,d\theta.
+\]
+Euler homogeneity and differentiation along $\partial K$ give the orthogonal
+identities
+\[
+ \Hess F_*(X,X)=1,\qquad \Hess F_*(X,X')=0,\qquad
+ \Hess F_*(X',X')=\frac qh.
+\]
+Since $du_*(X)=2a$ and $du_*(X')=a'$, it follows that
+\begin{equation}\label{eq:pointenergy}
+ (\Hess F_*)^{-1}\nabla u_*\cdot\nabla u_*
+ =r^2\left(4a^2+\frac hq(a')^2\right).
+\end{equation}
+The elementary radial integrals are
+\[
+ \int_0^\infty r e^{-r^2/2}\,dr=1,\quad
+ \int_0^\infty r^3e^{-r^2/2}\,dr=2,\quad
+ \int_0^\infty r^5e^{-r^2/2}\,dr=8.
+\]
+Thus $\int e^{-F_*}=M$, the mean of $u_*$ is zero, and
+\[
+ \Var_{\mu_{F_*}}(u_*)=\frac{8D}{M},\qquad
+ \int(\Hess F_*)^{-1}\nabla u_*\cdot\nabla u_*\,d\mu_{F_*}
+ =\frac{2(4D+A)}M.
+\]
+Substitution in~\eqref{eq:secondvariation} proves~\eqref{eq:deficit}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Take
+\begin{equation}\label{eq:choice}
+ h(\theta)=1+\varepsilon\cos4\theta,\qquad
+ a(\theta)=\cos2\theta,\qquad \varepsilon=-\frac1{100}.
+\end{equation}
+Then
+\[
+ h>0,\qquad q=h+h''=1-15\varepsilon\cos4\theta>0,
+\]
+so $h$ is the support function of a $C^\omega_+$ unconditional body $K$.
+Also $\int ahq=0$ by Fourier orthogonality.  Direct integration gives
+\begin{align}
+ M&=\pi(2-15\varepsilon^2),\label{eq:M}\\
+ A&=\pi(4-4\varepsilon+2\varepsilon^2),\label{eq:A}\\
+ D&=\pi\left(1-7\varepsilon-\frac{15}{2}\varepsilon^2\right).
+ \label{eq:D}
+\end{align}
+Consequently,
+\begin{equation}\label{eq:negative}
+ A-4D=8\pi\varepsilon(3+4\varepsilon)
+ =-\frac{148\pi}{625}<0.
+\end{equation}
+Lemma~\ref{lem:cone} therefore gives a negative formal second variation.
+
+It remains to realize the Cauchy datum by an interpolation family.  In
+ordinary polar coordinates $x=r(\cos\phi,\sin\phi)$, write
+$F(t,x)=r^2f(t,\phi)$ and $v=f_t$.  Equation~\eqref{eq:pde} becomes
+\begin{equation}\label{eq:angularpde}
+ f_{tt}=
+ \frac{2(2f+f_{\phi\phi})v^2-2f_\phi vv_\phi+f(v_\phi)^2}
+ {2f(2f+f_{\phi\phi})-(f_\phi)^2}.
+\end{equation}
+The body in~\eqref{eq:choice} and its Gauss parametrization are analytic.
+Moreover, the derivative of the Euclidean polar angle of $X(\theta)$ is
+$hq/|X|^2>0$, so normal angle and polar angle are related by an analytic
+diffeomorphism.  Hence $F_*$ and $u_*$ correspond to analytic periodic
+Cauchy data $f(0,\phi)$ and $f_t(0,\phi)$.  The denominator in
+\eqref{eq:angularpde} is the determinant of $\Hess F_*$ in the polar
+orthonormal frame and is strictly positive.  The analytic
+Cauchy--Kowalevski theorem~\cite{John} therefore supplies a periodic analytic
+solution for $|t|<\tau_0$.  Compactness of the circle and uniqueness on
+overlapping angular charts make $\tau_0$ uniform.
+
+Positivity and strict convexity persist after decreasing $\tau_0$.  The
+reduced ansatz makes $2$-homogeneity automatic, while uniqueness in the
+analytic Cauchy problem preserves the coordinate reflection symmetries of the
+data.  Hence every $F_t$ is an even,
+unconditional, convex $2$-homogeneous function and can be written
+$F_t=\|\cdot\|_{K_t}^2/2$ for a $C^\omega_+$ body $K_t$.
+Differentiation under the integral is justified uniformly by the quadratic
+upper and lower bounds on $F_t$.  Equations~\eqref{eq:deficit} and
+\eqref{eq:negative} yield $\alpha''(0)<0$.
+
+Finally choose $0<\tau<\tau_0$ and set
+$\widetilde F_s=F_{(2s-1)\tau}$ for $0\leq s\leq1$.  Affine
+time changes preserve~\eqref{eq:pde}, and
+$\widetilde\alpha''(1/2)=4\tau^2\alpha''(0)<0$.  Taking
+$K_0=K_{-\tau}$ and $K_1=K_\tau$ completes the counterexample.
+\end{proof}
+
+\section{Interpretation of smoothness at the origin}
+
+A globally $C^2$ function on $\R^n$ that is exactly $2$-homogeneous is a
+quadratic form: its Hessian at the origin determines the function by scaling.
+Thus a literal reading of the source's preliminary ``smooth function on
+$\R^n$'' definition would reduce Conjecture 10 to ellipsoids, where $\alpha$
+is affine.  The conjecture explicitly writes its data as arbitrary norm
+squares, so its only nontrivial interpretation is the standard one used for
+smooth norms: $C^\infty$ and strongly convex on $\R^n\setminus\{0\}$,
+continuous and convex at the origin, with the PDE holding off the origin (and
+hence almost everywhere).  Theorem~\ref{thm:main} lies exactly in this
+intended class.
+
+\section{Verification and novelty boundary}
+
+The algebra in~\eqref{eq:M}--\eqref{eq:negative} is independently checked by
+the included SymPy script.  The sign has a large exact margin: the deficit is
+$-148\pi/625$, while $h\geq99/100$ and $q\geq17/20$.  No numerical
+approximation is used in the proof.
+
+A bounded search on 26 August 2026 covered the run indexes, the exact arXiv id
+and title, the phrases ``real $2$-interpolation,'' ``Rochberg--Semmes
+interpolation,'' and ``$2$-homogeneous Brascamp--Lieb,'' and citations visible
+from the source.  It found no later paper stating a proof or counterexample to
+Conjecture 10.  Recent centro-affine Poincar\'e work proves inequalities with
+constant $n$ for unconditional bodies~\cite{HuIvaki}; the conjecture here
+requires the stronger constant $2n$, and our planar calculation shows that
+this stronger constant fails.  Independent prior observation remains
+possible, so the novelty label is candidate rather than certified.
+
+The main human-review point is the standard analytic local-existence step for
+the periodic homogeneous equation~\eqref{eq:angularpde}.  Everything before
+that step is an exact two-line Fourier computation, and the PDE is explicitly
+in noncharacteristic analytic normal form.
+
+\begin{thebibliography}{9}
+
+\bibitem{CEK}
+D. Cordero-Erausquin and B. Klartag,
+\emph{Interpolations, convexity and geometric inequalities},
+in \emph{Geometric Aspects of Functional Analysis}, Lecture Notes in Math.
+2050, Springer, 2012, 151--168;
+\href{https://arxiv.org/abs/1109.3652}{arXiv:1109.3652}.
+
+\bibitem{John}
+F. John,
+\emph{Partial Differential Equations}, 4th ed., Applied Mathematical
+Sciences 1, Springer, 1982.
+
+\bibitem{HuIvaki}
+Y. Hu and M. N. Ivaki,
+\emph{Centro-affine Poincar\'e inequality: unconditional convex bodies},
+\href{https://arxiv.org/abs/2607.20223}{arXiv:2607.20223}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\title{Whitley Thickness Is Not Bidual-Invariant\\
+\large Literature status for the question in arXiv:1307.4385}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 1}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{\textbf{Status: literature already answered.}
+The question in Castillo--Papini--Sim\~oes is answered negatively by
+Abrahamsen--Langemets--Lima--Nygaard, who explicitly identify their example
+as answering that question.}}
+\end{center}
+
+\section*{Source question}
+
+J.~Castillo, P.~L.~Papini, and M.~Sim\~oes,
+\emph{Thick coverings for the unit ball of a Banach space},
+arXiv:1307.4385 \cite{CPS}, PDF page 7, asks:
+\begin{quote}
+``A trying question posed in [3] is whether $T(X)=T(X^{**})$.''
+\end{quote}
+Here $T(X)$ is Whitley's thickness constant, equivalently for an
+infinite-dimensional Banach space the infimum of radii $r$ for which finitely
+many radius-$r$ balls centered on $S_X$ cover $B_X$.
+
+\section*{Later answer}
+
+T.~A.~Abrahamsen, J.~Langemets, V.~Lima, and O.~Nygaard,
+\emph{On thickness and thinness of Banach spaces}, arXiv:1402.0996
+\cite{ALLN}, PDF page 8, first note the general inequality
+\[
+ T(X^{**})\leq T(X),
+\]
+and then state that it can be strict.  Their explicit example is
+\[
+ T(C[0,1])=2,
+ \qquad
+ T(C[0,1]^{**})=1.
+\]
+They immediately add: ``Note that this example answers a question in [7]
+whether we always have $T(X)=T(X^{**})$.''  Their reference [7] is precisely
+the source paper above.
+
+Thus the answer to the source question is \textbf{no}.  The supporting authors
+were explicitly aware that their example answered the same question.  This is
+a direct literature answer rather than an agent-identified implication.
+
+\section*{Scope and search evidence}
+
+The counterexample settles the unrestricted equality question completely.
+It does not assert a classification of spaces for which equality holds.
+The run's four lightweight indexes had no entry for arXiv:1307.4385.  Local
+exact-phrase search located the explicit answer in arXiv:1402.0996 and an
+independent 2019 paper which cites the same 2015 Houston Journal article as the
+negative solution.  A bounded web/arXiv search confirmed the supporting
+paper's metadata.
+
+\begin{thebibliography}{9}
+\bibitem{CPS}
+J.~Castillo, P.~L.~Papini, and M.~Sim\~oes,
+\emph{Thick coverings for the unit ball of a Banach space},
+Houston J. Math. \textbf{41} (2015), 177--189; arXiv:1307.4385.
+
+\bibitem{ALLN}
+T.~A.~Abrahamsen, J.~Langemets, V.~Lima, and O.~Nygaard,
+\emph{On thickness and thinness of Banach spaces},
+Houston J. Math. \textbf{41} (2015), 97--111; arXiv:1402.0996.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.88in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,microtype,xcolor}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.52em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\B}{\mathcal B}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\We}{W_{\!e}}
+\newcommand{\PhiUL}{\Phi_{U,L}}
+\newcommand{\cstatus}{\textcolor{blue!60!black}{\textbf{candidate full separable solution---likely valid}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Essential numerical range characterization of unitary-similar $L$-asymptotic limits}\par
+\vspace{0.35em}
+{\large A complete answer on separable infinite-dimensional Hilbert space}\par
+\vspace{0.45em}
+\cstatus
+\end{center}
+
+\section*{1. Source question and exact scope}
+
+Geh\'er writes after Theorem 4.2 of arXiv:1505.07205 \cite{GeherThesis}:
+\begin{quote}
+``We note that it is an open problem to describe the $L$ asymptotic limits of those operators that are similar to unitary operators and act on infinite dimensional spaces.''
+\end{quote}
+The surrounding theorem and the exact question are visible in the source-page crop below.
+
+\begin{center}
+\includegraphics[width=0.93\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+We solve the problem for separable infinite-dimensional complex Hilbert spaces.  This is the standard setting of the source paper and is also the setting in which the diagonal Weyl--von Neumann theorem supplies the decisive construction.  No nonseparable extension is claimed.
+
+\section*{2. Definitions}
+
+A \emph{Banach limit} is a positive norm-one functional $L:\ell^\infty(\mathbb N)\to\mathbb C$ which extends the ordinary limit and is invariant under the left shift.  If $T\in\B(\Hh)$ is power bounded, its $L$-asymptotic limit is the positive operator $A_{T,L}$ determined by
+\begin{equation}\label{eq:asymptotic}
+ \langle A_{T,L}x,y\rangle
+ =L_n\langle T^n x,T^n y\rangle .
+\end{equation}
+For a unitary $U$ and $B\in\B(\Hh)$, write
+\begin{equation}\label{eq:Phi}
+ \langle \PhiUL(B)x,y\rangle
+ =L_n\langle U^{-n}BU^n x,y\rangle .
+\end{equation}
+This is a positive unital linear map, and shift invariance gives $U^*\PhiUL(B)U=\PhiUL(B)$.
+
+The essential numerical range is
+\[
+ \We(A)=\{\lim_k\langle Ax_k,x_k\rangle:
+ (x_k)\text{ is an orthonormal sequence}\}.
+\]
+For self-adjoint $A$ it is the interval
+\begin{equation}\label{eq:We}
+ \We(A)=[\min\sigma_e(A),\max\sigma_e(A)].
+\end{equation}
+
+\section*{3. Main result}
+
+\begin{theorem}[complete separable characterization]\label{thm:main}
+Let $\Hh$ be a separable infinite-dimensional complex Hilbert space, and let $A\in\B(\Hh)$.  The following are equivalent.
+\begin{enumerate}
+\item For some Banach limit $L$, there is an operator $T$ similar to a unitary such that $A_{T,L}=A$.
+\item For every Banach limit $L$, there is an operator $T$ similar to a unitary such that $A_{T,L}=A$.
+\item $A$ is positive and invertible, and $1\in\We(A)$.
+\end{enumerate}
+Moreover, in (2) the same $T$ may be used for all Banach limits.  More precisely, whenever (3) holds, there is a bilateral-shift unitary $U$ for which
+\begin{equation}\label{eq:constructT}
+ T=A^{-1/2}UA^{1/2}
+\end{equation}
+satisfies $A_{T,L}=A$ for every Banach limit $L$.
+\end{theorem}
+
+Since $A$ is positive and invertible,
+\[
+ 1\in\We(A)\quad\Longleftrightarrow\quad 1\in\We(A^{-1});
+\]
+indeed, the two essential spectral intervals have endpoints related by inversion.  We use the inverse formulation in the construction.
+
+\section*{4. Proof intuition}
+
+Write $T=SUS^{-1}$.  Averaging $S^*S$ along the unitary orbit produces an operator commuting with $U$.  Absorbing its square root into $S$ normalizes that average to the identity.  After normalization, $A^{-1}$ is unitarily equivalent to a positive operator $B$ whose unitary-orbit Banach mean is $I$.
+
+Why must $1$ lie in $\We(B)$?  If the essential spectrum sat strictly above or below $1$, a finite-rank correction would make $B$ uniformly larger or smaller than $I$.  Its Banach mean would then force the mean of a positive finite-rank operator to dominate a nonzero multiple of $I$.  That is impossible: testing on $N$ orthonormal vectors gives a lower bound proportional to $N$, while the trace of the finite-rank operator gives a fixed upper bound.
+
+Conversely, let $B=A^{-1}$ and suppose $1\in\We(B)$.  Weyl--von Neumann writes $B=D+K$, with $D$ diagonal and $K$ compact.  Reorder a carefully chosen infinite part of the diagonal along the positive half of $\mathbb Z$ so that all moving averages converge uniformly to $1$; put all remaining diagonal entries on the negative half.  Conjugation by the bilateral shift then has Banach mean $I$ on $D$.  The compact part vanishes under the same averaging because the shifted vectors converge weakly to zero.  This gives the construction \eqref{eq:constructT} and, crucially, it works for every Banach limit.
+
+\section*{5. Two lemmas}
+
+\begin{lemma}[finite rank cannot have a uniformly positive orbit mean]\label{lem:finite-rank}
+Let $U$ be unitary on an infinite-dimensional Hilbert space, let $F\geq0$ have finite rank, and let $L$ be a Banach limit.  Then $\PhiUL(F)\not\geq\delta I$ for every $\delta>0$.
+\end{lemma}
+
+\begin{proof}
+If $e_1,\dots,e_N$ are orthonormal, positivity and finite linearity of $L$ give
+\[
+ \sum_{j=1}^N\langle\PhiUL(F)e_j,e_j\rangle
+ =L_n\sum_{j=1}^N\langle FU^ne_j,U^ne_j\rangle
+ \leq \operatorname{Tr}F,
+\]
+because $U^ne_1,\dots,U^ne_N$ is orthonormal for every $n$.  A bound $\PhiUL(F)\geq\delta I$ would therefore imply $N\delta\leq\operatorname{Tr}F$ for every $N$, a contradiction.
+\end{proof}
+
+\begin{lemma}[balanced diagonal arrangement]\label{lem:diagonal}
+Let $D$ be a bounded self-adjoint diagonal operator on a separable infinite-dimensional Hilbert space and let $\lambda\in\We(D)$.  Its diagonal basis can be indexed by $\mathbb Z$ so that, writing $De_j=d_je_j$,
+\begin{equation}\label{eq:almost}
+ \lim_{N\to\infty}\ \sup_{r\geq0}
+ \left|\frac1N\sum_{n=0}^{N-1}d_{r+n}-\lambda\right|=0.
+\end{equation}
+Consequently, for the bilateral shift $Ue_j=e_{j+1}$,
+\begin{equation}\label{eq:PhiD}
+ \PhiUL(D)=\lambda I
+\end{equation}
+for every Banach limit $L$.
+\end{lemma}
+
+\begin{proof}
+Put $E=\sigma_e(D)$.  First suppose $\lambda\in E$.  Choose distinct diagonal entries converging to $\lambda$, while reserving infinitely many entries, and place the chosen entries at indices $0,1,2,\ldots$.  Put all remaining entries at the negative indices.  Convergence of the positive tail implies \eqref{eq:almost}: after discarding a fixed initial segment every error is small, and the contribution of that segment is $O(N^{-1})$, uniformly in the starting index $r$.
+
+If $\lambda\notin E$, equation \eqref{eq:We} gives points $a,b\in E$ with $a<\lambda<b$.  Choose disjoint diagonal subsequences $a_k\to a$ and $b_k\to b$, again leaving infinitely many entries unused.  Let
+\[
+ q=\frac{\lambda-a}{b-a}\in(0,1),\qquad
+ w_n=\lfloor(n+1)q\rfloor-\lfloor nq\rfloor.
+\]
+At positions with $w_n=0$ place successive $a_k$; at positions with $w_n=1$ place successive $b_k$.  Every interval of length $N$ contains $qN+O(1)$ ones, with an absolute discrepancy at most two.  Thus the moving averages of the ideal $a/b$ word converge uniformly to $(1-q)a+qb=\lambda$.  The errors $a_k-a$ and $b_k-b$ form a null sequence along the positive positions, so their moving averages converge uniformly to zero by the same fixed-head estimate.  This proves \eqref{eq:almost}.
+
+For each fixed $j$, the sequence $d_{j+n}$ differs only by a finite shift and prefix from the positive tail and is therefore almost convergent to $\lambda$.  Since $U^{-n}DU^n$ remains diagonal, every Banach limit gives diagonal matrix entries $\lambda$ and off-diagonal entries zero.  Hence \eqref{eq:PhiD} holds.
+\end{proof}
+
+\section*{6. Proof of Theorem~\ref{thm:main}}
+
+Suppose $T=SUS^{-1}$ and $A_{T,L}=A$.  Put
+\[
+ C=\PhiUL(S^*S).
+\]
+The two-sided bounds on $S^*S$ pass through the positive unital map $\PhiUL$, so $C$ is positive and invertible.  It commutes with $U$.  Define $R=SC^{-1/2}$.  Then
+\[
+ T=RUR^{-1},\qquad
+ \PhiUL(R^*R)=I.
+\]
+Indeed, commutation with $U$ lets the two factors $C^{-1/2}$ pass through
+$\PhiUL$, so
+$\PhiUL(C^{-1/2}S^*SC^{-1/2})=C^{-1/2}CC^{-1/2}=I$; the same
+commutation shows that replacing $S$ by $R$ leaves $SUS^{-1}$ unchanged.
+Using \eqref{eq:asymptotic} and \eqref{eq:Phi},
+\begin{equation}\label{eq:normalizedA}
+ A=R^{-*}R^{-1}=(RR^*)^{-1}.
+\end{equation}
+In particular $A$ is positive and invertible.  Set $B=R^*R$.  Polar decomposition shows that $B$ is unitarily equivalent to $RR^*=A^{-1}$, and $\PhiUL(B)=I$.
+
+We claim $1\in\We(B)$.  If $\min\sigma_e(B)>1$, choose $c$ with $1<c<\min\sigma_e(B)$.  Then
+\[
+ F=(cI-B)_+
+\]
+has finite rank and $B\geq cI-F$.  Applying $\PhiUL$ yields
+\[
+ \PhiUL(F)\geq(c-1)I,
+\]
+contrary to Lemma~\ref{lem:finite-rank}.  If $\max\sigma_e(B)<1$, choose $\max\sigma_e(B)<c<1$ and put $F=(B-cI)_+$.  Now $B\leq cI+F$, so $\PhiUL(F)\geq(1-c)I$, the same contradiction.  Equation \eqref{eq:We} proves the claim.  Unitary invariance and inversion now give $1\in\We(A)$.  This proves (1)$\Rightarrow$(3).
+
+Conversely assume (3), and set $B=A^{-1}$.  Then $1\in\We(B)$.  By the Weyl--von Neumann theorem for self-adjoint operators on separable Hilbert space \cite{WvN},
+\begin{equation}\label{eq:WvN}
+ B=D+K,
+\end{equation}
+where $D$ is diagonal self-adjoint, $K$ is compact self-adjoint, and $\sigma_e(D)=\sigma_e(B)$.  Hence $1\in\We(D)$.  Index the diagonal basis and choose the bilateral shift $U$ as in Lemma~\ref{lem:diagonal}.  It follows that $\PhiUL(D)=I$ for every Banach limit $L$.
+
+For the compact part, $U^nx\to0$ weakly for every $x$.  Compactness gives $KU^nx\to0$ in norm, so
+\[
+ \langle U^{-n}KU^n x,y\rangle
+ =\langle KU^nx,U^ny\rangle\longrightarrow0.
+\]
+Therefore $\PhiUL(K)=0$ for every $L$, and \eqref{eq:WvN} gives $\PhiUL(B)=I$ for every $L$.
+
+Let $R=B^{1/2}=A^{-1/2}$ and define $T=RUR^{-1}$ as in \eqref{eq:constructT}.  This $T$ is similar to a unitary and hence power bounded.  For every Banach limit,
+\[
+ A_{T,L}
+ =R^{-*}\PhiUL(R^*R)R^{-1}
+ =R^{-1}IR^{-1}=B^{-1}=A.
+\]
+Thus one $T$ works simultaneously for all $L$, proving (3)$\Rightarrow$(2).  The implication (2)$\Rightarrow$(1) is immediate.
+
+\section*{7. Checks, consequences, and literature boundary}
+
+\begin{corollary}
+If $A>0$ is invertible and $\sigma_e(A)=\{t\}$, then $A$ is an $L$-asymptotic limit of an operator similar to a unitary if and only if $t=1$.
+\end{corollary}
+
+This agrees with the elementary scalar tests: $A=cI$ can occur only for $c=1$.  Finite-dimensional spaces are deliberately excluded; there the finite-rank trace obstruction disappears, and the source already gives a separate eigenvalue characterization in Theorem 4.2.
+
+Geh\'er's earlier paper \cite{GeherPaper} characterizes ordinary strong asymptotic limits of contractions and records the same unitary-similar Banach-limit problem.  Kubrusly and Duggal \cite{KD} study Banach and Ces\`aro asymptotic limits and similarity criteria, but the bounded searches conducted for this packet found no essential-numerical-range characterization matching Theorem~\ref{thm:main}.  We therefore claim a candidate solution to the stated problem, not publication-level novelty; a broader priority search remains appropriate.
+
+The sole mathematical scope boundary is separability.  The necessity argument is dimension-free for every infinite-dimensional Hilbert space, but the sufficiency proof uses the separable diagonal Weyl--von Neumann theorem and a bilateral sequence indexed by $\mathbb Z$.  A nonseparable analogue may require additional cardinal or representation-theoretic analysis.
+
+\section*{8. Verification summary}
+
+The proof was audited at the following stress points: normalization of the similarity, passage of order bounds through $\PhiUL$, the finite-rank trace contradiction, inversion of the essential spectral interval, uniformity of the balanced moving averages, vanishing of compact conjugates, and the final similarity formula.  A numerical script checks the discrepancy and moving-average convergence in a two-point diagonal model.  This computation is only a sanity check; Lemmas~\ref{lem:finite-rank} and \ref{lem:diagonal} contain the proof.
+
+Confidence in mathematical validity within the stated separable scope: \textbf{93/100}.  Recommended human review: check the balanced diagonal arrangement and the normalization identity first, then conduct a wider operator-algebra novelty search.
+
+\begin{thebibliography}{9}
+\bibitem{GeherThesis}
+Gy.~P.~Geh\'er,
+\emph{Asymptotic behaviour of Hilbert space operators with applications},
+arXiv:1505.07205 (2015).
+
+\bibitem{GeherPaper}
+Gy.~P.~Geh\'er,
+\emph{Asymptotic limits of operators similar to normal operators},
+arXiv:1407.0525 (2014).
+
+\bibitem{WvN}
+J.~von Neumann,
+\emph{Charakterisierung des Spektrums eines Integraloperators},
+Actualit\'es Sci. Indust. 229 (1935), 1--20;
+used in its standard self-adjoint Weyl--von Neumann form.
+
+\bibitem{KD}
+C.~S.~Kubrusly and B.~P.~Duggal,
+\emph{Asymptotic limits, Banach limits, and Ces\`aro means},
+arXiv:2010.14740 (2020).
+\end{thebibliography}
+
+\end{document}

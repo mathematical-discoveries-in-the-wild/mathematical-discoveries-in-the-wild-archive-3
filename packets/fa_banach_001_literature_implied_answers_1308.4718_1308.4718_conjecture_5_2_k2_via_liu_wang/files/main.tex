@@ -1,0 +1,97 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\smin}{\sigma_{\min}}
+
+\title{A later-literature answer to the $k=2$ subcase\\of Conjecture 5.2 in arXiv:1308.4718}
+\author{Literature-status packet for run \texttt{fa\_banach\_001}}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+\texttt{literature\_implied\_answer\_partial\_subcase}.  This note records a
+known later result, not a new solution produced by the run.
+
+\section*{Source question}
+
+Balan--Wang consider, on PDF page 16 of arXiv:1308.4718v1, an
+$n\times(n+k)$ real matrix
+\[
+ F=[g_1,\ldots,g_{n+k}], \qquad \|g_j\|\le 1,
+\]
+and define
+\[
+ \tau(F)=\min_{\substack{S\subseteq\{1,\ldots,n+k\}\\|S|=n}}
+ \sigma_n(F_S).
+\]
+Their Conjecture 5.2 asks whether, for fixed $k$, there is a constant
+$C=C(k)$ such that
+\begin{equation}\label{eq:source}
+ \tau(F)\le \frac{C}{n^{k-1/2}}.
+\end{equation}
+
+\section*{Later theorem and exact identification}
+
+Liu--Wang prove in Lemma 2.4 of their 2016 paper that every real
+$(n+2)\times n$ matrix $A$ whose rows have norm at most one satisfies
+\begin{equation}\label{eq:later}
+ \min_{\substack{S\subseteq\{1,\ldots,n+2\}\\|S|=n}}
+ \sigma_n(A_S)\le \frac{C}{n^{3/2}}
+\end{equation}
+for an absolute constant $C$.
+
+Take $k=2$ in the source and set $A=F^T$.  The rows of $A$ are precisely
+the columns $g_j$ of $F$, so they have norm at most one.  For every
+$n$-element index set $S$,
+\[
+ A_S=F_S^T
+ \quad\text{and hence}\quad
+ \sigma_n(A_S)=\sigma_n(F_S).
+\]
+Thus \eqref{eq:later} is exactly \eqref{eq:source} for $k=2$.
+
+The later proof uses a two-dimensional orthonormal basis of the kernel
+and reduces the estimate to finding two nearby projective directions on
+the circle.  This is the same direct kernel-duality route suggested by
+the source problem.  Liu's 2024 paper cites both the source and the 2016
+paper and gives a sharp version of the planar two-column extremal bound.
+
+\section*{Scope and provenance}
+
+This is a complete answer only for the $k=2$ subcase.  It does not settle
+Conjecture 5.2 for arbitrary fixed $k$ and says nothing about Conjecture
+5.1.  The 2016 paper's higher-dimensional discussion reduces the next
+case to Heilbronn-type incidence geometry and gives partial results under
+additional geometric hypotheses.
+
+The relation is classified as a literature-implied answer rather than an
+explicitly announced solution: the later paper proves the identical
+matrix inequality but does not refer to it by the source's conjecture
+label.  Yang Wang is a coauthor of both papers.
+
+\begin{thebibliography}{9}
+\bibitem{BW}
+R. Balan and Y. Wang,
+\emph{Invertibility and Robustness of Phaseless Reconstruction},
+arXiv:1308.4718v1, Section 5, Conjecture 5.2, PDF page 16;
+later published in Appl. Comput. Harmon. Anal. 38 (2015), 469--488.
+
+\bibitem{LW}
+Y. Liu and Y. Wang,
+\emph{On the Decay of the Smallest Singular Value of Submatrices of Rectangular Matrices},
+Asian-European J. Math. 9 (2016), article 1650075,
+doi:10.1142/S1793557116500753, Lemma 2.4.
+
+\bibitem{Liu2024}
+Y. Liu,
+\emph{On Minimal Smallest Singular Value of Subframes for Signal Recovery},
+Operators and Matrices 18 (2024), 273--293,
+doi:10.7153/oam-2024-18-17, Theorem 2.7.
+\end{thebibliography}
+
+\end{document}
+

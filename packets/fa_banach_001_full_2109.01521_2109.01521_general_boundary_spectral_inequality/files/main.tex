@@ -1,0 +1,268 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Om}{\Omega}
+\newcommand{\pa}{\partial}
+\newcommand{\LS}{\text{Lopatinskii--Shapiro}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\cD}{\mathcal D}
+
+\title{The General-Boundary Spectral Inequality for the Bi-Laplacian}
+\author{Candidate full solution packet (GPT5.6)}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\linewidth}{\textbf{Status.}
+Candidate full solution, likely valid, subject to expert review. The proof
+answers the spectral-inequality question in Section 1.6.2 of
+arXiv:2109.01521v2. It does not address the neighboring questions on boundary
+damping or quantitative boundary unique continuation.}}
+\end{center}
+
+\section{Source question and later theorem}
+
+Let $\Om$ be a smooth bounded connected domain (or a compact smooth manifold
+with boundary). Let $B_1,B_2$ be boundary differential operators of orders
+$k_j$, with normal order at most three, and let
+\[
+  \mathcal P u=\Delta^2u,\qquad
+  \cD(\mathcal P)=\{u\in H^4(\Om):B_1u=B_2u=0\text{ on }\pa\Om\}.
+\]
+The standing hypotheses in Le Rousseau--Zongo \cite{source} are:
+\begin{enumerate}
+\item $(\Delta^2,B_1,B_2)$ satisfies the $\LS$ condition;
+\item $\mathcal P$ is self-adjoint and nonnegative on $L^2(\Om)$.
+\end{enumerate}
+Writing $(\phi_j)$ for an orthonormal eigenbasis and $(\mu_j)$ for the
+eigenvalues, Section 1.6.2 asks whether, for every nonempty open
+$\omega\subset\Om$, there is $C>0$ such that
+\begin{equation}\label{goal}
+ \|u\|_{L^2(\Om)}\leq C e^{C\mu^{1/4}}\|u\|_{L^2(\omega)},
+ \qquad u\in\Span\{\phi_j:\mu_j\leq\mu\}.
+\end{equation}
+The exact source passage is on page 8:
+\begin{center}
+\includegraphics[width=0.96\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+Zongo--Robbiano \cite[Theorem 1.3, p.~6]{support} prove \eqref{goal} under
+the preceding two hypotheses and the additional $\LS$ condition for
+\[
+ Q=D_s^4+\Delta^2
+\]
+with the same boundary operators on $(0,S_0)\times\pa\Om$. The source paper
+had isolated precisely this extra condition as the obstruction: ordinary
+$\LS$ need not imply parameter $\LS$ without further structure
+\cite[p.~8]{source}. The point below is that the already assumed
+self-adjoint nonnegativity rules out the obstruction.
+
+\section{Proof intuition}
+
+The augmented boundary condition is a negative-resolvent condition in
+disguise. After Fourier transform in the added variable $s$, failure at a
+frequency $\sigma\ne0$ produces a nonzero exponentially decaying solution of
+the frozen normal problem
+\[
+   (P_0(\xi',D_t)+\sigma^4)w=0,\qquad B_{j,0}(\xi',D_t)w(0)=0.
+\]
+Thus the frozen half-line realization has the negative eigenvalue
+$-\sigma^4$. Localizing this mode at spatial scale $h$ gives a boundary
+packet with Rayleigh quotient $-\sigma^4h^{-4}+o(h^{-4})$. The principal
+boundary traces vanish; the original elliptic boundary condition supplies a
+trace correction smaller by $h^{1/2}$. The corrected packets lie in
+$\cD(\mathcal P)$, contradicting $\mathcal P\ge0$.
+
+This proves the augmented $\LS$ condition automatically. The spectral
+inequality is then exactly Zongo--Robbiano's theorem.
+
+\section{The automatic parameter condition}
+
+We record the standard boundary-layer implication in the precise form needed
+here. Principal symbols are taken in boundary normal coordinates at a fixed
+$x^0\in\pa\Om$; $t\ge0$ is the inward normal variable.
+
+\begin{lemma}[Trace correction at boundary-layer scale]\label{trace}
+Assume $(P,B_1,B_2)$ is a normal fourth-order elliptic boundary problem of the
+source class, satisfying ordinary $\LS$, whose realization is self-adjoint.
+Suppose $w(t)$ is exponentially decreasing and
+its principal boundary traces obey
+\[
+ B_{j,0}(x^0,\xi',D_t)w(0)=0,\qquad j=1,2.
+\]
+Let $u_h$ be the normalized packet
+\begin{equation}\label{packet}
+ u_h(x',x_d)=h^{-(d+1)/4}\chi(x'/\sqrt h)
+ e^{ix'\cdot\xi'/h}\chi_0(x_d)w(x_d/h)
+\end{equation}
+in a boundary chart, where the cutoffs equal one near the origin. Then there
+are smooth $v_h$, supported in a fixed slightly larger chart, such that
+\[
+ B_j(u_h+v_h)=0,\qquad
+ \|v_h\|_{L^2}=O(h^{1/2}),\qquad
+ \|Pv_h\|_{L^2}=O(h^{-7/2}).
+\]
+\end{lemma}
+
+\begin{proof}
+The normalization in \eqref{packet} gives $\|u_h\|_{L^2}=\|\chi\|_2
+\|w\|_2+o(1)$ after a harmless fixed rescaling. A derivative on the carrier
+or on $w(x_d/h)$ costs $h^{-1}$, whereas a derivative on the tangential
+cutoff costs only $h^{-1/2}$. Freezing coefficients at $x^0$ therefore leaves
+a relative $O(h^{1/2})$ error. Since the principal $B_j$ traces vanish, this
+gives
+\begin{equation}\label{trace-size}
+ \|B_ju_h\|_{H^{7/2-k_j}(\pa\Om)}=O(h^{-7/2}),
+\end{equation}
+one half-power below the $H^4$ size $O(h^{-4})$ of the packet.
+
+For completeness, use the boundary jet map
+$J=(\gamma_0,\gamma_1,\gamma_2,\gamma_3)$ and write each $B_j$ as a
+tangential differential matrix acting on $J$. On the $h^{-1}$ frequency
+annulus, the normal elliptic boundary system gives a uniformly bounded right
+inverse for the rescaled two-row boundary-symbol matrix. For $\xi'\ne0$ this
+is the ordinary $\LS$ right inverse. At the pure normal ray $\xi'=0$, it is
+the normality of the two independent boundary conditions; loss of rank there
+would leave a nonzero unconstrained Green boundary jet and is incompatible
+with a self-adjoint fourth-order realization. Apply the right inverse to
+$-h^{k_j}B_ju_h$, and lift the resulting four jets by the usual Poisson trace
+extension $e^{-x_d/h}$ (with cutoffs). The rescaled estimates from
+\eqref{trace-size} are
+\[
+ \|v_h\|_{L^2}=O(h^{1/2}),\qquad
+ \|D^\alpha v_h\|_{L^2}=O(h^{1/2-|\alpha|}),\quad |\alpha|\le4.
+\]
+Lower-order coefficient and cutoff errors are removed successively; the
+resulting geometric symbol expansion has the same bounds. Equivalently, this
+is the standard semiclassical right inverse for a normal elliptic boundary
+trace system, as in the parameter boundary calculus of
+Agranovich--Vishik \cite{AV}. A final smoothing correction makes the boundary
+conditions exact without changing the estimates. Thus
+$B_j(u_h+v_h)=0$, and the last display gives the claimed estimate for $Pv_h$.
+\end{proof}
+
+\begin{lemma}[Nonnegativity forces augmented $\LS$]\label{automatic}
+Under the two standing source hypotheses, $(D_s^4+\Delta^2,B_1,B_2)$
+satisfies the $\LS$ condition at every nonzero tangential covector
+$(\sigma,\xi')$ on $(0,S_0)\times\pa\Om$.
+\end{lemma}
+
+\begin{proof}
+At $\sigma=0$ and $\xi'\ne0$, this is the ordinary source $\LS$ condition.
+Suppose instead that it fails at $(x^0,\sigma,\xi')$ with $\sigma\ne0$.
+By the normal-root formulation of the complementing condition, there is a
+nonzero exponentially decreasing $w$ on $\mathbb R_+$ satisfying
+\begin{equation}\label{normalmode}
+ (P_0(x^0,\xi',D_t)+\sigma^4)w=0,\qquad
+ B_{j,0}(x^0,\xi',D_t)w(0)=0.
+\end{equation}
+Normalize the packet \eqref{packet} so that $\|u_h\|_2=1+o(1)$. The frozen
+equation, coefficient variation on the $\sqrt h$ tangential scale, and cutoff
+counting give
+\begin{equation}\label{quasi1}
+ \|(P+h^{-4}\sigma^4)u_h\|_2=O(h^{-7/2}).
+\end{equation}
+Let $v_h$ be supplied by Lemma \ref{trace}, and put $q_h=u_h+v_h$. Then
+$q_h\in\cD(\mathcal P)$, $\|q_h\|_2=1+o(1)$, and
+\begin{equation}\label{quasi2}
+ \|(\mathcal P+h^{-4}\sigma^4)q_h\|_2=O(h^{-7/2}),
+\end{equation}
+because $h^{-4}\|v_h\|_2=O(h^{-7/2})$.
+
+Self-adjoint nonnegativity and \eqref{quasi2} now imply
+\begin{align*}
+ 0&\le \langle\mathcal Pq_h,q_h\rangle\\
+ &=-h^{-4}\sigma^4\|q_h\|_2^2
+   +O(h^{-7/2})\|q_h\|_2,
+\end{align*}
+which is negative for small $h$. This contradiction proves the augmented
+$\LS$ condition.
+\end{proof}
+
+\section{Full answer}
+
+\begin{theorem}[General-boundary bi-Laplacian spectral inequality]\label{main}
+Assume the boundary operators and the realization $\mathcal P$ satisfy the
+standing hypotheses of Le Rousseau--Zongo \cite{source}: ordinary $\LS$,
+self-adjointness, and nonnegativity. For every nonempty open
+$\omega\subset\Om$ there is $C>0$ such that, for all $\mu\ge0$,
+\[
+ \|u\|_{L^2(\Om)}\le C e^{C\mu^{1/4}}\|u\|_{L^2(\omega)},
+ \qquad u\in\Span\{\phi_j:\mu_j\le\mu\}.
+\]
+Thus the spectral-inequality question in Section 1.6.2 of
+arXiv:2109.01521v2 has an affirmative answer.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{automatic} supplies the only additional hypothesis in
+Zongo--Robbiano \cite[Theorem 1.3]{support}. Applying that theorem gives the
+displayed inequality with the exponent $\mu^{1/4}$.
+\end{proof}
+
+\section{Verification, scope, and novelty check}
+
+\paragraph{Hypothesis match.}
+The source question occurs on page 8 of arXiv:2109.01521v2. The supporting
+spectral theorem occurs as Theorem 1.3 on page 6 of arXiv:2309.02181v1. Its
+extra assumption is exactly ordinary $\LS$ for the augmented operator
+$D_s^4+\Delta^2$. Lemma \ref{automatic} derives that assumption from the
+source's self-adjoint nonnegativity.
+
+\paragraph{Sanity checks.}
+The sign is forced: Fourier transformation in $s$ changes $D_s^4$ into
+$+\sigma^4$, so a failed augmented condition gives a frozen mode at the
+negative energy $-\sigma^4$. The packet error is $h^{-7/2}$ versus the main
+$h^{-4}$ term, leaving the required half-power margin. When $\sigma=0$, the
+argument correctly reduces to the source $\LS$ condition.
+
+\paragraph{Bounded novelty search.}
+On 27 August 2026 we searched the run indexes, arXiv/web results for the exact
+phrases ``spectral inequality'', ``general boundary conditions'',
+``bi-Laplace'', and ``Lopatinski--Shapiro'', and the citation trail of
+arXiv:2109.01521. We found arXiv:2309.02181, which proves the desired estimate
+with the additional augmented $\LS$ hypothesis and cites the source paper,
+but no primary source removing that hypothesis by self-adjoint nonnegativity.
+This is a bounded search, not a claim of exhaustive novelty.
+
+\paragraph{Human review recommendation.}
+The result is recommended for expert review as a likely valid full solution.
+The decisive review point is the standard high-frequency right inverse in
+Lemma \ref{trace}; a reviewer should check its normality convention against
+the boundary-operator class in the source. No claim is made about Section
+1.6.1 (boundary damping) or Section 1.6.3 (a quantitative interpolation
+inequality).
+
+\begin{thebibliography}{9}
+\bibitem{source}
+J. Le Rousseau and E. Wend-Benedo Zongo,
+\emph{Stabilization of the damped plate equation under general boundary
+conditions}, arXiv:2109.01521v2 (2021); J. \`Ec. polytech. Math. 10 (2023),
+1--65.
+
+\bibitem{support}
+E. Wend-Benedo Zongo and L. Robbiano,
+\emph{Null-controllability for a fourth order parabolic equation under
+general boundary conditions}, arXiv:2309.02181v1 (2023), especially Theorem
+1.3.
+
+\bibitem{AV}
+M. S. Agranovich and M. I. Vishik,
+\emph{Elliptic problems with a parameter and parabolic problems of general
+type}, Russian Math. Surveys 19:3 (1964), 53--157.
+\end{thebibliography}
+
+\end{document}

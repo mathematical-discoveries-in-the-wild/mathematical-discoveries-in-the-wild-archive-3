@@ -1,0 +1,62 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1904.04549",
+  "author_list": [
+    "Nacib Albuquerque",
+    "Gustavo Araújo",
+    "Lisiane Rezende",
+    "Joedson Santos"
+  ],
+  "claim_short": "Let H be Hilbert, let p=(p1,...,pm) belong to [1,2]^m, and let q=(q1,...,qm) have finite coordinates at least one. Then",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 1834,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1904.04549v2",
+    "source_url": "https://arxiv.org/abs/1904.04549v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "",
+  "needs_manual_summary": "no",
+  "notes": "",
+  "novelty_status": "likely_new",
+  "packet_class": "partial",
+  "packet_path": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/",
+  "packet_title": "Complete low-exponent anisotropic Grothendieck classification",
+  "primary_arxiv_id": "1904.04549",
+  "proof_status": "unknown",
+  "readme_path": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/files/README.md",
+  "result_class": "partial",
+  "result_id": "fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:2449",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_partial_1904.04549_1904.04549_low_exponent_anisotropic_grothendieck/files/solution_packet.pdf",
+  "source_authors": "Nacib Albuquerque, Gustavo Araújo, Lisiane Rezende, Joedson Santos",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/partial/1904.04549_low_exponent_anisotropic_grothendieck/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1904.04549v2",
+  "source_question": "",
+  "source_title": "A summability principle and applications",
+  "source_url": "https://arxiv.org/abs/1904.04549v2",
+  "source_year": "2019",
+  "verification_status": "unverified"
+}

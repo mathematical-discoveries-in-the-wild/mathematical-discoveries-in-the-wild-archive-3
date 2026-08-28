@@ -1,0 +1,236 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx,xcolor,microtype,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\T}{\mathbb T}
+\newcommand{\D}{\mathbb D}
+\newcommand{\C}{\mathbb C}
+\newcommand{\one}{\mathbf 1}
+\title{\vspace{-2em}Minimal Unitary Realizations Can Agree Locally\\
+and Disagree on a Disconnected Component}
+\author{Counterexample packet for arXiv:2509.08921}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+\begin{center}
+\fcolorbox{red!65!black}{red!3}{\parbox{0.91\textwidth}{
+\textbf{Status: candidate full counterexample, likely valid.}
+There are two minimal, analytically equivalent univariate realizations whose
+operators are unitary with spectrum $\T$, but whose transfer functions differ
+by exactly $-1/z$ on $\C\setminus\overline\D$. This supplies the example
+requested in Remark~2.4 of the source paper.
+}}
+\end{center}
+
+\section{Source and exact question}
+
+The source is A.~Karoobi, R.~T.~W.~Martin, and M.~Tornes,
+\emph{Operator realizations about a matrix-centre}, arXiv:2509.08921
+\cite{KMT}. For a bounded operator $A$ on a Hilbert space and vectors $b,c$,
+the scalar transfer function is
+\[
+                  f_A(z)=b^*(I-zA)^{-1}c.
+\]
+The realization is \emph{minimal} when $c$ is $A$-cyclic and $b$ is
+$A^*$-cyclic. Two realizations are analytically equivalent at $0$ exactly when
+their moments $b^*A^n c$ agree for every $n\geq0$; equivalently, their
+matrix-level transfer power series agree near $0$.
+
+Remark~2.4 on source PDF page 8 asks whether there exist two minimal,
+analytically equivalent realizations with disconnected invertibility domains
+which define different analytic functions on a component disconnected from
+$0$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/open_problem_crop.png}
+\caption{Source PDF page 8: Example~2.3 and the exact question in
+Remark~2.4.}
+\end{figure}
+
+\section{Proof intuition}
+
+The source's bilateral-shift example fails minimality because a point mass at
+one Fourier mode sees only half of the bilateral orbit. We replace that point
+mass by Lebesgue measure restricted to a proper measurable part of the unit
+circle. On any proper piece whose complement has positive measure, Hardy
+boundary uniqueness makes both analytic and anti-analytic monomials dense;
+this gives the two cyclicity conditions and hence minimality.
+
+Split the circle into two pieces $E$ and $F$, each occurring in every arc.
+The first realization uses $L^2(F)$ and output vector $\bar\zeta$, while the
+second uses $L^2(E)$ and output vector $-\bar\zeta$. Their nonnegative moments
+add up to the positive Fourier coefficients of Lebesgue measure, hence cancel.
+On the exterior component the missing Laurent coefficient is the constant
+Fourier coefficient instead, and it survives as $-1/z$.
+
+\section{Two elementary lemmas}
+
+Let $m$ denote normalized Lebesgue measure on $\T$.
+
+\begin{lemma}[Everywhere-thick measurable partition]\label{lem:partition}
+There is a measurable partition $\T=E\mathbin{\dot\cup}F$ such that
+\[
+             m(E\cap I)>0\quad\text{and}\quad m(F\cap I)>0
+\]
+for every nonempty open arc $I\subset\T$.
+\end{lemma}
+
+\begin{proof}
+Enumerate a countable basis of open arcs as $(I_k)_{k\geq1}$. Inductively,
+inside $I_k$ and away from the finitely many compact sets already selected,
+choose two disjoint compact nowhere-dense sets $K_k,L_k$ of positive measure.
+This is possible by placing two small fat Cantor sets in an open subarc of the
+remaining set. Put $E=\bigcup_{k\geq1}K_k$ and $F=\T\setminus E$. Every future
+$K_j$ is chosen disjoint from every earlier $L_k$, so $L_k\subset F$. Every
+open arc contains some basis arc $I_k$ and therefore contains positive-measure
+subsets $K_k\subset E$ and $L_k\subset F$.
+\end{proof}
+
+\begin{lemma}[One-sided polynomial density]\label{lem:density}
+If $G\subset\T$ is measurable and $m(\T\setminus G)>0$, then both
+\[
+ \operatorname{span}\{\zeta^n:n\geq0\}
+ \quad\text{and}\quad
+ \operatorname{span}\{\bar\zeta^n:n\geq0\}
+\]
+are dense in $L^2(G,m)$.
+\end{lemma}
+
+\begin{proof}
+Suppose $h\in L^2(G)$ is orthogonal to every $\zeta^n$, $n\geq0$. Extend
+$\one_G\bar h$ by zero to $\T$. Its Fourier coefficients of index at most zero
+vanish, so it is the boundary function of an element of $zH^2$. It vanishes on
+$\T\setminus G$, a set of positive measure. Hardy boundary uniqueness forces
+it to vanish identically; see, for example, \cite[Chapter~II]{Duren}. Hence
+$h=0$. This proves density of analytic polynomials. Complex conjugation gives
+the anti-analytic assertion.
+\end{proof}
+
+\section{The counterexample}
+
+Choose $E,F$ as in Lemma~\ref{lem:partition}. For $G\in\{E,F\}$ let
+\[
+             \mathcal H_G=L^2(G,m),\qquad
+             (U_Gh)(\zeta)=\zeta h(\zeta).
+\]
+Define two realizations by
+\begin{equation}\label{eq:triples}
+ (A,b,c)=(U_F,\bar\zeta,\one_F),
+ \qquad
+ (A',b',c')=(U_E,-\bar\zeta,\one_E).
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+The two realizations in \eqref{eq:triples} are minimal and analytically
+equivalent at $0$. Both scalar invertibility domains are
+\[
+                \C\setminus\T=\D\mathbin{\dot\cup}
+                (\C\setminus\overline\D).
+\]
+If $f_F$ and $f_E$ are their scalar transfer functions, then
+\[
+ f_F(z)=f_E(z)\quad(|z|<1),
+ \qquad
+ f_F(z)-f_E(z)=-\frac1z\quad(|z|>1).
+\]
+Thus they give the example requested in Remark~2.4 of \cite{KMT}.
+\end{theorem}
+
+\begin{proof}
+Each $U_G$ is unitary. Since every open arc has positive $G$-measure, the
+essential range of the coordinate function on $G$ is all of $\T$. Thus
+$\sigma(U_E)=\sigma(U_F)=\T$, and $I-zU_G$ is invertible exactly when
+$|z|\neq1$.
+
+By Lemma~\ref{lem:density}, $\one_G$ is $U_G$-cyclic. The adjoint is
+$U_G^*=M_{\bar\zeta}$, and
+\[
+        (U_F^*)^n\bar\zeta=\bar\zeta^{n+1},\qquad
+        (U_E^*)^n(-\bar\zeta)=-\bar\zeta^{n+1}.
+\]
+The shifted anti-analytic monomials are dense because multiplication by
+$\bar\zeta$ is unitary and the unshifted anti-analytic monomials are dense by
+Lemma~\ref{lem:density}. Hence both realizations are minimal.
+
+For every $n\geq0$, their Markov parameters are
+\begin{align*}
+ b^*A^n c&=\int_F \zeta^{n+1}\,dm(\zeta),\\
+ b'^*A'^n c'&=-\int_E \zeta^{n+1}\,dm(\zeta).
+\end{align*}
+Because $E\mathbin{\dot\cup}F=\T$ modulo null sets,
+\[
+ b^*A^n c-b'^*A'^n c'
+   =\int_{\T}\zeta^{n+1}\,dm(\zeta)=0.
+\]
+The scalar transfer series therefore agree on $\D$. More strongly, at every
+matrix level and for every matrix $Z$ with $\lVert Z\rVert<1$, both quantized
+transfer functions are
+\[
+                 \sum_{n\geq0} Z^n\,(b^*A^n c),
+\]
+so the realizations are analytically equivalent at $0$ in the precise sense
+of the source paper.
+
+Finally, for any $|z|\neq1$,
+\begin{align*}
+ f_F(z)-f_E(z)
+ &=\int_F\frac{\zeta}{{1-z\zeta}}\,dm(\zeta)
+   +\int_E\frac{\zeta}{1-z\zeta}\,dm(\zeta)\\
+ &=\int_{\T}\frac{\zeta}{1-z\zeta}\,dm(\zeta).
+\end{align*}
+For $|z|<1$, the geometric series has only strictly positive Fourier modes,
+so the last integral is zero. For $|z|>1$,
+\[
+ \frac{\zeta}{1-z\zeta}
+   =-\frac1z\sum_{k=0}^{\infty}z^{-k}\zeta^{-k},
+\]
+uniformly on $\T$, and integration leaves only the $k=0$ term. The difference
+is therefore $-1/z$, as claimed.
+\end{proof}
+
+\section{Verification, novelty, and scope}
+
+\paragraph{Verification.}
+The accompanying verification report audits separately the measurable
+partition, the two cyclicity statements, the spectrum calculation, equality
+at every matrix level, and the exterior Laurent coefficient. No numerical
+computation is used; all identities are exact.
+
+\paragraph{Bounded novelty search.}
+The four run indexes were searched for arXiv:2509.08921, the exact title,
+``minimal and analytically equivalent realizations,'' disconnected
+invertibility domains, unitary realizations, and Markov parameters.
+Exact-phrase and close arXiv/web searches through 27 August 2026 returned the
+source and general realization literature, but no later paper or preprint
+answering Remark~2.4. Novelty is plausible, not certified.
+
+\paragraph{Scope and review.}
+This is a full affirmative answer to the existence question in Remark~2.4:
+both realizations are minimal, both domains have the required disconnected
+component, and their global values differ there. It does not address the
+separate compact matrix-centre realization question in Section~9 of the source.
+Human review should focus on Lemma~\ref{lem:density} and the sign convention in
+the two moment formulas.
+
+\begingroup
+\sloppy
+\raggedright
+\begin{thebibliography}{9}
+\bibitem{KMT}
+A.~Karoobi, R.~T.~W.~Martin, and M.~Tornes,
+\emph{Operator realizations about a matrix-centre},
+\href{https://arxiv.org/abs/2509.08921}{arXiv:2509.08921}, 2025.
+
+\bibitem{Duren}
+P.~L.~Duren,
+\emph{Theory of $H^p$ Spaces},
+Pure and Applied Mathematics 38, Academic Press, 1970;
+Dover reprint, 2000.
+\end{thebibliography}
+\endgroup
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.62em}
+
+\newcommand{\statusbox}[1]{%
+  \begin{center}
+  \fcolorbox{MidnightBlue}{MidnightBlue!6}{%
+    \parbox{0.91\linewidth}{\centering\bfseries\color{MidnightBlue}#1}}
+  \end{center}}
+
+\title{Literature Status Note\\[0.25em]
+\large The Lipschitz-domain oscillation LIL from arXiv:1203.5290}
+\author{Run \texttt{fa\_banach\_001} --- lane 2}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\statusbox{LITERATURE ALREADY ANSWERED --- LIPSCHITZ-DOMAIN BRANCH ONLY}
+
+\section*{Source question}
+
+K. S. Eikrem, E. Malinnikova, and P. A. Mozolyako study harmonic functions
+on the upper half-space with growth controlled by a decreasing doubling weight
+$v$ and prove a law of the iterated logarithm for
+\[
+ I_u(x,s)=\int_s^1 u(x,t)\,d\!\left(\frac1{v(t)}\right).
+\]
+In Section 5, ``Concluding remarks and open problems,'' PDF page 19 of
+arXiv:1203.5290, they ask whether their Theorem 5 extends to Lipschitz domains
+\cite{EMM}.  In the same paragraph they state a separate, stronger local
+conjecture under the radial hypothesis $|u(x,t)|\leq C v(t)$ for $x$ in a
+positive-measure set.
+
+\section*{Supporting answer}
+
+P. Mozolyako's later paper explicitly identifies the source theorem and says:
+``Our main goal is to extend this result to the domains ... above the graphs of
+Lipschitz functions'' \cite[p.~2]{Moz}.  Its Theorem 1, on supporting PDF page
+2, proves exactly that extension.  If
+\[
+ \Omega_\phi=\{(x,y):y\geq\phi(x)\},
+\]
+where $\phi$ is Lipschitz, and $u$ satisfies
+\[
+ |u(x,y)|\leq K w\!\left(\operatorname{dist}((x,y),\partial\Omega_\phi)\right),
+\]
+then for
+\[
+ I(x,\delta)=\int_\delta^1
+ u(x,\phi(x)+y)\,d\!\left(\frac1{w(y)}\right)
+\]
+one has
+\[
+ \limsup_{\delta\to0}
+ \frac{I(x,\delta)}
+ {\sqrt{\log w(\delta)\,\log\log\log w(\delta)}}
+ \leq C\,\|u\|_{w,\infty}
+ \quad\text{for almost every }x\in\mathbb R^n.
+\]
+The supporting authors knew they were answering the source question: the paper
+cites the source as [EMM], restates its upper-half-space theorem as Theorem A,
+and presents Theorem 1 as the requested extension.  It also notes that the same
+conclusion holds for certain star-like Lipschitz domains.
+
+\section*{Scope boundary}
+
+This identification does \emph{not} close the source paragraph's radial-only
+local conjecture.  Theorem 2 of arXiv:1507.07455 proves a local result under the
+stronger non-tangential hypothesis
+\[
+ |u(x,y)|\leq K w(y)\qquad\text{whenever }|x-x_0|\leq My,
+ \quad x_0\in\Sigma.
+\]
+Immediately afterward, on supporting PDF page 3, the author states that it is
+unknown whether this can be replaced by radial growth control.  Therefore the
+durable classification is:
+
+\begin{itemize}
+  \item Lipschitz-domain extension: fully answered in later literature.
+  \item Radial-only local version on a positive-measure set: still open in the
+        decisive supporting paper; no claim of resolution is made here.
+\end{itemize}
+
+\section*{Evidence and review recommendation}
+
+The identification used the arXiv source files and local PDFs for both papers,
+plus exact-phrase and keyword searches for the source question.  The decisive
+cross-checks are source PDF page 19, supporting PDF page 2 (Theorem 1), and
+supporting PDF page 3 (the radial/non-tangential distinction).
+
+Human review recommendation: classify only the Lipschitz-domain branch as an
+already-answered literature result; retain the radial local conjecture as
+unresolved unless a later exact source is found.
+
+\begin{thebibliography}{9}
+\bibitem{EMM}
+K. S. Eikrem, E. Malinnikova, and P. A. Mozolyako,
+\emph{Wavelet decomposition of harmonic functions in growth spaces},
+arXiv:1203.5290; published as \emph{Wavelet characterization of growth spaces
+of harmonic functions}, J. Anal. Math. 122 (2014), 87--111.
+
+\bibitem{Moz}
+P. Mozolyako,
+\emph{Boundary oscillations of harmonic functions in Lipschitz domains},
+arXiv:1507.07455 (2015).
+\end{thebibliography}
+
+\end{document}

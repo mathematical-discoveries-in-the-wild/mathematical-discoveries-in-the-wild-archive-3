@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\setlength{\emergencystretch}{3em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newcommand{\N}{\mathbb N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Rrho}{{}^{\rho}\widetilde{\mathbb R}}
+\newcommand{\Ru}{{}^{\rho}\widetilde{\R}_{\mathrm u}}
+\newcommand{\Rs}{{}^{\rho}_{\sigma}\widetilde{\R}_{\mathrm s}}
+\newcommand{\Ns}{{}^{\sigma}\widetilde{\N}}
+
+\title{The Natural Map to the Hyperseries Sequence Space Is Not Injective\\
+\large A supermoderate-spike counterexample to the open problem in arXiv:2006.16141}
+\author{Candidate full solution packet for arXiv:2006.16141}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+Candidate full negative answer, likely valid and awaiting human review.  For
+every pair of gauges for which the source map is defined, its kernel is
+nonzero; in fact, the kernel contains infinitely many nonzero pairwise
+orthogonal idempotents.
+
+\section{Source question}
+
+The source is Diksha Tiwari and Paolo Giordano, \emph{Hyperseries in the
+non-Archimedean ring of Colombeau generalized numbers}, arXiv:2006.16141,
+published in \emph{Monatshefte f\"ur Mathematik} 197 (2022), 193--223
+\cite{TG}.  On source PDF page 7, immediately after Lemma 7(iii), the authors
+construct an $\Rrho$-linear map
+\[
+ \lambda:\Ru\longrightarrow\Rs,
+ \qquad [a_{n\eps}]_{\mathrm u}\longmapsto[a_{n\eps}]_{\mathrm s},
+\]
+under the gauge condition $\sigma\geq\rho^*$, and state:
+\begin{quote}
+``It remains an open problem the study of injectivity of the map $\lambda$.''
+\end{quote}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The injectivity question in the source paper, source PDF page 7.}
+\end{figure}
+
+\section{Definitions used}
+
+Let $\rho=(\rho_\eps)$ and $\sigma=(\sigma_\eps)$ be gauges, so in
+particular $\rho_\eps,\sigma_\eps>0$ and both tend to zero.  The condition
+$\sigma\geq\rho^*$ means that
+\[
+ \sigma_\eps\geq\rho_\eps^Q
+ \quad\hbox{eventually for some }Q\in\N_{>0}.
+\]
+An array $(a_{n\eps})_{n\in\N,\eps}$ is \emph{uniformly moderate} if
+\[
+ \exists Q\in\N\ \forall^{0}\eps\ \forall n\in\N:
+ |a_{n\eps}|\leq\rho_\eps^{-Q},
+\]
+and is \emph{uniformly negligible} if
+\[
+ \forall q\in\N\ \forall^{0}\eps\ \forall n\in\N:
+ |a_{n\eps}|\leq\rho_\eps^q.
+\]
+The quotient is $\Ru$.
+
+Every $N=[N_\eps]\in\Ns$ has a $\sigma$-moderate representative: for
+some $R\in\N$,
+\[
+                         N_\eps\leq\sigma_\eps^{-R}
+                         \quad\hbox{eventually}.
+\]
+The target $\Rs$ identifies two arrays if every interval sum between
+$\sigma$-moderate hypernatural endpoints is $\rho$-negligible.  Thus an
+array represents zero in $\Rs$ precisely when, for all $M,N\in\Ns$,
+\[
+ \left(\sum_{n=N_\eps}^{M_\eps}a_{n\eps}\right)_\eps\sim_\rho0.
+\]
+These are the definitions in Section 2 of \cite{TG} specialized to the
+zero class.
+
+\section{Proof intuition}
+
+The two quotient relations observe different ranges of the ordinary index
+$n$.  Uniform negligibility in $\Ru$ tests \emph{every} $n\in\N$ at each
+small $\eps$.  In contrast, $\Rs$ only tests intervals whose endpoints grow
+at most like a fixed power of $1/\sigma_\eps$.
+
+Place a single unit spike at an index $K_\eps$ growing faster than every such
+power.  The domain still sees the spike, because its definition takes a
+supremum over all ordinary $n$.  Every admissible hyperseries interval misses
+it eventually, so the target sees the zero array.  The counterexample is the
+gap between ``all ordinary indices'' and ``all $\sigma$-moderate indices''
+made literal.
+
+\section{Formal result}
+
+\begin{lemma}[A super-$\sigma$ index]\label{lem:super}
+Define
+\[
+                   K_\eps:=\left\lceil\exp(1/\sigma_\eps)\right\rceil.
+\]
+Then $K_\eps>\sigma_\eps^{-R}$ eventually for every fixed $R\in\N$.
+Consequently, if $N=[N_\eps]\in\Ns$, then $N_\eps<K_\eps$ eventually.
+\end{lemma}
+
+\begin{proof}
+Put $x_\eps=1/\sigma_\eps$.  Then $x_\eps\to+\infty$, and for every
+fixed $R$,
+\[
+ \frac{\exp(1/\sigma_\eps)}{\sigma_\eps^{-R}}
+   =\frac{e^{x_\eps}}{x_\eps^R}\longrightarrow+\infty.
+\]
+This proves the first assertion.  For the second, choose $R$ such that
+$N_\eps\leq\sigma_\eps^{-R}$ eventually and apply the first assertion.
+\end{proof}
+
+\begin{theorem}[Complete negative answer to the injectivity problem]
+\label{thm:main}
+For every pair of gauges $\rho,\sigma$ satisfying $\sigma\geq\rho^*$, the
+natural linear map
+\[
+                        \lambda:\Ru\longrightarrow\Rs
+\]
+of Lemma 7(iii) in \cite{TG} is not injective.
+\end{theorem}
+
+\begin{proof}
+Let $K_\eps$ be as in Lemma \ref{lem:super} and define
+\[
+ a_{n\eps}:=
+ \begin{cases}
+  1,&n=K_\eps,\\
+  0,&n\neq K_\eps.
+ \end{cases}
+\]
+Because $|a_{n\eps}|\leq1=\rho_\eps^0$, this array is uniformly moderate.
+It is not uniformly negligible: since $\rho_\eps\to0$, eventually
+$\rho_\eps<1$, while for the ordinary index $n=K_\eps$ one has
+$|a_{K_\eps,\eps}|=1>\rho_\eps$.  Therefore
+\[
+                         [a_{n\eps}]_{\mathrm u}\neq0
+                         \quad\hbox{in }\Ru.
+\]
+
+Now fix arbitrary $M=[M_\eps]$ and $N=[N_\eps]$ in $\Ns$.  By Lemma
+\ref{lem:super}, both endpoints are eventually strictly smaller than
+$K_\eps$.  Hence every ordinary integer between the two endpoints is also
+smaller than $K_\eps$, and
+\[
+                         \sum_{n=N_\eps}^{M_\eps}a_{n\eps}=0
+                         \quad\hbox{eventually}.
+\]
+The interval-sum net is therefore $\rho$-negligible.  Since $M,N$ were
+arbitrary, $(a_{n\eps})$ represents zero in $\Rs$.  Thus
+\[
+       \lambda([a_{n\eps}]_{\mathrm u})=[a_{n\eps}]_{\mathrm s}=0
+       \quad\hbox{while}\quad [a_{n\eps}]_{\mathrm u}\neq0,
+\]
+which proves noninjectivity.
+\end{proof}
+
+\begin{corollary}[A large invisible tail]
+The kernel of $\lambda$ contains infinitely many nonzero pairwise orthogonal
+idempotents of the pointwise ring $\Ru$.
+\end{corollary}
+
+\begin{proof}
+For $j\in\N_{>0}$ set
+\[
+ K^{(j)}_\eps=\left\lceil e^{j/\sigma_\eps}\right\rceil,
+ \qquad
+ a^{(j)}_{n\eps}=\mathbf 1_{\{K^{(j)}_\eps\}}(n).
+\]
+The proof of Theorem \ref{thm:main} applies to each $a^{(j)}$.  Each domain
+class is nonzero and idempotent.  If $j\neq k$, then
+$K^{(j)}_\eps\neq K^{(k)}_\eps$ eventually, so the pointwise product of the
+two arrays is eventually identically zero, uniformly in $n$.  Their classes
+are therefore orthogonal.
+\end{proof}
+
+\section{Verification notes}
+
+\begin{itemize}
+\item \textbf{Gauge generality.}  No special form, monotonicity, or comparison
+beyond the source hypothesis $\sigma\geq\rho^*$ is used.  In fact, that
+comparison is needed only so that the source map $\lambda$ is defined.
+\item \textbf{Domain nonzero.}  The witness to failure of uniform
+negligibility is allowed to depend on $\eps$: the quantifier order is
+$\forall^0\eps\,\forall n$.  At each $\eps$, choosing the ordinary integer
+$n=K_\eps$ contradicts the $q=1$ estimate.
+\item \textbf{Target zero.}  Every individual hypernatural has some fixed
+moderateness exponent.  After taking the maximum exponent for two endpoints,
+Lemma \ref{lem:super} puts the spike beyond the entire interval.
+\item \textbf{Representatives.}  The proof checks the target equivalence for
+arbitrary hypernatural classes by choosing arbitrary moderate
+representatives.  Changing representatives does not affect the conclusion,
+since the source definition already makes interval sums well defined.
+\item \textbf{No computation.}  The argument is exact and uses only
+$e^x/x^R\to\infty$; no numerical or symbolic dependency remains.
+\end{itemize}
+
+\section{Scope and novelty check}
+
+The theorem answers the printed injectivity problem completely and
+negatively for every gauge pair in the stated domain of the map.  It does not
+alter the usefulness of $\lambda$ for transferring convergence statements;
+it identifies an ``invisible tail'' that all $\sigma$-moderate hyperseries
+intervals fail to detect.
+
+A bounded novelty check was performed on 27 August 2026.  The four local run
+indexes were searched for arXiv:2006.16141 and the phrases ``hyperseries'',
+``injectivity of the map lambda'', ``uniformly moderate'', and
+``supermoderate''.  Exact-phrase web searches found the published source,
+which still states the problem open, and a 2025 University of Vienna thesis
+that reproduces the same open statement.  The local arXiv sources of the
+follow-up \emph{Hyper-power series and generalized real analytic functions}
+(arXiv:2212.04757) \cite{TMG}, as well as citing arXiv sources 2111.15408,
+2501.17364, and 2604.17904, were searched for ``injectiv'', ``lambda'', and
+the two quotient-space notations; no resolution was found.  No paper or
+packet containing this supermoderate-spike counterexample was located.  The
+search is bounded rather than exhaustive, so novelty confidence is moderate
+to high.
+
+\section{Human-review recommendation}
+
+Promote as a full negative answer if a reviewer confirms the quantifier order
+in uniform negligibility and the standard definition that every element of
+$\Ns$ has a representative bounded by one fixed power of
+$1/\sigma_\eps$.  Those are stated explicitly in the source.  The remaining
+argument is elementary, works for arbitrary admissible gauges, and has no
+unproved dependency.
+
+\begin{thebibliography}{9}
+\bibitem{TG}
+D.~Tiwari and P.~Giordano,
+\emph{Hyperseries in the non-Archimedean ring of Colombeau generalized
+numbers}, Monatshefte f\"ur Mathematik \textbf{197} (2022), 193--223;
+arXiv:2006.16141,
+\href{https://doi.org/10.1007/s00605-021-01647-0}{doi:10.1007/s00605-021-01647-0}.
+
+\bibitem{TMG}
+D.~Tiwari, A.~Mukhammadiev, and P.~Giordano,
+\emph{Hyper-power series and generalized real analytic functions},
+arXiv:2212.04757 (2022).
+\end{thebibliography}
+
+\end{document}

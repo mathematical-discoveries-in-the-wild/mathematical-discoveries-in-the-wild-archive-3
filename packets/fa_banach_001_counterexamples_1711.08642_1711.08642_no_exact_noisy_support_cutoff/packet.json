@@ -1,0 +1,62 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1711.08642",
+  "author_list": [
+    "Daniel Gerth",
+    "Bernd Hofmann"
+  ],
+  "claim_short": "That inclusion is false, even for the polynomial diagonal model used in the announced follow-up paper. Take",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1104,
+  "copied_file_count": 7,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/figures/open_problem_crop_1.png",
+      "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/figures/open_problem_crop_2.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/figures/open_problem_crop_1.png",
+      "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/figures/open_problem_crop_2.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1711.08642v1",
+    "source_url": "https://arxiv.org/abs/1711.08642v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/",
+  "packet_title": "Exact noisy support cutoff fails for oversmoothing ell1 regularization",
+  "primary_arxiv_id": "1711.08642",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0220",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1711.08642_1711.08642_no_exact_noisy_support_cutoff/files/solution_packet.pdf",
+  "source_authors": "Daniel Gerth, Bernd Hofmann",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1711.08642_no_exact_noisy_support_cutoff/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1711.08642v1",
+  "source_question": "Daniel Gerth and Bernd Hofmann, *On ell1-regularization under continuity of the forward operator in weaker topologies*, arXiv:1711.08642. In the final discussion, printed pages 18-19, the authors identify as an open problem the claim that the support of an oversmoothing ell1-regularized approximation is not larger than the truncation index n(delta).",
+  "source_title": "On $\\ell^1$-regularization under continuity of the forward operator in weaker topologies",
+  "source_url": "https://arxiv.org/abs/1711.08642v1",
+  "source_year": "2017",
+  "verification_status": "unverified"
+}

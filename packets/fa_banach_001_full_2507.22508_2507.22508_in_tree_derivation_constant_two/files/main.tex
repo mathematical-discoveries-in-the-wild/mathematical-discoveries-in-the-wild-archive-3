@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\A}{\mathcal A}
+\newcommand{\D}{\mathcal D}
+\newcommand{\V}{\mathcal V}
+\newcommand{\E}{\mathbb E}
+
+\title{A Universal Constant Two for Derivations on In-Tree Tensor Algebras}
+\author{Candidate full answer to Conjecture 6.27 of arXiv:2507.22508}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate full solution, likely valid, pending human review.  For every finite
+in-tree $G$ and every derivation $\delta$ on its tensor algebra $\A_G$, there
+is $S\in\A_G$ such that $\delta=\delta_S$ and
+$\|S\|\leq 2\|\delta\|$.  Thus the conjectured universal constant exists,
+with $C=2$.}}
+\end{center}
+
+\section{Source conjecture}
+
+Huang and Ma ask for a graph-independent implementation constant for
+derivations on tensor algebras of finite in-trees \cite[Conjecture 6.27]{HM}.
+Here an in-tree is a finite directed tree with a range root $v_0$ such that
+there is a directed path from every vertex to $v_0$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.94\textwidth]{figures/open_problem_crop.png}
+\caption{Conjecture 6.27 in the source, arXiv PDF page 33.}
+\end{figure}
+
+With the source convention, $\delta_T(A)=AT-TA$.  The sign convention is
+irrelevant to the norm estimates below.  The source proves that every
+derivation on $\A_G$ is inner when $G$ is a finite tree
+\cite[Lemma 6.2]{HM}; the open point is a bound independent of the number and
+shape of the vertices.
+
+\section{Proof intuition}
+
+Start with any implementer $T$.  Averaging $T$ over the diagonal sign
+unitaries separates it into its vertex-diagonal part $D$ and its
+positive-length path part $N$.  The averaging identity writes $N$ as an
+average of values of the derivation on norm-one diagonal unitaries, so
+$\|N\|\leq\|\delta\|$.
+
+The diagonal coefficients are controlled without adding estimates along
+edges.  For a whole directed path $p$, the $L_p$ coefficient of
+$\delta(L_p)$ is exactly the difference of the diagonal coefficients at the
+two endpoints.  Applying this to the path from each vertex directly to the
+root bounds the entire diagonal, modulo the root scalar, by $\|\delta\|$.
+Adding the two independent pieces gives the constant $2$.
+
+\section{The theorem}
+
+For a path $p$, write $s(p)$ and $r(p)$ for its source and range, and let
+$L_p$ be the corresponding left creation operator.  The vertex projections
+$(L_v)_{v\in\V(G)}$ are pairwise orthogonal and sum to the identity.
+
+\begin{theorem}\label{thm:main}
+Let $G$ be a finite in-tree.  For every derivation
+$\delta:\A_G\to\A_G$, there exists $S\in\A_G$ such that
+\[
+  \delta=\delta_S,\qquad \|S\|\leq 2\|\delta\|.
+\]
+Consequently Conjecture 6.27 holds with the universal constant $C=2$.
+\end{theorem}
+
+\begin{proof}
+By the source's Lemma 6.2, choose $T\in\A_G$ with $\delta=\delta_T$.
+Let
+\[
+ \D_G=\operatorname{span}\{L_v:v\in\V(G)\}.
+\]
+For a sign vector $\varepsilon=(\varepsilon_v)_{v\in\V(G)}\in
+\{-1,1\}^{\V(G)}$, put
+\[
+ U_\varepsilon=\sum_{v\in\V(G)}\varepsilon_vL_v.
+\]
+This is a unitary element of $\D_G\subseteq\A_G$.  Define the diagonal
+expectation
+\[
+ E_{\D}(X)=2^{-|\V(G)|}\sum_\varepsilon
+ U_\varepsilon XU_\varepsilon^*.
+\]
+If $p$ has positive length, then $r(p)\neq s(p)$ because $G$ is a tree, and
+\[
+ U_\varepsilon L_pU_\varepsilon^*
+ =\varepsilon_{r(p)}\varepsilon_{s(p)}L_p.
+\]
+The sign average therefore kills every positive-length path term and fixes
+every vertex term.  Write
+\[
+ D=E_{\D}(T)=\sum_{v\in\V(G)}\lambda_vL_v,
+ \qquad N=T-D.
+\]
+Since
+\[
+ T-U_\varepsilon TU_\varepsilon^*
+ =(TU_\varepsilon-U_\varepsilon T)U_\varepsilon^*
+ =-\delta(U_\varepsilon)U_\varepsilon^*,
+\]
+we obtain
+\begin{equation}\label{eq:offdiag}
+ \|N\|
+ \leq 2^{-|\V(G)|}\sum_\varepsilon
+       \|\delta(U_\varepsilon)\|
+ \leq \|\delta\|.
+\end{equation}
+
+Now fix a positive-length path $p$.  The Fourier coefficient at $L_p$ is the
+contractive matrix functional
+\[
+ \phi_p(X)=\langle X\xi_{s(p)},\xi_p\rangle.
+\]
+The diagonal part gives
+\[
+ \phi_p(L_pD-DL_p)=\lambda_{s(p)}-\lambda_{r(p)}.
+\]
+Every term in $L_pN$ or $NL_p$ is either zero or is supported on a path of
+length strictly larger than $\ell(p)$.  Thus it has zero $L_p$ coefficient,
+and hence
+\begin{equation}\label{eq:path}
+ |\lambda_{s(p)}-\lambda_{r(p)}|
+ =|\phi_p(\delta(L_p))|
+ \leq \|\delta(L_p)\|
+ \leq \|\delta\|.
+\end{equation}
+
+Let $v_0$ be the range root.  For each vertex $v\neq v_0$, the in-tree
+property supplies a directed path $p_v$ with $s(p_v)=v$ and
+$r(p_v)=v_0$.  Applying \eqref{eq:path} to this entire path gives
+\[
+ |\lambda_v-\lambda_{v_0}|\leq\|\delta\|.
+\]
+Since the $L_v$ are orthogonal projections,
+\begin{equation}\label{eq:diag}
+ \|D-\lambda_{v_0}I\|
+ =\max_{v\in\V(G)}|\lambda_v-\lambda_{v_0}|
+ \leq\|\delta\|.
+\end{equation}
+Finally set $S=T-\lambda_{v_0}I$.  Subtracting a scalar does not change the
+inner derivation, while \eqref{eq:offdiag} and \eqref{eq:diag} give
+\[
+ \|S\|\leq\|N\|+\|D-\lambda_{v_0}I\|
+ \leq 2\|\delta\|.
+\]
+\end{proof}
+
+\section{Verification, scope, and novelty boundary}
+
+The companion script \texttt{code/verify\_tree\_averaging.py} constructs the
+finite left-regular path matrices for random rooted in-trees and checks the
+sign-average identity and the exact path-coefficient formula.  The computation
+is diagnostic only; the proof is the finite averaging and coefficient
+calculation displayed above.
+
+The theorem proves the existence assertion of Conjecture 6.27.  It does not
+assert that $C=2$ is optimal.  The source obtains $C=1$ for out-trees and for
+one star-shaped family of in-trees \cite[Propositions 6.25--6.26]{HM}.
+
+Bounded exact-title, arXiv-id, author, exact-conjecture, and keyword searches
+through 26 August 2026 found the source and mirrors of it, but no later primary
+source recording this proof or a resolution of Conjecture 6.27.  Priority is
+not certified and expert review remains necessary.
+
+\section{Human review recommendation}
+
+Check three convention-sensitive points: the formula
+$U_\varepsilon L_pU_\varepsilon^*=\varepsilon_{r(p)}
+\varepsilon_{s(p)}L_p$; the assertion that products involving $N$ cannot
+contribute to the $L_p$ coefficient; and the use of the whole path from a
+vertex to the root rather than an edge-by-edge sum.  Once these are verified,
+the constant-two estimate follows immediately.
+
+\sloppy
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{HM}
+L. Huang and M. Ma,
+\emph{Free semigroupoid algebras and the first cohomology groups},
+arXiv:2507.22508 (2025).
+\end{thebibliography}
+
+\end{document}

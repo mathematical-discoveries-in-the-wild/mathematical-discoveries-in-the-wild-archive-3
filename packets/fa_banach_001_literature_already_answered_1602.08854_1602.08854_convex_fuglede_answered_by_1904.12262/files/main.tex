@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+
+\definecolor{statusbg}{RGB}{239,246,255}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.35em,topsep=0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\emergencystretch}{3em}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Three convex Fuglede problems are answered in the literature\par}
+\vspace{0.45em}
+{\large arXiv:1602.08854 answered by arXiv:1904.12262\par}
+\vspace{0.45em}
+{\normalsize Run \texttt{fa\_banach\_001}, lane 2 \hfill 27 August 2026}
+\end{center}
+
+\vspace{0.6em}
+\noindent\colorbox{statusbg}{%
+\begin{minipage}{0.94\linewidth}
+\textbf{Status: literature already answered.}
+Theorem 1.1 of Lev and Matolcsi proves, in every dimension, that a spectral
+convex body is a convex polytope and tiles face-to-face by translations along
+a lattice. It therefore answers all three final-section problems below.
+\end{minipage}}
+
+\section*{Original source and exact questions}
+
+Greenfeld and Lev, \emph{Fuglede's spectral set conjecture for convex
+polytopes}, arXiv:1602.08854 \cite{GL}, Section 17, printed page 38, ask:
+
+\begin{itemize}
+\item \textbf{Problem 17.1.} If $\Omega\subset\mathbb{R}^d$, $d\geq 4$, is a
+spectral convex polytope, prove that $\Omega$ tiles by translations.
+\item \textbf{Problem 17.3.} Prove the same assertion when $\Omega$ is a
+zonotope in $\mathbb{R}^d$, $d\geq 4$.
+\item \textbf{Problem 17.4.} If a convex body $\Omega\subset\mathbb{R}^d$ is
+spectral, prove that it must be a polytope.
+\end{itemize}
+
+Here ``spectral'' means that $L^2(\Omega)$ admits an orthogonal basis of
+exponential functions. The first problem is the higher-dimensional
+spectral-implies-tiling direction of Fuglede's conjecture restricted to convex
+polytopes; the zonotope problem is its stated special case.
+
+\section*{Decisive later theorem}
+
+Lev and Matolcsi, \emph{The Fuglede conjecture for convex domains is true in
+all dimensions}, arXiv:1904.12262 \cite{LM}, state:
+
+\medskip
+\noindent\textbf{Theorem 1.1.}
+\emph{Let $\Omega$ be a convex body in $\mathbb{R}^d$. If $\Omega$ is a
+spectral set, then $\Omega$ must be a convex polytope, and it tiles the space
+face-to-face by translations along a lattice.}
+\medskip
+
+The polytope conclusion is exactly Problem 17.4. The tiling conclusion applies
+to every spectral convex polytope in every dimension, which gives Problem
+17.1, and hence its zonotope subcase Problem 17.3.
+
+\newpage
+\section*{Identification and provenance}
+
+This is an explicit literature completion, not a new proof. The later paper
+cites Greenfeld--Lev as the preceding three-dimensional polytope result and
+describes the higher-dimensional polytope case as open before announcing its
+all-dimensional theorem. One of its authors is also an author of the source.
+The relationship therefore was known to the supporting authors rather than
+being only an agent-discovered corollary.
+
+The later theorem appeared in \emph{Acta Mathematica} 228 (2022), 385--420,
+\url{https://doi.org/10.4310/ACTA.2022.v228.n2.a3}. Bounded searches by both arXiv identifiers,
+the exact titles, and ``Fuglede convex domains all dimensions'' located this
+direct answer.
+
+\section*{Scope}
+
+No part of Problems 17.1, 17.3, or 17.4 remains open. This identification says
+nothing about unrestricted nonconvex spectral sets, where Fuglede's original
+conjecture has a different status.
+
+\begin{thebibliography}{9}
+\bibitem{GL}
+R. Greenfeld and N. Lev,
+\emph{Fuglede's spectral set conjecture for convex polytopes},
+arXiv:1602.08854; J. Anal. Math. 140 (2020), 409--464.
+
+\bibitem{LM}
+N. Lev and M. Matolcsi,
+\emph{The Fuglede conjecture for convex domains is true in all dimensions},
+arXiv:1904.12262; Acta Math. 228 (2022), 385--420.
+\end{thebibliography}
+
+\end{document}

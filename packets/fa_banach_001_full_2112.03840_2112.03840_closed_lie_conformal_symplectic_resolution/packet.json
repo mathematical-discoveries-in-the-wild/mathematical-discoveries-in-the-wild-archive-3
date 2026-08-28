@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2112.03840",
+  "author_list": [
+    "Zhirayr Avetisyan",
+    "Alexey Karapetyants"
+  ],
+  "claim_short": "2112.03840 Homogeneous operators and homogeneous integral operators open problem natural subgroup G subset GL+(n) n>2 essentially unique homogeneous integral kernel; reiterated in 2504.04127 On a unique two-dimensional integral operator. Candidate full closed-Lie solution. Even d=2m: G=CSp+(V,omega) has exactly two generic diagonal pair-orbits distinguished by sign omega(x,y), so homogeneous measurable kernels form...",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 1140,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2112.03840v1",
+    "source_url": "https://arxiv.org/abs/2112.03840v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate full result likely valid: closed-Lie resolution by conformal-symplectic existence in even dimensions and exhaustive obstruction in odd dimensions",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/",
+  "packet_title": "Closed-Lie resolution of the higher-dimensional homogeneous-kernel problem",
+  "primary_arxiv_id": "2112.03840",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1067",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2112.03840_2112.03840_closed_lie_conformal_symplectic_resolution/files/solution_packet.pdf",
+  "source_authors": "Zhirayr Avetisyan, Alexey Karapetyants",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2112.03840_closed_lie_conformal_symplectic_resolution/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2112.03840v1",
+  "source_question": "",
+  "source_title": "Homogeneous operators and homogeneous integral operators",
+  "source_url": "https://arxiv.org/abs/2112.03840v1",
+  "source_year": "2021",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,154 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newcommand{\ThetaSet}{\boldsymbol{\Theta}}
+\newcommand{\N}{\mathbb N}
+
+\title{Odd-$\kappa$ Symmetry of Finite-Order Threshold Sets}
+\author{Candidate full answer to an open problem in arXiv:2201.09545}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate full solution, likely valid, pending human review.  For every
+dimension $d\geq1$, every $\kappa\geq1$, and every $m\geq0$,
+\[
+ \ThetaSet_{m,\kappa}(\Delta)=-\ThetaSet_{m,\kappa}(\Delta).
+\]
+This supplies the odd-$\kappa$ case left open after Lemma 3.3 of the source.}}
+\end{center}
+
+\section{Source question}
+
+Gol\'{e}nia and Mandich prove the displayed symmetry for even $\kappa$ and
+ask whether it also holds for odd $\kappa$ \cite[p.~12, after Lemma 3.3]{GM}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.96\textwidth]{figures/open_problem_crop.png}
+\caption{The open problem in the source, arXiv PDF page 12.}
+\end{figure}
+
+For $\vec x=(x_1,\ldots,x_d)\in[-1,1]^d$, the source defines
+\begin{equation}\label{eq:g}
+ g_{j\kappa}(\vec x)
+   =\sum_{i=1}^d(1-x_i^2)U_{j\kappa-1}(x_i),
+ \qquad j\in\N^*,
+\end{equation}
+where $U_n$ is the Chebyshev polynomial of the second kind.  The constant
+energy surface is
+\[
+ S_E=\{\vec x\in[-1,1]^d:x_1+\cdots+x_d=E\}.
+\]
+For $m\geq1$, membership $E\in\ThetaSet_{m,\kappa}(\Delta)$ means that there
+are $\vec x_0,\ldots,\vec x_m\in S_E$ and real weights
+$\omega_0,\ldots,\omega_{m-1}\leq0$ such that
+\begin{equation}\label{eq:witness}
+ g_{j\kappa}(\vec x_m)
+   =\sum_{q=0}^{m-1}\omega_q g_{j\kappa}(\vec x_q)
+ \quad\text{for every }j\in\N^*.
+\end{equation}
+For $m=0$, the definition asks for $\vec x_0\in S_E$ with
+$g_{j\kappa}(\vec x_0)=0$ for every $j$.
+
+\section{Proof intuition}
+
+Negate every coordinate of every witness point.  This changes the energy
+from $E$ to $-E$.  The parity of $U_{j\kappa-1}$ gives a scalar sign which
+may depend on $j$ when $\kappa$ is odd, but for each fixed $j$ it is identical
+at every witness point.  Consequently it multiplies both sides of
+\eqref{eq:witness} by the same number and cannot disturb the witness relation
+or the signs of its weights.
+
+\section{The theorem and proof}
+
+\begin{theorem}\label{thm:main}
+For all $d,\kappa\in\N^*$ and $m\in\N$,
+\[
+ \ThetaSet_{m,\kappa}(\Delta)=-\ThetaSet_{m,\kappa}(\Delta).
+\]
+In particular, Lemma 3.3 of \cite{GM} holds when $\kappa$ is odd.
+\end{theorem}
+
+\begin{proof}
+The standard parity identity for Chebyshev polynomials is
+\[
+ U_n(-t)=(-1)^nU_n(t).
+\]
+Because $1-t^2$ is even, \eqref{eq:g} yields
+\begin{equation}\label{eq:parity}
+ g_{j\kappa}(-\vec x)
+   =(-1)^{j\kappa-1}g_{j\kappa}(\vec x)
+ \quad (j\in\N^*).
+\end{equation}
+
+Suppose first that $m\geq1$ and $E\in\ThetaSet_{m,\kappa}(\Delta)$, with
+witnesses $\vec x_0,\ldots,\vec x_m$ and weights $\omega_q\leq0$ as in
+\eqref{eq:witness}.  Put $\vec y_q=-\vec x_q$.  Then $\vec y_q\in S_{-E}$.
+For every fixed $j$, multiply \eqref{eq:witness} by
+$(-1)^{j\kappa-1}$ and use \eqref{eq:parity}; this gives
+\[
+ g_{j\kappa}(\vec y_m)
+   =\sum_{q=0}^{m-1}\omega_qg_{j\kappa}(\vec y_q).
+\]
+The same weights are still nonpositive, so they witness
+$-E\in\ThetaSet_{m,\kappa}(\Delta)$.
+
+If $m=0$, choose $\vec x_0\in S_E$ with
+$g_{j\kappa}(\vec x_0)=0$ for all $j$.  Equation \eqref{eq:parity} shows that
+$-\vec x_0\in S_{-E}$ has the same zero property.  Thus in every case
+$\ThetaSet_{m,\kappa}(\Delta)\subseteq-\ThetaSet_{m,\kappa}(\Delta)$.
+Applying the same argument to $-E$ gives the reverse inclusion.
+\end{proof}
+
+\begin{remark}
+For odd $\kappa$, the factor in \eqref{eq:parity} is $(-1)^{j-1}$ and hence
+depends on $j$.  This causes no difficulty: the definition requires a
+separate equality for each $j$, and within that equality the factor is common
+to every witness point.  This is precisely the point that removes the parity
+restriction in the source lemma.
+\end{remark}
+
+\section{Verification, scope, and novelty boundary}
+
+The companion script \texttt{code/verify\_parity.py} constructs the $U_n$ by
+their recurrence and symbolically verifies \eqref{eq:parity} for 224 triples
+of dimension, $\kappa$, and $j$.  This is only a transcription diagnostic;
+the proof above is exact and finite.
+
+The theorem answers only the source's odd-$\kappa$ symmetry question for the
+finite-order sets $\ThetaSet_{m,\kappa}(\Delta)$.  It does not identify the
+full threshold set, prove its countability, or establish the conjectured
+Mourre bands.
+
+Bounded exact-sentence, arXiv-id, author, lemma-label, and keyword searches
+through 26 August 2026 found the source and companion papers, but no later
+primary source recording this answer or parity proof.  Priority is not
+certified and expert review remains appropriate.
+
+\section{Human review recommendation}
+
+Check the source definition \eqref{eq:witness} and confirm that it is imposed
+separately for each $j$.  Once this is verified, simultaneous negation and
+Chebyshev parity prove the result without any analytic or convergence input.
+
+\sloppy
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{GM}
+S. Gol\'{e}nia and M.-A. Mandich,
+\emph{Thresholds and more bands of a.c. Spectrum for the discrete
+Schr\"odinger operator with a more general long range condition},
+arXiv:2201.09545 (2022).
+\end{thebibliography}
+
+\end{document}

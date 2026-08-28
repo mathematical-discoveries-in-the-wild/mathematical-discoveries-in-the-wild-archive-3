@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2407.19982",
+  "author_list": [
+    "Prakash A. Dabhi"
+  ],
+  "claim_short": "2407.19982 On inversion absolutely convergent weighted Dirichlet series two variables Prakash Dabhi almost monotone weight admissible divisibility base 4 digit cost counterexample",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1909,
+  "copied_file_count": 7,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2407.19982v1",
+    "source_url": "https://arxiv.org/abs/2407.19982v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=full_counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/",
+  "packet_title": "Explicit weights that are not almost monotone",
+  "primary_arxiv_id": "2407.19982",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0513",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2407.19982_2407.19982_explicit_non_almost_monotone_weights/files/solution_packet.pdf",
+  "source_authors": "Prakash A. Dabhi",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2407.19982_explicit_non_almost_monotone_weights/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2407.19982v1",
+  "source_question": "",
+  "source_title": "On inversion of absolutely convergent weighted Dirichlet series in two variables",
+  "source_url": "https://arxiv.org/abs/2407.19982v1",
+  "source_year": "2024",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,346 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\K}{\mathbb K}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Lcal}{\mathcal L}
+\newcommand{\ellw}{\ell^{w}}
+
+\title{A Complete Low-Exponent Anisotropic\\
+Grothendieck Coincidence Theorem\\
+\large and a High-Exponent Hadamard Obstruction}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 2}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{
+\textbf{Status: substantial partial result likely valid.}
+For arbitrary anisotropic input exponents in \([1,2]\), we give a complete
+if-and-only-if classification.  The source's unrestricted high-exponent
+classification remains open, but a new ordered pairwise obstruction rules
+out the naive coordinatewise extension.}}
+\end{center}
+
+\begin{abstract}
+Albuquerque, Ara\'ujo, Rezende, and Santos ask for which anisotropic
+multi-indices every bounded \(m\)-linear map
+\(\ell_1^m\to\ell_2\) is multiple summing.  We completely answer the
+question when all input exponents lie in \([1,2]\): for
+\(\mathbf p=(p_1,\ldots,p_m)\in[1,2]^m\) and
+\(\mathbf q=(q_1,\ldots,q_m)\in[1,\infty)^m\), the coincidence holds if
+and only if \(q_k\ge p_k\) for every \(k\).  At the vertices
+\(p_k\in\{1,2\}\), mixed-norm Minkowski reorders the exponent-one levels
+outside the exponent-two levels.  The inner block is controlled by the
+multilinear \((2;2)\) Grothendieck theorem and the outer block by the
+\((1;1)\) theorem, both with Hilbert-valued range.  Coordinatewise complex
+interpolation fills the cube \([1,2]^m\), and mixed-norm monotonicity gives
+all \(q_k\ge p_k\).  Rank-one maps prove necessity.  Beyond this cube, a
+Hadamard construction shows that every coincidence tuple must satisfy
+\[
+ \frac1{q_k}\le \frac1{p_\ell}
+ +\left(\frac1{p_k}-\frac12\right)_+
+ \qquad (k<\ell).
+\]
+Thus the unrestricted problem has genuinely ordered cross-coordinate
+constraints; coordinatewise scalar conditions cannot classify it.
+\end{abstract}
+
+\section{Source question}
+
+The source is N.~Albuquerque, G.~Ara\'ujo, L.~Rezende, and J.~Santos,
+\emph{A summability principle and applications}, arXiv:1904.04549v2
+(2025)\cite{source}.  On PDF page 9 it asks for which anisotropic
+multi-indices \((\mathbf q;\mathbf p)\) one has
+\[
+ \Pi^{\mathrm{ms}}_{(\mathbf q;\mathbf p)}
+   ({}^m\ell_1;\ell_2)=\Lcal({}^m\ell_1;\ell_2).
+\]
+The source recalls the complete isotropic answer and supplies additional
+sufficient anisotropic families, but not a full classification.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.94\textwidth]{figures/open_problem_crop.png}
+  \caption{The anisotropic classification question and the source's
+  Proposition~4.7, PDF page 9.}
+\end{figure}
+
+For Banach-space-valued arrays \(a=(a_{i_1,\ldots,i_m})\), write
+\begin{align*}
+ \|a\|_{\ell_{\mathbf q}}
+ :=\left(\sum_{i_1}
+ \left(\cdots\left(\sum_{i_m}\|a_{i_1,\ldots,i_m}\|^{q_m}
+ \right)^{q_{m-1}/q_m}\cdots\right)^{q_1/q_2}
+ \right)^{1/q_1}.
+\end{align*}
+An \(m\)-linear \(T:\ell_1^m\to\ell_2\) is multiple
+\((\mathbf q;\mathbf p)\)-summing when
+\begin{equation}\label{eq:def}
+ \big\|(T(x_{i_1}^1,\ldots,x_{i_m}^m))_{\mathbf i}\big\|_{\ell_{\mathbf q}}
+ \le C\prod_{k=1}^m\|(x_i^k)_i\|_{w,p_k}
+\end{equation}
+for every finitely supported choice of sequences.
+
+\section{Proof intuition}
+
+The isotropic theorem gives the two endpoints needed for each coordinate:
+every \(m\)-linear map \(\ell_1^m\to H\), with \(H\) Hilbert, is both
+multiple \((1;1)\)- and multiple \((2;2)\)-summing.  A mixed vertex such
+as \((1,2,1,2)\) appears different, but Minkowski's inequality moves the
+smaller exponents outward, where the mixed norm is largest.  After this
+reordering, the exponent-two coordinates form one Hilbert-valued inner
+block.  The exponent-one coordinates then act on that Hilbert space as an
+outer block.  Applying the endpoint theorem twice proves every
+\(\{1,2\}\)-vertex.
+
+The remaining step is genuinely anisotropic: interpolate one coordinate at
+a time, simultaneously interpolating its weak sequence space and the
+corresponding level of the mixed output norm.  The required uniform identity
+for weak sequence spaces over \(\ell_1\) is the standard injective-tensor
+interpolation formula used in Bayart--Pellegrino--Rueda\cite{bpr}.  This
+fills the entire low-exponent cube.
+
+\section{The exact low-exponent theorem}
+
+\begin{theorem}\label{thm:main}
+Let \(m\ge1\), let \(H\) be a Hilbert space, and let
+\[
+ \mathbf p=(p_1,\ldots,p_m)\in[1,2]^m,
+ \qquad \mathbf q=(q_1,\ldots,q_m)\in[1,\infty)^m.
+\]
+Then
+\[
+ \Pi^{\mathrm{ms}}_{(\mathbf q;\mathbf p)}({}^m\ell_1;H)
+ =\Lcal({}^m\ell_1;H)
+\]
+if and only if \(q_k\ge p_k\) for every \(k\).
+In particular, this completely classifies the source problem throughout
+the input cube \([1,2]^m\).
+\end{theorem}
+
+\begin{proof}
+We first prove sufficiency when \(q_k=p_k\in\{1,2\}\) for every \(k\).
+For a nonnegative matrix and \(1\le r\le s\), Minkowski's inequality gives
+\begin{equation}\label{eq:minkowski}
+ \left(\sum_i\left(\sum_j a_{ij}^{r}\right)^{s/r}\right)^{1/s}
+ \le
+ \left(\sum_j\left(\sum_i a_{ij}^{s}\right)^{r/s}\right)^{1/r}.
+\end{equation}
+Thus each adjacent pattern with exponent \(2\) outside exponent \(1\) is
+bounded by the transposed pattern with exponent \(1\) outside exponent
+\(2\).  Repeatedly applying \eqref{eq:minkowski}, while permuting the
+corresponding variables of \(T\), reduces every vertex to
+\[
+ (\underbrace{1,\ldots,1}_{a\text{ times}},
+  \underbrace{2,\ldots,2}_{b\text{ times}}),\qquad a+b=m.
+\]
+
+Fix sequences in the last \(b\) variables.  Define
+\[
+ S(x_1,\ldots,x_a)
+ =\big(T(x_1,\ldots,x_a,x^{a+1}_{i_{a+1}},\ldots,
+ x^m_{i_m})\big)_{i_{a+1},\ldots,i_m}.
+\]
+The target \(\ell_2(H)\) over the last \(b\) indices is Hilbert.  The
+multilinear \((2;2)\) Grothendieck coincidence, which is the \(p=2\)
+case of source Theorem~4.6, gives
+\[
+ \|S\|\le C_{2,b}\|T\|
+ \prod_{k=a+1}^m\|(x_i^k)_i\|_{w,2}.
+\]
+Now apply the \((1;1)\) coincidence to the \(a\)-linear map \(S\), again
+with Hilbert target.  We obtain
+\begin{align*}
+ &\sum_{i_1,\ldots,i_a}
+ \left(\sum_{i_{a+1},\ldots,i_m}
+ \|T(x^1_{i_1},\ldots,x^m_{i_m})\|^2\right)^{1/2}\\
+ &\qquad\le C_{1,a}C_{2,b}\|T\|
+ \prod_{k=1}^{a}\|(x_i^k)_i\|_{w,1}
+ \prod_{k=a+1}^{m}\|(x_i^k)_i\|_{w,2}.
+\end{align*}
+This is exactly the sorted mixed-vertex estimate.  The cases \(a=0\) or
+\(b=0\) use only the corresponding endpoint theorem.
+
+We next fill the cube.  For a finite sequence of length \(N\), put
+\[
+ W_p^N=\ell_p^{w,N}(\ell_1).
+\]
+The canonical identification
+\[
+ W_p^N=\ell_p^N\widehat\otimes_\varepsilon\ell_1
+\]
+is isometric.  Uniformly in \(N\), injective-tensor interpolation gives an
+isomorphism
+\begin{equation}\label{eq:weak-interp}
+ [W_1^N,W_2^N]_\theta\simeq W_p^N,
+ \qquad \frac1p=1-\frac\theta2.
+\end{equation}
+This is the \(\ell_1\) weak-sequence interpolation formula used in
+\cite[Section~2]{bpr}; it follows from the injective interpolation theorem
+there.  Vector-valued sequence-space interpolation also gives, at any fixed
+level of an iterated mixed norm,
+\[
+ [\ell_1(Y),\ell_2(Y)]_\theta=\ell_p(Y).
+\]
+
+For fixed \(T\) and \(N\), its coefficient map is multilinear from the
+product of the \(W_{p_k}^N\) spaces to the corresponding finite mixed
+sequence space.  We have just proved a uniform bound at all \(2^m\) cube
+vertices.  Apply multilinear complex interpolation first in coordinate 1,
+then coordinate 2, and so on, using \eqref{eq:weak-interp} and the
+vector-valued output formula at each step.  This proves \eqref{eq:def} with
+\(\mathbf q=\mathbf p\) for every \(\mathbf p\in[1,2]^m\), with a constant
+independent of \(N\).  Taking the supremum over finite truncations gives the
+infinite-sequence assertion.  For real scalars, complexification gives the
+same coincidence with a harmless constant depending only on \(m\).
+
+If \(q_k\ge p_k\) for every \(k\), coordinatewise monotonicity of iterated
+\(\ell_p\) norms yields
+\(\|a\|_{\ell_{\mathbf q}}\le\|a\|_{\ell_{\mathbf p}}\), proving
+sufficiency in full.
+
+For necessity, fix \(k\).  Choose norm-one functionals
+\(\varphi_j\in\ell_1^*=\ell_\infty\), a unit vector \(h\in H\), and the
+rank-one map
+\[
+ T(x_1,\ldots,x_m)=\varphi_1(x_1)\cdots\varphi_m(x_m)h.
+\]
+In every coordinate except \(k\), use a one-term sequence on which
+\(\varphi_j\) equals one.  In coordinate \(k\), use
+\(x_i=a_i u\) with \(\varphi_k(u)=1\).  Inequality \eqref{eq:def} reduces to
+\[
+ \|(a_i)\|_{q_k}\le C\|(a_i)\|_{p_k}.
+\]
+Uniformity over finite scalar sequences forces \(q_k\ge p_k\).  This holds
+for every \(k\), completing the proof.
+\end{proof}
+
+\section{A high-exponent Hadamard obstruction}
+
+The low-exponent theorem does not extend coordinatewise once a later input
+exponent is allowed above two.  The following necessary condition makes the
+new obstruction explicit.
+
+\begin{proposition}\label{prop:hadamard}
+Assume \(m\ge2\) and
+\[
+ \Pi^{\mathrm{ms}}_{(\mathbf q;\mathbf p)}({}^m\ell_1;H)
+ =\Lcal({}^m\ell_1;H)
+\]
+for a nonzero Hilbert space \(H\).  Then, besides \(q_j\ge p_j\) for every
+\(j\), one necessarily has
+\begin{equation}\label{eq:hadamard-obstruction}
+ \frac1{q_k}\le \frac1{p_\ell}
+ +\max\left\{\frac1{p_k}-\frac12,0\right\}
+ \qquad\text{for every }1\le k<\ell\le m.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Equality of the two operator spaces and the open mapping theorem give a
+constant \(C\), independent of \(T\), in \eqref{eq:def}.  Fix \(k<\ell\)
+and let \(N\) run through powers of two.  Let
+\(A_N=(\varepsilon_{ab})_{a,b=1}^N\) be a Sylvester Hadamard matrix, so
+\(A_NA_N^{\mathsf T}=NI_N\).  On the \(k\)-th copy of \(\ell_1\), put
+\[
+ x_i^k=\frac1N\sum_{a=1}^N\varepsilon_{ia}e_a,
+ \qquad i=1,\ldots,N,
+\]
+and on the \(\ell\)-th copy put \(x_j^\ell=e_j\).  For every other
+coordinate use a single unit vector.
+
+If \(z\in B_{\ell_\infty^N}\), orthogonality gives
+\(\|A_Nz\|_2=\sqrt N\|z\|_2\le N\).  Comparing finite-dimensional
+\(\ell_p\)-norms therefore yields
+\begin{equation}\label{eq:hadamard-weak}
+ \big\|(x_i^k)_{i=1}^N\big\|_{w,p_k}
+ =\frac1N\|A_N:\ell_\infty^N\to\ell_{p_k}^N\|
+ \le N^{(1/p_k-1/2)_+}.
+\end{equation}
+Also \(\|(e_j)_{j=1}^N\|_{w,p_\ell}=N^{1/p_\ell}\).
+
+Choose a unit vector \(h\in H\), norm-one functionals in the unused
+variables, and define \(T_N\) by inserting in coordinates \(k,\ell\) the
+bilinear form
+\[
+ B_N(u,v)=\sum_{a,b=1}^N\varepsilon_{ab}u_av_b
+\]
+and multiplying by \(h\) and those functionals.  Since the domain is a
+product of \(\ell_1\)-spaces, \(\|T_N\|=\max_{a,b}|\varepsilon_{ab}|=1\).
+Hadamard orthogonality gives
+\[
+ T_N(x_i^k,e_j)=\delta_{ij}h.
+\]
+All intervening indices have length one, so the mixed norm of this diagonal
+array is \(N^{1/q_k}\).  Applying \eqref{eq:def} and
+\eqref{eq:hadamard-weak} gives
+\[
+ N^{1/q_k}\le C
+ N^{(1/p_k-1/2)_++1/p_\ell}.
+\]
+Letting \(N\to\infty\) proves \eqref{eq:hadamard-obstruction}.
+\end{proof}
+
+For example, \(\mathbf p=(3,100)\) and \(\mathbf q=(4,101)\) satisfy the
+naive coordinatewise inequalities, including strict improvement in both
+high coordinates, but Proposition~\ref{prop:hadamard} would require
+\(1/4\le1/100\).  Hence this tuple is not a coincidence tuple.
+
+\section{Verification, novelty, and remaining range}
+
+The script \texttt{code/verify\_mixed\_norm\_reductions.py} checks the
+adjacent Minkowski direction, bubble-sort reduction of arbitrary
+\(\{1,2\}\)-patterns, and coordinatewise mixed-norm monotonicity on random
+arrays in dimensions two through five.  It also checks the Sylvester
+orthogonality and weak-norm estimate used in Proposition~\ref{prop:hadamard}.
+These computations guard against norm-order and scaling mistakes; they are
+not part of the proof.
+
+The theorem is sharp and complete for \(p_k\le2\).  The unrestricted source
+question remains open here.  Freezing all other variables gives only the
+coordinatewise necessity \(q_k\ge p_k\).  Proposition~\ref{prop:hadamard}
+shows that this is far from sufficient: later input exponents constrain
+earlier output levels.  A complete sufficiency theorem for these ordered
+high-exponent interactions is not supplied by the known isotropic theorem or
+the source's suffix-balance inclusion families.
+
+A bounded novelty audit on 26 August 2026 searched all four run indexes, the
+local parsed arXiv corpus, and arXiv/web results using the source id/title and
+the phrases ``anisotropic Grothendieck,'' ``mixed norm multiple summing,''
+and ``\(\ell_1\) to \(\ell_2\) anisotropic coincidence.''  It found the
+source, the earlier isotropic and interpolation papers, and no statement of
+the complete \([1,2]^m\) classification above.  The source's 2025 revision
+still poses the general question.  This is bounded evidence, not a priority
+claim.
+
+Human review recommendation: \textbf{send to human}, focusing on the
+coordinatewise interpolation step, uniformity of \eqref{eq:weak-interp}, and
+the exponent direction in \eqref{eq:hadamard-obstruction}.
+
+\enlargethispage{2\baselineskip}
+\begin{thebibliography}{9}
+\footnotesize
+\raggedright
+\bibitem{source}
+N.~Albuquerque, G.~Ara\'ujo, L.~Rezende, and J.~Santos,
+\emph{A summability principle and applications}, arXiv:1904.04549v2, 2025.
+
+\bibitem{bpr}
+F.~Bayart, D.~Pellegrino, and P.~Rueda,
+\emph{On coincidence results for summing multilinear operators:
+interpolation, \(\ell_1\)-spaces and cotype}, arXiv:1805.12500, 2018.
+\end{thebibliography}
+
+\end{document}

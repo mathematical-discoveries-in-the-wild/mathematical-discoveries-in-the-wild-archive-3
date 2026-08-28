@@ -1,0 +1,63 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2403.03901",
+  "author_list": [
+    "Marco Cicalese",
+    "Tim Heilmann",
+    "Andrea Kubin",
+    "Fumihiko Onoue",
+    "Marcello Ponsiglione"
+  ],
+  "claim_short": "For every d >= 3 and 0 < s < 1, there is a compactly supported closed 1-current gamma in the source space C_s such that:",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2403.03901v1",
+    "source_url": "https://arxiv.org/abs/2403.03901v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_scoped_counterexample_likely_valid_weighted_closure_no_filling",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/",
+  "packet_title": "Fractional mass does not control flat filling in the weighted closure",
+  "primary_arxiv_id": "2403.03901",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0489",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2403.03901_2403.03901_weighted_closure_no_flat_filling/files/solution_packet.pdf",
+  "source_authors": "Marco Cicalese, Tim Heilmann, Andrea Kubin, Fumihiko Onoue, Marcello Ponsiglione",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2403.03901_weighted_closure_no_flat_filling/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2403.03901v1",
+  "source_question": "",
+  "source_title": "A notion of $s$-fractional mass for $1$-currents in higher codimension",
+  "source_url": "https://arxiv.org/abs/2403.03901v1",
+  "source_year": "2024",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\newcommand{\Mag}{\operatorname{Mag}}
+\newcommand{\ellone}{\ell_1}
+
+\title{Compact positive-definite spaces can have infinite magnitude}
+\author{Literature-status note for \texttt{fa\_banach\_001}}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+\texttt{literature\_already\_answered (negative answer)}.  No new
+mathematical result is claimed.
+
+\section*{Original question}
+
+For a compact positive-definite metric space $X$, Meckes defines magnitude by
+the supremum of the finite quadratic ratios in display (1) of
+\cite{Meckes2019}.  Immediately after that display, on arXiv PDF page 2, he
+asks whether this supremum is finite for every compact positive-definite
+metric space.
+
+\section*{Explicit later answer}
+
+Leinster and Meckes explicitly identify this question on page 2 of
+\cite{LeinsterMeckes2021}.  They state that no compact positive-definite
+space of infinite magnitude had previously been known, cite
+\cite{Meckes2019} among the papers in which the question was raised, and
+announce examples with infinite magnitude at every positive scale.
+
+Their Theorem 2.1, on arXiv PDF page 3, gives the answer.  If $(a_i)$ is a
+positive null sequence with $\sum_i a_i=\infty$, and $X$ is the closed convex
+hull of $\{a_i e_i:i\geq 1\}$ in $\ellone$, then $X$ is compact and of
+negative type, and
+\[
+  \Mag(tX)=\infty \qquad (t>0).
+\]
+Negative type means precisely that every positive rescaling is positive
+definite.  In particular, $X$ itself is compact and positive definite, so the
+theorem is an exact negative answer to the source question, with the stronger
+all-scales conclusion.
+
+\section*{A short star-subspace verification}
+
+There is also a direct nonconvex witness inside the same ambient space.  Put
+\[
+  S=\{0\}\cup\{x_n:n\geq 1\}\subset\ellone,
+  \qquad x_n=\frac1n e_n.
+\]
+Then $x_n\to0$, so $S$ is compact.  Since $\ellone$ is of negative type,
+$S$ is positive definite.  For
+$S_N=\{0,x_1,\ldots,x_N\}$, write $a_i=1/i$ and $q_i=e^{-a_i}$.  The
+similarity matrix $Z=(e^{-d(x,y)})_{x,y\in S_N}$ satisfies
+\[
+ Z_{0i}=q_i,\qquad Z_{ij}=q_iq_j\quad(i\ne j),\qquad Z_{ii}=1.
+\]
+Solving $Zw=\mathbf 1$, set
+$T=w_0+\sum_{j=1}^Nq_jw_j$.  The zeroth row gives $T=1$, while row $i$
+gives
+\[
+ q_iT+(1-q_i^2)w_i=1,
+ \qquad\text{hence}\qquad w_i=\frac1{1+q_i}.
+\]
+Consequently,
+\[
+ \Mag(S_N)=\sum_{i=0}^N w_i
+ =1+\sum_{i=1}^N\frac{1-q_i}{1+q_i}
+ =1+\sum_{i=1}^N\tanh\!\left(\frac1{2i}\right).
+\]
+The last sum diverges with $N$.  Since compact positive-definite magnitude is
+the supremum of the magnitudes of finite subspaces, $\Mag(S)=\infty$.
+Replacing $1/i$ by $t/i$ proves $\Mag(tS)=\infty$ for every $t>0$.
+
+This elementary calculation independently verifies the negative answer, but
+it does not change the provenance classification: the exact question was
+already answered explicitly by \cite{LeinsterMeckes2021}.
+
+\section*{Scope and search status}
+
+The identification was checked in the cached arXiv sources and PDFs.  The
+source question is on page 2 of arXiv:1904.08923.  The answering paper names
+the prior question on page 2 and proves its stronger Theorem 2.1 on page 3.
+The run's cheap indexes also contain a prior triage record for arXiv:2112.12889;
+that record correctly treats the later paper's own introductory signal as a
+same-paper ask-and-answer extraction.  It does not negate the two-paper
+literature relation recorded here.
+
+Other conjectures in arXiv:1904.08923, including the small-scale derivative
+formula for convex bodies and the Lipschitz-distance continuity conjecture,
+are outside this packet and are not claimed resolved.
+
+\begin{thebibliography}{9}
+\bibitem{Meckes2019}
+M.~W. Meckes,
+\emph{On the magnitude and intrinsic volumes of a convex body in Euclidean
+space}, Mathematika \textbf{66} (2020), 343--355;
+arXiv:1904.08923,
+\url{https://arxiv.org/abs/1904.08923}.
+
+\bibitem{LeinsterMeckes2021}
+T.~Leinster and M.~W. Meckes,
+\emph{Spaces of extremal magnitude},
+arXiv:2112.12889,
+\url{https://arxiv.org/abs/2112.12889}.
+\end{thebibliography}
+
+\end{document}

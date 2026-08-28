@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\definecolor{accent}{RGB}{34,78,112}
+\newtheorem*{conclusion}{Conclusion}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{14pt}
+\lhead{Literature-status note: arXiv:1103.0223}
+\rhead{Lane 4}
+\cfoot{\thepage}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \lhead{Literature-status note: arXiv:1103.0223}%
+  \rhead{Lane 4}%
+  \cfoot{\thepage}%
+}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries\color{accent} Polynomial ergodic averages on arbitrary intervals}\\[4pt]
+  {\large A literature-implied answer to Austin's first further question}\\[6pt]
+  {\small Status: \texttt{literature\_implied\_answer} \quad Updated 27 August 2026}
+\end{center}
+
+\paragraph{Source.}
+Tim Austin, \emph{Norm convergence of continuous-time polynomial multiple
+ergodic averages}, arXiv:1103.0223.  In Section~4, ``Further questions'',
+PDF page~26, Austin asks whether Theorem~1.2 remains valid over arbitrary real
+intervals whose lengths tend to infinity, independently of their distance from
+the origin.  In the paper's notation, for a measurable measure-preserving
+$\mathbb R^D$-action $\tau$, polynomial maps $p_i:\mathbb R\to\mathbb R^D$,
+and $f_i\in L^\infty(\mu)$, the question is whether
+\[
+  A_I(f_1,\ldots,f_k)
+  :=\frac{1}{|I|}\int_I \prod_{i=1}^k f_i\circ\tau^{p_i(t)}\,dt
+\]
+converges in $L^2(\mu)$ whenever $|I|\to\infty$, with no restriction on the
+location of $I$.
+
+\paragraph{Supporting theorem.}
+Pavel Zorin-Kranich, \emph{Norm convergence of multiple ergodic averages on
+amenable groups}, arXiv:1111.7292, Theorem~1.1(1), PDF page~2, proves the
+following.  Let $\mathcal G$ be a locally compact amenable group,
+$\mathcal T$ a nilpotent group of measure-preserving Koopman operators, and
+$T_i:\mathcal G\to\mathcal T$ measurable polynomial maps.  Then the associated
+multiple averages converge in $L^2$ along every left Folner net, and the limit
+does not depend on the Folner net.  Section~4 of that paper defines polynomial
+maps by iterated discrete derivatives; its example following Theorem~4.5
+explicitly includes conventional real polynomials composed with one-parameter
+subgroups.
+
+\paragraph{Exact identification.}
+Set $\mathcal G=(\mathbb R,+)$ and let $U_v f=f\circ\tau^v$.  The image
+\[
+  \mathcal T=\{U_v:v\in\mathbb R^D\}
+\]
+is abelian, hence nilpotent.  Each $T_i(t):=U_{p_i(t)}$ is a measurable
+polynomial map in Zorin-Kranich's sense.  Thus Theorem~1.1 applies to Austin's
+integrand (take the harmless factor $f_0=1$).
+
+Now let $I_n$ be arbitrary intervals with $|I_n|\to\infty$.  For every compact
+$K\subset\mathbb R$,
+\[
+ \sup_{h\in K}\frac{|(h+I_n)\mathbin{\triangle}I_n|}{|I_n|}
+ \leq \frac{2\sup_{h\in K}|h|}{|I_n|}\longrightarrow 0.
+\]
+Hence $(I_n)$ is a Folner sequence, regardless of how far its members lie from
+the origin.  Zorin-Kranich's theorem therefore gives the requested $L^2$
+convergence and shows that the limit is independent of the chosen moving
+interval sequence.
+
+\begin{conclusion}
+Austin's arbitrary-interval question has an affirmative answer: the averages
+$A_I(f_1,\ldots,f_k)$ converge in $L^2(\mu)$ as $|I|\to\infty$, uniformly in
+the sense that every sequence of intervals with diverging lengths has the same
+limit.
+\end{conclusion}
+
+\paragraph{Additional scope.}
+The same specialization with $\mathcal G=\mathbb R^r$ also answers Austin's
+Question~4.1 (PDF page~26): polynomial averages over $[0,R)^r$ converge, and in
+fact they converge along arbitrary Folner nets in $\mathbb R^r$.  It also
+covers the final extension on PDF page~27 to actions of a connected nilpotent
+Lie group, provided ``polynomial'' is understood in the discrete-derivative
+(Leibman) sense used by the supporting theorem.  The intervening Hardy-field
+question is outside this polynomial theorem and is not classified here.
+
+\paragraph{Provenance and novelty status.}
+This is not a new theorem produced by the run.  Zorin-Kranich cites Austin's
+work but does not explicitly identify the Section~4 question as the target of
+Theorem~1.1; the relation above is a direct specialization found during this
+run.  That is why the packet is classified as a literature-implied answer
+rather than an explicitly literature-answered problem.  A bounded search by
+arXiv id, exact title, ``arbitrary intervals'', ``uniform Cesaro'', and
+``Folner'' also found Bergelson--Leibman--Moreira's later Folner-sequence
+theorem for one-parameter flows; Zorin-Kranich's theorem supplies the decisive
+full $\mathbb R^D$-action scope.
+
+\paragraph{Human review recommendation.}
+High confidence.  Verify only the standard functorial point that composing the
+$\mathbb R^D$-action with an ordinary vector polynomial gives a polynomial
+operator-valued map in Definition~4.3 of arXiv:1111.7292.  The abelian case is
+also illustrated explicitly after its Theorem~4.5.
+
+\begin{thebibliography}{9}
+\bibitem{Austin}
+T. Austin, \emph{Norm convergence of continuous-time polynomial multiple
+ergodic averages}, Ergodic Theory Dynam. Systems 32 (2012), 361--382;
+arXiv:1103.0223.
+
+\bibitem{ZK}
+P. Zorin-Kranich, \emph{Norm convergence of multiple ergodic averages on
+amenable groups}, J. Analyse Math. 130 (2016), 219--241;
+arXiv:1111.7292.
+
+\bibitem{BLM}
+V. Bergelson, A. Leibman, and C. G. Moreira,
+\emph{From discrete- to continuous-time ergodic theorems},
+Ergodic Theory Dynam. Systems 32 (2012), 383--426.
+\end{thebibliography}
+
+\end{document}

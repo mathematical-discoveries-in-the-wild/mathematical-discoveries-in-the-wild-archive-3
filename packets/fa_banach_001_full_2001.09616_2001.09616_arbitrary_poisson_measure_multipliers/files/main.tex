@@ -1,0 +1,402 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[margin=0.92in]{geometry}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\Bd}{\mathbb B^d}
+\newcommand{\Sd}{\partial\mathbb B^d}
+\newcommand{\Eeta}{\mathcal E_{\eta}}
+\newcommand{\Ieta}{\mathcal I_{\eta}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{Arbitrary Poisson Boundary Measures Give Coordinate Multipliers}
+\author{Candidate full-result packet for arXiv:2001.09616}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{
+\textbf{Status: full solution likely valid; human review required.}
+For every finite positive Borel measure on the sphere, the associated
+Poisson-weighted volume measure is Carleson for the Dirichlet-type space in
+the source.  Hence every coordinate function is a multiplier, and the
+multiplication tuple is a joint $2$-isometry.  The proof is analytic and does
+not assume polynomial density.  Novelty confidence is moderate after a
+bounded search found no explicit later answer.
+}}
+\end{center}
+
+\section{Source target and exact scope}
+
+The source is S.~Chavan, R.~Gupta, and Md.~R.~Reza,
+\emph{Dirichlet-type spaces on the unit ball and joint $2$-isometries},
+arXiv:2001.09616v2 and J.~Funct.~Anal.~279 (2020), 108733
+\cite{CGR2020}.  Let $d\geq2$, let $V$ be normalized volume measure on
+$\Bd$, and let $\sigma$ be normalized surface measure on $\Sd$.  The source
+uses the Euclidean Poisson kernel for the real $2d$-ball,
+\begin{equation}\label{eq:poisson}
+ P(z,\eta)=\frac{1-\lVert z\rVert^2}{\lVert z-\eta\rVert^{2d}},
+ \qquad z\in\Bd,\quad \eta\in\Sd,
+\end{equation}
+and $P[\mu](z)=\int_{\Sd}P(z,\eta)\,d\mu(\eta)$.
+
+For a finite positive Borel measure $\mu$ on $\Sd$, its scalar
+Dirichlet-type space consists of the holomorphic functions with
+\begin{equation}\label{eq:Dnorm}
+ \lVert f\rVert_{\mathscr D(\mu)}^2
+ =\lVert f\rVert_{H^2(\Bd)}^2
+ +\frac1d\int_{\Bd}\lVert\nabla f(z)\rVert^2P[\mu](z)\,dV(z)<\infty.
+\end{equation}
+Published Proposition 3.5 says that all coordinate functions are multipliers
+if and only if
+\begin{equation}\label{eq:targetembedding}
+ \int_{\Bd}|f(z)|^2P[\mu](z)\,dV(z)
+ \leq C_\mu\lVert f\rVert_{\mathscr D(\mu)}^2.
+\end{equation}
+Page 12 proves this only when $\mu$ has bounded density and then states:
+\begin{quote}
+``We do not know whether the weighted volume measure with weight being the
+Poisson integral of an arbitrary finite positive Borel measure $\mu$ on
+$\partial\mathbb B^d$, $d\geq2$ is a Carleson measure for
+$\mathscr D(\mu)$.''
+\end{quote}
+The theorem below proves \eqref{eq:targetembedding} for every such $\mu$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.97\textwidth]{figures/open_problem_crop.png}
+\caption{Source p.~12: the bounded-density corollary and the unresolved
+arbitrary-measure statement.}
+\end{figure}
+
+\section{Proof intuition}
+
+The Poisson integral is linear in the boundary measure, so the decisive case
+is one atom $\delta_\eta$.  Its density looks highly singular in the usual
+coordinates.  Center real polar coordinates at the singular boundary point
+$\eta$.  The singular power cancels the polar Jacobian exactly:
+\[
+ P(z,\eta)\,dV(z)
+ =c_{2d}(2\langle\omega,\eta\rangle_{\mathbb R}-\rho)
+ \,d\rho\,d\omega,
+ \qquad z=\eta-\rho\omega.
+\]
+Thus the measure has effective radial dimension one at its tip.  A weighted
+one-dimensional Hardy estimate controls the atomic weighted $L^2$ norm by
+the tip trace and the atomic gradient energy.
+
+It remains to bound that trace.  Average $f$ over the unitary rotations that
+fix $\eta$.  This preserves the radial value and contracts both the Hardy norm
+and the atomic energy, while reducing $f$ to a one-variable function
+$h(\langle z,\eta\rangle)$.  After the transverse variables are integrated
+out, the energy density of $h'$ is at least $c_d/(1-r)$ on every dyadic
+nontangential box at $1$.  Submean estimates and a bounded-overlap dyadic sum
+then bound the trace.  Integrating the resulting uniform atomic inequality
+against $\mu$ proves the full statement.
+
+\section{Atomic geometry and trace estimates}
+
+For $\eta\in\Sd$ define, with extended values allowed,
+\begin{align}
+ \Eeta(f)&=\int_{\Bd}\lVert\nabla f(z)\rVert^2P(z,\eta)\,dV(z),\label{eq:Eeta}\\
+ \Ieta(f)&=\int_{\Bd}|f(z)|^2P(z,\eta)\,dV(z).\label{eq:Ieta}
+\end{align}
+
+\begin{lemma}[Tip trace and anchored atomic Poincare inequality]\label{lem:tip}
+Let $f$ be holomorphic on $\Bd$ and suppose $\Eeta(f)<\infty$.  Then $f$ has
+a single finite-energy trace $\Tr_\eta f$ at the tip $\eta$: along almost
+every inward ray from $\eta$ the limit exists and equals the same number.
+Moreover,
+\begin{equation}\label{eq:bulkfromtrace}
+ \Ieta(f)\leq 2|\Tr_\eta f|^2+\frac32\Eeta(f).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Regard $\mathbb C^d$ as $\mathbb R^N$, $N=2d$, and put
+$a=\langle\omega,\eta\rangle_{\mathbb R}$.  The coordinates
+\[
+ z=\eta-\rho\omega,\qquad a>0,\qquad 0<\rho<2a,
+\]
+parametrize the ball up to null sets.  Indeed,
+\[
+ 1-|z|^2=\rho(2a-\rho),\qquad |z-\eta|=\rho.
+\]
+Since $dV=c_N\rho^{N-1}d\rho\,d\omega$, the exact cancellation is
+\begin{equation}\label{eq:jacobian}
+ P(z,\eta)dV(z)=c_N(2a-\rho)d\rho\,d\omega.
+\end{equation}
+
+We first justify the common trace.  On every compact connected angular set
+$K\Subset\{a>0\}$ and for all sufficiently small $\rho$, the density in
+\eqref{eq:jacobian} is bounded below.  The radial part of the energy implies
+that $f(\eta-\rho\omega)$ has a limit $L(\omega)$ for almost every
+$\omega\in K$, and convergence holds in $L^2(K)$.  In centered polar
+coordinates the angular part of the Euclidean gradient is
+$\rho^{-1}\nabla_\omega$.  Hence
+\[
+ \int_0^{\rho_0}\rho^{-2}
+ \int_K|\nabla_\omega f(\eta-\rho\omega)|^2d\omega\,d\rho<\infty.
+\]
+There is a sequence $\rho_n\downarrow0$ on which the inner angular energy
+tends to zero.  The Poincare inequality on $K$, followed by the $L^2(K)$
+convergence, shows that $L$ is constant on $K$.  Exhausting the connected
+hemisphere $\{a>0\}$ by overlapping compact sets gives one common value,
+denoted $\Tr_\eta f$.
+
+Fix a direction and write $L=2a$ and
+$u(\rho)=f(\eta-\rho\omega)$.  The fundamental theorem of calculus and
+Cauchy--Schwarz give
+\[
+ |u(\rho)-\Tr_\eta f|^2
+ \leq \rho\int_0^\rho|u'(s)|^2ds.
+\]
+After multiplication by $L-\rho$ and integration, the coefficient of
+$|u'(s)|^2$ is
+\[
+ A_L(s)=\int_s^L\rho(L-\rho)d\rho.
+\]
+Writing $t=s/L$, direct factorization gives
+\[
+ \frac{A_L(s)}{L^2(L-s)}
+ =\frac{(1-t)(2t+1)}6\leq\frac3{16}.
+\]
+Because $L\leq2$,
+\begin{equation}\label{eq:rayhardy}
+ \int_0^L(L-\rho)|u(\rho)-\Tr_\eta f|^2d\rho
+ \leq\frac34\int_0^L(L-\rho)|u'(\rho)|^2d\rho.
+\end{equation}
+Integrate over $\omega$, use \eqref{eq:jacobian}, and note that
+$|u'|\leq\lVert\nabla f\rVert$.  Since
+$\int_{\Bd}P(z,\eta)dV(z)=1$, the inequality
+$|u|^2\leq2|\Tr_\eta f|^2+2|u-\Tr_\eta f|^2$ and
+\eqref{eq:rayhardy} yield \eqref{eq:bulkfromtrace}.
+\end{proof}
+
+\begin{lemma}[Uniform holomorphic tip trace]\label{lem:trace}
+For every $d\geq2$ there is $C_d<\infty$ such that, for every
+$\eta\in\Sd$ and every holomorphic $f$ with
+$f\in H^2(\Bd)$ and $\Eeta(f)<\infty$,
+\begin{equation}\label{eq:tracebound}
+ |\Tr_\eta f|^2\leq C_d\bigl(\lVert f\rVert_{H^2(\Bd)}^2+\Eeta(f)\bigr).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Unitary invariance reduces to $\eta=e_1$.  Let $G\simeq U(d-1)$ be the
+compact group of unitaries fixing $e_1$, and let
+\[
+ (Qf)(z)=\int_G f(Uz)\,dU.
+\]
+Haar averaging and Jensen's inequality show
+\begin{equation}\label{eq:contractions}
+ \lVert Qf\rVert_{H^2}\leq\lVert f\rVert_{H^2},
+ \qquad \mathcal E_{e_1}(Qf)\leq\mathcal E_{e_1}(f).
+\end{equation}
+The holomorphic $G$-invariants are precisely the functions of the first
+coordinate, so $Qf(z)=h(z_1)$, where $h(\lambda)=f(\lambda,0,\ldots,0)$.
+The tip trace is invariant under $G$ and linear on the finite-energy class;
+hence $\Tr_{e_1}Qf=\Tr_{e_1}f$.
+
+Put $A=1-|\lambda|^2$ and $b=|1-\lambda|^2$.  Integrating the other
+$d-1$ complex coordinates in polar coordinates gives, up to a positive
+dimensional normalization,
+\begin{equation}\label{eq:marginal}
+ \mathcal E_{e_1}(Qf)
+ =c_d\int_{\mathbb D}|h'(\lambda)|^2W_d(\lambda)dA(\lambda),
+ \qquad
+ W_d(\lambda)=\int_0^A
+ \frac{(A-u)u^{d-2}}{(b+u)^d}\,du.
+\end{equation}
+
+We record the only property of $W_d$ needed below.  Let
+$\delta_n=2^{-n}$ and let $J_n$ be the real interval
+$[1-\delta_n,1-\delta_n/2]$.  Choose fixed, sufficiently small enlargements
+$Q_n\Subset\mathbb D$ of the $\delta_n$-neighborhoods of $J_n$.  On $Q_n$,
+\begin{equation}\label{eq:comparabilities}
+ A\asymp\delta_n,\qquad b\asymp\delta_n^2.
+\end{equation}
+Restricting the integral in \eqref{eq:marginal} to $b\leq u\leq2b$ gives
+\begin{equation}\label{eq:Wlower}
+ W_d(\lambda)\geq\frac{c_d'}{\delta_n},
+ \qquad \lambda\in Q_n.
+\end{equation}
+Indeed, on that interval the integrand is bounded below by a dimensional
+constant times $\delta_n b^{-2}$, and the interval has length $b$.
+
+For each $r\in J_n$, the submean inequality for the analytic function $h'$
+on a disk of radius comparable to $\delta_n$ gives
+\[
+ |h'(r)|^2\leq C\delta_n^{-2}
+ \int_{Q_n}|h'(\lambda)|^2dA(\lambda).
+\]
+Combining this with \eqref{eq:Wlower} and then integrating over $J_n$ yields
+\begin{equation}\label{eq:lineenergy}
+ \int_{J_n}|h'(r)|^2dr
+ \leq C_d\int_{Q_n}|h'(\lambda)|^2W_d(\lambda)dA(\lambda)
+ =:C_d E_n.
+\end{equation}
+The boxes $Q_n$ have bounded overlap.  Therefore
+\begin{align*}
+ \int_{1/2}^1|h'(r)|dr
+ &\leq\sum_n |J_n|^{1/2}
+ \left(\int_{J_n}|h'(r)|^2dr\right)^{1/2}\\
+ &\leq C_d\left(\sum_n\delta_n\right)^{1/2}
+ \left(\sum_n E_n\right)^{1/2}
+ \leq C_d\mathcal E_{e_1}(Qf)^{1/2}.
+\end{align*}
+Thus $h(r)$ has a finite limit at $1$.  The same submean estimate on slightly
+smaller boxes controls the oscillation in every fixed Stolz cone, so this
+limit is the tip trace.  Finally, bounded point evaluation at $e_1/2$ in
+$H^2(\Bd)$ gives
+\[
+ |\Tr_{e_1}f|
+ \leq |h(1/2)|+C_d\mathcal E_{e_1}(Qf)^{1/2}
+ \leq C_d\bigl(\lVert Qf\rVert_{H^2}+\mathcal E_{e_1}(Qf)^{1/2}\bigr).
+\]
+Use \eqref{eq:contractions} and square the estimate.
+\end{proof}
+
+\section{Full affirmative solution}
+
+\begin{theorem}[Arbitrary Poisson measures are Carleson]\label{thm:main}
+Let $d\geq2$ and let $\mu$ be any finite positive Borel measure on $\Sd$.
+Then there is a dimensional constant $C_d$ such that every
+$f\in\mathscr D(\mu)$ satisfies
+\begin{equation}\label{eq:mainestimate}
+ \int_{\Bd}|f(z)|^2P[\mu](z)dV(z)
+ \leq C_d\left(
+ \mu(\Sd)\lVert f\rVert_{H^2(\Bd)}^2
+ +\int_{\Bd}\lVert\nabla f(z)\rVert^2P[\mu](z)dV(z)
+ \right).
+\end{equation}
+Consequently $P[\mu]dV$ is a Carleson measure for $\mathscr D(\mu)$, every
+coordinate function $z_j$ is a multiplier of $\mathscr D(\mu)$, and the
+tuple of coordinate multipliers is a joint $2$-isometry.
+\end{theorem}
+
+\begin{proof}
+Tonelli's theorem applied to \eqref{eq:poisson} gives
+\begin{align}
+ \int_{\Bd}|f|^2P[\mu]dV
+ &=\int_{\Sd}\Ieta(f)d\mu(\eta),\label{eq:tonelliI}\\
+ \int_{\Bd}\lVert\nabla f\rVert^2P[\mu]dV
+ &=\int_{\Sd}\Eeta(f)d\mu(\eta).\label{eq:tonelliE}
+\end{align}
+The second quantity is finite for $f\in\mathscr D(\mu)$, so
+$\Eeta(f)<\infty$ for $\mu$-almost every $\eta$.  Lemmas
+\ref{lem:tip} and \ref{lem:trace}, with constants independent of $\eta$, give
+\[
+ \Ieta(f)\leq C_d
+ \bigl(\lVert f\rVert_{H^2(\Bd)}^2+\Eeta(f)\bigr)
+\]
+for almost every $\eta$.  Integrating this inequality and using
+\eqref{eq:tonelliI}--\eqref{eq:tonelliE} proves
+\eqref{eq:mainestimate}.  In particular,
+\[
+ \int_{\Bd}|f|^2P[\mu]dV
+ \leq C_d\max\{\mu(\Sd),d\}\lVert f\rVert_{\mathscr D(\mu)}^2.
+\]
+This is exactly published Proposition 3.5(ii), so its equivalence proves that
+all $z_j$ are multipliers.  Published Theorem 3.4 then says that their tuple
+is a joint $2$-isometry.
+\end{proof}
+
+\begin{remark}
+The proof works directly for arbitrary $f\in\mathscr D(\mu)$.  It does not
+pass through polynomials, radial dilations, or an unproved density statement.
+The argument is scalar, matching Question 1.2(a).  An operator-valued
+semispectral extension would require a separate noncommutative trace lemma
+and is not claimed here.
+\end{remark}
+
+\section{Adversarial verification}
+
+\begingroup\small
+
+\begin{center}
+\begin{tabular}{@{}p{0.24\textwidth}p{0.12\textwidth}p{0.54\textwidth}@{}}
+\toprule
+Step & Verdict & Check \\
+\midrule
+Atomic disintegration & Valid & The power $\rho^{1-2d}$ in $P$ cancels the
+real $2d$-dimensional polar Jacobian exactly, giving
+\eqref{eq:jacobian}. \\
+Tip trace & Valid & Radial energy gives ray limits; the
+$\rho^{-2}$ angular energy and the Poincare inequality on compact angular
+sets force a single common value. \\
+Anchored Hardy bound & Valid & The scalar kernel factors as
+$A_L(s)/(L^2(L-s))=(1-t)(2t+1)/6\leq3/16$. \\
+Stabilizer averaging & Valid & Haar averaging fixes the radial restriction,
+preserves the atomic weight, and contracts both quadratic norms by Jensen. \\
+Marginal estimate & Valid & On dyadic Stolz boxes, restricting
+\eqref{eq:marginal} to $u\in[b,2b]$ gives $W_d\gtrsim\delta^{-1}$ uniformly
+in scale. \\
+Arbitrary functions & Valid & Tonelli is applied to the actual finite
+Dirichlet energy; no polynomial approximation or boundary value with respect
+to $\mu$ is assumed. \\
+Passage to multipliers & Valid & The final estimate is precisely the
+condition already proved equivalent to coordinate multiplication in source
+Proposition 3.5. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The included script \texttt{code/verify\_atomic\_geometry.py} is a guard
+against algebraic and scaling mistakes, not part of the proof.  It checks 800
+centered-polar identities, 10,001 samples of the exact Hardy kernel, and 567
+dyadic marginal samples in complex dimensions $2$ through $8$.  From the
+packet directory, run:
+\begin{quote}\small\ttfamily
+conda run --no-capture-output -n sandbox python code/verify\_atomic\_geometry.py
+\end{quote}
+
+\section{Novelty check, limitations, and recommendation}
+
+\paragraph{Bounded literature search.}
+The four lightweight indexes for run \texttt{fa\_banach\_001} contained no
+entry for arXiv:2001.09616 or this question.  External searches used the exact
+unresolved sentence, the exact title with \texttt{multiplier},
+\texttt{Poisson integral}, and \texttt{Carleson measure}, the published
+problem/proposition labels, and the later visible Dirichlet-type papers and
+publication lists of the three source authors.  The search found the original
+JFA paper, papers on standard radial Dirichlet scales, and later work on the
+bidisc, but no explicit answer to the arbitrary Euclidean-Poisson-measure
+question.  This was a bounded search, not an exhaustive priority claim.
+
+\paragraph{Limitations.}
+The result answers the scalar arbitrary-measure problem exactly as posed.  It
+does not claim an operator-valued semispectral analogue, an invariant-Poisson
+analogue, sharp constants, compactness of the embedding, or multiplier
+characterizations beyond the coordinate functions.
+
+\paragraph{Recommendation.}
+The mathematical verdict is \textbf{likely valid}, with high proof confidence.
+Send to human review.  The most important checks are the finite-energy tip
+trace argument in Lemma \ref{lem:tip} and the identification of the
+stabilizer-averaged nontangential trace in Lemma \ref{lem:trace}.  The main
+bibliographic task is a citation search for later papers that cite the 2020
+JFA article and address Question 1.2(a).
+
+\begin{thebibliography}{9}
+\bibitem{CGR2020}
+S.~Chavan, R.~Gupta, and Md.~R.~Reza,
+\emph{Dirichlet-type spaces on the unit ball and joint $2$-isometries},
+J.~Funct.~Anal. 279 (2020), no.~10, 108733; arXiv:2001.09616v2.
+\end{thebibliography}
+\endgroup
+
+\end{document}

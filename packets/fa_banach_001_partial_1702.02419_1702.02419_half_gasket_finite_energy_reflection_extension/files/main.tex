@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!65!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\SG}{\mathcal{SG}}
+\newcommand{\E}{\mathcal E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\R}{\mathsf R}
+\emergencystretch=3em
+
+\title{Finite-energy extension from every level-$l$ half Sierpi\'nski gasket}
+\author{Partial-result packet for arXiv:1702.02419}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\begin{minipage}{0.91\textwidth}
+\textbf{Status: candidate partial result, likely valid.}
+For every $l\geq2$, reflection gives a bounded linear extension of every
+finite-energy function on the vertical half domain to the whole $\SG_l$, with
+an exact energy identity.  The source's upper/lower-domain and higher-Sobolev
+extension problems remain open.
+\end{minipage}}
+\end{center}
+
+\section{Source problem}
+
+Cao and Qiu study half, upper, and lower domains in the level-$l$ Sierpi\'nski
+gaskets and ask on PDF page 6 how to extend a finite-energy function from such
+a domain to the whole gasket \cite[p.~6]{CQ}.  Their exact sentence is:
+\begin{quote}
+``One could also consider how to extend a function of finite energy defined on
+$\Omega$ to a function of finite energy on the whole $\SG_l$, and analogous
+problems for other Sobolev spaces.''
+\end{quote}
+The source passage is reproduced below.
+
+\begin{center}
+\includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+The theorem below resolves the finite-energy question for the full vertical
+half-domain family.  It is stronger than a harmonic-extension statement: the
+input function is arbitrary in the local resistance-form domain.
+
+\section{Definitions and statement}
+
+Let $\rho$ be reflection in the vertical symmetry axis of $\SG_l$.  Let
+$h_a$ be the antisymmetric harmonic function used by Cao--Qiu, normalized by
+$h_a(q_0)=0$, $h_a(q_1)=1$, and $h_a(q_2)=-1$.  Put
+\[
+  \Omega^- = \{h_a>0\},\qquad
+  X=\{h_a=0\},\qquad
+  \Omega^+=\rho(\Omega^-)=\{h_a<0\}.
+\]
+Thus $X$ is the pointwise fixed set of $\rho$, and
+$\SG_l=\Omega^-\sqcup X\sqcup\Omega^+$.
+
+Write $\Gamma_m=(V_m,E_m)$ for the usual level-$m$ graph approximation and
+$r_l$ for the resistance renormalization factor.  The local graph energy on
+the closed left half is
+\[
+ \E_{m,-}(u)=r_l^{-m}
+   \sum_{e=\{x,y\}\in E_m^-}(u(x)-u(y))^2,
+\]
+where $E_m^-$ is the left member of every non-fixed reflection orbit of graph
+edges.  Equivalently, these are the edge terms in the standard left-half
+exhaustion used for $\E_{\Omega^-}$ in the source.  Let
+\[
+ \F(\overline{\Omega^-})
+ =\{u\in C(\overline{\Omega^-}):
+       \E_{\Omega^-}(u):=\lim_m\E_{m,-}(u)<\infty\}.
+\]
+
+\subsection*{Proof intuition}
+
+At each graph level, reflection partitions the non-fixed edges into pairs.
+An even extension gives the same energy to both edges in a pair.  The only
+edges fixed as sets are horizontal edges crossing the symmetry axis; reflection
+exchanges their endpoints, so the even extension has equal endpoint values and
+their energy is zero.  The full graph energy is therefore exactly twice the
+left-half energy at every finite level.  Passing to the resistance-form limit
+simultaneously proves existence, boundedness, and the sharp identity for this
+specific extension.
+
+\begin{theorem}[even reflection extension]\label{thm:main}
+For every integer $l\geq2$, define
+\[
+  (\R u)(x)=
+  \begin{cases}
+    u(x),&x\in\overline{\Omega^-},\\
+    u(\rho x),&x\in\Omega^+.
+  \end{cases}
+\]
+Then
+\[
+  \R:\F(\overline{\Omega^-})\longrightarrow\F(\SG_l)
+\]
+is a linear right inverse to restriction, and
+\begin{equation}\label{eq:energy}
+  \E_{\SG_l}(\R u)=2\E_{\Omega^-}(u).
+\end{equation}
+It also preserves the uniform norm:
+$\|\R u\|_{\infty,\SG_l}=\|u\|_{\infty,\overline{\Omega^-}}$.
+Consequently, with the anchored resistance norm
+\[
+ \|u\|_{*,Y}^2=|u(q_0)|^2+\E_Y(u),
+\]
+the extension operator has norm at most $\sqrt2$.
+\end{theorem}
+
+\section{Proof}
+
+The reflection $\rho$ permutes the contraction maps defining $\SG_l$ and is
+therefore an automorphism of every graph $\Gamma_m$.  Hence it permutes
+$E_m$.  The triangular lattice has no nontrivial edge contained in the
+vertical axis.  Every edge orbit consequently has one of two forms:
+\begin{enumerate}
+\item $\{e,\rho e\}$, where $e$ is on the left and $\rho e$ is on the right;
+\item a singleton $\{e\}$, where $e=\{x,\rho x\}$ crosses the axis and
+      reflection exchanges its endpoints.
+\end{enumerate}
+This classification also follows cell by cell: the three graph-edge directions
+are horizontal and at angles $\pm\pi/3$, whereas the fixed axis is vertical.
+
+Because $\rho$ fixes $X$ pointwise, the two formulas defining $\R u$ agree on
+$X$.  They therefore define a continuous function on $\SG_l$.  For a paired
+orbit, say $e=\{x,y\}$ on the left, the two contributions to the graph energy
+of $\R u$ are equal:
+\[
+ \bigl((\R u)(x)-(\R u)(y)\bigr)^2
+ =\bigl((\R u)(\rho x)-(\R u)(\rho y)\bigr)^2
+ =(u(x)-u(y))^2.
+\]
+For a singleton orbit $e=\{x,\rho x\}$, evenness gives
+$(\R u)(x)=(\R u)(\rho x)$, so its contribution is zero.  Summing edge
+orbits and inserting the common factor $r_l^{-m}$ gives the exact finite-level
+identity
+\[
+  \E_m(\R u)=2\E_{m,-}(u)
+  \qquad(m\geq0).
+\]
+Taking increasing limits proves \eqref{eq:energy}; in particular $\R u$ has
+finite global energy.  Linearity, the restriction identity, and the uniform
+norm identity are immediate from the definition.  Finally,
+\[
+ \|\R u\|_{*,\SG_l}^2
+ =|u(q_0)|^2+2\E_{\Omega^-}(u)
+ \leq2\bigl(|u(q_0)|^2+\E_{\Omega^-}(u)\bigr),
+\]
+which proves the stated norm bound. \qed
+
+\begin{corollary}[energy-minimizing completion of the other half]
+For each $u\in\F(\overline{\Omega^-})$, there is a global finite-energy
+extension that agrees with $u$ on $\overline{\Omega^-}$ and is harmonic on
+$\Omega^+$.  Its total energy is at most $2\E_{\Omega^-}(u)$.
+\end{corollary}
+
+\begin{proof}
+The reflected function $\R u$ supplies a finite-energy competitor on
+$\Omega^+$ with boundary trace $u|_X$.  Minimizing the right-half energy with
+that trace, by the usual Dirichlet principle for the resistance form (the same
+principle used in Proposition 1.1 of \cite{CQ}), gives a harmonic completion
+whose right-half energy is no larger than that of the reflected competitor,
+namely $\E_{\Omega^-}(u)$.  Add the unchanged left-half energy.
+\end{proof}
+
+\section{Verification, scope, and novelty audit}
+
+The edge-orbit identity was checked independently by
+\nolinkurl{code/verify_reflection_energy.py}.  The script constructs the
+standard triangular IFS graphs for $2\leq l\leq6$, through depth three for
+$l\leq4$ and depth two otherwise, verifies that reflection is an edge
+automorphism and that no nontrivial edge lies in the fixed axis, and tests the
+energy identity on seeded random symmetric vertex data.  This is a finite
+regression check only; the edge-orbit argument above is the proof.
+
+The result is deliberately scoped to the vertical half domains and the
+first-order resistance energy.  It does not settle arbitrary horizontal upper
+or lower cuts, nor extension in $\operatorname{dom}_{L^2}(\Delta^k)$.  Even
+reflection also need not make a harmonic function globally harmonic across
+$X$: a normal-flux matching condition can fail.
+
+The run searched its registry, solution, attempt, and proof-gap indexes for
+arXiv:1702.02419 and the core extension terms.  Bounded primary-source searches
+for half-gasket finite-energy reflection/extension recovered Li--Strichartz's
+$\SG_2$ work on trace spaces and piecewise-biharmonic extensions for Laplacian
+domains \cite{LS}, Cao--Qiu's later Sobolev work on p.c.f. sets \cite{CQ20},
+and a bottom-line trace theorem \cite{CLST}, but no all-$l$ statement of
+Theorem~\ref{thm:main}.  Because the symmetry argument is elementary, the
+novelty claim is plausible but especially provisional: the theorem may be
+folklore or implicit in resistance-form locality.
+
+\paragraph{Human-review focus.}
+Confirm that the paper's local energy $\E_{\Omega^-}$ agrees with the left-edge
+exhaustion used here for all $l$, especially at graph edges setwise fixed by
+reflection; then check the bounded literature search for an implicit reflection
+extension lemma.
+
+\begin{thebibliography}{9}
+\bibitem{CQ}
+S.~Cao and H.~Qiu,
+\emph{Boundary Value Problems for harmonic functions on domains in Sierpi\'nski
+gaskets}, arXiv:1702.02419 (2017).
+
+\bibitem{LS}
+W.~Li and R.~S.~Strichartz,
+\emph{Boundary Value Problems on a Half Sierpi\'nski Gasket},
+J. Fractal Geom. 1 (2014), 1--43; arXiv:1304.3522.
+
+\bibitem{CQ20}
+S.~Cao and H.~Qiu,
+\emph{Sobolev spaces on p.c.f. self-similar sets: critical orders and atomic
+decompositions}, arXiv:1904.00342 (2020).
+
+\bibitem{CLST}
+S.~Cao, S.~Li, R.~S.~Strichartz, and P.~Talwai,
+\emph{A Trace Theorem For Sobolev Spaces On The Sierpi\'nski Gasket},
+arXiv:1905.03391 (2019).
+\end{thebibliography}
+
+\end{document}

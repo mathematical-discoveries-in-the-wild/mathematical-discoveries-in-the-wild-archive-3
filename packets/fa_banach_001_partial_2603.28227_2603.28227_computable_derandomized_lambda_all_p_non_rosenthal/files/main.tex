@@ -1,0 +1,346 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\E}{\mathbf E}
+\newcommand{\Pp}{\mathbf P}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb T}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\card}[1]{\lvert #1\rvert}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{A Computable Derandomization of a Thin-Set Construction}
+\author{agent\_lane\_03}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Status and source question}
+
+\textbf{Status: substantial partial result (full effective
+derandomization; the ``natural'' closed-form question remains).}
+
+Neuwirth asks on page 3 of \cite{Neuwirth} whether some ``natural'' set of
+integers is a $\Lambda(p)$ set for every finite $p$ and fails the Rosenthal
+property.  The preceding sentence emphasizes that the random construction
+provides no explicit procedure for building such a set.
+
+\begin{center}
+\includegraphics[width=.94\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+The theorem below gives a parameter-free deterministic algorithm for such a
+set.  Its output is computable, but its exhaustive finite searches are
+enormous and it is not a closed formula.  Since ``natural'' has no formal
+definition, the result is deliberately not presented as a complete answer to
+that adjective.
+
+\section*{Definitions and source ingredients}
+
+For $E\subseteq\Z$ and $p>0$, recall that $E$ is a $\Lambda(p)$ set if,
+for some $0<r<p$, the $L^p$ and $L^r$ norms are equivalent on trigonometric
+polynomials with spectrum in $E$.  If $E=\{n_j\}_{j\ge1}$ is ordered
+increasingly, it is \emph{equidistributed} if
+\[
+       \frac1m\sum_{j=1}^m z^{n_j}\longrightarrow0
+       \qquad(z\in\T\setminus\{1\}).
+\]
+Neuwirth records that every weakly equidistributed set fails the Rosenthal
+property \cite[p.~3]{Neuwirth}.
+
+We use two further ingredients proved in the source.
+
+\begin{enumerate}[label=(N\arabic*)]
+\item\label{N1}
+For an integer $s\ge2$, call a finite set $F$ \emph{$s$-independent} if
+there is no relation
+\[
+ \sum_{j=1}^m a_jx_j=0,\qquad
+ 3\le m\le2s,\quad x_j\in F\text{ distinct},\quad
+ a_j\in\Z\setminus\{0\},
+\]
+with $\sum_j a_j=0$ and $\sum_j|a_j|\le2s$.
+If $I_k$ form a Littlewood--Paley partition and $F_k\subseteq I_k$ are
+$s$-independent, then $\bigcup_kF_k$ is a $\Lambda(2s)$ set
+\cite[Proposition 5.4]{Neuwirth}.
+
+\item\label{N2}
+If each point of a finite set of size $q$ is selected independently with
+probability $\ell/q$, then
+\begin{equation}\label{eq:indprob}
+ \Pp\{\text{the selected set is $s$-dependent}\}
+ \le D_s\frac{\ell^{2s}}q,
+\end{equation}
+where one may take, for example,
+$D_s=(2s)(4s+1)^{2s}$; see \cite[Lemma 5.5]{Neuwirth} and its proof.
+\end{enumerate}
+
+We also use the complex Bernstein concentration inequality in
+\cite[Lemma 6.1]{Neuwirth}: if independent centered variables satisfy
+$|X_j|\le1$ and $\sum_j\E|X_j|^2\le v$, then
+\begin{equation}\label{eq:bernstein}
+ \Pp\left\{\left|\sum_jX_j\right|\ge a\right\}
+ <4\exp\left(-\frac{a^2}{4(v+a)}\right).
+\end{equation}
+
+\section*{The result}
+
+\begin{theorem}\label{thm:main}
+There is a parameter-free computable set $E\subseteq\N$ such that
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $E$ is a $\Lambda(p)$ set for every $p<\infty$;
+\item $E$ is equidistributed;
+\item consequently, $E$ is not a Rosenthal set.
+\end{enumerate}
+In particular, there is an explicit deterministic procedure producing a set
+with the two opposed properties in Neuwirth's question.
+\end{theorem}
+
+\section*{Idea of the proof}
+
+Use the factorial annuli with endpoints $p_k=2^{k!}$.  In block $k$ we ask
+for about $(k+2)!$ points.  Two finite requirements are imposed.  First, the
+block must have no short additive relations, with the forbidden length
+tending to infinity with $k$.  This makes the union $\Lambda(p)$ for every
+$p$ by the source's Littlewood--Paley criterion.  Second, every prefix of the
+block must have small centered exponential sums on a sufficiently fine grid
+of roots of unity.  Bernstein's inequality shows that the second condition
+fails with very small probability; Neuwirth's relation count does the same
+for the first.  Hence at least one subset of every block passes both finite
+tests, and choosing the lexicographically first one is a deterministic,
+terminating algorithm.
+
+The prefix condition is essential.  Endpoint discrepancy alone would not
+control averages while the enumeration is partway through a large block.
+The adaptive threshold used below yields relative error $O(k^{-1/2})$
+uniformly at every cutoff in block $k$.
+
+\section*{Construction}
+
+For $k\ge4$, set
+\[
+ p_k=2^{k!},\qquad B_k=\{p_{k-1}+1,\ldots,p_k\},\qquad
+ q_k=\card{B_k},\qquad \ell_k=(k+2)!,\qquad
+ \delta_k=\frac{\ell_k}{q_k},\qquad L_k=k!.
+\]
+Let
+\[
+ h_k=\max\left(\{1\}\cup
+ \left\{2\le s\le k:
+ D_s\frac{\ell_k^{2s}}{q_k}\le\frac14\right\}\right).
+\]
+Because $\log q_k\asymp k!$ while
+$\log(D_s\ell_k^{2s})=O_s(k\log k)$ for each fixed $s$, we have
+\begin{equation}\label{eq:hk}
+                         h_k\longrightarrow\infty.
+\end{equation}
+
+Let $\Omega_k$ be the set of all $(4p_k)$th roots of unity.  For
+$A\subseteq B_k$, $1\le r\le q_k$, and $z\in\T$, define
+\[
+ Z_{A,k,r}(z)=
+ \sum_{m=1}^r
+ \big(\1_A(p_{k-1}+m)-\delta_k\big)z^{p_{k-1}+m},
+ \qquad v_{k,r}=r\delta_k,
+\]
+and put
+\[
+ T_{k,r}=32\left(\sqrt{(v_{k,r}+1)L_k}+L_k\right).
+\]
+Call $A$ \emph{admissible} if
+\begin{enumerate}[label=(A\arabic*)]
+\item $A$ is $h_k$-independent when $h_k\ge2$;
+\item $|Z_{A,k,r}(z)|\le T_{k,r}$ for every
+$1\le r\le q_k$ and every $z\in\Omega_k$.
+\end{enumerate}
+Order subsets of $B_k$ lexicographically by their indicator words, let
+$E_k$ be the first admissible subset, and define
+\[
+                              E=\bigcup_{k\ge4}E_k.
+\]
+
+\section*{Proof of Theorem \ref{thm:main}}
+
+\subsection*{1. Every block search terminates}
+
+Select the elements of $B_k$ independently with probability $\delta_k$.
+For a fixed prefix $r$ and fixed $z\in\Omega_k$, the summands defining
+$Z_{A,k,r}(z)$ are independent, centered, bounded by $1$, and have total
+variance at most $v_{k,r}$.  If
+$b=\sqrt{(v_{k,r}+1)L_k}+L_k$ and $a=32b$, then
+\[
+ \frac{a^2}{4(v_{k,r}+a)}\ge4L_k.
+\]
+Indeed, $b^2\ge v_{k,r}L_k$ and $b\ge L_k$, so
+$64b^2\ge L_kv_{k,r}+32L_kb$.  Applying
+\eqref{eq:bernstein} and taking a union bound over at most $p_k$ prefixes
+and $4p_k$ grid points gives
+\begin{align}
+ \Pp\{\text{(A2) fails}\}
+ &\le16p_k^2e^{-4L_k}
+ =16\exp\bigl(-(4-2\log2)L_k\bigr)<\frac14.\label{eq:discprob}
+\end{align}
+For $h_k\ge2$, \eqref{eq:indprob} and the definition of $h_k$ give
+\[
+ \Pp\{\text{(A1) fails}\}\le\frac14;
+\]
+for $h_k=1$ there is no condition.  Thus an admissible subset exists for
+every $k\ge4$.  The lexicographic search is finite and terminates.
+
+All its tests are decidable.  Condition (A1) searches finitely many integer
+relations.  In (A2), the numbers involved are rational combinations of
+roots of unity and square roots of rationals, so comparison can be carried
+out exactly in finite algebraic extensions of $\mathbb Q$.  Given
+$n\in\N$, one locates its unique block and performs this finite search.
+Therefore $E$ is a computable set.
+
+\subsection*{2. The \texorpdfstring{$\Lambda(p)$}{Lambda(p)} properties}
+
+The symmetric factorial annuli
+\[
+ [-p_k,-p_{k-1})\cup(p_{k-1},p_k]
+\]
+form the gross Littlewood--Paley partition used in \cite[\S5]{Neuwirth}.
+Fix $s\ge2$.  By \eqref{eq:hk}, $h_k\ge s$ for all sufficiently large
+$k$, so $E_k$ is $s$-independent in all sufficiently large blocks.
+Ingredient \ref{N1} shows that the corresponding tail of $E$ is a
+$\Lambda(2s)$ set.  Adding the finitely many earlier points preserves that
+property.  As $s$ is arbitrary (and lower exponents follow from the usual
+interpolation/inclusion property), $E$ is $\Lambda(p)$ for every finite
+$p$.
+
+\subsection*{3. Uniform discrepancy through partial blocks}
+
+A trigonometric polynomial of degree at most $p_k$ has, by Bernstein's
+inequality, supremum at most five times its maximum on $\Omega_k$: choose a
+nearest grid point, use $\|P'\|_\infty\le p_k\|P\|_\infty$, and note that
+the angular mesh error is at most $\pi/(4p_k)$.  Hence (A2) implies
+\begin{equation}\label{eq:blockdisc}
+ \|Z_{E_k,k,r}\|_\infty
+ \le160\left(\sqrt{(v_{k,r}+1)k!}+k!\right)
+ \qquad(1\le r\le q_k).
+\end{equation}
+
+Define a deterministic weight $\delta_n=\delta_k$ for $n\in B_k$ and zero
+before $B_4$.  If $N=p_{k-1}+r\in B_k$, put
+\[
+ \sigma_N=\sum_{n\le N}\delta_n
+ =A_k+v_{k,r},\qquad A_k=\sum_{i=4}^{k-1}\ell_i,
+\]
+and
+\[
+ D_N(z)=\sum_{n\le N}(\1_E(n)-\delta_n)z^n.
+\]
+At the end of block $i$, \eqref{eq:blockdisc} is $O(i\,i!)$; consequently
+the sum of all completed-block errors before block $k$ is $O(k!)$.  Also
+$A_k\ge\ell_{k-1}=(k+1)!$.  From \eqref{eq:blockdisc}, uniformly for
+$0\le v=v_{k,r}\le\ell_k$,
+\begin{equation}\label{eq:reldisc}
+\begin{aligned}
+ \frac{\|D_N\|_\infty}{\sigma_N}
+ &\le \frac{O(k!)}{A_k+v}
+ +160\frac{\sqrt{(v+1)k!}+k!}{A_k+v}\\
+ &=O(k^{-1/2})\longrightarrow0.
+\end{aligned}
+\end{equation}
+For the square-root term, use
+$v+1\le2(A_k+v)$ and $A_k\ge(k+1)k!$.
+
+Taking $z=1$ in \eqref{eq:reldisc} gives
+\begin{equation}\label{eq:count}
+ \card{E\cap[1,N]}=\sigma_N+D_N(1)\sim\sigma_N.
+\end{equation}
+In particular, $E$ is infinite.
+
+\subsection*{4. Equidistribution and failure of Rosenthal}
+
+The block weights $\delta_k=\ell_k/q_k$ are eventually decreasing.  Fix
+$z\in\T\setminus\{1\}$.  The geometric partial sums
+$S_M(z)=\sum_{n\le M}z^n$ are bounded.  Abel summation, applied after the
+irrelevant finite initial segment, therefore shows that
+\begin{equation}\label{eq:abel}
+ W_N(z):=\sum_{n\le N}\delta_nz^n=O_z(1).
+\end{equation}
+Since $\sigma_N\to\infty$, equations \eqref{eq:reldisc},
+\eqref{eq:count}, and \eqref{eq:abel} give
+\[
+ \frac{1}{\card{E\cap[1,N]}}
+ \sum_{n\in E\cap[1,N]}z^n
+ =\frac{W_N(z)+D_N(z)}{\sigma_N+D_N(1)}\longrightarrow0.
+\]
+This holds at every cutoff $N$, including cutoffs inside a block.  Thus
+$E$ is equidistributed.  Neuwirth's cited Lust--Piquard criterion now
+implies that $C_E(\T)$ contains a copy of $c_0$, and $E$ is not a Rosenthal
+set.  This proves the theorem. \qed
+
+\section*{Verification notes and limitations}
+
+\begin{itemize}
+\item The simultaneous block requirements are compatible because their two
+failure probabilities sum to less than $1$, not because either event is
+assumed independent of the other.
+\item The grid test includes $z=1$, so the same discrepancy estimate controls
+the cardinality denominator.  It also includes every prefix in a block;
+this prevents an endpoint-only gap.
+\item The construction is canonical once the displayed parameters and the
+lexicographic order are fixed.  It is computable but not computationally
+feasible: block sizes are of order $2^{k!}$.
+\item This packet does not claim that a brute-force lexicographic object is a
+``natural'' closed-form set.  It fully answers the precise effective
+procedure version suggested by the sentence immediately preceding the
+source question.
+\end{itemize}
+
+\section*{Novelty check and human-review recommendation}
+
+The bounded search on 27 August 2026 covered the four run indexes and web/
+arXiv queries combining ``explicit'', ``computable'', ``deterministic'',
+``equidistributed'', ``$\Lambda(p)$ for all $p$'', and ``Rosenthal''.  It
+found Neuwirth's 1999 article (uploaded as arXiv:2603.28227) and the later
+random thin-set constructions \cite{LQR,LQR2}, but no matching computable
+derandomization.  This was not an exhaustive citation-graph review; novelty
+confidence is therefore medium.
+
+Human review should focus on (a) the exact algebraic decidability statement
+for the finite grid test, (b) the factorial estimate in
+\eqref{eq:reldisc}, and (c) whether the community would regard effective
+derandomization as addressing enough of the word ``natural'' to merit a
+stronger status.  The present recommendation is to retain
+\texttt{partial}, even though Theorem \ref{thm:main} itself is complete.
+
+\begin{thebibliography}{9}
+\bibitem{Neuwirth}
+S.~Neuwirth,
+\emph{Two random constructions inside lacunary sets},
+Ann. Inst. Fourier (Grenoble) \textbf{49} (1999), no.~6, 1853--1867;
+arXiv:2603.28227,
+\url{https://arxiv.org/abs/2603.28227}.
+
+\bibitem{LQR}
+D.~Li, H.~Queff\'elec, and L.~Rodr\'iguez-Piazza,
+\emph{Some new thin sets of integers in harmonic analysis},
+J. Anal. Math. \textbf{86} (2002), 105--138;
+arXiv:0912.4214,
+\url{https://arxiv.org/abs/0912.4214}.
+
+\bibitem{LQR2}
+D.~Li, H.~Queff\'elec, and L.~Rodr\'iguez-Piazza,
+\emph{On some random thin sets of integers},
+Illinois J. Math. \textbf{54} (2010), 927--944;
+arXiv:0904.2507,
+\url{https://arxiv.org/abs/0904.2507}.
+\end{thebibliography}
+
+\end{document}

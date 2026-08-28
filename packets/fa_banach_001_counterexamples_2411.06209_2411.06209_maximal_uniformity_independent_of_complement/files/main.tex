@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\G}{\mathcal G}
+\newcommand{\Phiop}{\Phi}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+
+\title{Maximal unstable uniformity is independent of the complement\\
+\large A candidate full negative resolution of Remark 39(b) in arXiv:2411.06209}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 8}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\linewidth}{\textbf{Status.}
+Candidate full negative solution, likely valid, pending expert review.  The
+theorem below proves that the maximal unstable uniformity dimension is
+independent of the complementary space in every dimension, thereby disproving
+the existential conjecture in Remark 39(b) of the source paper.}}
+\end{center}
+
+\section{Source conjecture}
+
+Czornik, Kitzing, and Siegmund study the one-sided system
+\begin{equation}\label{eq:system}
+ x(n+1)=A(n)x(n),\qquad n\in\N,
+\end{equation}
+where $A(n)\in\mathrm{GL}(\R^d)$ and both $A$ and $A^{-1}$ are bounded
+\cite{CKS}.  On PDF and printed page 20, Remark 39(b) conjectures:
+\begin{quote}
+``There exists $A\colon\N\to\mathrm{GL}(\R^d)$ such that the maximal
+uniformity dimension $u_2$ depends on the choice of $L_2$.''
+\end{quote}
+Here $L_2$ ranges over complements of the fixed stable space $L_1$.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+ \caption{Theorem 38 and Remark 39 in the source paper, page 20.  Part (b) is
+ the conjecture resolved below.}
+\end{figure}
+
+\section{Definitions and notation}
+
+Write
+\[
+ \Phiop(0)=I,\qquad \Phiop(n)=A(n-1)\cdots A(0)\quad(n\ge1),
+\]
+so that the solution with initial value $x_0$ is $x(n,x_0)=\Phiop(n)x_0$.
+A splitting is $\R^d=L_1\oplus L_2$.  For a subspace $L$, let
+$\G_j(L)$ be its $j$-dimensional subspaces.
+
+Following the source, the system has a \emph{dichotomy with uniformity
+dimensions $(j_1,j_2)$} on $(L_1,L_2)$ if there is a single $\alpha>0$ such
+that
+\begin{align}
+ \norm{\Phiop(n)u}&\le C_U e^{-\alpha(n-m)}\norm{\Phiop(m)u},
+ &u&\in U,\quad U\in\G_{j_1}(L_1), \label{eq:stable}\\
+ \norm{\Phiop(n)v}&\ge c_V e^{\alpha(n-m)}\norm{\Phiop(m)v},
+ &v&\in V,\quad V\in\G_{j_2}(L_2), \label{eq:unstable}
+\end{align}
+for all $n\ge m\ge0$, where the positive constants may depend on the
+subspace.  Refining a uniformity subspace preserves the estimate and its
+exponent.  Thus a dichotomy is uniform on every one-dimensional subspace of
+both splitting spaces \cite[Definition 15 and Theorem 7]{CKS}.
+
+The pair $(u_1,u_2)$ is \emph{maximal} if it is an available uniformity pair
+and every available pair $(\ell_1,\ell_2)$ satisfies
+$\ell_i\le u_i$ \cite[Definition 35]{CKS}.
+
+\section{Proof intuition}
+
+An alternate complement is a graph over the original complement.  If
+$w=v+Tv$ lies in that graph, then $v$ is in the old unstable space and $Tv$
+is in the stable space.  The source proof tries to control $T(V)$ by a full
+stable uniformity estimate, which leads to its extra dimension hypothesis.
+That is more than is needed.
+
+Indeed, finitely many stable basis-line estimates give the absolute bound
+$\norm{\Phiop(n)s}\le K e^{-\alpha n}\norm{s}$ for every $s\in L_1$.
+Meanwhile the old unstable estimate gives
+$\norm{\Phiop(n)v}\ge c e^{\alpha n}\norm v$.  Hence the graph correction is
+at most a constant times $e^{-2\alpha n}$ of the unstable component.  It is
+therefore harmless after a finite time, and invertibility patches the finite
+initial interval.
+
+\section{Complement-transfer theorem}
+
+\begin{lemma}[Finite-time patch]\label{lem:patch}
+Let $U\subset\R^d$ be fixed.  Suppose that for some $C>0$, $\alpha>0$, and
+$r_0\in\N$,
+\[
+ \norm{\Phiop(n)u}\ge C e^{\alpha(n-m)}\norm{\Phiop(m)u}
+ \qquad(n\ge m\ge r_0,\ u\in U).
+\]
+Then the same estimate holds for all $n\ge m\ge0$ after replacing $C$ by a
+possibly smaller positive constant.
+\end{lemma}
+
+\begin{proof}
+Every $\Phiop(r)$ is invertible.  For each $m<r_0$, compactness of the unit
+sphere of $U$ gives
+\[
+ q_m:=\inf_{0\ne u\in U}
+ \frac{\norm{\Phiop(r_0)u}}{\norm{\Phiop(m)u}}>0.
+\]
+For $n\ge r_0>m$, apply the assumed estimate from $r_0$ to $n$ and insert
+$q_m$; this gives the desired form with constant
+$Cq_m e^{-\alpha(r_0-m)}$.  The remaining pairs $m\le n<r_0$ are finite in
+number, and the corresponding norm ratios again have positive minima on the
+unit sphere of $U$.  Taking the minimum of these finitely many constants
+proves the claim.  This is also the mechanism of Lemma 36 in the source.
+\end{proof}
+
+\begin{theorem}[Uniformity dimensions transfer between all complements]
+\label{thm:transfer}
+Let $A\colon\N\to\mathrm{GL}(\R^d)$ satisfy the standing boundedness
+assumptions of \eqref{eq:system}, and let
+\[
+ \R^d=L_1\oplus L_2=L_1\oplus L_2'.
+\]
+If the system has a dichotomy with uniformity dimensions $(j_1,j_2)$ on
+$(L_1,L_2)$, then it has a dichotomy with the same uniformity dimensions on
+$(L_1,L_2')$.  The same exponent $\alpha$ can be used.
+\end{theorem}
+
+\begin{proof}
+The degenerate cases $L_1=\{0\}$ or $L_1=\R^d$ have a unique complement, so
+assume $1\le k:=\dim L_1\le d-1$.  An admissible uniformity pair then has
+$j_1,j_2\ge1$.
+
+Let $e_1,\dots,e_k$ be an orthonormal basis of $L_1$.  By refinement of the
+stable estimate, for each basis line there is $C_i>0$ such that, on setting
+$m=0$ in \eqref{eq:stable},
+\[
+ \norm{\Phiop(n)e_i}\le C_i e^{-\alpha n}\qquad(n\ge0).
+\]
+Consequently, for $s=\sum_i a_i e_i$,
+\begin{equation}\label{eq:absolute-stable}
+ \norm{\Phiop(n)s}
+ \le e^{-\alpha n}\sum_i |a_i|C_i
+ \le K e^{-\alpha n}\norm{s},
+ \qquad K:=\Big(\sum_i C_i^2\Big)^{1/2}.
+\end{equation}
+This is an absolute time-zero estimate on all of $L_1$; it does not assert
+moving-time uniformity on $L_1$.
+
+Fix an arbitrary $V'\in\G_{j_2}(L_2')$.  Let $P\colon\R^d\to L_2$ be the
+projection along $L_1$.  Since $V'\cap L_1=\{0\}$, $P|_{V'}$ is injective,
+and
+\[
+ V:=P[V']\in\G_{j_2}(L_2).
+\]
+Thus $V'$ is the graph of a linear map $T\colon V\to L_1$:
+\[
+ V'=\{v+Tv:v\in V\}.
+\]
+Put $M=\norm T$.  By \eqref{eq:unstable} on the fixed space $V$, there is
+$c>0$ such that
+\begin{equation}\label{eq:Vunstable}
+ \norm{\Phiop(n)v}\ge c e^{\alpha(n-m)}\norm{\Phiop(m)v}
+ \quad(n\ge m\ge0,\ v\in V).
+\end{equation}
+In particular, at $m=0$,
+$\norm{\Phiop(r)v}\ge c e^{\alpha r}\norm v$.  Combining this with
+\eqref{eq:absolute-stable}, for every $r\ge0$ and $v\in V$,
+\begin{equation}\label{eq:ratio}
+ \norm{\Phiop(r)Tv}
+ \le KM e^{-\alpha r}\norm v
+ \le D e^{-2\alpha r}\norm{\Phiop(r)v},
+ \qquad D:=\frac{KM}{c}.
+\end{equation}
+
+Choose $r_0$ so that $D e^{-2\alpha r_0}\le\tfrac12$.  For
+$w=v+Tv\in V'$ and $n\ge m\ge r_0$, equations \eqref{eq:Vunstable} and
+\eqref{eq:ratio} give
+\begin{align*}
+ \norm{\Phiop(n)w}
+ &\ge \norm{\Phiop(n)v}-\norm{\Phiop(n)Tv}
+ \ge \tfrac12\norm{\Phiop(n)v},\\
+ \norm{\Phiop(m)w}
+ &\le \norm{\Phiop(m)v}+\norm{\Phiop(m)Tv}
+ \le (1+D)\norm{\Phiop(m)v}.
+\end{align*}
+Therefore
+\[
+ \norm{\Phiop(n)w}
+ \ge \frac{c}{2(1+D)}e^{\alpha(n-m)}\norm{\Phiop(m)w}
+ \qquad(n\ge m\ge r_0,\ w\in V').
+\]
+Lemma~\ref{lem:patch} extends this to all $n\ge m\ge0$.  Hence the unstable
+estimate holds uniformly on $V'$ with exponent $\alpha$.  Since $V'$ was an
+arbitrary member of $\G_{j_2}(L_2')$, all required unstable estimates hold on
+the new complement.  The stable estimates on $\G_{j_1}(L_1)$ are unchanged.
+Thus $(j_1,j_2)$ transfers to $(L_1,L_2')$ with the same exponent.
+\end{proof}
+
+\begin{corollary}[Full negative answer to Remark 39(b)]
+For one-sided time and fixed $L_1$, the maximal unstable uniformity dimension
+$u_2$ is independent of the choice of complement $L_2$.  Hence the system
+conjectured in Remark 39(b) of \cite{CKS} does not exist.
+\end{corollary}
+
+\begin{proof}
+Let $u_2$ and $u_2'$ be the maximal unstable uniformity dimensions for two
+complements $L_2$ and $L_2'$.  Theorem~\ref{thm:transfer} transfers the maximal
+pair for $(L_1,L_2)$ to $(L_1,L_2')$, so maximality gives $u_2\le u_2'$.
+Applying the same theorem in the reverse direction gives $u_2'\le u_2$.
+Thus $u_2=u_2'$.
+\end{proof}
+
+\section{Why the source hypothesis is unnecessary}
+
+Theorem 37 of \cite{CKS} proves $u_2\le u_2'$ under the additional condition
+that the stable projection of every target $u_2$-plane has dimension at most
+$u_1$.  That condition supplies a moving-time stable estimate on the entire
+projected plane.  The proof above replaces it with
+\eqref{eq:absolute-stable}, obtained from finitely many basis lines and used
+only at absolute time zero.  This is sufficient because the stable and
+unstable absolute-time bounds separate at the rate $e^{-2\alpha r}$.  No
+dimension restriction on the stable projection remains.
+
+\section{Verification, novelty, and limitations}
+
+The proof uses only finite-dimensional linear algebra, the definitions and
+refinement observation in the source, and the explicitly proved finite-time
+patch.  The constants $c$, $D$, and $r_0$ may depend on the chosen target
+plane $V'$, exactly as the source definition permits; the exponent $\alpha$
+does not.  Degenerate splittings have a unique complement.
+
+A bounded novelty check on 27 August 2026 searched the run's lightweight
+indexes and live arXiv/web results by the exact arXiv id, paper title, exact
+conjecture language, authors, and the phrases ``maximal uniformity dimension'',
+``dependence on splitting'', and ``choice of $L_2$''.  It found the source
+paper and a repository mirror, but no later claimed resolution.  This is not
+an exhaustive novelty guarantee.
+
+There is no computational component.  Human review should focus on the common
+exponent under refinement, the graph parametrization of an arbitrary target
+$j_2$-plane, and the fact that only the absolute stable estimate
+\eqref{eq:absolute-stable} is used.
+
+\enlargethispage{5\baselineskip}
+\begin{thebibliography}{9}
+\bibitem{CKS}
+A.~Czornik, K.~Kitzing, and S.~Siegmund,
+\emph{Dichotomies uniform on subspaces and formulas for dichotomy spectra},
+arXiv:2411.06209, latest source/PDF inspected 27 August 2026.
+\end{thebibliography}
+
+\end{document}

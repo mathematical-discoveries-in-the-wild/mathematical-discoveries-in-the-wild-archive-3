@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2605.19959",
+  "author_list": [
+    "Hamidreza Kamkari",
+    "Mohammad Sina Nabizadeh",
+    "Justin Solomon"
+  ],
+  "claim_short": "2605.19959 Learning Orthonormal Bases Function Spaces Theorem 2 equation 7 Hilbert-Schmidt orthogonal group variational diagonalization optimizer existence nonattainment continuous covariance Fourier quarter-turn",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 943,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/files/figures/source_theorem2.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/files/figures/source_theorem2.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2605.19959v1",
+    "source_url": "https://arxiv.org/abs/2605.19959v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_full_nonattainment_result | review_focus=Check that the source intends SO(HS) literally as Definition 1. Under both the stationary definition and the later time-dependent Hilbert--Schmidt-flow variant, every admissible Q satisfies Q-I Hilbert--Schmidt, which is the only group property used by the...",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/",
+  "packet_title": "Nonattainment of the Hilbert--Schmidt basis-learning objective",
+  "primary_arxiv_id": "2605.19959",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0628",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2605.19959_2605.19959_hs_diagonalization_nonattainment/files/solution_packet.pdf",
+  "source_authors": "Hamidreza Kamkari, Mohammad Sina Nabizadeh, Justin Solomon",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2605.19959_hs_diagonalization_nonattainment/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2605.19959v1",
+  "source_question": "",
+  "source_title": "Learning Orthonormal Bases for Function Spaces",
+  "source_url": "https://arxiv.org/abs/2605.19959v1",
+  "source_year": "2026",
+  "verification_status": "unverified"
+}

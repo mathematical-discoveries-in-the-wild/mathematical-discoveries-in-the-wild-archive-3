@@ -1,0 +1,4 @@
+PASS: D_s is a nonconstant continuous doubly stochastic edge path
+PASS: b(R^2) spans the trace-zero plane and reconstructs D_s with 1
+PASS: the defining majorization identity holds on all tested samples
+PASS: only I and P permutation supports lie inside supp(I+P)

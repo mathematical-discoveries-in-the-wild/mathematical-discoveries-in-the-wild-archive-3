@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2004.10833",
+  "author_list": [
+    "Xiaobing Feng",
+    "Mitchell Sutton"
+  ],
+  "claim_short": "For every 0 < alpha < 1 and every 1 < p < infinity, each of the two one-sided spaces from the source satisfies",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2004.10833v2",
+    "source_url": "https://arxiv.org/abs/2004.10833v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/",
+  "packet_title": "One-sided weak fractional Sobolev spaces are not Gagliardo spaces for p != 2",
+  "primary_arxiv_id": "2004.10833",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0301",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2004.10833_2004.10833_fractional_sobolev_gagliardo_nonequivalence/files/solution_packet.pdf",
+  "source_authors": "Xiaobing Feng, Mitchell Sutton",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2004.10833_fractional_sobolev_gagliardo_nonequivalence/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2004.10833v2",
+  "source_question": "",
+  "source_title": "A new theory of fractional differential calculus and fractional Sobolev spaces: One-dimensional case",
+  "source_url": "https://arxiv.org/abs/2004.10833v2",
+  "source_year": "2020",
+  "verification_status": "unverified"
+}

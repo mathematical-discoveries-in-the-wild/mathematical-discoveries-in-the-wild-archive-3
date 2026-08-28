@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1806.02926",
+  "author_list": [
+    "Karsten Kruse"
+  ],
+  "claim_short": "The open problem after Lemma 4.5 on page 16 asks whether, for a quasi-complete locally convex Hausdorff space E, functions f in C^k(R^d,E) and g in C^n(R^d) with at least one compactly supported satisfy",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 4,
+  "database_packet_path": "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1806.02926v5",
+    "source_url": "https://arxiv.org/abs/1806.02926v5"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_solution_likely_valid_additive_convolution_regularization",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/",
+  "packet_title": "Candidate full solution: additive regularity of vector-valued convolution",
+  "primary_arxiv_id": "1806.02926",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0901",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_1806.02926_1806.02926_vector_valued_convolution_additive_regularization/files/solution_packet.pdf",
+  "source_authors": "Karsten Kruse",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/1806.02926_vector_valued_convolution_additive_regularization/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1806.02926v5",
+  "source_question": "",
+  "source_title": "The approximation property for weighted spaces of differentiable functions",
+  "source_url": "https://arxiv.org/abs/1806.02926v5",
+  "source_year": "2018",
+  "verification_status": "unverified"
+}

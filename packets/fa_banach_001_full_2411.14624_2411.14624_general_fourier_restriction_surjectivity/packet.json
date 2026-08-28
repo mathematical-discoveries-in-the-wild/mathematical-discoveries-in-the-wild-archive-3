@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2411.14624",
+  "author_list": [
+    "Joseph DeGaetani",
+    "Mahya Ghandehari"
+  ],
+  "claim_short": "Yes. For every locally compact Hausdorff groupoid G with a left Haar system and every unit u, the restriction map above is a contractive surjective algebra homomorphism. No etaleness, second countability, sigma-compactness, Condition (*), unimodularity, or right-invariance assumption is needed.",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2411.14624v1",
+    "source_url": "https://arxiv.org/abs/2411.14624v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_solution_likely_valid_needs_human_review",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/",
+  "packet_title": "Fourier-algebra restriction to isotropy is always surjective",
+  "primary_arxiv_id": "2411.14624",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1240",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2411.14624_2411.14624_general_fourier_restriction_surjectivity/files/solution_packet.pdf",
+  "source_authors": "Joseph DeGaetani, Mahya Ghandehari",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2411.14624_general_fourier_restriction_surjectivity/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2411.14624v1",
+  "source_question": "Joseph DeGaetani and Mahya Ghandehari, *On the restriction maps of the Fourier and Fourier-Stieltjes algebras over locally compact groupoids*, arXiv:2411.14624. Remark 3.10, on printed page 13, asks whether Theorem 3.7 holds in full generality: for an arbitrary locally compact Hausdorff groupoid with a Haar system, is",
+  "source_title": "On the restriction maps of the Fourier and Fourier-Stieltjes algebras over locally compact groupoids",
+  "source_url": "https://arxiv.org/abs/2411.14624v1",
+  "source_year": "2024",
+  "verification_status": "unverified"
+}

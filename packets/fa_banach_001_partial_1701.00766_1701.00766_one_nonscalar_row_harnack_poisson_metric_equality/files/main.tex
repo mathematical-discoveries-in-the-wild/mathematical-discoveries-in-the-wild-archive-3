@@ -1,0 +1,202 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.78in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\B}{\mathbf B}
+\newcommand{\R}{\mathbf R}
+\newcommand{\E}{\mathcal E}
+\newcommand{\K}{\mathcal K}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\Fock}{\mathcal F}
+\title{Harnack and Poisson metrics coincide\\with at most one nonscalar row}
+\author{Run \texttt{fa\_banach\_001} --- \texttt{agent\_lane\_00}}
+\date{26 August 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.} Likely valid partial result, subject to human
+review. It gives an affirmative answer to a dimension class strictly larger
+than the noncommutative-ball and regular-polydisk cases stated in the source.
+
+\section{Source question}
+
+Popescu's paper \emph{Hyperbolic geometry on noncommutative polyballs},
+arXiv:1701.00766, asks on page 4 whether its Harnack metric $\delta_H$ and
+Poisson metric $\delta_{\Pcal}$ coincide on every regular polyball
+\cite{metric-source}. The relevant source page is reproduced below; the open
+problem is the final paragraph before Section 1.
+
+\begin{center}
+\includegraphics[width=.91\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+\noindent\textbf{Transcription.} ``It remains an open problem whether the
+same result is true for any regular polyball.'' Here ``the same result'' is
+$\delta_H=\delta_{\Pcal}$, known there for a noncommutative ball and for a
+regular polydisk.
+
+\section{Definitions and statement}
+
+Let $\B_{\mathbf n}$ be the regular polyball with
+$\mathbf n=(n_1,\ldots,n_k)$, and let
+$\boldsymbol{\Pcal}(\R,\mathbf X)$ be its free pluriharmonic Poisson kernel.
+For $\mathbf A,\mathbf B\in\B_{\mathbf n}(\mathcal H)^-$ and $c>1$, write
+$\mathbf A\sim_{\Pcal,c}\mathbf B$ when
+\[
+ c^{-2}\boldsymbol{\Pcal}(\R,r\mathbf B)
+ \le \boldsymbol{\Pcal}(\R,r\mathbf A)
+ \le c^2\boldsymbol{\Pcal}(\R,r\mathbf B),\qquad 0\le r<1.
+\tag{1}
+\]
+Write $\mathbf A\sim_{H,c}\mathbf B$ when the same inequalities hold after
+replacing the Poisson kernel by every positive operator-valued free
+$k$-pluriharmonic function $F$. The metrics are the logarithms of the infima
+of the admissible constants on their respective equivalence parts.
+
+\begin{theorem}\label{thm:metric}
+Suppose that at most one coordinate of $\mathbf n$ is larger than one. For
+every $\mathbf A,\mathbf B\in\B_{\mathbf n}(\mathcal H)^-$ and every $c>1$,
+\[
+ \mathbf A\sim_{H,c}\mathbf B
+ \quad\Longleftrightarrow\quad
+ \mathbf A\sim_{\Pcal,c}\mathbf B.
+\]
+Consequently the Harnack parts and Poisson parts coincide, and
+\[
+ \delta_H(\mathbf A,\mathbf B)
+ =\delta_{\Pcal}(\mathbf A,\mathbf B)
+\]
+on every such part.
+\end{theorem}
+
+\section{Proof intuition}
+
+One implication is built into the definitions: the Poisson kernel is itself a
+positive free pluriharmonic function. For the reverse implication, the key
+input is that with only one genuinely free row, every positive free
+pluriharmonic function is a completely positive image of the universal
+Poisson kernel. A completely positive map preserves both inequalities in
+(1), and it does not enlarge the constant. Thus the two sets of admissible
+constants are identical, not merely comparable.
+
+The one-row restriction enters only in the representation lemma below. Scalar
+rows are commuting isometries and can be made unitary simultaneously by an
+$\mathbb N^s$ direct limit. Fuglede's theorem then supplies the missing
+adjoint commutation with the one nonscalar row.
+
+\section{The representation input}
+
+\begin{lemma}\label{lem:representation}
+If at most one $n_i$ is larger than one, every positive free
+$k$-pluriharmonic function $F$ on $\B_{\mathbf n}$, with coefficients in
+$B(\E)$, has the form
+\[
+ F(\mathbf X)
+ = (\mu\otimes\operatorname{id})
+   [\boldsymbol{\Pcal}(\R,\mathbf X)]
+\tag{2}
+\]
+for a completely positive map $\mu:C^*(\R)\to B(\E)$.
+\end{lemma}
+
+\begin{proof}
+First normalize $F(0)=I_{\E}$. The positive-structure theorem of
+\cite{pluri-source} gives $\K\supset\E$ and mutually commuting row
+isometries $\mathbf V=(V_1,\ldots,V_k)$ whose compressed mixed moments are
+the coefficients of $F$.
+
+After relabeling, $V_1$ is the possible nonscalar row and
+$V_2,\ldots,V_k$ are commuting scalar isometries $U_1,\ldots,U_s$. For
+$p\le q$ in $\mathbb N^s$, connect a copy $\K_p$ of $\K$ to $\K_q$ by the
+isometry $U^{q-p}$. On the Hilbert direct limit, define
+\[
+ \widetilde U_iJ_ph=J_pU_ih,
+ \qquad
+ \widetilde V_jJ_ph=J_pV_{1,j}h.
+\]
+These definitions are compatible with the connecting maps. Each
+$\widetilde U_i$ is onto because
+$\widetilde U_iJ_{p+e_i}h=J_ph$, hence is unitary. The
+$\widetilde V_j$ remain isometries with orthogonal ranges. All extensions
+commute; Fuglede's theorem \cite{conway} makes every $\widetilde V_j$
+commute with every $\widetilde U_i^*$. Thus the extended rows doubly commute.
+
+The universal property of the tensor product of the Cuntz--Toeplitz
+algebras now gives a $*$-representation $\pi:C^*(\R)\to B(\widetilde\K)$
+with $\pi(\R)$ equal to the extended tuple. Compression to $\E$ defines the
+completely positive map $\mu(T)=J_{\E}^*\pi(T)J_{\E}$. Its moments are the
+coefficients of $F$, so coefficient uniqueness yields (2).
+
+For general $A=F(0)\ge0$, apply the normalized argument to
+\[
+ (A+\varepsilon I)^{-1/2}(F+\varepsilon I)
+ (A+\varepsilon I)^{-1/2}.
+\]
+After conjugating back, the representing maps have norms
+$\|A+\varepsilon I\|$. A point-ultraweak cluster limit as
+$\varepsilon\downarrow0$ is completely positive and has the coefficients of
+$F$, proving (2).
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:metric}}
+
+If $\mathbf A\sim_{H,c}\mathbf B$, apply the defining Harnack inequalities
+to the positive free pluriharmonic function
+$\mathbf X\mapsto\boldsymbol{\Pcal}(\R,\mathbf X)$. This gives (1), hence
+$\mathbf A\sim_{\Pcal,c}\mathbf B$.
+
+Conversely assume (1), and let $F$ be any positive free
+$k$-pluriharmonic function with coefficients in $B(\E)$. By
+Lemma~\ref{lem:representation}, choose a completely positive $\mu$ satisfying
+(2). Apply the completely positive map
+$\mu\otimes\operatorname{id}_{B(\mathcal H)}$ to all three terms of (1).
+For every $0\le r<1$ this gives
+\[
+ c^{-2}F(r\mathbf B)\le F(r\mathbf A)\le c^2F(r\mathbf B).
+\]
+Thus $\mathbf A\sim_{H,c}\mathbf B$. The admissible constants are identical
+in the two definitions, so their infima, their parts, and the resulting
+logarithmic metrics are identical. \qed
+
+\section{Verification, novelty, and limitations}
+
+The proof is order-theoretic after Lemma~\ref{lem:representation}: no limiting
+argument changes $c$. The representation lemma was independently packaged
+and proof-checked earlier in this run; it is repeated here so that the present
+packet is self-contained. The human reviewer should focus on the direct-limit
+orientation, the use of Fuglede to obtain double commutation, and the tensor
+order in (2).
+
+A bounded search through 26 August 2026 used the exact source sentence, the
+paper title and arXiv id, and combinations of ``Harnack'', ``Poisson'',
+``regular polyball'', and ``one nonscalar row''. It found the source, later
+applications, and a recent survey, but no resolution of the exact question or
+this dimension class. The novelty verdict is therefore ``apparently new within
+the bounded search''.
+
+The theorem does not settle polyballs with two or more nonscalar rows. The
+missing dilation would have to extend two commuting free row isometries while
+preserving both orthogonal-range relations and cross-adjoint commutation;
+ordinary $\mathbb N^s$ direct limits do not provide that extension.
+
+\begin{thebibliography}{9}
+\bibitem{metric-source}
+G.~Popescu, \emph{Hyperbolic geometry on noncommutative polyballs},
+J. Math. Anal. Appl. \textbf{456} (2017), 576--607;
+arXiv:1701.00766.
+
+\bibitem{pluri-source}
+G.~Popescu, \emph{Free pluriharmonic functions on noncommutative polyballs},
+Anal. PDE \textbf{9} (2016), 1185--1234;
+arXiv:1511.08852.
+
+\bibitem{conway}
+J.~B. Conway, \emph{A Course in Functional Analysis}, second edition,
+Graduate Texts in Mathematics 96, Springer, 1990. See the
+Fuglede--Putnam theorem.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{parskip}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{teal}{HTML}{167D7F}
+\definecolor{pale}{HTML}{EEF6F6}
+\definecolor{ink}{HTML}{20242A}
+\hypersetup{colorlinks=true,linkcolor=teal,urlcolor=teal,citecolor=teal}
+\color{ink}
+\setlist{nosep,leftmargin=1.5em}
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\,d}
+\newcommand{\Ltwo}[1]{L^2\!\left(G,#1\,dg\right)}
+
+\begin{document}
+
+{\color{navy}\LARGE\bfseries A Harnack answer to Mori's Problem 49}\par
+\vspace{0.25em}
+{\large Later-time heat-kernel $L^2$ spaces are dense}\par
+\vspace{0.55em}
+\noindent\colorbox{pale}{\parbox{0.965\linewidth}{
+\textbf{Status.} Literature-implied answer to the full problem. The decisive
+input is Li--Xu's 2009 parabolic Harnack theorem; the implication below does
+not appear to be stated explicitly in the inspected literature.
+}}
+
+\section*{Source and exact question}
+
+Shota Mori, \emph{The heat kernel on $SL(2,\R)$}, arXiv:1909.03670v3
+\cite{Mori}, Section 8, Problem 49, PDF page 25:
+
+\begin{quote}
+Let $t,\varepsilon>0$. Prove that the space
+\[
+L^2\!\left(SL(2,\R),\rho_{SL(2,\R)}(t+\varepsilon,g)\,dg\right)
+\]
+is a dense subspace of
+\[
+L^2\!\left(SL(2,\R),\rho_{SL(2,\R)}(t,g)\,dg\right).
+\]
+\end{quote}
+
+\section*{Identification}
+
+Mori's metric is left invariant. Hence it is complete, and its Ricci tensor
+has a global lower bound $\operatorname{Ric}\ge -k g$ for some $k\ge0$:
+left translations are isometries, so the Ricci eigenvalues are the same at
+every point. Li and Xu's parabolic Harnack inequality
+\cite[Theorem~1.4]{LiXu} applies to every positive heat solution on such a
+complete noncompact manifold.
+
+At the same spatial point $x_1=x_2=g$ and times $t_1=t<t_2=s$, their theorem
+gives
+\begin{equation}\label{eq:ratio}
+ \rho_t(g)\le C_{t,s}\rho_s(g)\qquad(g\in G),
+\end{equation}
+where, if $n=\dim G$,
+\[
+C_{t,s}=\left(\frac{s}{t}\right)^{n/2}
+\left(\frac{1+2ks/3}{1+2kt/3}\right)^{-n/8}
+\exp\!\left(\frac{nk}{4}(s-t)\right)<\infty.
+\]
+The distance term in the Harnack inequality vanishes, so the constant is
+uniform in $g$.
+
+\begin{theorem}
+Let $G$ be a connected noncompact Lie group with a left-invariant Riemannian
+metric, and let $\rho_t$ be its positive heat kernel for
+$\partial_tu=\Delta u$. For $0<t<s$, the natural inclusion
+\[
+\Ltwo{\rho_s}\hookrightarrow\Ltwo{\rho_t}
+\]
+is continuous and has dense range. In particular, Mori's Problem 49 has an
+affirmative answer by taking $G=SL(2,\R)$ and $s=t+\varepsilon$.
+\end{theorem}
+
+\begin{proof}
+The Harnack comparison \eqref{eq:ratio} gives, for every $f\in\Ltwo{\rho_s}$,
+\[
+ \|f\|_{L^2(\rho_tdg)}^2
+ =\int_G|f(g)|^2\rho_t(g)\,dg
+ \le C_{t,s}\int_G|f(g)|^2\rho_s(g)\,dg.
+\]
+Thus the natural inclusion is well-defined and continuous. Both heat kernels
+are positive and continuous. Consequently $C_c(G)\subset\Ltwo{\rho_s}$,
+while $C_c(G)$ is dense in $\Ltwo{\rho_t}$ for the Radon measure
+$\rho_t(g)\,dg$. Hence the range of the inclusion is dense.
+\end{proof}
+
+\section*{Provenance, scope, and verification}
+
+This is an agent-identified implication, not an original theorem claimed by
+this run. Li--Xu predates Mori's question by ten years and therefore does not
+identify Problem 49. The proof resolves Problem 49 completely and in fact
+works on every connected noncompact Lie group with a left-invariant metric.
+It makes no claim about Mori's Problems 46--48. For compact connected Lie
+groups, the same conclusion follows directly because the ratio of two
+positive continuous heat kernels is bounded on the compact group.
+
+The hypothesis audit checks completeness, the Ricci lower bound, positivity,
+and matching heat-equation normalization. A bounded search of the run indexes,
+the exact wording of Problem 49, arXiv:1909.03670, and author/title variants
+found no paper explicitly stating this answer. The official source record is
+still v3 (2 October 2019). Human review should focus on the application of
+Li--Xu Theorem 1.4 to Mori's normalization; both use
+$\partial_tu=\Delta u$ in the relevant statements.
+
+\begin{thebibliography}{9}
+\bibitem{Mori}
+S. Mori, \emph{The heat kernel on $SL(2,\mathbb R)$}, arXiv:1909.03670v3
+(2019), Section 8, Problem 49.
+
+\bibitem{LiXu}
+J. Li and X. Xu, \emph{Differential Harnack inequalities on Riemannian
+manifolds I: linear heat equation}, arXiv:0901.3849 (2009), Theorem 1.4.
+\end{thebibliography}
+
+\end{document}

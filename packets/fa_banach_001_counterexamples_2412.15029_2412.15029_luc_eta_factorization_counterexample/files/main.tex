@@ -1,0 +1,175 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.72in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\A}{\mathcal A}
+\newcommand{\LUC}{\operatorname{LUC}}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\title{An $F\ell^1$-basis need not give $\eta$-factorization in $\LUC(\A)$}
+\author{Candidate counterexample for arXiv:2412.15029}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\vspace{-1.2em}
+\begin{center}
+\fbox{\parbox{0.94\textwidth}{\textbf{Status.}
+Candidate full counterexample, likely valid, pending expert review.}}
+\end{center}
+
+\section*{Source question}
+
+Filali and Galindo prove that an $F\ell^1(\eta)$-basis gives
+$\eta$-factorization in $\A^*$ and one-factorization in $\LUC(\A)$.  They ask
+in Remark~4.15(iii) whether it also gives $\eta$-factorization in
+$\LUC(\A)$ \cite[p.~20]{FilaliGalindo}.
+
+\begin{center}
+\includegraphics[width=0.84\textwidth]{figures/open_problem_crop.png}
+\end{center}
+\vspace{-0.5em}
+\textbf{Transcription.}  In the case $m=1$, does every bounded family
+$\{S_\lambda:\lambda<\eta\}\subset\LUC(\A)$ admit
+\[
+ S_\lambda=\Psi_\lambda\cdot T\qquad(\lambda<\eta),
+\]
+where $(\Psi_\lambda)$ is bounded in $\LUC(\A)^*$ and one common
+$T$ belongs to $\LUC(\A)$?
+
+\section*{Counterexample}
+
+Take the convolution algebra $\A=L^1(\mathbb R)$.  Its compact covering is
+$\aleph_0$, and source Theorem~6.1 states that $L^1(\mathbb R)$ has an
+$F\ell^1(\aleph_0)$-basis of type~2 \cite[p.~28]{FilaliGalindo}.  Under the
+standard identification $\LUC(\A)=\LUC(\mathbb R)$, put
+\[
+ S_n(x)=e^{inx},\qquad n=1,2,\ldots.
+\]
+This is a bounded family in $\LUC(\A)$, with $\|S_n\|_\infty=1$.
+
+\section*{Proof Intuition}
+
+A common factor $T\in\LUC(\A)$ imposes a uniform continuity condition on all
+its bounded left factors: a bounded approximate identity must converge on the
+whole family uniformly.  High-frequency characters violate precisely this
+condition.  Each approximate-identity element has a Fourier transform tending
+to zero at high frequency, so it moves some character by almost its full norm.
+
+\begin{lemma}[Uniform-essentiality obstruction]\label{lem:uniform}
+Let $\A$ have a bounded right approximate identity $(u_j)$.  If a bounded
+family in $\LUC(\A)$ has a factorization
+\[
+ S_\lambda=\Psi_\lambda\cdot T,
+ \qquad \sup_\lambda\|\Psi_\lambda\|<\infty,
+ \qquad T\in\LUC(\A),
+\]
+then
+\[
+ \sup_\lambda\|S_\lambda\cdot u_j-S_\lambda\|\longrightarrow0.
+\]
+\end{lemma}
+
+\begin{proof}
+First, $T\cdot u_j\to T$ in norm.  Indeed, by definition
+$\LUC(\A)=\overline{\operatorname{span}}(\A^*\cdot\A)$.  For a generator
+$R\cdot a$,
+\[
+ (R\cdot a)\cdot u_j=R\cdot(au_j)\longrightarrow R\cdot a,
+\]
+and boundedness of $(u_j)$ extends this convergence to the closed span.
+Using the module associativity recorded in the source,
+\[
+ (\Psi_\lambda\cdot T)\cdot u_j
+ =\Psi_\lambda\cdot(T\cdot u_j).
+\]
+Consequently, if $C=\sup_\lambda\|\Psi_\lambda\|$, then
+\[
+ \sup_\lambda\|S_\lambda\cdot u_j-S_\lambda\|
+ \le C\|T\cdot u_j-T\|\longrightarrow0. \qedhere
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:counterexample}
+$L^1(\mathbb R)$ has an $F\ell^1(\aleph_0)$-basis, but
+$\LUC(L^1(\mathbb R))$ does not have the $\aleph_0$-factorization property.
+Thus the implication asked for in Remark~4.15(iii) is false.
+\end{theorem}
+
+\begin{proof}
+Let $(u_j)$ be any bounded approximate identity in $L^1(\mathbb R)$.  With
+the usual dual pairing and convolution product, direct calculation gives
+\begin{align*}
+ \ip{S_n\cdot u_j}{b}
+ &=\ip{S_n}{u_j*b}\\
+ &=\left(\int_{\mathbb R}u_j(t)e^{int}\,dt\right)
+   \ip{S_n}{b}
+ \qquad(b\in L^1(\mathbb R)).
+\end{align*}
+Hence
+\[
+ S_n\cdot u_j=m_j(n)S_n,
+ \qquad m_j(n)=\int_{\mathbb R}u_j(t)e^{int}\,dt.
+\]
+(The opposite pairing convention merely replaces $n$ by $-n$.)  For every
+fixed $j$, the Riemann--Lebesgue lemma \cite[Ch.~1]{Rudin} yields
+$m_j(n)\to0$ as $n\to\infty$.  It follows that
+\[
+ \sup_{n\ge1}\|S_n\cdot u_j-S_n\|_\infty
+ =\sup_{n\ge1}|m_j(n)-1|\ge1
+ \qquad\text{for every }j.
+\]
+
+If the requested factorization existed, there would be a bounded sequence
+$(\Psi_n)\subset\LUC(\A)^*$ and a common $T\in\LUC(\A)$ with
+$S_n=\Psi_n\cdot T$.  Lemma~\ref{lem:uniform} would make the preceding
+supremum tend to zero, a contradiction.  The source hypothesis was verified
+above from Theorem~6.1, so this is the desired counterexample.
+\end{proof}
+
+\section*{Concrete Gaussian check}
+
+For the normalized Gaussian approximate identity
+\[
+ u_j(t)=\frac{j}{\sqrt\pi}e^{-j^2t^2},
+\]
+one has $m_j(n)=e^{-n^2/(4j^2)}$.  Thus already at $n=20j$ the defect is
+$1-e^{-100}$, independently of the scale $j$.  The supplied script checks
+this numerical illustration; the proof above applies to every bounded
+approximate identity.
+
+\section*{Verification, scope, and novelty}
+
+The source hypothesis, target-space identification, module associativity,
+approximate-identity convergence, Fourier multiplier, and uniform contradiction
+were audited separately.  The result does not affect source Theorem~4.16:
+one-factorization can hold even though a bounded countable family has no common
+factor.
+
+A bounded search on 27 August 2026 checked the run indexes, the current official
+arXiv record, exact phrases from Remark~4.15(iii), the paper title and authors,
+and combinations of $F\ell^1$, $\LUC(\A)$, factorization, characters, and
+approximate identities.  Only the source question was found, and the arXiv
+record still lists v1.  Novelty is plausible but provisional.
+
+\begin{thebibliography}{9}
+\bibitem{FilaliGalindo}
+M. Filali and J. Galindo,
+\emph{$\ell^1$-bases, algebraic structure and strong Arens irregularity of
+Banach algebras in harmonic analysis}, arXiv:2412.15029v1, 2024.
+
+\bibitem{Rudin}
+W. Rudin,
+\emph{Fourier Analysis on Groups}, Interscience, New York, 1962.
+\end{thebibliography}
+
+\end{document}

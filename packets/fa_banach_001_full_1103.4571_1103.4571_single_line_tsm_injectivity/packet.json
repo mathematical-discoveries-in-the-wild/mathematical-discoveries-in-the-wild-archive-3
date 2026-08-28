@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1103.4571",
+  "author_list": [
+    "R. K. Srivastava"
+  ],
+  "claim_short": "The packet proves the stronger theorem that **one line through the origin** is already a set of injectivity for twisted spherical means on L^p(C) for every 1 <= p <= 2. Every odd Coxeter system contains such a line, so the source conjecture follows immediately.",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 1393,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1103.4571v11",
+    "source_url": "https://arxiv.org/abs/1103.4571v11"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_likely_valid | review_focus=Check the twist convention in the factorization of the special Hermite operator, the normal-order generating function, and strong L^1 reconstruction by the special-Hermite heat kernel. The result does not address arbitrary real-analytic curves or p > 2.",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/",
+  "packet_title": "Full solution packet: a single line determines twisted spherical means",
+  "primary_arxiv_id": "1103.4571",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0704",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_1103.4571_1103.4571_single_line_tsm_injectivity/files/solution_packet.pdf",
+  "source_authors": "R. K. Srivastava",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/1103.4571_single_line_tsm_injectivity/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1103.4571v11",
+  "source_question": "R. K. Srivastava, *Coxeter system of lines are sets of injectivity for the twisted spherical means on C*, arXiv:1103.4571. On page 14 the paper conjectures injectivity for Coxeter systems with an odd number of lines, after proving the even case for L^p(C), 1 <= p <= 2.",
+  "source_title": "Coxeter system of lines are sets of injectivity for the twisted spherical means on $\\mathbb C$",
+  "source_url": "https://arxiv.org/abs/1103.4571v11",
+  "source_year": "2011",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\tr}{\operatorname{tr}}
+
+\title{A superfactorial obstruction to the proposed lower bound for $B_3(2m+1)$}
+\author{Candidate disproof of inequality (27) in arXiv:1210.0835}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\fbox{\parbox{0.94\linewidth}{\textbf{Status: candidate
+counterexample/disproof, likely valid.}  The lower bound proposed in
+Question~6 cannot hold: the entire absolute path sum is at most
+$\binom{m+5}{3}/(4^{m+4}(m!)^2)$, which is superfactorially smaller than
+$C^m/m!$ for every fixed $C>0$.}}
+
+\section{Source question}
+
+Djakov and Mityagin study weighted walks arising in the spectral analysis of
+Hill operators \cite{DM}.  For steps $F=\{-2,+4\}$, $n=2m+1$, and exactly
+three negative steps, their Question~6 on PDF page~5 asks for an asymptotic
+formula for $B_3(2m+1)$, ``or at least'' a positive absolute constant $C$
+such that
+\begin{equation}\label{eq:source-lower}
+ |B_3(2m+1)|\geq \frac{C^m}{m!}.
+\end{equation}
+They note that \eqref{eq:source-lower} would imply a non-basis result for an
+associated antiperiodic Hill operator.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+\caption{Question~6 and inequalities (27)--(28) on PDF page~5 of
+arXiv:1210.0835v1.}
+\end{figure}
+
+\section{Definitions}
+
+An admissible walk $x$ starts at $-n$, ends at $n$, uses steps from
+$\{-2,+4\}$, and has no internal vertex equal to either endpoint.  If its
+internal vertices are $j(1),\ldots,j(\nu)$, its unweighted path factor is
+\[
+ h_1(x)=\prod_{t=1}^{\nu}\frac{1}{n^2-j(t)^2}.
+\]
+Let $X_n^+(3)$ denote the source's collection of such walks with exactly
+three $-2$ steps.  Then
+\[
+ B_3(2m+1)=\sum_{x\in X_n^+(3)}h_1(x),\qquad n=2m+1.
+\]
+The step-balance equation forces every such walk to have $m+2$ positive
+steps.  Hence it has $m+5$ total steps and $m+4$ internal vertices.
+
+\section{Proof intuition}
+
+No cancellation estimate is needed.  Divide positions by two and inspect
+only the vertices immediately after the first $m+1$ positive steps.  At the
+$p$-th selected vertex, at most three negative steps have occurred, so its
+distance factor from the left endpoint grows at least like $p$ and its
+distance factor from the right endpoint grows, in reverse order, at least
+like $m-p$.  Their products contribute two factorials to every path
+denominator.  The number of possible placements of the three negative steps
+is only cubic in $m$.  Therefore even the absolute sum is of order at most an
+exponential times $(m!)^{-2}$, ruling out the proposed $(m!)^{-1}$ scale.
+
+\section{The obstruction}
+
+\begin{theorem}\label{thm:bound}
+For every integer $m\geq1$,
+\begin{equation}\label{eq:main-bound}
+ |B_3(2m+1)|
+ \leq \sum_{x\in X_n^+(3)}|h_1(x)|
+ \leq \frac{\binom{m+5}{3}}{4^{m+4}(m!)^2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Put $n=2m+1$.  Normalize the positions by writing
+\[
+ j(t)=-n+2r_t.
+\]
+Thus $r_0=0$, $r_{m+5}=n$, and the normalized steps are $-1$ and $+2$.
+Moreover,
+\begin{equation}\label{eq:den-identity}
+ n^2-j(t)^2=4r_t(n-r_t).
+\end{equation}
+Admissibility says that every internal $r_t$ differs from both $0$ and $n$.
+
+Fix one admissible path.  For $p=1,\ldots,m+1$, consider the internal vertex
+immediately after the $p$-th $+2$ step.  It is internal because the path has
+$m+2$ positive steps in total.  Let $d_p\in\{0,1,2,3\}$ be the number of
+negative steps that have occurred by then.  The selected vertex is
+\begin{equation}\label{eq:rp}
+ r_p=2p-d_p.
+\end{equation}
+
+For $p=1$, admissibility gives $|r_1|\geq1$.  For $p\geq2$,
+\[
+ r_p\geq2p-3\geq p-1.
+\]
+Consequently
+\begin{equation}\label{eq:left-product}
+ \prod_{p=1}^{m+1}|r_p|\geq\prod_{p=2}^{m+1}(p-1)=m!.
+\end{equation}
+
+For the other endpoint factor, set $u=m+1-p$.  From \eqref{eq:rp},
+\[
+ n-r_p=2u-1+d_p.
+\]
+When $u\geq1$, this is at least $2u-1\geq u$.  When $u=0$, it is a nonzero
+integer by admissibility, hence has absolute value at least one.  Therefore
+\begin{equation}\label{eq:right-product}
+ \prod_{p=1}^{m+1}|n-r_p|\geq\prod_{u=1}^{m}u=m!.
+\end{equation}
+
+There are $m+4$ internal vertices.  The three unselected factors
+$r_t(n-r_t)$ are products of nonzero integers and therefore have absolute
+value at least one.  Combining \eqref{eq:den-identity},
+\eqref{eq:left-product}, and \eqref{eq:right-product} yields the uniform
+single-path estimate
+\[
+ |h_1(x)|\leq\frac{1}{4^{m+4}(m!)^2}.
+\]
+
+Every step sequence is determined by the three positions occupied by its
+negative steps among $m+5$ positions.  Hence there are at most
+$\binom{m+5}{3}$ admissible paths.  Summing the single-path estimate proves
+\eqref{eq:main-bound}.
+\end{proof}
+
+\begin{corollary}\label{cor:no-C}
+One has
+\[
+ \lim_{m\to\infty}\bigl(m!\,|B_3(2m+1)|\bigr)^{1/m}=0.
+\]
+In particular, there is no $C>0$ for which
+$|B_3(2m+1)|\geq C^m/m!$ holds for all sufficiently large $m$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:bound},
+\[
+ \bigl(m!\,|B_3(2m+1)|\bigr)^{1/m}
+ \leq
+ \frac{\binom{m+5}{3}^{1/m}}
+ {4^{1+4/m}(m!)^{1/m}}\longrightarrow0,
+\]
+using Stirling's formula.  The final assertion follows immediately.
+\end{proof}
+
+\section{Verification and scope}
+
+The argument bounds the absolute sum and is therefore independent of any
+cancellation among paths.  The exact rational enumerator in
+\texttt{code/verify\_b3.py} checked $m=1,\ldots,12$, including endpoint
+admissibility, the signed sum, and the absolute-sum bound.  Run it with
+\begin{quote}\small\ttfamily
+conda run --no-capture-output -n sandbox\\
+python code/verify\_b3.py --max-m 12
+\end{quote}
+The finite check is not part of the proof.
+
+This packet disproves only the fallback lower estimate in Question~6.  It
+does not provide an asymptotic formula for $B_3(2m+1)$, and it does not decide
+whether the associated antiperiodic root functions form a basis.  It shows
+that inequality~\eqref{eq:source-lower} cannot be used to obtain the proposed
+spectral conclusion.
+
+Bounded local-index and arXiv/web searches on 27 August 2026 used the exact
+$B_3(2m+1)$ formula, the proposed $C^m/m!$ scale, the paper title and authors,
+and the associated two-exponential potential.  They found the source and the
+authors' nearby follow-up arXiv:1210.3907, whose stated antiperiodic range does
+not include the present $r=1,s=2$ case, but no later treatment of this exact
+bound.  Novelty confidence is moderate because the search was bounded and the
+obstruction is elementary.
+
+\begin{thebibliography}{1}
+\bibitem{DM}
+P.~Djakov and B.~Mityagin,
+\emph{Combinatorial identities related to eigenfunction decompositions of
+Hill operators: Open Questions}, Integral Equations Operator Theory
+\textbf{75} (2013), 7--12; arXiv:1210.0835v1,
+\url{https://arxiv.org/abs/1210.0835}.
+\end{thebibliography}
+
+\end{document}

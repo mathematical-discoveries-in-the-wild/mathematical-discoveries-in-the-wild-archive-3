@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2101.02470",
+  "author_list": [
+    "Eberhard Mayerhofer"
+  ],
+  "claim_short": "2101.02470 Eberhard Mayerhofer The Smirnov Property for Weighted Lebesgue Spaces Remark 2.10 correlated bivariate standard normal Gaussian density open question. Candidate full affirmative solution likely valid for every nondegenerate bivariate Gaussian and every finite q greater than one. For standardized Gaussian coordinates with correlation rho, conditional expectations of H=F(X)+G(Y) give A=F+P_rho G and...",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2101.02470v3",
+    "source_url": "https://arxiv.org/abs/2101.02470v3"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_solution_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/",
+  "packet_title": "Full-solution packet: correlated Gaussian weights have the Smirnov property",
+  "primary_arxiv_id": "2101.02470",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1022",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2101.02470_2101.02470_correlated_gaussian_smirnov_property/files/solution_packet.pdf",
+  "source_authors": "Eberhard Mayerhofer",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2101.02470_correlated_gaussian_smirnov_property/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2101.02470v3",
+  "source_question": "",
+  "source_title": "The Smirnov Property for weighted Lebesgue spaces",
+  "source_url": "https://arxiv.org/abs/2101.02470v3",
+  "source_year": "2021",
+  "verification_status": "unverified"
+}

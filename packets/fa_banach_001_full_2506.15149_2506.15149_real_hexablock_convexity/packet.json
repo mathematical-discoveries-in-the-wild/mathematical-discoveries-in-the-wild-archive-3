@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2506.15149",
+  "author_list": [
+    "Indranil Biswas",
+    "Sourav Pal",
+    "Nitin Tomar"
+  ],
+  "claim_short": "",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 1606,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2506.15149v1",
+    "source_url": "https://arxiv.org/abs/2506.15149v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "",
+  "needs_manual_summary": "yes",
+  "notes": "",
+  "novelty_status": "likely_new",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/",
+  "packet_title": "Convexity of the real hexablock",
+  "primary_arxiv_id": "2506.15149",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1287",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2506.15149_2506.15149_real_hexablock_convexity/files/solution_packet.pdf",
+  "source_authors": "Indranil Biswas, Sourav Pal, Nitin Tomar",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2506.15149_real_hexablock_convexity/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2506.15149v1",
+  "source_question": "",
+  "source_title": "The Hexablock: a domain associated with the $μ$-synthesis in $M_2(\\mathbb C)$",
+  "source_url": "https://arxiv.org/abs/2506.15149v1",
+  "source_year": "2025",
+  "verification_status": "unverified"
+}

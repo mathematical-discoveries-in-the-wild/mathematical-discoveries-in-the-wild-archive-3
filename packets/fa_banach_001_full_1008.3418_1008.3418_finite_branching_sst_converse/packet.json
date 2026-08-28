@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1008.3418",
+  "author_list": [
+    "Elena Caffarelli",
+    "Ian Doust",
+    "Anthony Weston"
+  ],
+  "claim_short": "1008.3418 Caffarelli Doust Weston Metric trees of generalized roundness one converse Theorem 2.2 countable spherically symmetric tree SST finite branching levels finite ends finite topological tree p-negative type Riesz kernel Hankel kernel Mellin transform",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 2417,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1008.3418v2",
+    "source_url": "https://arxiv.org/abs/1008.3418v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=full_solution_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/",
+  "packet_title": "Full Solution Packet: The Converse for Spherically Symmetric Trees",
+  "primary_arxiv_id": "1008.3418",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0691",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_1008.3418_1008.3418_finite_branching_sst_converse/files/solution_packet.pdf",
+  "source_authors": "Elena Caffarelli, Ian Doust, Anthony Weston",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/1008.3418_finite_branching_sst_converse/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1008.3418v2",
+  "source_question": "Elena Caffarelli, Ian Doust, and Anthony Weston, *Metric trees of generalized roundness one*, arXiv:1008.3418v2, Aequationes Mathematicae 83 (2012), DOI 10.1007/s00010-011-0108-8. Source location: page 5, immediately before Section 3, after Theorem 2.2. Local PDF: source_paper.pdf. Evidence crop: figures/open_problem_crop.png.",
+  "source_title": "Metric trees of generalized roundness one",
+  "source_url": "https://arxiv.org/abs/1008.3418v2",
+  "source_year": "2010",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2401.14344",
+  "author_list": [
+    "Frederik vom Ende"
+  ],
+  "claim_short": "The source paper's main bijectivity theorem remains true for an arbitrary complex Hilbert space. Thus separability is not necessary.",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2401.14344v4",
+    "source_url": "https://arxiv.org/abs/2401.14344v4"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate full solution likely valid: separability is unnecessary for the unique CP-generator decomposition theorem",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/",
+  "packet_title": "Separability is unnecessary for the unique CP-generator decomposition",
+  "primary_arxiv_id": "2401.14344",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1183",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2401.14344_2401.14344_nonseparable_unique_cp_generator_decomposition/files/solution_packet.pdf",
+  "source_authors": "Frederik vom Ende",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2401.14344_nonseparable_unique_cp_generator_decomposition/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2401.14344v4",
+  "source_question": "",
+  "source_title": "From the Choi Formalism in Infinite Dimensions to Unique Decompositions of Generators of Completely Positive Dynamical Semigroups",
+  "source_url": "https://arxiv.org/abs/2401.14344v4",
+  "source_year": "2024",
+  "verification_status": "unverified"
+}

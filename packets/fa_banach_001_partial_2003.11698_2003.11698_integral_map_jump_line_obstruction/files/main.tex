@@ -1,0 +1,354 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\BV}{BV_{\mathrm{loc}}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\V}{\mathsf{V}}
+\newcommand{\Tmap}{\mathcal{T}}
+\DeclareMathOperator{\diag}{diag}
+
+\title{A Jump-Line Obstruction to Fixed-Point\\Preservation of Variability}
+\author{Automatic Math Discovery Run \texttt{fa\_banach\_001}\\Model: GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{blue!45!black}{blue!4}{\parbox{0.9\textwidth}{
+\textbf{Status.} Candidate substantial partial result, likely valid.  This is
+an obstruction to a natural fixed-point invariance principle, not a full
+resolution of the source paper's open-ended request for some suitable
+assumptions.
+}}
+\end{center}
+
+\begin{abstract}
+Hinz, T\"olle, and Viitasaari ask for assumptions under which the integral
+process associated with a $BV$ coefficient is itself variable, so that a
+standard fixed-point construction might replace their Doss transform.  We
+show that the most immediate invariance statement fails in dimension two under
+strong baseline hypotheses.  A bounded, symmetric, uniformly positive
+definite, piecewise-constant coefficient can satisfy their determinant,
+curl-free-inverse, and angle conditions, while a smooth driver with both
+coordinates active sends an $(s,p)$-variable input path exactly onto the
+coefficient's jump line.  The output is then not variable for any positive
+variability exponent.  The example works for every prescribed finite $p$.
+It shows that a successful fixed-point theorem needs an output-side
+transversality or occupation-energy hypothesis, not only coefficient
+nondegeneracy and input variability.  A short scalar positive result is added
+to illustrate the missing mechanism.
+\end{abstract}
+
+\section{Source problem and scope}
+
+The source is M. Hinz, J. M. T\"olle, and L. Viitasaari,
+\emph{Variability of paths and differential equations with
+$BV$-coefficients}~\cite{HTV}.  In Section 1.2, PDF page 6, after describing
+their Doss-transform existence theory, the authors state that the main open
+problem is to prove, under reasonable assumptions, that ``the integral
+process itself will be variable.''  Their goal is to make standard fixed-point
+arguments available.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The source statement on PDF page 6.  The image is a direct crop of
+  the source paper, not a retyped substitute.}
+\end{figure}
+
+Because ``reasonable assumptions'' are deliberately unspecified, no example
+can refute the question as written.  The result below instead tests a strong
+and natural baseline: bounded $BV$ coefficients satisfying all three
+structural assumptions used by the source's multidimensional Doss theory,
+smooth drivers, and variable input paths.  It proves that these conditions do
+not make the raw Picard map invariant on variability classes.
+
+\section{Definitions}
+
+Let $\varphi\in \BV(\R^n)$, $s\in(0,1)$, and $p\in[1,\infty]$.  Following
+\cite[Definition 2.1]{HTV}, a continuous path $X:[0,T]\to\R^n$ is
+$(s,p)$-variable with respect to $\varphi$ if there is a relatively compact
+open neighborhood $U$ of $X([0,T])$ such that
+\[
+ t\longmapsto \int_U |X_t-z|^{-n+1-s}\,\lVert D\varphi\rVert(dz)
+ \quad\text{belongs to }L^p(0,T).
+\]
+For a matrix coefficient $\sigma=(\sigma_{jk})$, variability is required
+componentwise; we write $X\in\V(\sigma,s,p)$.  The source abbreviation
+$\V(\sigma,s)$ means $p=1$.
+
+For a fixed starting point $x_0$ and driver $Y=(Y^1,Y^2)$, the Picard-type
+integral map is
+\[
+ (\Tmap X)_t=x_0+\int_0^t \sigma(X_u)\,dY_u.
+\]
+In our example both paths are regular enough that this is simply the ordinary
+Riemann--Stieltjes integral.
+
+\section{Idea of the proof}
+
+Variability measures how the occupation of a path interacts with the gradient
+measure of the coefficient.  For a coefficient jumping across a line, a path
+that leaves the line like $t\mapsto t^\alpha$ sees a potential of order
+$t^{-\alpha s}$, which is integrable after choosing $\alpha sp<1$.  We choose
+the two constant coefficient matrices on opposite sides of the line so that
+they both send the driver velocity $(1,1)$ to the tangent vector $(1,0)$.
+Consequently, although the input leaves the jump line transversally, the
+integral process runs along it.  At a point of the line the relevant Riesz
+potential integrates $|r|^{-1-s}$ against line measure and is infinite.
+
+The matrix choice is arranged through the inverses.  Two positive-definite
+inverse matrices share their first column $(1,1)$ and differ only in the
+$(2,2)$ entry.  Sharing that column forces both original matrices to send
+$(1,1)$ to $(1,0)$; varying only the inverse's $(2,2)$ entry also makes its rows
+distributionally curl-free across a horizontal jump.
+
+\section{The obstruction}
+
+Set $L=\{(x_1,x_2)\in\R^2:x_2=0\}$ and define
+\[
+ B_+=\begin{pmatrix}1&1\\[2pt]1&2\end{pmatrix},
+ \qquad
+ B_-=\begin{pmatrix}1&1\\[2pt]1&3\end{pmatrix},
+\]
+\[
+ A_+=B_+^{-1}=\begin{pmatrix}2&-1\\[2pt]-1&1\end{pmatrix},
+ \qquad
+ A_-=B_-^{-1}=\begin{pmatrix}\frac32&-\frac12\\[2pt]-\frac12&\frac12\end{pmatrix}.
+\]
+Let
+\[
+ \sigma(x_1,x_2)=
+ \begin{cases}
+ A_+,&x_2\geq0,\\
+ A_-,&x_2<0.
+ \end{cases}
+\]
+The value on $L$ is immaterial for the distributional derivative and for the
+integral below.
+
+\begin{theorem}[Jump-line failure of Picard invariance]\label{thm:main}
+The coefficient $\sigma$ is bounded, belongs componentwise to
+$\BV(\R^2)$, and is symmetric and uniformly positive definite.  It satisfies
+the determinant, curl-free-inverse, and angle assumptions used in the source
+paper's multidimensional Doss construction.
+
+Fix $s\in(0,1)$ and $p\in[1,\infty)$.  Choose
+\[
+ 0<\alpha<\min\left\{1,\frac1{sp}\right\},
+ \qquad X_t=(0,t^\alpha),\qquad Y_t=(t,t),\quad 0\leq t\leq1.
+\]
+Then $X\in C^\alpha([0,1];\R^2)\cap\V(\sigma,s,p)$.  The driver is smooth
+and both its coordinates are nonconstant, but with $x_0=0$,
+\[
+ (\Tmap X)_t=(t,0).
+\]
+Moreover,
+\[
+ \Tmap X\notin\V(\sigma,\rho,q)
+ \quad\text{for every }\rho\in(0,1)\text{ and every }q\in[1,\infty].
+\]
+Thus the raw integral map does not preserve even the union of positive
+variability classes.  In the basic $p=1$ setting one may take $X_t=(0,t)$, a
+Lipschitz input, for every $s\in(0,1)$.
+\end{theorem}
+
+\begin{proof}
+First, $\det A_+=1$ and $\det A_-=\frac12$.  The eigenvalues of $A_+$ are
+$(3\pm\sqrt5)/2$, and those of $A_-$ are $1\pm1/\sqrt2$.  Hence
+\[
+ \left(1-\frac1{\sqrt2}\right)|\xi|^2
+ \leq \langle \xi,\sigma(x)\xi\rangle
+ \leq \frac{3+\sqrt5}{2}|\xi|^2
+\]
+for every $\xi$ and almost every $x$.  This proves bounded uniform positive
+definiteness and the determinant condition.  It also gives the source angle
+condition, since
+\[
+ \langle\xi,\sigma(x)\xi\rangle
+ \geq \frac{1-1/\sqrt2}{(3+\sqrt5)/2}
+       |\sigma(x)\xi|\,|\xi|.
+\]
+
+The coefficient is constant on the two half-planes.  Since
+\[
+ A_+-A_-=\frac12\begin{pmatrix}1&-1\\-1&1\end{pmatrix},
+\]
+each distributional derivative $D\sigma_{jk}$ is a nonzero signed constant
+multiple of the normal vector measure on $L$.  In particular,
+$\lVert D\sigma_{jk}\rVert=c_{jk}\HH^1\!\restriction_L$ with
+$c_{jk}=1/2$.
+
+The inverse field equals $B_+$ above $L$ and $B_-$ below it.  The first row is
+the constant vector $(1,1)$.  The second row is $(1,b(x_2))$, where $b$ is a
+one-dimensional step function.  Therefore both distributional row curls
+vanish:
+\[
+ D_1(\sigma^{-1})_{k2}-D_2(\sigma^{-1})_{k1}=0,
+ \qquad k=1,2.
+\]
+This is precisely the two-dimensional curl-free-inverse condition.
+
+We next check input variability.  Choose any bounded open neighborhood $U$ of
+$X([0,1])$.  Enlarging its line section only increases the potential, so for
+$t>0$ and every entry,
+\begin{align*}
+ \int_U |X_t-z|^{-1-s}\,\lVert D\sigma_{jk}\rVert(dz)
+ &\leq \frac12\int_{\R}(r^2+t^{2\alpha})^{-(1+s)/2}\,dr\\
+ &=C_s t^{-\alpha s},
+\end{align*}
+where
+$C_s=\frac12\int_{\R}(1+u^2)^{-(1+s)/2}\,du<\infty$.
+The potential is infinite at $t=0$, but that single time is irrelevant to
+$L^p(0,1)$.  Since $\alpha sp<1$,
+\[
+ \int_0^1 (C_s t^{-\alpha s})^p\,dt<\infty.
+\]
+Thus $X\in\V(\sigma,s,p)$ componentwise.
+
+For almost every $t>0$, $X_t$ lies in the upper half-plane, so
+$\sigma(X_t)=A_+$.  Since
+\[
+ A_+\binom11=\binom10,
+\]
+the ordinary Stieltjes integral gives
+\[
+ (\Tmap X)_t=\int_0^t A_+\binom11\,du=(t,0)=:Z_t.
+\]
+
+Finally, let $U$ be any relatively compact open neighborhood of the output
+segment $Z([0,1])$.  For every $t\in[0,1]$, openness supplies
+$\varepsilon_t>0$ such that
+$\{(r,0):|r-t|<\varepsilon_t\}\subset U$.  Hence for every
+$\rho\in(0,1)$ and every entry,
+\[
+ \int_U |Z_t-z|^{-1-\rho}\,\lVert D\sigma_{jk}\rVert(dz)
+ \geq \frac12\int_{t-\varepsilon_t}^{t+\varepsilon_t}
+ |t-r|^{-1-\rho}\,dr=+\infty.
+\]
+The potential is infinite at every time, so it belongs to no $L^q$ space.
+This proves the claim.
+\end{proof}
+
+\begin{remark}[Compatibility with the source integral regime]
+The Lipschitz path $Y$ belongs to $C^\gamma$ for every $\gamma<1$.  Given the
+chosen $\alpha$ and $s$, take $\gamma\in(1-\alpha s,1)$.  Then
+$\alpha s+\gamma>1$, exactly the source condition ensuring existence of the
+Stieltjes integral for an $(s,1)$-variable input.  Here the integrand is in
+fact constant almost everywhere, so the integral is classical.
+\end{remark}
+
+\section{A scalar positive subcase}
+
+The obstruction is tangential: the output is forced to run inside a jump set.
+The following elementary observation records a setting in which this cannot
+happen.
+
+\begin{proposition}[Positive scalar time driver]\label{prop:scalar}
+Let $n=1$, $Y_t=t$, and $\sigma\in\BV(\R)\cap L^\infty(\R)$.  Suppose an input
+path $X$ is such that the composition is well defined and, for some constants
+$0<c\leq M<\infty$,
+\[
+ c\leq \sigma(X_t)\leq M\qquad\text{for almost every }t\in[0,T].
+\]
+Then
+\[
+ Z_t=x_0+\int_0^t\sigma(X_u)\,du
+\]
+belongs to $\V(\sigma,\rho)$ for every $\rho\in(0,1)$.
+\end{proposition}
+
+\begin{proof}
+The path $Z$ is absolutely continuous and
+$c(t-u)\leq Z_t-Z_u\leq M(t-u)$ for $u<t$.  Thus it is increasing and its
+inverse on its image is $1/c$-Lipschitz.  Let $U$ be a relatively compact open
+neighborhood of $Z([0,T])$ and put
+$\mu=\lVert D\sigma\rVert\!\restriction_U$, a finite measure.  By Tonelli and
+the monotone change of variables,
+\begin{align*}
+ \int_0^T\int_U |Z_t-z|^{-\rho}\,\mu(dz)\,dt
+ &\leq \frac1c\int_U\int_{Z_0}^{Z_T}|y-z|^{-\rho}\,dy\,\mu(dz)\\
+ &<\infty,
+\end{align*}
+because $\rho<1$, the two integration sets are bounded, and $\mu(U)<\infty$.
+This is precisely $(\rho,1)$-variability.
+\end{proof}
+
+Proposition~\ref{prop:scalar} is not offered as a solution to the general open
+problem.  It instead exposes the missing feature: a quantitative crossing
+condition turns the occupation measure of the output into a controlled
+one-dimensional measure.  In higher dimensions, uniform positive
+definiteness alone does not prevent tangency to a codimension-one jump set, as
+Theorem~\ref{thm:main} shows.
+
+\section{Verification, limitations, and novelty}
+
+The proof has no computational dependency.  Its checkable core consists of:
+\begin{enumerate}
+\item the displayed matrix inversions and eigenvalue bounds;
+\item the identity $A_+(1,1)^\top=(1,0)^\top$;
+\item the scaling
+$\int_\R(r^2+a^2)^{-(1+s)/2}dr=C_sa^{-s}$;
+\item divergence of $\int_{-\varepsilon}^{\varepsilon}|r|^{-1-\rho}dr$.
+\end{enumerate}
+
+The result does not assert that the source problem has a negative answer.  It
+leaves open positive fixed-point results under output-transversality,
+occupation-density, stochastic nonconcentration, or locally bounded gradient
+potential assumptions.  The finite-$p$ strengthening also does not give an
+$(s,\infty)$-variable input, because the common starting point lies on the
+jump line.
+
+A bounded search on 26 August 2026 covered the run's four lightweight indexes,
+the exact source phrase and arXiv id, the authors' follow-ups
+arXiv:2105.06249~\cite{HTV22} and arXiv:2407.06907~\cite{HTVrough}, and close
+terms involving fixed points, integral-process variability, Riesz potentials,
+and jump lines.  No matching statement was found.  Since the observation is
+elementary and the search was not a systematic citation review, the correct
+status is \emph{candidate substantial partial result, likely valid}, not a
+definitive novelty claim.
+
+\section{Human-review recommendation}
+
+The packet is suitable for focused human review.  The most important semantic
+question is whether the source authors intended the ``integral process'' as
+the raw Picard image of arbitrary admissible inputs, as here, or only after
+restricting the candidate set by an additional output-side occupation
+condition.  Under the raw-map interpretation, the obstruction is exact.
+
+\begin{thebibliography}{9}
+
+\bibitem{HTV}
+M. Hinz, J. M. T\"olle, and L. Viitasaari,
+\emph{Variability of paths and differential equations with
+$BV$-coefficients}, Ann. Inst. H. Poincar\'e Probab. Statist. 59 (2023),
+2036--2082; \href{https://arxiv.org/abs/2003.11698}{arXiv:2003.11698}.
+
+\bibitem{HTV22}
+M. Hinz, J. M. T\"olle, and L. Viitasaari,
+\emph{Sobolev regularity of occupation measures and paths, variability and
+compositions}, Electron. J. Probab. 27 (2022), 1--29;
+\href{https://arxiv.org/abs/2105.06249}{arXiv:2105.06249}.
+
+\bibitem{HTVrough}
+M. Hinz, J. M. T\"olle, and L. Viitasaari,
+\emph{Variability and the existence of rough integrals with irregular
+coefficients}, \href{https://arxiv.org/abs/2407.06907}{arXiv:2407.06907v2}
+(2025).
+
+\end{thebibliography}
+
+\end{document}
+

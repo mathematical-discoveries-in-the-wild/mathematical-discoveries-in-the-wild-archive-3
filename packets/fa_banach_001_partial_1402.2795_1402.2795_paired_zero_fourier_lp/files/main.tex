@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\LP}{\mathcal{L}\!\mathcal{P}}
+
+\title{A Paired-Zero Subcase of the Br\"anden--Chasse\\Fourier Transform Conjecture}
+\author{Candidate partial result for arXiv:1402.2795}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{\textbf{Status.} Candidate partial result,
+likely valid.  The unrestricted conjecture is not claimed.}}
+\end{center}
+
+\begin{abstract}
+Br\"anden and Chasse conjecture that if a real transcendental entire function
+$G$ has derivative in the Laguerre--P\'olya class and decays appropriately on
+the imaginary axis, then the Fourier transform of $e^{G(it)}$ is again in the
+Laguerre--P\'olya class.  We prove the conjecture when the zeros of $G'$ admit a
+summable positive/negative pairing whose total imaginary-axis angular defect
+is less than $\pi/2$.  The proof constructs real-rooted polynomial derivative
+approximants and obtains a uniform Gaussian-or-better tail estimate, which is
+the compactness input missing in the unrestricted problem.
+\end{abstract}
+
+\section{Source question}
+
+The target is Conjecture 6.1 on page 29 of Br\"anden--Chasse
+\cite{BrandenChasse}.  The source statement is reproduced below.
+
+\begin{center}
+\includegraphics[width=0.96\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+The displayed source uses the notation $G(it)\to-\infty$.  Since complex
+numbers are not ordered, and since Corollary 5.5 and Proposition 5.6 directly
+before the conjecture use $\operatorname{Re}G(it)\to-\infty$, we treat the
+nontrivial intended reading as
+\[
+  \operatorname{Re}G(it)\longrightarrow-\infty
+  \qquad(t\to\pm\infty).
+\]
+
+Recall that $\LP$ is the class of real entire functions that are locally
+uniform limits of real polynomials having only real zeros.
+
+\section{Candidate partial theorem}
+
+\begin{theorem}[paired genus-zero subcase]\label{thm:main}
+Let $m\in\mathbb{Z}_{\ge0}$, $\alpha\ge0$, and $c\in\mathbb{R}$ satisfy
+$c(-1)^m>0$.  Let $a_j,b_j>0$ satisfy
+\begin{equation}\label{eq:summability}
+ \sum_{j=1}^{\infty}\left(\frac1{a_j}+\frac1{b_j}\right)<\infty
+\end{equation}
+and
+\begin{equation}\label{eq:angle}
+ A:=\sum_{j=1}^{\infty}
+ \arctan\!\left(\frac{|a_j-b_j|}{2\sqrt{a_jb_j}}\right)<\frac{\pi}{2}.
+\end{equation}
+Define
+\begin{equation}\label{eq:H}
+ H(z)=c z^{2m+1}e^{-\alpha z^2}
+ \prod_{j=1}^{\infty}\left(1-\frac{z}{a_j}\right)
+                         \left(1+\frac{z}{b_j}\right),
+\end{equation}
+and let $G$ be the real entire primitive of $H$ with a prescribed real value
+$G(0)$.  Then
+\begin{equation}\label{eq:coercive}
+ \operatorname{Re}G(it)
+ \le G(0)-\frac{|c|\cos A}{2m+2}|t|^{2m+2}
+ \qquad(t\in\mathbb{R}).
+\end{equation}
+Consequently
+\[
+ F(z)=\int_{-\infty}^{\infty}e^{G(it)}e^{izt}\,dt
+\]
+is an entire function in $\LP$.
+\end{theorem}
+
+Condition \eqref{eq:summability} makes \eqref{eq:H} a convergent genus-zero
+canonical product.  In particular $H\in\LP$.  The conclusion therefore proves
+the source conjecture for an infinite-dimensional, explicitly checkable
+paired-zero class.
+
+\section{Idea of the proof}
+
+For one paired positive/negative zero, substitution $z=it$ produces a factor
+with positive real part.  Its argument can deviate from zero by at most
+$\arctan(|a_j-b_j|/(2\sqrt{a_jb_j}))$.  The strict total bound
+\eqref{eq:angle} therefore keeps every finite canonical-product truncation of
+$H(it)$ inside the same open half-plane.  Its imaginary part has the sign of
+$t$ and a uniform polynomial lower bound.
+
+After integration, this becomes one coercive upper bound for the real parts of
+all polynomial primitives.  Br\"anden--Chasse's polynomial theorem applies to
+each primitive.  The common coercive bound is strong enough for dominated
+convergence of the Fourier transforms, so the Laguerre--P\'olya conclusion
+survives the transcendental limit.
+
+\section{Proof}
+
+For $N\ge1$, put
+\begin{equation}\label{eq:HN}
+ H_N(z)=c z^{2m+1}\left(1-\frac{\alpha z^2}{N}\right)^N
+ \prod_{j=1}^{N}\left(1-\frac{z}{a_j}\right)
+                    \left(1+\frac{z}{b_j}\right).
+\end{equation}
+(When $\alpha=0$, the middle factor is $1$.)  Every $H_N$ is a real
+polynomial with only real zeros, and $H_N\to H$ locally uniformly.  Let $G_N$
+be its primitive normalized by $G_N(0)=G(0)$.  Then $G_N\to G$ locally
+uniformly.
+
+Fix $t>0$.  The $j$th paired factor in \eqref{eq:HN} equals
+\begin{align*}
+ \left(1-\frac{it}{a_j}\right)\left(1+\frac{it}{b_j}\right)
+ &=1+\frac{t^2}{a_jb_j}
+   +it\left(\frac1{b_j}-\frac1{a_j}\right).
+\end{align*}
+Its real part is positive.  If $\theta_j(t)$ is its principal argument, then
+\[
+ |\tan\theta_j(t)|
+ =\frac{t|a_j-b_j|}{a_jb_j+t^2}
+ \le\frac{|a_j-b_j|}{2\sqrt{a_jb_j}},
+\]
+because $t/(a_jb_j+t^2)$ is maximized at $t=\sqrt{a_jb_j}$.  Hence
+\begin{equation}\label{eq:theta}
+ |\theta_j(t)|\le
+ \arctan\!\left(\frac{|a_j-b_j|}{2\sqrt{a_jb_j}}\right).
+\end{equation}
+
+The factor $(1+\alpha t^2/N)^N$ is positive.  Moreover
+$c(it)^{2m+1}=i|c|t^{2m+1}$ because $c(-1)^m>0$.  Equations
+\eqref{eq:angle} and \eqref{eq:theta} therefore give
+\begin{equation}\label{eq:imagbound}
+ \operatorname{Im}H_N(it)
+ \ge |c|\cos(A)t^{2m+1},\qquad t>0.
+\end{equation}
+Indeed, the argument of $H_N(it)$ differs from $\pi/2$ by at most $A$, while
+every remaining factor in its modulus is at least $1$.  Since $H_N$ has real
+coefficients, conjugation gives the corresponding negative sign for $t<0$.
+
+Along the imaginary axis,
+\[
+ \frac{d}{dt}\operatorname{Re}G_N(it)
+ =\operatorname{Re}\bigl(iH_N(it)\bigr)
+ =-\operatorname{Im}H_N(it).
+\]
+Integrating \eqref{eq:imagbound} on either side of the origin yields the
+uniform estimate
+\begin{equation}\label{eq:GNbound}
+ \operatorname{Re}G_N(it)
+ \le G(0)-q|t|^{2m+2},
+ \qquad q:=\frac{|c|\cos A}{2m+2}>0.
+\end{equation}
+Passing to the pointwise limit gives \eqref{eq:coercive} for $G$.
+
+Each $G_N$ is a real polynomial, $G_N'=H_N\in\LP$, and
+$\operatorname{Re}G_N(it)\to-\infty$ at both ends.  Corollary 5.5 of
+\cite{BrandenChasse} therefore implies
+\[
+ F_N(z):=\int_{-\infty}^{\infty}e^{G_N(it)}e^{izt}\,dt\in\LP.
+\]
+If $K\subset\mathbb{C}$ is compact and
+$M=\sup_{z\in K}|\operatorname{Im}z|$, then \eqref{eq:GNbound} gives the
+$N$-independent integrable majorant
+\[
+ |e^{G_N(it)}e^{izt}|
+ \le \exp\bigl(G(0)-q|t|^{2m+2}+M|t|\bigr),
+ \qquad z\in K.
+\]
+Dominated convergence now yields $F_N\to F$ locally uniformly on
+$\mathbb{C}$.  The class $\LP$ is closed under locally uniform limits.  The
+limit is not identically zero, since $e^{G(it)}$ is a nonzero integrable
+function and the Fourier transform is injective on $L^1(\mathbb{R})$.
+Thus $F\in\LP$, completing the proof. \qed
+
+\section{Verification notes and limitations}
+
+The proof uses no numerical claim.  The phase estimate, the sign for negative
+$t$, and the primitive derivative were recalculated independently; details are
+recorded in the companion verification report.
+
+The added hypothesis \eqref{eq:angle} is the essential limitation.  A general
+Laguerre--P\'olya function has locally convergent real-rooted polynomial
+approximants, but their primitives need not share an integrable imaginary-axis
+majorant.  The source condition controls the accumulated primitive, not the
+pointwise phase of arbitrary truncations.  Thus this packet does not resolve
+the unrestricted conjecture.
+
+A bounded search of the run indexes, exact web/arXiv phrases, and the indexed
+citing works of the published source found no later proof of Conjecture 6.1
+and no occurrence of criterion \eqref{eq:angle}.  This is not a definitive
+novelty claim.  Some functions covered here may also satisfy Proposition 5.6
+of the source; strict separation from that coefficient-sign class has not been
+established.
+
+\paragraph{Human-review recommendation.}
+Check first the intended $\operatorname{Re}G(it)$ interpretation and the use of
+source Corollary 5.5.  Conditional on that textual interpretation, the partial
+theorem itself should be reviewed as a short canonical-product and dominated-
+convergence argument.
+
+\begin{thebibliography}{9}
+\bibitem{BrandenChasse}
+P.~Br\"anden and M.~Chasse,
+\emph{Classification theorems for operators preserving zeros in a strip},
+J. Anal. Math. \textbf{132} (2017), 177--215;
+arXiv:1402.2795.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\LO}{\mathrm{LO}}
+\newcommand{\LOCC}{\mathrm{LOCC}}
+\newcommand{\SEP}{\mathrm{SEP}}
+\newcommand{\tr}{\operatorname{Tr}}
+
+\title{An Unbounded Oriented One-Way LOCC Gap by Subsystem Swap}
+\author{Candidate full answer to the first question in Section 7.3 of arXiv:1406.1959}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate full result, likely valid, pending human review.  For the oriented
+one-way class $\LOCC^{A\to B}$ displayed in the source, there are bipartite
+state pairs whose $\LOCC$ distinguishability norm equals $2$ while their
+$\LOCC^{A\to B}$ norm is $O(d^{-1/2})$.  Thus no dimension-free comparison
+$\|\cdot\|_{\LOCC^{A\to B}}\geq c\|\cdot\|_{\LOCC}$ is possible.}}
+\end{center}
+
+\section{Source question and convention}
+
+Aubrun and Lancien define the oriented one-way class
+$\LOCC^{A\to B}$ by POVMs of the form
+\[
+ \bigl(M_i\otimes N_{i,j}\bigr)_{i,j},\qquad
+ \sum_iM_i=I_A,\quad \sum_jN_{i,j}=I_B,
+\]
+so Alice measures first and Bob's measurement may depend on Alice's outcome
+\cite[Section 2.3]{AL}.  Section 7.3 asks whether the gap between this class
+and unrestricted finite-round $\LOCC$ can be unbounded, or whether an
+absolute $c>0$ satisfies
+\[
+                  \|\cdot\|_{\LOCC^{A\to B}}
+                  \geq c\|\cdot\|_{\LOCC}                 \tag{1}
+\]
+in every local dimension.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[page=20,width=0.93\textwidth,trim=55 125 55 420,clip]{source_paper.pdf}
+\caption{The printed question in Section 7.3 of the source, arXiv PDF page 20.}
+\end{figure}
+
+The direction matters.  We write $\LOCC^{B\to A}$ for the analogous class
+with Bob measuring first.  The result below answers the question for the
+oriented class exactly as displayed.  It does not address a different
+convention in which ``one-way LOCC'' means the union of the two orientations.
+
+For a POVM $\mathsf M=(M_a)_a$ and a Hermitian operator $\Delta$, recall
+\[
+                  \|\Delta\|_{\mathsf M}
+                  =\sum_a|\tr(\Delta M_a)|,
+\]
+and the norm of a measurement class is the supremum over its POVMs.
+
+\section{Reverse communication collapses on classical-quantum inputs}
+
+\begin{lemma}[Classical-side collapse]\label{lem:collapse}
+Let
+\[
+        \Delta=\sum_{i=1}^d |i\rangle\!\langle i|\otimes\Delta_i
+        \in\Hh(\C^d\otimes\C^d),                         \tag{2}
+\]
+where every $\Delta_i$ is Hermitian.  Then
+\[
+ \|\Delta\|_{\LOCC^{B\to A}}
+ =\|\Delta\|_{\LO}
+ =\sup_{\mathsf N=(N_j)_j}\sum_{i=1}^d
+                         \|\Delta_i\|_{\mathsf N}.        \tag{3}
+\]
+\end{lemma}
+
+\begin{proof}
+The last expression is attained within $\LO$: Alice measures in the basis
+$(|i\rangle\!\langle i|)_i$ and Bob uses $\mathsf N$.  Conversely, consider
+an arbitrary $B\to A$ one-way POVM.  Its effects have the form
+\[
+                         M_{j,k}\otimes N_j,
+\]
+where $\mathsf N=(N_j)_j$ is Bob's first measurement and, for every $j$,
+$(M_{j,k})_k$ is Alice's conditional POVM.  Put
+$m_{j,k,i}=\langle i|M_{j,k}|i\rangle$.  These numbers are nonnegative and
+$\sum_km_{j,k,i}=1$.  Hence
+\begin{align*}
+ \sum_{j,k}\left|\tr\bigl(\Delta(M_{j,k}\otimes N_j)\bigr)\right|
+ &=\sum_{j,k}\left|\sum_i m_{j,k,i}\tr(\Delta_iN_j)\right|\\
+ &\leq\sum_{j,k,i}m_{j,k,i}|\tr(\Delta_iN_j)|\\
+ &=\sum_{i,j}|\tr(\Delta_iN_j)|
+   =\sum_i\|\Delta_i\|_{\mathsf N}.
+\end{align*}
+Taking the supremum gives
+$\|\Delta\|_{\LOCC^{B\to A}}\leq\|\Delta\|_{\LO}$, while the reverse
+inequality follows from $\LO\subset\LOCC^{B\to A}$.
+\end{proof}
+
+The lemma says that communication arriving at a party whose register is
+already classical cannot improve the norm: any conditional processing of
+that classical register is dominated by reading it outright at the start.
+
+\section{The swapped data-locking pair}
+
+The source proves the following theorem.  There is a universal constant $C$
+such that, for every local dimension $d$, one can find states $\rho_d,\sigma_d$
+on $\C^d\otimes\C^d$ with
+\[
+ \|\rho_d-\sigma_d\|_{\LOCC^{A\to B}}=2,
+ \qquad
+ \|\rho_d-\sigma_d\|_{\LO}\leq\frac{C}{\sqrt d}.        \tag{4}
+\]
+Moreover, their construction is classical on Alice's side:
+\[
+ \rho_d=\frac1d\sum_{i=1}^d|i\rangle\!\langle i|\otimes\rho_i,
+ \qquad
+ \sigma_d=\frac1d\sum_{i=1}^d|i\rangle\!\langle i|\otimes\sigma_i,       \tag{5}
+\]
+where $\rho_i$ and $\sigma_i$ have orthogonal supports \cite[Theorem 3]{AL}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[page=7,width=0.93\textwidth,trim=55 315 55 185,clip]{source_paper.pdf}
+\caption{Theorem 3 and the classical-quantum construction in the source,
+arXiv PDF page 7.}
+\end{figure}
+
+Let $S(x\otimes y)=y\otimes x$ be the tensor-factor swap and define
+\[
+             \widetilde\rho_d=S\rho_dS^*,\qquad
+             \widetilde\sigma_d=S\sigma_dS^*.
+\]
+
+\begin{theorem}[Unbounded oriented one-way gap]\label{thm:main}
+There is a universal constant $C$ such that
+\[
+ \|\widetilde\rho_d-\widetilde\sigma_d\|_{\LOCC}=2,
+ \qquad
+ \|\widetilde\rho_d-\widetilde\sigma_d\|_{\LOCC^{A\to B}}
+     \leq\frac{C}{\sqrt d}.                               \tag{6}
+\]
+Consequently
+\[
+ \sup_{0\neq\Delta\in\Hh(\C^d\otimes\C^d)}
+ \frac{\|\Delta\|_{\LOCC}}
+      {\|\Delta\|_{\LOCC^{A\to B}}}
+ \geq \frac{2}{C}\sqrt d,
+\]
+and the dimension-free inequality \emph{(1)} is false.
+\end{theorem}
+
+\begin{proof}
+Swapping the factors converts an $A\to B$ protocol into a $B\to A$ protocol
+and conversely.  Therefore Lemma \ref{lem:collapse}, applied to
+$\rho_d-\sigma_d$ in (5), and (4) give
+\[
+ \|\widetilde\rho_d-\widetilde\sigma_d\|_{\LOCC^{A\to B}}
+ =\|\rho_d-\sigma_d\|_{\LOCC^{B\to A}}
+ =\|\rho_d-\sigma_d\|_{\LO}
+ \leq\frac{C}{\sqrt d}.
+\]
+Unrestricted $\LOCC$ is invariant under exchanging the parties.  The
+$A\to B$ protocol in (4) distinguishes $\rho_d$ and $\sigma_d$ perfectly, so
+after the swap the corresponding $B\to A$ protocol is an unrestricted
+$\LOCC$ protocol that distinguishes $\widetilde\rho_d$ and
+$\widetilde\sigma_d$ perfectly.  Its norm is therefore $2$, the maximum
+possible for a difference of states.
+\end{proof}
+
+\section{Scope, verification, and literature boundary}
+
+The proof uses no new probabilistic estimate: all asymptotics come from the
+source's Theorem 3.  The new step is the exact collapse lemma, followed by
+the tensor-factor swap.  The companion script
+\texttt{code/verify\_collapse.py} tests the triangle inequality behind the
+lemma on randomly generated classical-quantum operators and reverse one-way
+POVMs; the proof itself is the displayed scalar calculation.
+
+Bounded exact-question, exact-title, keyword, and citation searches through
+26 August 2026 found work separating one-way and two-way protocols in other
+hypothesis-testing regimes, but no later primary source recording this
+$\Omega(\sqrt d)$ norm separation or observing the subsystem-swap consequence
+of Theorem 3.  The result should be treated as a candidate full answer under
+the source's displayed oriented convention, pending expert review.
+
+\begin{remark}[Convention boundary]
+If $\LOCC^{1\text{-way}}$ is instead defined as
+$\LOCC^{A\to B}\cup\LOCC^{B\to A}$, the swapped pair is perfectly
+distinguished by its $B\to A$ member and gives no separation.  The stronger
+union-of-directions question remains open here.
+\end{remark}
+
+\section{\hspace{0.25em}Human review recommendation}
+
+Check three points: the source's arrow is oriented exactly as in its displayed
+definition; the absolute-value triangle inequality in Lemma
+\ref{lem:collapse} permits no adaptive advantage on the classical register;
+and tensor swap preserves unrestricted $\LOCC$ while reversing the one-way
+orientation.  These checks make (6) immediate from the source's Theorem 3.
+
+\begin{thebibliography}{9}
+\bibitem{AL}
+G. Aubrun and C. Lancien,
+\emph{Locally restricted measurements on a multipartite quantum system:
+data hiding is generic}, Quantum Information and Computation
+\textbf{15} (2015), 513--540; arXiv:1406.1959.
+\end{thebibliography}
+
+\end{document}

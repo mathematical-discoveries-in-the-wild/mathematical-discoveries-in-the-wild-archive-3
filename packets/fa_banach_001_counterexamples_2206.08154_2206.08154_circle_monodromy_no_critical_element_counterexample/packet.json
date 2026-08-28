@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2206.08154",
+  "author_list": [
+    "K. Mahesh Krishna"
+  ],
+  "claim_short": "arXiv 2206.08154 K. Mahesh Krishna C*-algebraic Smale Mean Value Conjecture Dubinin-Sugawa Dual Mean Value Conjecture degree 3 counterexample C(S^1) critical point critical element continuous square root monodromy winding number. Let u(zeta)=zeta, rho=exp(i*pi/3), epsilon=1/4, c=rho+epsilon*u, and P(x)=x(x-1)(x-c). Then z=0 is noncritical because P'(0)=c is invertible, but any critical w would make h=3w-(1+c)...",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1199,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2206.08154v1",
+    "source_url": "https://arxiv.org/abs/2206.08154v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_counterexample_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/",
+  "packet_title": "A cubic with no critical element over C(S^1)",
+  "primary_arxiv_id": "2206.08154",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0406",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2206.08154_2206.08154_circle_monodromy_no_critical_element_counterexample/files/solution_packet.pdf",
+  "source_authors": "K. Mahesh Krishna",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2206.08154_circle_monodromy_no_critical_element_counterexample/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2206.08154v1",
+  "source_question": "",
+  "source_title": "C*-algebraic Smale Mean Value Conjecture and Dubinin-Sugawa Dual Mean Value Conjecture",
+  "source_url": "https://arxiv.org/abs/2206.08154v1",
+  "source_year": "2022",
+  "verification_status": "unverified"
+}

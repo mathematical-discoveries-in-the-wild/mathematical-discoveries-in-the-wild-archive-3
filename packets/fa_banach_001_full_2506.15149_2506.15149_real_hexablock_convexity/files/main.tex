@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\R}{\mathbb R}
+
+\title{Convexity of the Real Hexablock}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 2}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{
+\textbf{Status: full solution likely valid.}
+The real hexablock is convex.  The proof replaces the source's complicated
+Hessian calculation by an exact radical formula for its boundary-height
+function and the elementary concavity of the geometric mean.}}
+\end{center}
+
+\begin{abstract}
+Biswas, Pal, and Tomar conjectured that the intersection of the hexablock
+\(\HH\subset\mathbb C^4\) with \(\R^4\) is convex.  They reduced the
+conjecture to concavity of an explicitly defined height function \(K\) on the
+real tetrablock, but its nested radical formula made the Hessian appear
+intractable.  We prove the exact identity
+\[
+ K(x_1,x_2,x_3)=\frac12\left(
+ \sqrt{(1+x_3)^2-(x_1+x_2)^2}
+ +\sqrt{(1-x_3)^2-(x_1-x_2)^2}\right).
+\]
+Equivalently, if \(L_1,\ldots,L_4\) are the four positive affine facet
+coordinates of the real tetrablock tetrahedron, then
+\(K=\tfrac12(\sqrt{L_2L_3}+\sqrt{L_1L_4})\).
+The geometric mean is concave on the positive quadrant, so \(K\) is concave
+and the conjecture follows.
+\end{abstract}
+
+\section{Source question}
+
+The source is I.~Biswas, S.~Pal, and N.~Tomar,
+\emph{The Hexablock: a domain associated with the \(\mu\)-synthesis in
+\(M_2(\mathbb C)\)}, arXiv:2506.15149v2 (2026)\cite{source}.
+On PDF page 38, the authors write: ``We conjecture that the intersection of
+the hexablock with \(\R^4\) is also convex.''  Their Proposition~6.3 says
+that this is equivalent to concavity of the height function recalled below.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The conjecture and exact concavity reduction in the source,
+  PDF page 38.}
+\end{figure}
+
+\section{Definitions and proof intuition}
+
+The real tetrablock \(\E\cap\R^3\) is the open tetrahedron with vertices
+\[
+ (1,1,1),\quad (1,-1,-1),\quad (-1,1,-1),\quad (-1,-1,1).
+\]
+For \(x=(x_1,x_2,p)\) in this tetrahedron, set
+\[
+ \beta_1=\frac{x_1-x_2p}{1-p^2},\qquad
+ \beta_2=\frac{x_2-x_1p}{1-p^2}.
+\]
+Then \(|\beta_1|+|\beta_2|<1\), and
+\begin{equation}\label{eq:x-beta}
+ x_1=\beta_1+p\beta_2,\qquad
+ x_2=\beta_2+p\beta_1.
+\end{equation}
+The source's Corollary~2.2 defines the unique maximizing pair by
+\begin{align}
+ z_1&=\frac{2\beta_1}{1+\beta_1^2-\beta_2^2+
+ \sqrt{(1+\beta_1^2-\beta_2^2)^2-4\beta_1^2}},\label{eq:z1}\\
+ z_2&=\frac{2\beta_2}{1+\beta_2^2-\beta_1^2+
+ \sqrt{(1+\beta_2^2-\beta_1^2)^2-4\beta_2^2}}.\label{eq:z2}
+\end{align}
+Its Proposition~6.3 uses the height
+\begin{equation}\label{eq:K-source}
+ K(x)=\frac{1-x_1z_1-x_2z_2+pz_1z_2}
+ {\sqrt{(1-z_1^2)(1-z_2^2)}}
+\end{equation}
+and proves that \(\HH\cap\R^4\) is convex if and only if \(K\) is
+concave on \(\E\cap\R^3\).
+
+\paragraph{Proof intuition.}
+The nested radicals in \eqref{eq:z1}--\eqref{eq:z2} hide hyperbolic
+half-angle formulas.  Put \(u=\beta_1+\beta_2\) and
+\(v=\beta_1-\beta_2\).  The two discriminants become the same product
+\((1-u^2)(1-v^2)\), and the maximizing points become hyperbolic tangents of
+half-sums.  Substitution into \eqref{eq:K-source} makes all hyperbolic
+terms cancel, leaving two square roots.  In tetrahedral facet coordinates,
+each is a geometric mean.  Thus the apparent three-variable Hessian problem
+is really the concavity of \((a,b)\mapsto\sqrt{ab}\).
+
+\section{Main theorem}
+
+\begin{theorem}[Real-hexablock convexity]\label{thm:main}
+For every \(x=(x_1,x_2,p)\in\E\cap\R^3\), the height in
+\eqref{eq:K-source} has the closed form
+\begin{equation}\label{eq:closed}
+ K(x)=\frac12\left[
+ \sqrt{(1+p)^2-(x_1+x_2)^2}
+ +\sqrt{(1-p)^2-(x_1-x_2)^2}\right].
+\end{equation}
+It is concave on \(\E\cap\R^3\).  Consequently,
+\(\HH\cap\R^4\) is convex.
+\end{theorem}
+
+\begin{proof}
+Put
+\[
+ u=\beta_1+\beta_2,\qquad v=\beta_1-\beta_2.
+\]
+The condition \(|\beta_1|+|\beta_2|<1\) is equivalent to
+\(|u|,|v|<1\).  Let
+\[
+ U=\operatorname{artanh}u,\qquad V=\operatorname{artanh}v,
+ \qquad A=\frac{U+V}{2},\qquad B=\frac{U-V}{2}.
+\]
+Since \(1+\beta_1^2-\beta_2^2=1+uv\) and
+\(2\beta_1=u+v\),
+\[
+ (1+\beta_1^2-\beta_2^2)^2-4\beta_1^2
+ =(1-u^2)(1-v^2).
+\]
+The analogous discriminant in \eqref{eq:z2} is the same.  The hyperbolic
+half-angle identities therefore give
+\begin{align*}
+ z_1&=\frac{u+v}{1+uv+\sqrt{(1-u^2)(1-v^2)}}=\tanh A,\\
+ z_2&=\frac{u-v}{1-uv+\sqrt{(1-u^2)(1-v^2)}}=\tanh B.
+\end{align*}
+Substitute these expressions into \eqref{eq:K-source}.  Because
+\(\sqrt{1-z_1^2}=\operatorname{sech}A\) and similarly for \(z_2\),
+\begin{align*}
+K={}&\cosh A\cosh B-x_1\sinh A\cosh B
+    -x_2\cosh A\sinh B+p\sinh A\sinh B\\
+={}&\frac12\left[(1+p)\cosh U+(1-p)\cosh V
+ -(x_1+x_2)\sinh U-(x_1-x_2)\sinh V\right].
+\end{align*}
+Equation \eqref{eq:x-beta} yields
+\(x_1+x_2=(1+p)u\) and \(x_1-x_2=(1-p)v\).  Hence
+\begin{align*}
+ K
+ &=\frac12\left[(1+p)(\cosh U-u\sinh U)
+ +(1-p)(\cosh V-v\sinh V)\right]\\
+ &=\frac12\left[(1+p)\operatorname{sech}U
+ +(1-p)\operatorname{sech}V\right].
+\end{align*}
+Since \(\operatorname{sech}(\operatorname{artanh}t)=\sqrt{1-t^2}\),
+and since \(u=(x_1+x_2)/(1+p)\),
+\(v=(x_1-x_2)/(1-p)\), formula \eqref{eq:closed} follows.
+
+It remains to prove concavity.  Define the four affine facet functions
+\begin{align*}
+ L_1&=1-x_1+x_2-p,& L_2&=1-x_1-x_2+p,\\
+ L_3&=1+x_1+x_2+p,& L_4&=1+x_1-x_2-p.
+\end{align*}
+They are positive precisely on the open tetrahedron, and
+\begin{equation}\label{eq:facet-form}
+ K=\frac12\left(\sqrt{L_2L_3}+\sqrt{L_1L_4}\right).
+\end{equation}
+For positive \(a,b,c,d\) and \(t\in[0,1]\),
+\begin{align*}
+ &(ta+(1-t)c)(tb+(1-t)d)
+ -\left(t\sqrt{ab}+(1-t)\sqrt{cd}\right)^2\\
+ &\hspace{35mm}=t(1-t)(\sqrt{ad}-\sqrt{bc})^2\ge0.
+\end{align*}
+Taking square roots proves concavity of \((a,b)\mapsto\sqrt{ab}\) on
+the positive quadrant.  Composition with affine maps preserves concavity, so
+\eqref{eq:facet-form} is concave.  Source Proposition~6.3 now implies that
+\(\HH\cap\R^4\) is convex.
+\end{proof}
+
+\section{Verification and scope}
+
+The reusable script \texttt{code/verify\_closed\_form.py} independently
+evaluates both the source formula and \eqref{eq:closed}.  With seed
+\texttt{250615149}, it compared them on 100,000 random interior points; the
+maximum absolute discrepancy was \(4.17\times10^{-14}\).  It also tested
+100,000 random Jensen triples and found no negative concavity gap beyond
+roundoff.  These checks are not part of the proof, but guard against sign,
+facet-order, and reciprocal errors.
+
+The theorem settles exactly the source's conjecture for the open real
+hexablock.  Formula \eqref{eq:facet-form} also extends continuously to the
+closed real tetrablock, but no claim is made here about convexity of the full
+complex hexablock or its other open problems.
+
+A bounded novelty audit was performed on 26 August 2026.  We searched the four
+run indexes, the local parsed arXiv corpus, arXiv/web results for the source id
+and title, the phrases ``real hexablock'' and ``intersection of the
+hexablock,'' and the radical/geometric-mean form in \eqref{eq:closed}.  We
+also inspected the abstracts of arXiv:2507.14589, arXiv:2507.16176, and
+arXiv:2608.00819, the later hexablock papers returned by the search.  No prior
+convexity proof or this closed form was found.  This is bounded evidence, not
+a definitive priority claim.
+
+Human review recommendation: \textbf{send to human}, with priority on the
+half-angle simplification and the identification of the four facet functions.
+
+\begin{thebibliography}{9}
+\bibitem{source}
+I.~Biswas, S.~Pal, and N.~Tomar,
+\emph{The Hexablock: a domain associated with the \(\mu\)-synthesis in
+\(M_2(\mathbb C)\)}, arXiv:2506.15149v2, 2026.
+\end{thebibliography}
+
+\end{document}

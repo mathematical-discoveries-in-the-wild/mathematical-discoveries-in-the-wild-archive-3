@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\CS}{\mathcal{CS}}
+\newcommand{\Ucal}{\mathcal{U}}
+\newcommand{\Ccal}{\mathcal{C}}
+\newcommand{\T}{^{\mathsf T}}
+
+\title{Pairwise-nonorthogonal complex symmetric matrices\\without truncated Toeplitz models}
+\author{Candidate counterexample packet --- \texttt{agent\_lane\_04} (GPT5.6)}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+Candidate counterexample, likely valid; human review needed.
+
+\section{Source question}
+
+Garcia, Poore, and Ross ask in Section~7, Question~2 of
+\cite{GPR} (PDF page~13):
+\begin{quote}
+Let $n\geq4$. Is every complex symmetric matrix $M\in M_n(\mathbb C)$
+having no pair of orthogonal, nonzero eigenvectors unitarily equivalent to a
+truncated Toeplitz operator?
+\end{quote}
+
+\begin{center}
+\includegraphics[width=0.97\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+Here ``complex symmetric matrix'' means $M\T=M$.  Orthogonality in the
+question is for the usual Hermitian inner product on $\mathbb C^n$.
+
+\section{Result}
+
+\begin{theorem}\label{thm:main}
+For every $n\geq10$, there exists $M\in M_n(\mathbb C)$ such that
+\begin{enumerate}[label=(\roman*)]
+\item $M\T=M$;
+\item $M$ has simple spectrum and no two nonzero eigenvectors are orthogonal;
+\item $M$ is not unitarily equivalent to a truncated Toeplitz operator.
+\end{enumerate}
+Consequently Question~2 of \cite{GPR} has a negative answer.
+\end{theorem}
+
+The theorem is existential.  It proves that counterexamples occupy a
+nonempty part of a full-dimensional open semialgebraic locus after a
+lower-dimensional exceptional set is removed; it does not identify a
+particular rational or algebraic matrix outside that exceptional set.
+
+\section{Proof intuition}
+
+O'Loughlin associates to finite-dimensional truncated Toeplitz operators a
+semialgebraic set $\Ucal(\Ccal)\subseteq\CS_n$ and proves that its real
+dimension is strictly less than $n(n+1)$ for $n\geq10$ \cite{OL}.  It is not
+enough merely to choose a generic irreducible symmetric matrix: the source
+question imposes the sharper condition that every two eigenvectors be
+nonorthogonal.
+
+The key observation is that this sharper condition is still generic on the
+simple-spectrum locus.  It is semialgebraic, open, and nonempty.  For
+nonemptiness, start with a complex orthogonal matrix
+$Q(t)=\exp(itK)$, where $K$ is real skew-symmetric with no zero
+off-diagonal entries.  Its columns are orthogonal for the bilinear form
+$x\T y$, but, for small $t\ne0$, every pair has nonzero Hermitian inner
+product because
+$Q(t)^*Q(t)=\exp(2itK)=I+2itK+O(t^2)$.  Giving those columns distinct
+eigenvalues produces the required symmetric matrices.  A full-dimensional
+open semialgebraic set cannot be contained in O'Loughlin's
+lower-dimensional TTO-model locus.
+
+\section{Proof}
+
+Let
+\[
+\CS_n=\{M\in M_n(\mathbb C):M\T=M\},
+\]
+viewed as a real vector space of dimension $n(n+1)$.
+
+Define $\mathcal G_n\subseteq\CS_n$ to consist of matrices with simple
+spectrum for which eigenvectors belonging to distinct eigenvalues have
+nonzero Hermitian inner product.  Because the spectrum is simple, this is
+equivalent to saying that no pair of nonzero eigenvectors is orthogonal.
+
+\begin{lemma}\label{lem:generic}
+For every $n\geq2$, the set $\mathcal G_n$ is a nonempty open
+semialgebraic subset of $\CS_n$.  In particular,
+$\dim_{\mathbb R}\mathcal G_n=n(n+1)$.
+\end{lemma}
+
+\begin{proof}
+The simple-spectrum locus is semialgebraic: it is defined by nonvanishing of
+the discriminant of the characteristic polynomial.  Within that locus, the
+failure of pairwise nonorthogonality is the existence of
+$\lambda\ne\mu$ and unit vectors $x,y$ satisfying
+\[
+Mx=\lambda x,\qquad My=\mu y,\qquad x^*y=0.
+\]
+After real and imaginary parts are separated, these are polynomial equations
+and the inequality $|\lambda-\mu|^2>0$.  Tarski--Seidenberg therefore shows
+that the bad set, and hence $\mathcal G_n$, is semialgebraic.
+
+On the simple-spectrum locus the eigenlines vary continuously locally.  The
+finitely many Hermitian inner products between normalized eigenvectors thus
+vary continuously up to harmless phase factors.  Their nonvanishing is an
+open condition, so $\mathcal G_n$ is open in $\CS_n$.
+
+It remains to show nonemptiness.  Choose a real skew-symmetric matrix
+$K=(k_{ij})$ with $k_{ij}\ne0$ whenever $i\ne j$; for example take
+$k_{ij}=1$ for $i<j$ and $k_{ij}=-1$ for $i>j$.  Put
+\[
+Q(t)=\exp(itK).
+\]
+Since $K\T=-K$, we have $Q(t)\T Q(t)=I$.  Moreover $itK$ is Hermitian,
+so
+\[
+Q(t)^*Q(t)=Q(t)^2=\exp(2itK)=I+2itK+O(t^2).
+\]
+For each $i\ne j$, its $(i,j)$ entry has derivative $2ik_{ij}\ne0$ at
+$t=0$.  Since there are only finitely many pairs, all off-diagonal entries
+are nonzero for every sufficiently small positive $t$.
+
+Fix such a $t$ and distinct complex numbers $\lambda_1,\ldots,\lambda_n$.
+Set
+\[
+M=Q(t)\operatorname{diag}(\lambda_1,\ldots,\lambda_n)Q(t)\T.
+\]
+Then $M\T=M$, and the columns $q_j$ of $Q(t)$ satisfy
+$Mq_j=\lambda_jq_j$, since $Q(t)\T Q(t)=I$.  Their Hermitian Gram matrix
+is $Q(t)^*Q(t)$, whose off-diagonal entries are all nonzero.  Hence
+$M\in\mathcal G_n$.
+
+A nonempty open semialgebraic subset of the real vector space $\CS_n$ has
+the full dimension $n(n+1)$, proving the last assertion.
+\end{proof}
+
+We now use the notation of O'Loughlin \cite[Section~4]{OL}.  Let
+$\Ccal\subseteq\CS_n$ be the set of symmetric matrices $N$ for which there
+is a diagonal matrix $D$ with distinct unit-circle entries and
+$\operatorname{rank}[D,N]\leq2$, and let $\Ucal(\Ccal)$ be the set of
+symmetric matrices unitarily equivalent to some element of $\Ccal$.
+
+Theorem~3.1, Proposition~4.6, and the proof of Theorem~4.3 in \cite{OL}
+give
+\begin{equation}\label{eq:bound}
+\dim_{\mathbb R}\Ucal(\Ccal)
+\leq 7n-6+\frac{n(n-1)}2
+<n(n+1),\qquad n\geq10.
+\end{equation}
+The same paper's Theorem~4.1 and Lemma~4.2 show that every finite-dimensional
+truncated Toeplitz operator has a symmetric matrix representative in
+$\Ccal$.  Consequently, any symmetric matrix unitarily equivalent to a
+truncated Toeplitz operator belongs to $\Ucal(\Ccal)$.
+
+For $n\geq10$, Lemma~\ref{lem:generic} and \eqref{eq:bound} imply
+\[
+\mathcal G_n\not\subseteq\Ucal(\Ccal),
+\]
+because a semialgebraic subset cannot contain another semialgebraic set of
+strictly larger dimension.  Choose
+$M\in\mathcal G_n\setminus\Ucal(\Ccal)$.  It is symmetric, has simple
+spectrum and pairwise nonorthogonal eigenvectors, and cannot be unitarily
+equivalent to a truncated Toeplitz operator.  This proves
+Theorem~\ref{thm:main}.
+
+\section{Verification}
+
+\paragraph{Logical checks.}
+The dimension comparison is strict already at $n=10$:
+\[
+7(10)-6+\frac{10\cdot9}{2}=109<110=10\cdot11.
+\]
+The difference grows thereafter.  The TTO implication uses only the
+supporting paper's stated matrix representation and rank-two commutator
+condition; no converse is assumed.
+
+The semialgebraic description quantifies over normalized eigenvectors, so
+zero vectors cannot enter the projected bad set.  Simple spectrum also
+handles two eigenvectors for the same eigenvalue: they are scalar multiples
+and cannot be orthogonal unless one is zero.
+
+\paragraph{Computational sanity check.}
+The included script constructs the displayed $Q(t)$ and $M$ for $n=10$,
+$t=0.01$, and $\lambda_j=j$.  Run from the repository root with
+\begin{Verbatim}[fontsize=\small]
+conda run --no-capture-output -n sandbox python \
+  runs/fa_banach_001/solutions/counterexamples/\
+1012.4820_pairwise_nonorthogonal_tto_counterexamples/\
+code/verify_open_locus_example.py
+\end{Verbatim}
+It verifies complex orthogonality, symmetry, eigenvector residuals,
+nonvanishing Hermitian cross-inner-products, and the dimension arithmetic.
+The recorded output is:
+\VerbatimInput[fontsize=\small]{verification_output.txt}
+This computation proves neither the semialgebraic dimension theorem nor that
+this particular numerical matrix lies outside $\Ucal(\Ccal)$; it is only a
+sanity check for Lemma~\ref{lem:generic}.
+
+\section{Novelty check and limitations}
+
+On 26 August 2026, the four lightweight run indexes were searched for
+arXiv:1012.4820, the exact Question~2 wording, ``pairwise nonorthogonal
+eigenvectors,'' and truncated Toeplitz terminology.  A bounded arXiv/web
+search used the exact phrases ``no pair of orthogonal'' and ``pairwise
+nonorthogonal eigenvectors,'' together with arXiv:1012.4820 and
+arXiv:2607.14019.  It found the source paper and O'Loughlin's later dimension
+paper, but no source stating the strengthened conclusion of
+Theorem~\ref{thm:main}.  Novelty is therefore provisional rather than
+certified.
+
+The argument is existential.  It answers the universal question negatively
+and supplies counterexamples in every dimension $n\geq10$, but it does not
+settle dimensions $4$ through $9$.  It does not address Question~4 in
+\cite{GPR}, concerning matrices $A\oplus A\T$.
+
+\paragraph{Human-review recommendation.}
+Send to a reviewer familiar with semialgebraic dimension and truncated
+Toeplitz matrix models.  The two main audit points are: (1) the projected
+semialgebraic description and openness of $\mathcal G_n$; and (2) the precise
+implication from a TTO model to membership in $\Ucal(\Ccal)$.
+
+\begin{thebibliography}{9}
+\bibitem{GPR}
+S. R. Garcia, D. E. Poore, and W. T. Ross,
+\emph{Unitary equivalence to a truncated Toeplitz operator: analytic symbols},
+Proc. Amer. Math. Soc. 140 (2012), 1281--1295;
+arXiv:\href{https://arxiv.org/abs/1012.4820}{1012.4820}.
+
+\bibitem{OL}
+R. O'Loughlin,
+\emph{Semialgebraic Dimension and Truncated Toeplitz Models for Complex
+Symmetric Matrices},
+arXiv:\href{https://arxiv.org/abs/2607.14019}{2607.14019}, 2026.
+\end{thebibliography}
+
+\end{document}

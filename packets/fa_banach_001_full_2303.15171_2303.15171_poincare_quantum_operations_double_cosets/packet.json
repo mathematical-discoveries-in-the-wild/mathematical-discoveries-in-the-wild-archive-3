@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2303.15171",
+  "author_list": [
+    "Luca Giorgetti"
+  ],
+  "claim_short": "The proposed identification holds in the standard Doplicher--Roberts/Carpi--Conti regime invoked in the problem. More precisely, suppose the subsystem classification supplies a complete field net F, a compact internal gauge group G, and a closed subgroup H<G such that",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2303.15171v1",
+    "source_url": "https://arxiv.org/abs/2303.15171v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_solution_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/",
+  "packet_title": "Poincare-covariant quantum operations are a double-coset hypergroup",
+  "primary_arxiv_id": "2303.15171",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:1140",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_2303.15171_2303.15171_poincare_quantum_operations_double_cosets/files/solution_packet.pdf",
+  "source_authors": "Luca Giorgetti",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/2303.15171_poincare_quantum_operations_double_cosets/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2303.15171v1",
+  "source_question": "Luca Giorgetti, *Quantum Operations in Algebraic QFT*, arXiv:2303.15171, Problem 5.6 on printed page 9. For a Haag-dual full Poincare-covariant subnet B subset A, the problem proposes",
+  "source_title": "Quantum Operations in Algebraic QFT",
+  "source_url": "https://arxiv.org/abs/2303.15171v1",
+  "source_year": "2023",
+  "verification_status": "unverified"
+}

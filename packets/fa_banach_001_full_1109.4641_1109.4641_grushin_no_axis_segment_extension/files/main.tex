@@ -1,0 +1,444 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sph}{\mathbb S}
+\newcommand{\B}{\mathbb B}
+\newcommand{\G}{\mathbb G}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\len}{\operatorname{length}}
+\newcommand{\dist}{\operatorname{dist}}
+\title{A full affirmative answer to the Grushin-plane\\no-axis-segment filling question}
+\author{Candidate full-result packet for arXiv:1109.4641}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\textbf{Status:} candidate full result,
+likely valid.  Every Lipschitz loop in the first Grushin plane whose image
+encloses no nondegenerate segment of the singular axis has a Lipschitz
+filling.  Thus the result gives an affirmative answer to Question~8.7 of the
+source.}}
+\end{center}
+
+\begin{abstract}
+We prove the remaining implication by unfolding the finite-length continuum
+traced by the loop.  Whyburn's cyclic elements are its maximal cycle blocks.
+The no-enclosed-segment hypothesis forces every such block into one closed
+Grushin half-plane.  The closed half-planes are CAT(0).  Replacing each cycle
+block by a fresh copy of its half-plane, while retaining the dendritic
+connectors, produces a complete CAT(0) tree of spaces.  The boundary loop
+lifts to that tree of spaces with controlled Lipschitz constant and the
+unfolding projects $1$-Lipschitzly to the Grushin plane.  Kirszbraun extension
+in the CAT(0) unfolding and projection complete the proof.
+\end{abstract}
+
+\section{The source question and the result}
+
+The first Grushin plane $G$ has underlying set $\R^2$, singular axis
+\[
+ Y=\{(0,y):y\in\R\},
+\]
+and, away from $Y$, length element
+\begin{equation}\label{eq:metric}
+ ds^2=dx^2+x^{-2}dy^2.
+\end{equation}
+Equivalently, its orthonormal horizontal vector fields are $\partial_x$ and
+$x\partial_y$.  We write $d_G$ for its Carnot--Caratheodory distance.
+
+DeJarnette--Hajlasz--Lukyanenko--Tyson prove that every $L$-Lipschitz
+loop avoiding $Y$ has an $L$-Lipschitz filling.  They exhibit a bi-Lipschitz
+circle enclosing a nondegenerate segment of $Y$ which has no Lipschitz
+filling, and ask~\cite[Question~8.7]{DHJT}:
+
+\begin{center}
+\includegraphics[width=0.97\textwidth]{figures/open_problem_crop.png}
+
+\smallskip
+\emph{Question 8.7 on PDF page 34 of the source.}
+\end{center}
+
+We use the natural precise meaning of ``encloses'': a set $K\subset\R^2$
+encloses a segment if a nondegenerate segment of $Y$ is contained in a
+bounded component of $\R^2\setminus K$.  This is the meaning used by the
+source example.
+
+\section{Idea of the proof}
+
+The obstruction is not the number of times a loop meets the singular axis.
+It is whether a genuine cycle of its image uses both sides of that axis.  The
+image is a finite-length Peano continuum, so Whyburn's cyclic-element theory
+splits it into maximal cycle blocks joined by dendritic connectors.  A block
+that met both open half-planes would contain a cross-axis Jordan curve; the
+Jordan domain then forces the full image to enclose an axis interval.
+Therefore every block lies in one closed Grushin half-plane.
+
+Each closed half-plane is CAT(0).  We unfold the image by giving every cycle
+block its own copy of the appropriate half-plane and gluing the copies to the
+dendritic connectors only at their cut points.  This is a tree gluing along
+convex singletons, so its completion is CAT(0).  Boundary subarcs lift without
+length increase, and the unfolding projects $1$-Lipschitzly back to $G$.
+Kirszbraun extension in the unfolded CAT(0) target followed by this projection
+gives the filling.
+
+\begin{theorem}[full answer to Question 8.7]\label{thm:main}
+Let $\varphi:\Sph^1\to G$ be Lipschitz and put
+$K=\varphi(\Sph^1)$.  If no nondegenerate segment of $Y$ lies in a bounded
+component of $\R^2\setminus K$, then $\varphi$ extends to a Lipschitz map
+$F:\B^2\to G$.
+
+If the unit circle is given its Euclidean chord metric and
+$\Lip(\varphi)=L$, one may take $\Lip(F)\le (\pi/2)L$.
+\end{theorem}
+
+The proof has three steps.  First, each closed Grushin half-plane is CAT(0).
+Second, every genuine cycle block of $K$ lies in one of those half-planes.
+Third, replacing cycle blocks by copies of their half-planes gives a CAT(0)
+unfolding to which the loop lifts.
+
+\section{Closed Grushin half-planes are CAT(0)}
+
+Set
+\[
+ G_+=\{(x,y)\in G:x\ge0\},\qquad
+ G_-=\{(x,y)\in G:x\le0\}.
+\]
+They carry the distance restricted from $G$.  Folding $x$ to $|x|$ preserves
+the length of every rectifiable Grushin curve whose endpoints are in $G_+$.
+Consequently the restricted distance on $G_+$ equals its intrinsic length
+distance.  The corresponding statement holds for $G_-$.
+
+\begin{lemma}[half-plane CAT(0) lemma]\label{lem:cat-half}
+The complete geodesic spaces $G_+$ and $G_-$ are CAT(0).
+\end{lemma}
+
+\begin{proof}
+It is enough to treat $G_+$.  For $\varepsilon>0$, translate the smooth
+region
+\[
+ N_\varepsilon=\{(x,y):x\ge\varepsilon\}
+\]
+back to the fixed set $G_+$.  Its pulled-back Riemannian metric is
+\begin{equation}\label{eq:epsmetric}
+ g_\varepsilon=dx^2+(x+\varepsilon)^{-2}dy^2,
+\end{equation}
+and we denote its distance by $d_\varepsilon$.
+
+The Gaussian curvature in the positive smooth Grushin region is
+$-2x^{-2}\le0$.  The region $N_\varepsilon$ is complete and locally convex.
+For the latter assertion, the $x$-coordinate of a geodesic satisfies
+\[
+ x''=-x^{-3}(y')^2\le0;
+\]
+thus a geodesic segment with endpoints in $x\ge\varepsilon$ remains there.
+The metric Cartan--Hadamard theorem, or equivalently the standard convex
+boundary form of it, shows that $(G_+,d_\varepsilon)$ is CAT(0).
+
+As $\varepsilon\downarrow0$, the metrics in \eqref{eq:epsmetric} increase,
+so $d_\varepsilon$ increases pointwise and is bounded above by $d_G$.
+In fact
+\begin{equation}\label{eq:metriclimit}
+ d_\varepsilon(p,q)\uparrow d_G(p,q),\qquad p,q\in G_+.
+\end{equation}
+Here is a direct compactness check.  Take constant-speed almost minimizers
+$\gamma_\varepsilon=(x_\varepsilon,y_\varepsilon)$ for
+$d_\varepsilon(p,q)$.  A uniform length bound controls $x_\varepsilon$ and,
+on the resulting bounded $x$-range, also controls $y_\varepsilon$.  After
+passing to a uniformly convergent subsequence, write
+\[
+ b_\varepsilon=\frac{y_\varepsilon'}{x_\varepsilon+\varepsilon}.
+\]
+The controls $(x_\varepsilon',b_\varepsilon)$ are bounded in the appropriate
+$L^2$ space.  Weak compactness gives $y'=xb$ for the limit curve, including
+$y'=0$ almost everywhere on $\{x=0\}$, and lower semicontinuity gives
+\[
+ \len_G(\gamma)\le
+ \liminf_{\varepsilon\downarrow0}\len_{g_\varepsilon}
+ (\gamma_\varepsilon).
+\]
+This proves \eqref{eq:metriclimit}.
+
+Pass now to the CAT(0) midpoint inequality.  For fixed $p,q,z$, let
+$m_\varepsilon$ be the $d_\varepsilon$-midpoint of $p,q$.  The preceding
+compactness argument gives a subsequence converging to a $d_G$-midpoint $m$.
+On every relevant Euclidean compact set, \eqref{eq:metriclimit} is uniform:
+the distance functions increase continuously to the continuous limit, so
+Dini's theorem applies.  Hence
+\[
+ d_G(z,m)^2\le
+ \frac12d_G(z,p)^2+\frac12d_G(z,q)^2-\frac14d_G(p,q)^2.
+\]
+The space $G_+$ is complete (indeed it is closed in the proper Grushin
+plane), and the midpoint inequality characterizes complete CAT(0) spaces.
+Reflection proves the claim for $G_-$.
+\end{proof}
+
+Two immediate consequences will be used below.  First, the identity map from
+either $G_+$ or $G_-$ into $G$ is an isometric embedding.  Second, the
+Lang--Schroeder Kirszbraun theorem applies to maps from subsets of Euclidean
+space into either half-plane~\cite{LangSchroeder}.
+
+\section{Finite-length continua and their cycle blocks}
+
+We record the classical continuum-theoretic input and its quantitative
+metric consequence.  A \emph{true cyclic element} of a Peano continuum $X$
+is a maximal nondegenerate subcontinuum $C$ such that every two points of $C$
+lie on a Jordan curve contained in $C$.
+
+We use the following standard facts from cyclic element theory
+\cite[Chapter~IV]{Whyburn}.
+\begin{enumerate}
+\item Every Jordan curve in $X$ is contained in a true cyclic element.
+\item Distinct true cyclic elements meet in at most one point, necessarily a
+cut point of $X$.
+\item If $C$ is a true cyclic element, the closure of each component of
+$X\setminus C$ meets $C$ in at most one point.
+\item After the true cyclic elements are regarded as blocks, the remaining
+connectors are dendritic and the block-incidence structure is a tree: there
+is a unique simple cyclic chain between any two elements.
+\end{enumerate}
+For orientation, the point-attachment assertion in (3) is forced by
+maximality.  If a component outside $C$ attached at distinct points $a,b$,
+local connectedness would supply an outside arc from $a$ to $b$.  Combining
+it with a suitable arc in a Jordan curve of $C$ would enlarge the cyclic
+element.
+
+The next lemma packages exactly the infinite gluing statement needed here.
+
+\begin{lemma}[CAT(0) cyclic unfolding]\label{lem:unfold}
+Let $M$ be a complete metric space and let $X\subset M$ be a compact
+connected set with $\Hh^1_M(X)<\infty$.  For every true cyclic element
+$C\subset X$, suppose there are
+\begin{itemize}
+\item a complete CAT(0) space $Z_C$,
+\item a map $i_C:C\to Z_C$, and
+\item a $1$-Lipschitz map $p_C:Z_C\to M$
+\end{itemize}
+such that $p_Ci_C$ is the inclusion $C\hookrightarrow M$, and
+\begin{equation}\label{eq:blocklength}
+ \len_{Z_C}(i_C\circ\alpha)\le\len_M(\alpha)
+\end{equation}
+for every rectifiable path $\alpha$ in $C$.
+
+Then there are a complete CAT(0) space $E$, a $1$-Lipschitz map
+$P:E\to M$, and a lift $j:X\to E$ with $Pj$ equal to the inclusion, such that
+for every rectifiable path $\alpha$ in $X$,
+\begin{equation}\label{eq:globallength}
+ \len_E(j\circ\alpha)\le\len_M(\alpha).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A compact connected set of finite $\Hh^1$-measure is locally connected and
+rectifiably connected, hence is a Peano continuum.  Apply its cyclic-element
+decomposition.  Replace every true cyclic element $C$ by a disjoint copy of
+$Z_C$.  Retain each dendritic connector with its intrinsic arc-length metric,
+which is an $\R$-tree metric, and identify every attachment point with the
+corresponding point $i_C(q)$ in the adjacent block.  Distinct blocks and
+connectors are therefore glued only along singletons.  The tree property in
+(4) says that no cycle is introduced between the pieces.
+
+For completeness, root the cyclic-element tree.  Its nondegenerate block
+traces and nondegenerate connector components are countable: their interiors
+are disjoint, each has positive $\Hh^1$-measure, and their total measure is at
+most $\Hh^1(X)$.  The remaining degenerate elements are limit points of this
+system.  Take an increasing sequence of finite rooted subtrees that exhausts
+the nondegenerate pieces.  The point-attachment property ensures that every
+piece newly exposed by a rooted subtree meets the preceding subtree in
+exactly its parent attachment point.  If infinitely many pieces occur along
+one rooted chain, first include those whose \emph{original traces in $X$}
+have diameter at least $1/n$, then let $n\to\infty$; there are only finitely
+many at each scale because $\Hh^1(X)<\infty$.  This gives an increasing,
+dense union
+\[
+ E_1\subset E_2\subset\cdots
+\]
+in which each new piece is attached to the old union at one point.  Each
+finite stage is CAT(0) by Reshetnyak gluing along the closed convex set
+$\{q\}$, and its inclusion in the next stage is isometric and convex
+\cite[Chapter~II.11]{BridsonHaefliger}.  Every geodesic triangle in the union
+lies in some finite stage and satisfies the CAT(0) comparison inequality.
+Let $E$ be its metric completion.  Completions of CAT(0) spaces are CAT(0),
+so $E$ is complete CAT(0).  This is also the standard metric realization of
+the cyclic-element tree with the blocks $C$ replaced by $Z_C$.
+
+On $Z_C$ define $P=p_C$.  On every dendritic connector use its original map
+into $X\subset M$.  These maps agree at attachment points.  They are
+$1$-Lipschitz on pieces, so the path-metric definition makes $P$ short on the
+dense union; completeness of $M$ extends it to a $1$-Lipschitz map on $E$.
+
+The canonical lift $j$ sends a point of $C$ to $i_C(C)$ and a point in the
+dendritic part to its corresponding tree point.  Shared cut points were
+identified, so this is well defined and $Pj$ is the inclusion.  A rectifiable
+path in $X$ lifts piece by piece.  On block passages its length does not
+increase by \eqref{eq:blocklength}; on dendritic passages the intrinsic
+arc-length is the original path length.  First sum over finitely many
+passages and then exhaust the countably many passages.  Monotone convergence
+of length gives \eqref{eq:globallength}.  In particular, this estimate makes
+$j\circ\alpha$ continuous even at accumulating attachment points.
+\end{proof}
+
+\begin{remark}\label{rem:why-finite}
+The finite-length hypothesis is doing two jobs: it makes $X$ a Peano
+continuum, and it makes all nontrivial pieces countable with summable sizes.
+Thus the completion in Lemma~\ref{lem:unfold} is not hiding a local-finiteness
+assumption.
+\end{remark}
+
+\section{The no-segment condition makes every block one-sided}
+
+The metric induced on the singular axis has the snowflake scale
+\begin{equation}\label{eq:snowflake}
+ d_G((0,s),(0,t))\asymp |s-t|^{1/2}.
+\end{equation}
+Consequently every nondegenerate Euclidean interval in $Y$ has infinite
+$1$-dimensional Hausdorff measure for $d_G$.
+
+\begin{lemma}[one-sided cyclic elements]\label{lem:onesided}
+Let $K\subset G$ be compact, connected, and of finite $\Hh^1_G$-measure.
+Assume that no nondegenerate segment of $Y$ is contained in a bounded
+component of $\R^2\setminus K$.  Then every true cyclic element of $K$ is
+contained in $G_+$ or in $G_-$.
+\end{lemma}
+
+\begin{proof}
+Suppose a true cyclic element $C$ contains $a$ with positive $x$-coordinate
+and $b$ with negative $x$-coordinate.  By the defining property of $C$ there
+is a Jordan curve $J\subset C$ through $a$ and $b$.  Let $\Omega$ be its
+bounded Jordan domain.
+
+The set $\Omega$ meets $Y$.  Otherwise connectedness would put $\Omega$ in
+one component of $\R^2\setminus Y$, and then
+$J=\partial\Omega$ would lie in the corresponding closed half-plane,
+contrary to the choice of $a,b$.  Since $\Omega$ is open,
+$\Omega\cap Y$ contains a nondegenerate interval $I$.
+
+The finite-measure set $K$ cannot contain an axis interval, by
+\eqref{eq:snowflake}.  Thus the compact set $K\cap I$ has empty relative
+interior in $I$, and $I\setminus K$ contains a nondegenerate open
+subinterval $I_0$.  Because $I_0$ is connected, it lies in one component
+$U$ of $\R^2\setminus K$.  The Jordan curve $J\subset K$ prevents $U$ from
+leaving $\Omega$, so $U$ is bounded.  Hence $K$ encloses $I_0$, a
+contradiction.  Therefore $C$ cannot meet both open half-planes, proving the
+claim.
+\end{proof}
+
+\section{Proof of the full theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The image $K=\varphi(\Sph^1)$ is compact and connected, and
+\[
+ \Hh^1_G(K)\le \len_G(\varphi)<\infty.
+\]
+By Lemma~\ref{lem:onesided}, every true cyclic element $C$ of $K$ is
+contained in one of $G_+$ and $G_-$.  Choose one such half-plane and call it
+$Z_C$.  Let $i_C:C\to Z_C$ and $p_C:Z_C\to G$ both be the coordinate
+identity.  Lemma~\ref{lem:cat-half} says that $Z_C$ is complete CAT(0).
+Folding shows that its intrinsic metric agrees with the distance restricted
+from $G$, so $p_C$ is $1$-Lipschitz and
+\[
+ \len_{Z_C}(i_C\circ\alpha)=\len_G(\alpha)
+\]
+for every rectifiable path $\alpha$ in $C$.
+
+Apply Lemma~\ref{lem:unfold}.  We obtain a complete CAT(0) space $E$, a short
+map $P:E\to G$, and a lift $j:K\to E$ preserving the length upper bound on
+every rectifiable path.  Put
+\[
+ \widetilde\varphi=j\circ\varphi:\Sph^1\to E.
+\]
+For $s,t\in\Sph^1$, let $A_{s,t}$ be the shorter circular arc between them.
+The length estimate in Lemma~\ref{lem:unfold} gives
+\[
+\begin{split}
+ d_E(\widetilde\varphi(s),\widetilde\varphi(t))
+ &\le \len_E(\widetilde\varphi|_{A_{s,t}})\\
+ &\le \len_G(\varphi|_{A_{s,t}})\\
+ &\le L\,\len_{\R^2}(A_{s,t})
+ \le \frac\pi2 L|s-t|.
+\end{split}
+\]
+Thus $\widetilde\varphi$ is $(\pi/2)L$-Lipschitz on the unit circle with its
+Euclidean chord metric.
+
+Euclidean space has curvature bounded below by $0$, and $E$ is complete
+CAT(0).  The Lang--Schroeder Kirszbraun theorem therefore extends
+$\widetilde\varphi$ to a $(\pi/2)L$-Lipschitz map
+\[
+ \widetilde F:\B^2\to E.
+\]
+Finally set $F=P\circ\widetilde F$.  Since $P$ is $1$-Lipschitz,
+$F$ has the same Lipschitz bound, and on the boundary
+\[
+ F|_{\Sph^1}=Pj\varphi=\varphi.
+\]
+This is the required filling.
+\end{proof}
+
+\section{Stress tests and novelty check}
+
+The construction handles the configurations that defeat a direct
+one-contact gluing argument.
+\begin{itemize}
+\item A figure eight with one lobe on each side of $Y$ becomes two CAT(0)
+half-planes glued at the common cut point.
+\item A theta block cannot mix the two sides: any two cross-side points in
+the same true cyclic element lie on a cross-axis Jordan curve, contradicting
+Lemma~\ref{lem:onesided}.
+\item Infinitely many alternating one-sided blocks cause no completeness
+problem.  Finite subtrees are CAT(0), and their metric completion is CAT(0).
+\item A loop whose image has no Jordan curve at all lifts to an $\R$-tree,
+regardless of how often it meets the singular axis.
+\end{itemize}
+
+A bounded novelty search through 27 August 2026 covered the run registry and
+solution indexes; the exact wording of Question~8.7; searches combining
+``Grushin plane'', ``Lipschitz extension'', ``cyclic element'', and
+``CAT(0)''; and the later Grushin embedding and quasiconformal papers returned
+by those searches.  No later paper claiming this answer or this unfolding
+argument was found.  Novelty confidence is moderate rather than definitive,
+because the proof combines classical ingredients in a short new way.
+
+The packet is recommended for human review as a likely valid full answer.
+The highest-value audit is Lemma~\ref{lem:unfold}: compare its tree
+realization directly with Whyburn's cyclic-element decomposition, then verify
+that the finite-stage exhaustion includes every accumulating connector.  The
+finite-length argument in Remark~\ref{rem:why-finite} is included precisely
+to expose that point.
+
+\begin{thebibliography}{9}
+\bibitem{DHJT}
+N. DeJarnette, P. Hajlasz, A. Lukyanenko, and J. T. Tyson,
+\emph{On the lack of density of Lipschitz mappings in Sobolev spaces with
+Heisenberg target}, arXiv:1109.4641v3 (2014).
+\url{https://arxiv.org/abs/1109.4641}.
+
+\bibitem{LangSchroeder}
+U. Lang and V. Schroeder,
+\emph{Kirszbraun's theorem and metric spaces of bounded curvature},
+Geom. Funct. Anal. 7 (1997), 535--560.
+
+\bibitem{Whyburn}
+G. T. Whyburn,
+\emph{Analytic Topology}, American Mathematical Society Colloquium
+Publications, vol. 28, 1942.
+
+\bibitem{BridsonHaefliger}
+M. R. Bridson and A. Haefliger,
+\emph{Metric Spaces of Non-Positive Curvature}, Springer, 1999.
+\end{thebibliography}
+
+\end{document}

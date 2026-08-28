@@ -1,0 +1,2 @@
+PASS: 224 symbolic g_(j kappa) parity identities
+PASS: the common factor is independent of the witness index q

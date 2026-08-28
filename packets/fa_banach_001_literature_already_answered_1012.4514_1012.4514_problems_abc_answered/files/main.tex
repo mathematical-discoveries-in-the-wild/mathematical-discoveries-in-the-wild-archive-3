@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.3em,topsep=0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.62em}
+
+\newcommand{\statusbox}[1]{%
+  \begin{center}
+  \fcolorbox{MidnightBlue}{MidnightBlue!6}{%
+    \parbox{0.91\linewidth}{\centering\bfseries\color{MidnightBlue}#1}}
+  \end{center}}
+
+\title{Literature Status Note\\[0.25em]
+\large Problems A--C from arXiv:1012.4514}
+\author{Run \texttt{fa\_banach\_001} --- lane 5}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\statusbox{LITERATURE ALREADY ANSWERED --- PROBLEMS A, B, AND C}
+
+\section*{Source questions}
+
+Levy and Shalit's survey \emph{Dilation theory in finite dimensions} asks four
+labeled questions \cite{LS}.  This note identifies exact later answers to the
+first three.
+
+\begin{itemize}
+\item \textbf{Problem A} (source PDF page 7): can a commuting tuple of
+contractive $3\times3$ matrices violate
+\[
+ \|p(T_1,\ldots,T_d)\|\leq \sup_{z\in\mathbb T^d}|p(z)|?
+\]
+\item \textbf{Problem B} (source PDF page 8): are Brehmer's positivity
+inequalities equivalent to the existence, for every $N$, of a regular unitary
+$N$-dilation on a finite-dimensional space?
+\item \textbf{Problem C} (source PDF page 9): does every pair of commuting
+contractions on a finite-dimensional space have a finite-dimensional unitary
+$N$-dilation for each fixed $N$?
+\end{itemize}
+
+\section*{Exact literature answers}
+
+\textbf{Problem A: no counterexample exists.}
+Knese's Theorem 1.2, on supporting PDF page 2, states that the von Neumann
+inequality holds for every $d$-tuple of commuting contractive $3\times3$
+matrices \cite{Knese}.  This is precisely the universal negation of the
+existence question in Problem A.  Knese attributes the decisive three-point
+Pick interpolation input to Kosi\'nski and supplies the operator-theoretic
+reductions.
+
+\textbf{Problem B: yes.}
+McCarthy and Shalit's Theorem 1.7 and Corollary 1.8, on supporting PDF page 4,
+prove that a finite-dimensional commuting tuple has finite-dimensional regular
+unitary $N$-dilations for every $N$ exactly when it has a regular unitary
+dilation; Brehmer's inequalities characterize the latter \cite{MS}.  Their
+corollary is word-for-word the equivalence requested in Problem B.
+
+\textbf{Problem C: yes.}
+McCarthy and Shalit's Theorem 1.2, stated on supporting PDF page 2, proves more
+generally that whenever a commuting tuple on a finite-dimensional space has a
+unitary dilation, it has a finite-dimensional unitary $N$-dilation for every
+fixed $N$ \cite{MS}.  Apply Ando's dilation theorem to a pair of commuting
+contractions.
+
+\section*{Proof intuition for the finite-dimensional reduction}
+
+The common mechanism behind Problems B and C is finite moment compression.
+A commuting unitary dilation yields an operator-valued measure on the torus.
+Only finitely many moments are needed at degree $N$.  A matrix-valued
+Carath\'eodory argument replaces that measure by a finite atomic positive
+operator-valued measure with the same moments, and finite-dimensional Naimark
+dilation turns its atoms into commuting unitaries.  The regular version retains
+both positive and negative Laurent moments.  This is the exact finite-dimensional
+bridge that the source paper sought.
+
+\section*{Scope boundary}
+
+Problem D asks for a ``commutant lifting theorem'' for unitary $N$-dilations,
+without fixing a unique formulation.  McCarthy and Shalit explicitly say that
+the appropriate analogue is unclear and show that one natural fixed-dilation
+version fails already for a particular Halmos $1$-dilation \cite[Sec.~2.3]{MS}.
+That observation does not settle every plausible existential version.  We
+therefore record Problems A--C as answered and make no durable status claim for
+Problem D.
+
+\section*{Review recommendation}
+
+Classify the queued Problem-A signal as answered by Knese.  Record Problems B
+and C as additional exact answers from McCarthy--Shalit.  Do not spend a new
+proof attempt on this paper unless Problem D is first reformulated precisely.
+
+\begin{thebibliography}{9}
+\bibitem{LS}
+E.~Levy and O.~M.~Shalit,
+\emph{Dilation theory in finite dimensions: the possible, the impossible and
+the unknown}, arXiv:1012.4514; Rocky Mountain J. Math. 44 (2014), 203--221.
+
+\bibitem{Knese}
+G.~Knese,
+\emph{The von Neumann inequality for $3\times3$ matrices},
+arXiv:1508.06488; Bull. Lond. Math. Soc. 48 (2016), 53--57.
+
+\bibitem{MS}
+J.~E.~McCarthy and O.~M.~Shalit,
+\emph{Unitary $N$-dilations for tuples of commuting matrices},
+arXiv:1105.2020; Proc. Amer. Math. Soc. 141 (2013), 563--571.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\newcommand{\pd}{p_{d_1,d_2}}
+\title{The Grushin topological-dimension conjecture of arXiv:1406.4025}
+\author{Literature-status note for \texttt{fa\_banach\_001}}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+\texttt{literature\_already\_answered (full affirmative)}.
+
+\section*{Original conjecture}
+
+Chen and Ouhabaz study the Grushin operator
+\[
+ L=-\Delta_x-|x|^2\Delta_y
+ \quad\text{on }\mathbb R^{d_1}\times\mathbb R^{d_2}.
+\]
+Their Theorems 1.1 and 1.2 use
+\[
+ D=\max\{d_1+d_2,2d_2\}
+ \quad\text{and}\quad
+ \pd=\min\left\{\frac{2d_1}{d_1+2},
+                    \frac{2(d_2+1)}{d_2+3}\right\}.
+\]
+In the unnumbered Conjecture on page 3 of the arXiv PDF, immediately after
+those theorems, they write that the previous theorems should hold with
+$D=d_1+d_2$ instead of $D=\max\{d_1+d_2,2d_2\}$ \cite{ChenOuhabaz}.
+Thus the open part asks for both:
+\begin{enumerate}
+\item the $p$-specific spectral multiplier threshold
+  $s>(d_1+d_2)(1/p-1/2)$ in the source range; and
+\item uniform $L^p$ boundedness of $(1-tL)_+^\delta$ when
+  $\delta>(d_1+d_2)(1/p-1/2)-1/2$ in the same range.
+\end{enumerate}
+The source observes that the multiplier assertion was already known for
+$p=1$; the unresolved regime was the sharp $p$-specific improvement for
+$p>1$ when $d_2>d_1$.
+
+\section*{Answer}
+
+Niedorf explicitly identifies the expectation of Chen and Ouhabaz and cites
+their paper before stating his main results \cite{Niedorf}. On page 3 of the
+arXiv PDF, Theorem 1.1 proves that for $1<p\leq\pd$, every bounded Borel
+function with local Sobolev regularity
+\[
+ s>(d_1+d_2)(1/p-1/2)
+\]
+defines a bounded spectral multiplier $F(L)$ on $L^p$. Theorem 1.2 on the
+same page proves that for $1\leq p\leq\pd$ and
+\[
+ \delta>(d_1+d_2)(1/p-1/2)-1/2,
+\]
+the Bochner--Riesz means $(1-tL)_+^\delta$ are uniformly bounded on $L^p$.
+These are exactly the two source theorems with $D$ replaced by the
+topological dimension $d_1+d_2$. Together with the already-known $p=1$
+multiplier endpoint recorded by the source, this is a full affirmative answer
+to the displayed conjecture.
+
+The answering authors knew the relation: the abstract says their result
+improves the Chen--Ouhabaz theorem, and the introduction expressly attributes
+the expected replacement to Chen and Ouhabaz before stating Theorems 1.1 and
+1.2.
+
+\section*{Scope and search evidence}
+
+This packet concerns only the stated Chen--Ouhabaz range
+$1\leq p\leq\pd$ and the two conclusions in their unnumbered Conjecture. It
+does not assert a wider $p$-range or resolve the classical Euclidean
+Bochner--Riesz conjecture.
+
+The four run indexes were searched for arXiv:1406.4025 and the terms
+``Grushin'', ``spectral multiplier'', and ``Bochner--Riesz''; they contained
+related Grushin packets but no record for this exact conjecture. Exact arXiv
+and title/keyword searches located arXiv:2110.10058. The identification was
+then checked in the two PDFs: the source Conjecture is on page 3, and the
+answering discussion and Theorems 1.1-1.2 are on page 3 of the supporting
+paper. No new mathematical result is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{ChenOuhabaz}
+P.~Chen and E.~M. Ouhabaz,
+\emph{Weighted restriction type estimates for Grushin operators and
+application to spectral multipliers and Bochner--Riesz summability},
+Math. Z. \textbf{282} (2016), 663--678;
+arXiv:1406.4025,
+\url{https://arxiv.org/abs/1406.4025}.
+
+\bibitem{Niedorf}
+L.~Niedorf,
+\emph{A $p$-specific spectral multiplier theorem with sharp regularity bound
+for Grushin operators},
+Math. Z. \textbf{301} (2022), 4153--4173;
+arXiv:2110.10058,
+\url{https://arxiv.org/abs/2110.10058}.
+\end{thebibliography}
+
+\end{document}
+

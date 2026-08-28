@@ -1,0 +1,383 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!65!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Commut}{\operatorname{Commut}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\B}{\mathcal B}
+
+\title{Property A and Operator-Norm Localization:\\
+The Complete \(p\)-Phase Diagram}
+\author{Candidate full answer to arXiv:1809.00532, Question 6.6}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\begin{minipage}{0.91\textwidth}
+\textbf{Status: candidate full solution, likely valid.}
+For every $1<p<\infty$, Proposition 6.3 remains true with $\ell^2(X)$
+replaced by $\ell^p(X)$. At $p=1$, its localization clauses are universal and
+do not characterize Property A.
+\end{minipage}}
+\end{center}
+
+\section{Source question and definitions}
+
+Špakula and Zhang prove a commutant version of operator norm localization that
+characterizes Property A on $\ell^2(X)$, and ask on PDF page 20 of \cite{SZ}:
+
+\begin{quote}
+\textbf{Question 6.6.} Is it possible to generalise the characterisation of
+Property A (Proposition 6.3) to any $p\in[1,\infty)$?
+\end{quote}
+
+Let $X$ be a bounded-geometry metric space and $1\le p<\infty$. For
+$L,\eta>0$, set
+\[
+ \Commut_p(L,\eta)=\left\{b\in\B(\ell^p(X)):
+ \|[b,f]\|<\eta\text{ for every $L$-Lipschitz }
+ f\in C_b(X),\ \|f\|_\infty\le1\right\}.
+\]
+The direct $p$-versions of the three operator clauses in Proposition 6.3 are:
+
+\begin{enumerate}[label=$(\mathrm{L}_{\arabic*}^p)$,leftmargin=3.1em]
+\item For every $\varepsilon,L,M>0$ there is $s>0$ such that, if
+$\|b\|\le M$ and $b\in\Commut_p(L,\varepsilon/6)$, some unit vector $v$ with
+$\diam(\supp v)\le s$ satisfies $\|bv\|_p\ge\|b\|-\varepsilon$.
+
+\item For every $c\in(0,1)$ and $L>0$ there is $s>0$ such that, if
+$\|b\|=1$ and $b\in\Commut_p(L,(1-c)/6)$, some unit vector $v$ with
+$\diam(\supp v)\le s$ satisfies $\|bv\|_p\ge c$.
+
+\item ($p$-ONL) For every $c\in(0,1)$ and $R>0$ there is $s>0$ such that
+every norm-one operator $a\in\B(\ell^p(X))$ of propagation at most $R$ has a
+unit vector $v$ with $\diam(\supp v)\le s$ and $\|av\|_p\ge c$.
+\end{enumerate}
+
+For $E\subseteq X$, write
+$\partial_R E=\{x\in X\setminus E:d(x,E)\le R\}$. Following \cite{ULA},
+$X$ has \emph{uniform local amenability} (ULA) if for every $R,\varepsilon>0$
+there is $S>0$ such that, for every finite $F\subseteq X$, some
+$E\subseteq X$ with $\diam(E)\le S$ satisfies
+\[
+  |\partial_R E\cap F|<\varepsilon |E\cap F|.
+  \tag{ULA}
+\]
+
+\section{Idea of the proof}
+
+The source already proves Property A $\Rightarrow(\mathrm L_1^p)$ for every
+$1<p<\infty$. The missing direction is geometric. Suppose ULA fails. At one
+fixed scale $R$, arbitrarily large localization radii then admit a finite set
+$F$ in which every small-diameter subset has a uniformly large outer vertex
+boundary. Join points of $F$ at distance at most $R$ and consider the random
+walk $P$ on this finite bounded-degree graph.
+
+The lazy walk $(I+P)/2$ has norm one on every weighted $\ell^p$ because it
+fixes constants. On the other hand, a coarea estimate turns local vertex
+expansion into a local $\ell^2$ Cheeger inequality. The scalar monotonicity
+inequality for $z\mapsto |z|^{p-2}z$ then gives a uniform lower bound for
+$\|(I-P)v\|_p$ on every small-support vector. Uniform convexity of $\ell^p$
+forces $(I+P)/2$ to lose a fixed amount of norm on all such vectors. Conjugating
+from degree measure to counting measure produces a finite-propagation operator
+that violates $p$-ONL. Thus $p$-ONL implies ULA, and Elek's theorem \cite{Elek}
+then gives Property A.
+
+At $p=1$, uniform convexity disappears for a decisive reason: every operator
+is almost normed by a single column. Hence all three localization clauses are
+automatic.
+
+\section{The local lazy-walk estimate}
+
+For a finite graph $G=(F,\mathcal E)$ with no isolated vertices, write $d_x$
+for the degree of $x$ and
+\[
+ \|w\|_{p,d}^p=\sum_{x\in F}d_x|w_x|^p,
+ \qquad
+ (Pw)_x=\frac1{d_x}\sum_{y\sim x}w_y.
+\]
+Jensen's inequality shows that $P$ is a contraction on $\ell^p(F,d)$.
+
+\begin{lemma}[Local Cheeger estimate]\label{lem:cheeger}
+Suppose $G$ has maximum degree at most $D$, and $K\subseteq F$ has the
+property that
+\[
+ |\partial_G A|\ge h|A|
+ \tag{1}
+\]
+for every nonempty $A\subseteq K$, where $\partial_G A$ is the outer vertex
+boundary in $F$. If $g\ge0$ is supported in $K$, then
+\[
+ \sum_{\{x,y\}\in\mathcal E}|g_x-g_y|^2
+ \ge \frac{h^2}{2D^2}\sum_{x\in F}d_xg_x^2.
+ \tag{2}
+\]
+\end{lemma}
+
+\begin{proof}
+For $A_t=\{x:g_x>t\}$, (1) implies that the number of edges leaving $A_t$ is
+at least $h|A_t|$. The layer-cake formula therefore gives
+\[
+ \sum_{\{x,y\}\in\mathcal E}|g_x^2-g_y^2|
+ =\int_0^\infty 2t\,|\mathcal E(A_t,A_t^c)|\,dt
+ \ge h\sum_x g_x^2.
+ \tag{3}
+\]
+By Cauchy--Schwarz and the degree bound, the left side of (3) is at most
+\[
+ \left(\sum_{\{x,y\}\in\mathcal E}|g_x-g_y|^2\right)^{1/2}
+ \left(2D\sum_xg_x^2\right)^{1/2}.
+\]
+Squaring and using $\sum_xd_xg_x^2\le D\sum_xg_x^2$ proves (2).
+\end{proof}
+
+\begin{lemma}[Uniform local loss for the lazy walk]\label{lem:lazy}
+Fix $1<p<\infty$, $D\ge1$, and $h>0$. There is $q=q(p,D,h)<1$ with the
+following property. Under the hypotheses of Lemma~\ref{lem:cheeger}, every
+$w\in\ell^p(F,d)$ supported in $K$ satisfies
+\[
+ \left\|\frac{I+P}{2}w\right\|_{p,d}\le q\|w\|_{p,d}.
+ \tag{4}
+\]
+\end{lemma}
+
+\begin{proof}
+For $z,u\in\mathbb C$ and $1<p<\infty$, monotonicity of the duality map gives
+\[
+ \operatorname{Re}\!\left[(z-u)
+ (|z|^{p-2}\overline z-|u|^{p-2}\overline u)\right]
+ \ge \gamma_p\bigl(|z|^{p/2}-|u|^{p/2}\bigr)^2,
+ \quad \gamma_p=\frac{4(p-1)}{p^2}.
+ \tag{5}
+\]
+For complex scalars, the left side is minimized when $z$ and $u$ have the
+same argument.  For $a\ge b\ge0$, Cauchy--Schwarz gives
+\[
+ \left(\int_b^a t^{p/2-1}\,dt\right)^2
+ \le (a-b)\int_b^a t^{p-2}\,dt,
+\]
+which, after evaluating the two integrals, is exactly the resulting real
+inequality in (5).
+
+Pair $L=I-P$ against the $\ell^p(F,d)$ duality map. Symmetrizing over
+unoriented edges, applying (5), and then Lemma~\ref{lem:cheeger} to
+$g_x=|w_x|^{p/2}$ gives
+\[
+ \begin{split}
+ \|Lw\|_{p,d}\|w\|_{p,d}^{p-1}
+ &\ge \operatorname{Re}\sum_xd_x(Lw)_x|w_x|^{p-2}\overline{w_x}\\
+ &\ge \gamma_p\sum_{\{x,y\}\in\mathcal E}
+       (|w_x|^{p/2}-|w_y|^{p/2})^2\\
+ &\ge \frac{\gamma_ph^2}{2D^2}\|w\|_{p,d}^p.
+ \end{split}
+ \tag{6}
+\]
+Thus $\|w-Pw\|_{p,d}\ge\delta\|w\|_{p,d}$, where
+$\delta=\gamma_ph^2/(2D^2)>0$. Since $P$ is a contraction and
+$\ell^p(F,d)$ has the same positive modulus of uniform convexity as an
+$\ell^p$ space, (6) implies
+\[
+ \left\|\frac{w+Pw}{2}\right\|_{p,d}
+ \le (1-\rho_p(\delta))\|w\|_{p,d},
+\]
+where $\rho_p(\delta)>0$ depends only on $p$ and $\delta$. This is (4).
+\end{proof}
+
+\section{The new reverse implication}
+
+\begin{theorem}\label{thm:onl-ula}
+Let $X$ have bounded geometry and let $1<p<\infty$. If $X$ has $p$-ONL,
+then $X$ has ULA.
+\end{theorem}
+
+\begin{proof}
+Suppose ULA fails. Then there are $R>0$ and $h>0$ such that for every $S>0$
+there is a finite $F\subseteq X$ satisfying
+\[
+ |\partial_R E\cap F|\ge h|E\cap F|
+ \tag{7}
+\]
+for every $E\subseteq X$ with $\diam(E)\le S$. Decreasing $h$ if necessary,
+assume $h\le1$.
+
+On $F$, form the graph $G_F$ by joining distinct $x,y$ when $d(x,y)\le R$.
+Its maximum degree is at most
+$D=\sup_x|B(x,R)|-1$. Taking $E=\{x\}$ in (7) shows that $G_F$ has no
+isolated vertices. If $A\subseteq F$ has diameter at most $S$, then
+$\partial_{G_F}A=\partial_RA\cap F$, so (7) gives (1).
+
+Let $P_F$ be the random walk of $G_F$ and $A_F=(I+P_F)/2$ on
+$\ell^p(F,d)$. Lemma~\ref{lem:lazy} supplies a number $q<1$, depending only
+on $p,R,h$ and the bounded-geometry bound, such that
+\[
+ \|A_Fw\|_{p,d}\le q\|w\|_{p,d}
+ \tag{8}
+\]
+whenever $\diam(\supp w)\le S$.
+
+The isometry $U_F:\ell^p(F)\to\ell^p(F,d)$ defined by
+$(U_Fv)_x=d_x^{-1/p}v_x$ preserves supports. Define on $\ell^p(X)$
+\[
+ T_F=U_F^{-1}A_FU_F\quad\text{on }\ell^p(F),
+ \qquad T_F=0\quad\text{on }\ell^p(X\setminus F).
+\]
+The operator $T_F$ has propagation at most $R$ and norm one: $A_F$ is a
+contraction and fixes the constant function. For every $v$ of support diameter
+at most $S$, (8) applied to $U_F(v|_F)$ yields
+\[
+             \|T_Fv\|_p\le q\|v|_F\|_p\le q\|v\|_p.
+ \tag{9}
+\]
+Choose $c\in(q,1)$. For the fixed propagation $R$, equation (9) gives, for
+every proposed localization radius $S$, a norm-one operator $T_F$ for which
+no $S$-localized unit vector reaches $c$. This contradicts $p$-ONL.
+\end{proof}
+
+\begin{corollary}\label{cor:onl-a}
+For a bounded-geometry metric space and $1<p<\infty$, $p$-ONL implies
+Property A.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:onl-ula}, $X$ has ULA. We record why Elek's graph theorem
+\cite{Elek} applies without a hidden coarse-geodesicity assumption. Fix $R>0$
+and let $G_R$ have vertex set $X$ and edges between distinct points at distance
+at most $R$. Its degree is bounded by some $D$. Given $\varepsilon>0$ and a
+finite subgraph $H$ on a vertex set $F$, metric ULA at scale $R$, with tolerance
+$\varepsilon/D$, produces $E$ of uniformly bounded diameter with
+$|\partial_RE\cap F|<(\varepsilon/D)|E\cap F|$. Put $A=E\cap F$. Bounded
+geometry uniformly bounds $|A|$. Every inner boundary vertex of $A$ in $H$
+has a neighbor in $\partial_RE\cap F$, and each such outer vertex is charged
+at most $D$ times. Hence $|\partial_H^{\rm in}A|<\varepsilon|A|$, so the class
+of finite subgraphs of $G_R$ is uniformly locally amenable. Elek's theorem
+gives Property A for $G_R$. Its controlled supports in graph distance are
+controlled in $X$-distance, and every pair at $X$-distance at most $R$ is an
+edge of $G_R$. Applying this for each $R$ gives Property A for $X$ (the finite
+case being immediate).
+\end{proof}
+
+\section{Completion of the characterization}
+
+\begin{lemma}[Finite propagation implies slow commutation]\label{lem:comm}
+For every $R,\eta>0$ there is $L>0$ such that every norm-one operator on
+$\ell^p(X)$ of propagation at most $R$ belongs to $\Commut_p(L,\eta)$.
+\end{lemma}
+
+\begin{proof}
+Bounded geometry lets one decompose the controlled relation
+$\{(x,y):d(x,y)\le R\}$ into $N=N(X,R)$ graphs of partial translations.
+Accordingly, every such operator has a decomposition
+$a=\sum_{k=1}^N M_{g_k}V_k$, where $V_k$ is a partial translation of
+propagation at most $R$ and $\|g_k\|_\infty\le1$; this is the same support
+decomposition used in Lemma 6.2 of \cite{SZ}, and it is independent of $p$.
+If $f$ is an $L$-Lipschitz contraction, then
+\[
+ \|[M_{g_k}V_k,f]\|\le LR,
+ \qquad
+ \|[a,f]\|\le NLR.
+\]
+Take $L<\eta/(NR)$ (with the propagation-zero case immediate).
+\end{proof}
+
+\begin{theorem}[Complete answer to Question 6.6]\label{thm:main}
+Let $X$ be a bounded-geometry metric space.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For every fixed $1<p<\infty$, the following are equivalent:
+Property A; the metric sparsification property; and
+$(\mathrm L_1^p)$, $(\mathrm L_2^p)$, $(\mathrm L_3^p)$ above.
+
+\item At $p=1$, the three localization conditions
+$(\mathrm L_1^1)$, $(\mathrm L_2^1)$, $(\mathrm L_3^1)$ hold for every metric
+space, so none of them characterizes Property A.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Fix $1<p<\infty$. Property A is equivalent to metric sparsification, and
+metric sparsification implies $(\mathrm L_1^p)$ by the $p$-version of the
+commutant localization lemma proved in Section 5 of \cite{SZ}. The implication
+$(\mathrm L_1^p)\Rightarrow(\mathrm L_2^p)$ follows by taking
+$M=1$ and $\varepsilon=1-c$. Lemma~\ref{lem:comm} gives
+$(\mathrm L_2^p)\Rightarrow(\mathrm L_3^p)$. Finally,
+Corollary~\ref{cor:onl-a} gives $(\mathrm L_3^p)\Rightarrow$ Property A.
+
+For $p=1$, every $b\in\B(\ell^1(X))$ satisfies the exact column formula
+\[
+                 \|b\|=\sup_{x\in X}\|b\delta_x\|_1.
+ \tag{10}
+\]
+Indeed, the reverse inequality follows from
+$\|bv\|_1\le\sum_x|v_x|\|b\delta_x\|_1$; the other inequality is immediate.
+Thus a one-point-supported unit vector $\varepsilon$-norms every $b$, and it
+exceeds any fixed $c<1$ when $\|b\|=1$. All three localization clauses hold
+with localization diameter zero, without their commutator or propagation
+hypotheses. A coarse disjoint union of bounded-degree expanders has bounded
+geometry but not Property A, proving failure of characterization at $p=1$.
+\end{proof}
+
+\section{Novelty, limitations, and verification}
+
+Theorem~\ref{thm:main} answers the direct formulation of Question 6.6 across
+its full stated range. It does not claim that no differently designed endpoint
+condition could characterize Property A at $p=1$.
+
+Chung and Nowak \cite{CN} prove that Property A implies $p$-ONL for every
+$p\in[1,\infty)$ and explicitly state that they do not know whether the
+converse holds, suggesting ULA as a possible route. A bounded search used the
+exact source question, ``$p$-operator norm localization'', ``independent of
+$p$'', ``Property A converse'', ``uniform local amenability'', the cited-paper
+graph, and the run's cheap indexes. No later resolution through 27 August 2026
+was located. Priority is therefore plausible, not certified.
+
+The proof has no computational dependency. The main checks are: the outer
+boundary in failed ULA is exactly the graph boundary used in (7); all constants
+in Lemmas~\ref{lem:cheeger}--\ref{lem:lazy} depend only on $p,R,h$ and bounded
+geometry, never on $F$ or $S$; degree conjugation is an isometry and preserves
+supports; and the source's forward commutant lemma already covers every
+$1<p<\infty$. Human review should concentrate on these four points and the
+metric-to-graph application of Elek's theorem.
+
+\clearpage
+\section*{Source-page evidence}
+\begin{center}
+  \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]
+    {figures/open_problem_crop.png}
+\end{center}
+
+\begin{thebibliography}{9}
+\bibitem{SZ}
+J.~Špakula and J.~Zhang,
+\emph{Quasi-Locality and Property A},
+J. Funct. Anal. 278 (2020), 108299; arXiv:1809.00532.
+
+\bibitem{ULA}
+J.~Brodzki, G.~A. Niblo, J.~Špakula, R.~Willett, and N.~Wright,
+\emph{Uniform local amenability},
+J. Noncommut. Geom. 7 (2013), 583--603; arXiv:1203.6169.
+
+\bibitem{Elek}
+G.~Elek,
+\emph{Uniform Local Amenability implies Property A},
+Proc. Amer. Math. Soc. 149 (2021), 2573--2577; arXiv:1912.00806.
+
+\bibitem{CN}
+Y.~C. Chung and P.~W. Nowak,
+\emph{Expanders are counterexamples to the $\ell^p$ coarse Baum--Connes
+conjecture},
+J. Noncommut. Geom. 17 (2023), 305--331; arXiv:1811.10457.
+\end{thebibliography}
+
+\end{document}

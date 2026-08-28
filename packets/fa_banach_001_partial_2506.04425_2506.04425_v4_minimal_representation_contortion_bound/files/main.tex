@@ -1,0 +1,252 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Vfour}{C_2\times C_2}
+\newcommand{\dist}{\operatorname{dist}}
+
+\title{A sharper distortion bound for the minimal faithful\\
+representation of $C_2\times C_2$}
+\author{Candidate partial result for arXiv:2506.04425}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{\textbf{Status.} Candidate partial result,
+likely valid. This packet improves the upper bound for one distinguished
+representation; it does not compute the group contortion.}}
+\end{center}
+
+\section{Source question and contribution}
+
+Blum-Smith, Derksen, Mixon, Qaddura, and Vose define the Euclidean contortion
+of a finite group by
+\[
+  \Upsilon(G)=\sup_{V\in\operatorname{Rep}(G)}c_2(V/G),
+\]
+and ask in Section 4.2 for the values of $\Upsilon(C_4)$ and
+$\Upsilon(\Vfour)$ \cite{BDMQV}. The question appears on page 43:
+
+\begin{center}
+\includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+Here $c_2(X)$ is the least distortion of a bilipschitz embedding of the metric
+space $X$ into a Hilbert space. The source proves
+$\sqrt2\leq\Upsilon(\Vfour)\leq2$. We study the natural minimal faithful
+representation
+\[
+G:=\{\operatorname{diag}(1,1,1),\operatorname{diag}(1,-1,-1),
+\operatorname{diag}(-1,1,-1),\operatorname{diag}(-1,-1,1)\}\curvearrowright\R^3.
+\]
+This is the multiplicity-free direct sum of the three nontrivial real
+characters of $\Vfour$.
+
+\section{Proof intuition}
+
+An orbit is determined by the three absolute coordinates and, away from the
+coordinate planes, the parity of the signs. Thus $\R^3/G$ is two copies of the
+positive orthant glued along their boundary. On the same sheet the quotient
+distance is Euclidean. Between sheets, the best group element leaves exactly
+one sign mismatch, in the coordinate minimizing $a_i b_i$.
+
+This suggests embedding the glued orthants by keeping $a=(|x_1|,|x_2|,|x_3|)$
+and adding one signed coordinate equal to
+$q(a):=\min_i a_i$, the Euclidean distance from $a$ to the boundary. The
+resulting same-sheet and cross-sheet squared distances are explicit. A
+two-variable scalar inequality bounds their ratio between $2-\sqrt2$ and $2$.
+The quotient of these two constants is $2+\sqrt2$.
+
+The original contortion problem remains open because a general
+$\Vfour$-representation may contain arbitrary multiplicities of all three
+nontrivial characters.
+
+\section{Metric model}
+
+Put $C=\R_+^3$ and $q(a)=\min_i a_i$. For $a\in C$ with all coordinates
+positive, let $\varepsilon\in\{\pm1\}$ record the sign of the product of the
+coordinates of a representative. If $q(a)=0$, this sign is immaterial because
+the orbit contains representatives of both parities. Hence the orbit space is
+identified with
+\[
+ X=(C\times\{\pm1\})/\big((a,+1)\sim(a,-1)\text{ when }q(a)=0\big).
+\]
+
+\begin{lemma}[Exact quotient metric]\label{lem:metric}
+For $a,b\in C$, set
+\[
+ A=\|a-b\|_2^2,\qquad m=\min_{1\leq i\leq3}a_i b_i.
+\]
+Then
+\[
+d_X((a,\varepsilon),(b,\delta))^2=
+\begin{cases}
+A,&\varepsilon=\delta,\\
+A+4m,&\varepsilon=-\delta.
+\end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+For equal parity, an even sign change aligns all coordinate signs, giving
+distance $\|a-b\|_2$, and coordinatewise absolute values show that no smaller
+distance is possible. For opposite parity, any alignment has an odd number of
+sign mismatches. If the mismatched coordinates form $S$, its squared distance
+is
+\[
+A+4\sum_{i\in S}a_i b_i.
+\]
+All summands are nonnegative, so the minimum over odd $S$ is obtained by a
+singleton at an index attaining $m$.
+\end{proof}
+
+\section{The embedding and its bound}
+
+Define
+\[
+ F:X\longrightarrow\R^4,\qquad F(a,\varepsilon)=(a,\varepsilon q(a)).
+\]
+It is well-defined on the glued boundary since $q(a)=0$ there.
+
+\begin{lemma}[The scalar inequality]\label{lem:scalar}
+For $a,b\in C$, with $A,m$ as in Lemma~\ref{lem:metric}, and
+$x=q(a),y=q(b)$, one has
+\[
+ A+(1+\sqrt2)(x+y)^2\geq4\sqrt2\,m.
+\]
+\end{lemma}
+
+\begin{proof}
+The assertion is immediate if $m=0$. By homogeneity, assume $m=1$. Then
+$a_i b_i\geq1$ for each $i$, and $xy\leq1$. Define
+\[
+ f(t)=\begin{cases}(t^{-1}-t)^2,&0<t<1,\\0,&t\geq1.\end{cases}
+\]
+Choose an index $r$ with $a_r=x$. If $x<1$, then $b_r\geq1/x$, so
+$(a_r-b_r)^2\geq f(x)$. Similarly, an index where $b$ attains $y$ contributes
+at least $f(y)$. If the two indices coincide, $xy=1$, and at most one of
+$f(x),f(y)$ is nonzero. Consequently,
+\[
+A\geq f(x)+f(y).\tag{1}
+\]
+
+Write $\lambda=1+\sqrt2$. First suppose $x,y<1$ and put $s=xy\leq1$.
+Using $x^{-2}+y^{-2}\geq2/s$, $x^2+y^2\geq2s$, and
+$(x+y)^2\geq4s$, (1) gives
+\begin{align*}
+A+\lambda(x+y)^2
+&\geq \frac2s-4+(2+4\lambda)s\\
+&\geq4\sqrt2.
+\end{align*}
+Indeed, the last one-variable expression is minimized at
+$s=(1+\sqrt2)^{-1}$.
+
+If, say, $x\geq1$, then $y\leq1$. Decreasing $x$ to $1$ only decreases the
+remaining lower bound, and
+\[
+f(y)=\left(\frac1y-y\right)^2\geq4(1-y)^2.
+\]
+Thus
+\[
+A+\lambda(x+y)^2
+\geq4(1-y)^2+\lambda(1+y)^2
+\geq\frac{16\lambda}{4+\lambda}\geq4\sqrt2.
+\]
+The case $y\geq1$ is symmetric; if both are at least $1$, then $x=y=1$ and
+the conclusion is immediate.
+\end{proof}
+
+\begin{theorem}[Improved bound for the minimal faithful representation]
+\label{thm:main}
+For the above action of $G\cong\Vfour$ on $\R^3$,
+\[
+ c_2(\R^3/G)\leq\sqrt{2+\sqrt2}.
+\]
+Together with the lower bound in Theorem 24 of \cite{BDMQV}, this gives
+\[
+ \sqrt2\leq c_2(\R^3/G)\leq\sqrt{2+\sqrt2}<2.
+\]
+\end{theorem}
+
+\begin{proof}
+For points on the same sheet, Lemma~\ref{lem:metric} and the fact that
+$q=\min_i a_i$ is $1$-Lipschitz give
+\[
+d_X^2=A\leq\|F(a,\varepsilon)-F(b,\varepsilon)\|^2
+=A+(x-y)^2\leq2A.
+\]
+
+For points on opposite sheets, put
+\[
+D^2=\|F(a,\varepsilon)-F(b,-\varepsilon)\|^2=A+(x+y)^2,
+\qquad d_X^2=A+4m.
+\]
+Since $A\geq(x-y)^2$ and $m\geq xy$,
+\[
+2d_X^2-D^2=A+8m-(x+y)^2\geq4xy\geq0.
+\]
+Set $c=2-\sqrt2=\sqrt2(\sqrt2-1)$. Lemma~\ref{lem:scalar} yields
+\begin{align*}
+D^2-cd_X^2
+&=(\sqrt2-1)A+(x+y)^2-4(2-\sqrt2)m\\
+&=(\sqrt2-1)\big(A+(1+\sqrt2)(x+y)^2-4\sqrt2 m\big)\geq0.
+\end{align*}
+Thus every squared distance ratio lies in $[2-\sqrt2,2]$. Therefore
+\[
+\kappa(F)^2\leq\frac{2}{2-\sqrt2}=2+\sqrt2,
+\]
+as claimed.
+\end{proof}
+
+\section{Optimality inside the signed-boundary family}
+
+For $t>0$, consider $F_t(a,\varepsilon)=(a,t\varepsilon q(a))$.
+Same-sheet pairs that differ only in their smallest coordinate have squared
+distance ratio exactly $1+t^2$. On the other hand, take opposite-sheet points
+\[
+a=(1,L,L),\qquad b=(L,1,L),\qquad L=1+\sqrt2.
+\]
+Here $A=4$, $m=L$, and $q(a)=q(b)=1$, so their squared distance ratio is
+\[
+\frac{4+4t^2}{4+4L}=\frac{1+t^2}{2+\sqrt2}.
+\]
+It follows that $\kappa(F_t)^2\geq2+\sqrt2$ for every $t>0$. Hence the choice
+$t=1$ in Theorem~\ref{thm:main} is optimal throughout this natural
+one-parameter family.
+
+\section{Verification and limitations}
+
+The script \texttt{code/verify\_bound.py} samples random pairs in both sheets,
+checks the exact quotient formula by enumeration of the four group elements,
+checks the proved ratio interval, and evaluates the extremal family above.
+It is a regression check, not part of the proof.
+
+The theorem does not determine $c_2(\R^3/G)$ exactly and does not upper-bound
+$\Upsilon(\Vfour)$ below $2$, since contortion takes the supremum over all
+finite-dimensional representations. The exact phrases ``Euclidean
+contortion'', ``Upsilon(C4)'', and ``C2 times C2'', together with the paper
+title and arXiv id, were searched on 27 August 2026. No later resolution or
+matching bound was found. This is a bounded novelty check only.
+
+\paragraph{Human review recommendation.}
+Check Lemma~\ref{lem:scalar}, especially the case where the minima of $a$ and
+$b$ occur at the same coordinate, and independently verify the cross-sheet
+metric formula. If those pass, retain as a partial result; do not relabel it as
+a solution of the contortion question.
+
+\begin{thebibliography}{1}
+\bibitem{BDMQV}
+B. Blum-Smith, H. Derksen, D. G. Mixon, Y. Qaddura, and B. Vose,
+\emph{Estimating the Euclidean distortion of an orbit space},
+arXiv:2506.04425v1 (2025).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\title{Applebaum's stable trace-asymptotic conjecture was answered by arXiv:1308.4944}
+\author{Literature-status note for \texttt{fa\_banach\_001}}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+\texttt{literature\_already\_answered (full conjecture)}.  No new
+mathematical result is claimed by this packet.
+
+\section*{Original conjecture}
+
+Let $G$ be a compact semisimple Lie group of dimension $d$.  For the central
+$\alpha$-stable semigroup constructed from the Casimir operator, Applebaum
+uses the exponent $\eta(u)=|u|^\alpha$ and denotes its continuous density by
+$k_t$.  In Section 6, arXiv PDF page 21 (journal page 2494), he conjectures
+that, for $0<\alpha\leq 2$,
+\begin{equation}\label{eq:applebaum}
+  k_t(e)\sim C t^{-d/\alpha}\qquad(t\downarrow0),
+\end{equation}
+with $C>0$; the Cauchy conjecture is the case $\alpha=1$.  The same section
+has already established $k_t(e)=\operatorname{Tr}(T_t)$.
+
+\section*{Explicit later answer}
+
+Banuelos and Baudoin state in the abstract and first paragraph of
+arXiv:1308.4944, PDF page 1, that they address Applebaum's conjecture and that
+their purpose is to show it is indeed true \cite{BB2013}.  They cite
+Applebaum's paper as reference [1] and identify the conjecture at its journal
+pages 2493--2494.
+
+Their pages 2--3 take
+\[
+  \psi(\lambda)=\lambda^{\alpha/2},\qquad 0<\alpha<2,
+\]
+so that the subordinate generator is $(-\Delta)^{\alpha/2}$.  If $M$ is a
+compact Riemannian $n$-manifold, Weyl's law and a Tauberian argument give
+\begin{equation}\label{eq:bb-stable}
+ \operatorname{Tr}(Q_t)
+ \sim
+ \frac{\operatorname{Vol}(M)\,\Gamma(n/\alpha+1)}
+      {\Gamma(n/2+1)(4\pi)^{n/2}}\,t^{-n/\alpha}.
+\end{equation}
+The unnumbered theorem and equation (9) on PDF page 3 prove a more general
+regular-variation version.  Immediately after (9), they observe that on a
+compact Lie group with normalized Haar measure the trace asymptotic gives the
+on-diagonal kernel asymptotic.  Applying this to the bi-invariant Laplacian on
+$G$ yields \eqref{eq:applebaum}.  This is exactly Applebaum's construction,
+because $\eta(\sqrt{\kappa})=\kappa^{\alpha/2}$ on every Casimir eigenspace.
+
+The answering note treats $0<\alpha<2$.  The endpoint $\alpha=2$ is the
+classical heat-kernel case, which Applebaum explicitly records as already
+known in the same section.  Consequently the combined literature answers the
+full stated range $0<\alpha\leq2$, and even proves the trace result on every
+closed Riemannian manifold.
+
+\section*{Search and scope}
+
+The four run indexes, exact-title and DOI hits in the local parsed arXiv
+corpus, exact-phrase web searches, and the 16 OpenAlex-indexed citing works
+were checked through 26 August 2026.  arXiv:1308.4944 is a direct, explicit
+answer rather than an agent-identified implication.  Later papers by
+Fahrenwaldt and by Applebaum--Le Ngan corroborate its use.  No portion of
+Applebaum's stable-asymptotic conjecture is claimed open here.
+
+\begin{thebibliography}{9}
+\bibitem{Applebaum2011}
+D.~Applebaum,
+\emph{Infinitely divisible central probability measures on compact Lie
+groups---regularity, semigroups and transition kernels},
+Ann. Probab. \textbf{39} (2011), 2474--2496;
+arXiv:1006.4711,
+\url{https://arxiv.org/abs/1006.4711}.
+
+\bibitem{BB2013}
+R.~Banuelos and F.~Baudoin,
+\emph{Trace asymptotics for subordinate semigroups},
+arXiv:1308.4944 (2013),
+\url{https://arxiv.org/abs/1308.4944}.
+\end{thebibliography}
+
+\end{document}

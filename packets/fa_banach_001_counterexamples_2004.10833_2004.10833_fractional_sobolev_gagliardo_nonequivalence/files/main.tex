@@ -1,0 +1,275 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathcal F}
+\newcommand{\Dminus}{{}^{-}\!\mathcal D^{\alpha}}
+\newcommand{\Dplus}{{}^{+}\!\mathcal D^{\alpha}}
+\newcommand{\Wminus}{{}^{-}\!W^{\alpha,p}(\R)}
+\newcommand{\Wplus}{{}^{+}\!W^{\alpha,p}(\R)}
+\newcommand{\Gag}{\widetilde W^{\alpha,p}(\R)}
+
+\title{A counterexample to the conjectured Gagliardo equivalence\\
+for one-sided weak fractional Sobolev spaces}
+\author{Candidate result for arXiv:2004.10833}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black!35}{blue!4}{\parbox{0.91\linewidth}{
+\textbf{Status: candidate counterexample, likely valid.}
+For every $0<\alpha<1$ and every $1<p<\infty$, $p\ne2$, the conjectured
+equality on $\R$ is false.  The endpoint cases $p=1,\infty$ are not claimed.
+}}
+\end{center}
+
+\section{Source and exact conjecture}
+
+The source is X.~Feng and M.~Sutton, \emph{A new theory of fractional
+differential calculus and fractional Sobolev spaces: One-dimensional case},
+arXiv:2004.10833v2 \cite{FSlong}.  The conjecture appears in Remark 5.19(c),
+printed page 64 (source line 3960).  It is repeated verbatim in the authors'
+concise follow-up arXiv:2007.10245v1 \cite{FSshort}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The source conjecture on printed page 64 of arXiv:2004.10833v2.
+  This is a direct crop of the archived source PDF.}
+\end{figure}
+
+The relevant clause reads:
+\begin{quote}
+``We conjecture that ${}^{\pm}W^{\alpha,p}(\R)\ne
+\widehat W^{\alpha,p}(\R)$, but ${}^{\pm}W^{\alpha,p}(\R)=
+\widetilde W^{\alpha,p}(\R)$ for $p\ne2$ and $0<\alpha<1$.''
+\end{quote}
+We disprove the asserted equality with $\widetilde W^{\alpha,p}(\R)$ for
+every interior exponent $p\ne2$.  We do not address the separate assertion
+involving $\widehat W^{\alpha,p}$.
+
+\section{Definitions and proof intuition}
+
+For $0<\alpha<1$, the source defines $\Wminus$ and $\Wplus$ by requiring
+$u\in L^p(\R)$ and, respectively, the left or right weak fractional derivative
+to lie in $L^p(\R)$.  The Gagliardo space $\Gag$ consists of the functions
+$u\in L^p(\R)$ for which
+\[
+ [u]_{\Gag}^p
+ =\int_{\R}\!\int_{\R}\frac{|u(x)-u(y)|^p}
+ {|x-y|^{1+\alpha p}}\,dx\,dy<\infty.
+\]
+
+\subsection*{Proof Intuition}
+
+The two norms aggregate dyadic frequencies in different ways.  On the line,
+the left and right fractional derivatives have symbols $(i\xi)^\alpha$ and
+$(-i\xi)^\alpha$.  After removing a harmless Hilbert-transform phase, either
+graph norm is the Bessel-potential norm $F^\alpha_{p,2}$, whose dyadic pieces
+are summed in $\ell^2$ pointwise.  The Gagliardo norm is the Besov norm
+$B^\alpha_{p,p}$, whose dyadic pieces are summed in $\ell^p$.  A sequence of
+widely separated frequency packets with a common spatial envelope turns the
+two memberships into the elementary alternatives $a\in\ell^2$ and
+$a\in\ell^p$.  These agree only at $p=2$.
+
+\section{The counterexample theorem}
+
+\begin{theorem}\label{thm:main}
+Let $0<\alpha<1$ and $1<p<\infty$.  Then, with equivalent norms,
+\[
+ \Wminus=\Wplus=H^{\alpha,p}(\R)=F^\alpha_{p,2}(\R),
+ \qquad
+ \Gag=B^\alpha_{p,p}(\R).
+\]
+Consequently, if $p\ne2$, neither one-sided space equals $\Gag$.
+More precisely:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item if $2<p<\infty$, there exists a real
+$u\in\Gag\setminus(\Wminus\cup\Wplus)$;
+\item if $1<p<2$, there exists a real
+$u\in(\Wminus\cap\Wplus)\setminus\Gag$.
+\end{enumerate}
+\end{theorem}
+
+We split the proof into the operator identification and the packet
+construction.
+
+\begin{lemma}[The source graph spaces are Bessel-potential spaces]
+\label{lem:graph}
+For $0<\alpha<1$ and $1<p<\infty$, each one-sided weak derivative graph norm
+is equivalent to
+\[
+ \|u\|_{L^p}+\|(-\Delta)^{\alpha/2}u\|_{L^p}.
+\]
+Thus each graph space is $H^{\alpha,p}(\R)=F^\alpha_{p,2}(\R)$.
+\end{lemma}
+
+\begin{proof}
+Use the principal branches
+\[
+ (i\xi)^\alpha=|\xi|^\alpha e^{i\theta\operatorname{sgn}\xi},
+ \qquad
+ (-i\xi)^\alpha=|\xi|^\alpha e^{-i\theta\operatorname{sgn}\xi},
+ \qquad \theta=\frac{\pi\alpha}{2}.
+\]
+The source defines the left weak derivative by duality against the right
+classical derivative, and conversely.  Fourier duality on test functions gives
+\[
+ \F(\Dminus u)(\xi)=(i\xi)^\alpha\widehat u(\xi),
+ \qquad
+ \F(\Dplus u)(\xi)=(-i\xi)^\alpha\widehat u(\xi)
+\]
+in tempered distributions.  This identity is particularly unambiguous for
+the $L^1\cap L^p$ witnesses constructed below; conversely an $L^p$ inverse
+Fourier multiplier satisfying the identity is the source weak derivative by
+the defining test relation.
+
+Let $H$ be the Hilbert transform, with multiplier $-i\operatorname{sgn}\xi$.
+The phase multipliers above are
+\[
+ e^{\pm i\theta\operatorname{sgn}\xi}
+ =\cos\theta\mp\sin\theta\,\widehat H(\xi).
+\]
+They and their inverses are bounded on $L^p$ by the M.~Riesz theorem
+\cite{Stein}.  It follows that
+\[
+ \|\Dminus u\|_p\asymp\|(-\Delta)^{\alpha/2}u\|_p
+ \asymp\|\Dplus u\|_p.
+\]
+The inhomogeneous graph norm on the right is equivalent, by the usual smooth
+multiplier comparison, to
+$\|(1-\Delta)^{\alpha/2}u\|_p$, which defines $H^{\alpha,p}$.  The classical
+Littlewood--Paley characterization gives
+$H^{\alpha,p}=F^\alpha_{p,2}$ \cite{Triebel}.
+\end{proof}
+
+\begin{lemma}[A sparse packet separates the sequence exponents]
+\label{lem:packets}
+Fix $0\ne\eta\in\mathcal S(\R)$ whose Fourier transform is supported in a
+sufficiently small interval about the origin.  Put $n_k=4k$.  For every
+polynomially bounded scalar sequence $a=(a_k)$, the series
+\[
+ u_a(x)=\sum_{k=1}^\infty a_k,2^{-\alpha n_k}
+ e^{i2^{n_k}x}\eta(x)                                      \tag{1}
+\]
+converges in $L^1(\R)\cap L^p(\R)$ and satisfies
+\[
+ u_a\in F^\alpha_{p,2}(\R)\iff a\in\ell^2,
+ \qquad
+ u_a\in B^\alpha_{p,p}(\R)\iff a\in\ell^p.               \tag{2}
+\]
+\end{lemma}
+
+\begin{proof}
+The factor $2^{-\alpha n_k}$ makes (1) absolutely summable in both $L^1$ and
+$L^p$.  The Fourier supports of its terms lie in pairwise separated dyadic
+annuli.  Choose smooth projections $Q_k$, uniformly obtained by dilation,
+which equal one on those supports and vanish on the other packet supports.
+Admissible Littlewood--Paley norms are independent of the chosen smooth
+dyadic resolution \cite{Triebel}.  Hence the sparse square-function and Besov
+norms are, with constants independent of $a$,
+\begin{align*}
+ \|u_a\|_{F^\alpha_{p,2}}
+ &\asymp \|u_a\|_p+
+ \left\|\left(\sum_k
+ |2^{\alpha n_k}Q_ku_a|^2\right)^{1/2}\right\|_p\\
+ &=\|u_a\|_p+\|\eta\|_p\left(\sum_k|a_k|^2\right)^{1/2},\\
+ \|u_a\|_{B^\alpha_{p,p}}
+ &\asymp \|u_a\|_p+
+ \left(\sum_k2^{\alpha p n_k}\|Q_ku_a\|_p^p\right)^{1/p}\\
+ &=\|u_a\|_p+\|\eta\|_p\left(\sum_k|a_k|^p\right)^{1/p}.
+\end{align*}
+This proves (2).  Equivalently, one may insert the $Q_k$ into any fixed
+dyadic resolution; finite overlap and the vector-valued multiplier theorem
+give the same two estimates.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+The first identity is Lemma \ref{lem:graph}.  The classical difference
+characterization of Besov spaces gives
+$\Gag=B^\alpha_{p,p}(\R)$ for $0<\alpha<1$ and
+$1<p<\infty$ \cite{Triebel}.
+
+Set
+\[
+ \beta=\frac12\left(\frac12+\frac1p\right),
+ \qquad a_k=k^{-\beta}.
+\]
+If $p>2$, then $1/p<\beta<1/2$, so
+$a\in\ell^p\setminus\ell^2$.  Lemma \ref{lem:packets} gives
+$u_a\in B^\alpha_{p,p}\setminus F^\alpha_{p,2}$.  If $p<2$, then
+$1/2<\beta<1/p$, so $a\in\ell^2\setminus\ell^p$, and the reverse membership
+holds.
+
+The displayed witness is complex-valued only for notational convenience.
+Both spaces are stable under real and imaginary parts.  If both components
+belonged to the excluded space, then their complex sum would also belong to
+it.  Thus at least one of $\operatorname{Re}u_a$ and
+$\operatorname{Im}u_a$ is a real-valued witness with the stated membership.
+\end{proof}
+
+\section{Verification, limitations, and novelty}
+
+The proof uses four classical tools: the $L^p$ bound for the Hilbert
+transform; the identity $H^{\alpha,p}=F^\alpha_{p,2}$; the difference
+description $\widetilde W^{\alpha,p}=B^\alpha_{p,p}$; and invariance under
+the choice of smooth dyadic resolution.  These are all standard for interior
+$p$ \cite{Stein,Triebel}.  No finite computation can verify the separation:
+every finite packet sum lies in both spaces, and the obstruction is exactly
+the infinite $\ell^2$ versus $\ell^p$ summability.
+
+The endpoint cases $p=1$ and $p=\infty$ remain outside the theorem because
+the Hilbert transform is not bounded on those $L^p$ spaces.  We also make no
+claim about the source's nonstandard Fourier-$L^p$ space
+$\widehat W^{\alpha,p}$, nor about finite intervals in Remark 5.19(d).
+
+A bounded search (26 August 2026) covered the run's registry, solution,
+attempt, and proof-gap indexes; the exact wording of Remark 5.19(c); the
+repeated arXiv:2007.10245 wording; exact-title, author, and core-term arXiv
+queries; and the later visible Feng--Sutton arXiv work.  No later paper was
+found that explicitly claims to resolve this exact conjecture.  Novelty
+confidence is therefore moderate, not high: the general distinction between
+$F^\alpha_{p,2}$ and $B^\alpha_{p,p}$ is classical.  The candidate
+contribution is the exact identification of the source graph spaces and the
+explicit application that disproves its conjecture for all interior
+$p\ne2$.
+
+\paragraph{Human review recommendation.}
+Send to a harmonic analyst or function-space expert.  The most useful checks
+are the Fourier-duality convention in Lemma \ref{lem:graph} and the sparse
+projection norm equivalence in Lemma \ref{lem:packets}.
+
+\begin{thebibliography}{9}
+\bibitem{FSlong}
+X.~Feng and M.~Sutton,
+\emph{A new theory of fractional differential calculus and fractional Sobolev
+spaces: One-dimensional case}, arXiv:2004.10833v2 (2020).
+
+\bibitem{FSshort}
+X.~Feng and M.~Sutton,
+\emph{On New Families of Fractional Sobolev Spaces},
+arXiv:2007.10245v1 (2020).
+
+\bibitem{Stein}
+E.~M.~Stein,
+\emph{Singular Integrals and Differentiability Properties of Functions},
+Princeton University Press, 1970.
+
+\bibitem{Triebel}
+H.~Triebel,
+\emph{Theory of Function Spaces},
+Birkh\"auser, 1983.
+\end{thebibliography}
+
+\end{document}

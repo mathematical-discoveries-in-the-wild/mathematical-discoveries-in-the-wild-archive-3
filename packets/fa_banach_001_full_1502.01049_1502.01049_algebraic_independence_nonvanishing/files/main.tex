@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+
+\title{Algebraic Independence Forces Simultaneous Nonvanishing\\
+\large A full answer to the second final-comments conjecture of arXiv:1502.01049}
+\author{Candidate solution packet --- run \texttt{fa\_banach\_001}, lane 0}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.} Candidate full affirmative
+answer, likely valid, subject to human review. The result answers only the
+second conjecture in the source paper's final paragraph.}}
+\end{center}
+
+\section{Source and exact question}
+
+Philippe Ryckelynck and Laurent Smoch study matricial polynomial functions and
+a convolution-type functional equation in \cite{RS}. In their final comments
+(source PDF page 15), they conjecture a transcendence-degree variant of their
+Theorem 4.1. The source passage is reproduced below.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{Full-width crop of source PDF page 15. The target is the second
+  conjecture, beginning ``Second, we conjecture.''}
+\end{figure}
+
+The conjecture is read with the hypotheses inherited from the phrase
+``variant of Theorem 4.1'': one is given finitely many \emph{generic}
+matricial polynomial functions
+\[
+ \psi^{(k)}(\zeta,\xi)
+ =\sum_m \kappa^{(k)}_m
+   \zeta^{m_1}\xi^{m_2}\zeta^{m_3}\xi^{m_4}\cdots,
+ \qquad 1\leq k\leq \ell.
+\]
+If all coefficients are rational, or more generally algebraic over \(\Q\),
+and the \(2d^2\) entries of \(\zeta,\xi\in M_d(\C)\) generate a subfield of
+\(\C\) of transcendence degree \(2d^2\), must every
+\(\psi^{(k)}_{ij}(\zeta,\xi)\) and every
+\(\det\psi^{(k)}(\zeta,\xi)\) be nonzero?
+
+The inherited genericity is essential: with no nonzero/generic hypothesis,
+the zero polynomial is an immediate counterexample. The source's definition
+of genericity is exactly the one used in Theorem 4.1 and its proof
+\cite[pp.~6--7]{RS}.
+
+\section{Definitions and proof intuition}
+
+After expanding matrix products, each scalar entry of
+\(\psi^{(k)}(\zeta,\xi)\) is an ordinary commutative polynomial in the
+\(2d^2\) scalar entries of \((\zeta,\xi)\); so is its determinant. The proof
+of source Theorem 4.1 shows that genericity makes every one of these formal
+polynomials nonzero.
+
+The remaining step is field-theoretic. A tuple of \(n\) elements generating
+a field of transcendence degree \(n\) is algebraically independent. Moreover,
+algebraically independent elements remain so after an algebraic extension of
+the base field. Here \(n=2d^2\), and the finitely many algebraic coefficients
+generate just such an algebraic extension of \(\Q\). Thus none of the source
+paper's nonzero polynomials can vanish at the prescribed matrix pair.
+
+\section{Formal result}
+
+\begin{lemma}[Algebraic base change]
+Let \(K/F\) be an algebraic field extension and let
+\(x=(x_1,\dots,x_n)\) lie in a common overfield. If
+\(\trdeg_F F(x)=n\), then \(x_1,\dots,x_n\) are algebraically independent
+over \(K\).
+\end{lemma}
+
+\begin{proof}
+Since \(K/F\) is algebraic, adjoining \(K\) does not change transcendence
+degree:
+\[
+ \trdeg_K K(x)=\trdeg_F F(x)=n.
+\]
+If the \(n\) elements \(x_1,\dots,x_n\) were algebraically dependent over
+\(K\), a transcendence basis could be chosen from fewer than \(n\) of them,
+forcing \(\trdeg_K K(x)<n\), a contradiction.
+\end{proof}
+
+\begin{theorem}[Affirmative answer to the second conjecture]
+Let \(\psi^{(1)},\dots,\psi^{(\ell)}\) be generic matricial polynomial
+functions in the sense of Ryckelynck--Smoch Theorem 4.1. Suppose every
+coefficient \(\kappa^{(k)}_m\) is algebraic over \(\Q\). Let
+\(\zeta,\xi\in M_d(\C)\), and suppose the field generated over \(\Q\) by
+their \(2d^2\) scalar entries has transcendence degree \(2d^2\). Then, for
+all \(1\leq k\leq\ell\) and \(1\leq i,j\leq d\),
+\[
+ \psi^{(k)}_{ij}(\zeta,\xi)\ne0,
+ \qquad
+ \det\!\bigl(\psi^{(k)}(\zeta,\xi)\bigr)\ne0.
+\]
+In particular, the conjecture holds for rational coefficients.
+\end{theorem}
+
+\begin{proof}
+List the entries of \((\zeta,\xi)\) as
+\(x=(x_1,\dots,x_n)\), where \(n=2d^2\), and set \(E=\Q(x)\).
+The hypothesis \(\trdeg_\Q E=n\) implies that the \(n\)-tuple \(x\) is
+algebraically independent over \(\Q\): any algebraic dependence would reduce
+the maximal size of an algebraically independent subtuple below \(n\).
+
+Let \(K\) be the field generated over \(\Q\) by all coefficients occurring in
+the finite family \(\psi^{(1)},\dots,\psi^{(\ell)}\). There are only finitely
+many such coefficients, and each is algebraic over \(\Q\), so \(K/\Q\) is a
+finite algebraic extension. By the lemma, \(x_1,\dots,x_n\) are algebraically
+independent over \(K\).
+
+For every \(i,j,k\), expansion of the matrix words gives an ordinary
+polynomial
+\[
+ P^{(k)}_{ij}(X_1,\dots,X_n)\in K[X_1,\dots,X_n]
+\]
+whose value at \(x\) is \(\psi^{(k)}_{ij}(\zeta,\xi)\). Likewise,
+\[
+ D^{(k)}(X_1,\dots,X_n)
+ :=\det\bigl(P^{(k)}_{ij}(X_1,\dots,X_n)\bigr)_{i,j=1}^d
+ \in K[X_1,\dots,X_n].
+\]
+The proof of source Theorem 4.1 establishes, from the source's genericity
+conditions, that every \(P^{(k)}_{ij}\) and every \(D^{(k)}\) is a nonzero
+formal polynomial \cite[pp.~6--7]{RS}. (For determinants, the source
+specializes \(\zeta=\rho I_d\), \(\xi=\sigma I_d\), obtaining the \(d\)-th
+power of a nonzero scalar polynomial; its upper-triangular specialization and
+conjugation argument handles all entries.)
+
+Algebraic independence of \(x\) over \(K\) means precisely that the evaluation
+homomorphism
+\[
+ K[X_1,\dots,X_n]\longrightarrow K(x_1,\dots,x_n),
+ \qquad P\longmapsto P(x),
+\]
+is injective. Therefore no \(P^{(k)}_{ij}\) and no \(D^{(k)}\) can evaluate
+to zero. These evaluations are exactly the quantities asserted to be
+nonzero, completing the proof.
+\end{proof}
+
+\section{Verification, scope, and novelty}
+
+The proof uses no analytic regularity, recurrence theory, or computational
+assumption. It requires only (i) the nonzero-formal-polynomial conclusion
+proved inside source Theorem 4.1 and (ii) invariance of transcendence degree
+under algebraic base extension. The conclusion is simultaneous for every
+member of the source's finite family.
+
+The result does \emph{not} address the source's first pseudo-periodicity
+problem or its third conjecture on open-dense genericity for arbitrary
+\(N\geq2\). It also does not support a reading that drops genericity; that
+reading is false for \(\psi=0\).
+
+A bounded search on 27 August 2026 covered the run indexes, the exact arXiv id,
+title and authors, the exact transcendence-degree phrase, and close keyword
+variants. It found the source and journal/HAL copies but no separate paper
+answering this conjecture. Novelty confidence is moderate rather than
+exhaustive; no full MathSciNet/zbMATH citation-graph search was available.
+
+\paragraph{Human-review focus.}
+Verify that the phrase ``variant of Theorem 4.1'' retains the genericity
+hypothesis, and check the algebraic base-change lemma. Under that natural and
+necessary reading, the argument is complete.
+
+\begin{thebibliography}{9}
+\bibitem{RS}
+P. Ryckelynck and L. Smoch,
+\emph{On the functional equation \(\alpha\mathbf{u}+\mathcal{C}\star
+(\chi\mathbf{u})=\mathbf{f}\)},
+North-Western European Journal of Mathematics \textbf{4} (2018), 1--19;
+arXiv:1502.01049.
+\end{thebibliography}
+
+\end{document}

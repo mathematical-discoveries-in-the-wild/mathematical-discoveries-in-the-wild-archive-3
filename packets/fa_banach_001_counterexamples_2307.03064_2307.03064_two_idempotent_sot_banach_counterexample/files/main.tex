@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\Lop}{\mathcal L}
+\newcommand{\I}{I}
+
+\title{A Separable Banach-Space Counterexample to Strong Approximation by Two Idempotents}
+\author{fa\_banach\_001, agent\_lane\_01}
+\date{August 26, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Status}
+
+Candidate counterexample, likely valid, pending human review.
+
+\section*{Source Question}
+
+Jean-Christophe Bourin, \emph{A Journey into Matrix Analysis},
+arXiv:2307.03064, Question 5.2.9 on PDF page 82, asks:
+\begin{quote}
+Let $\mathcal X$ be a separable Banach space and
+$T\in\Lop(\mathcal X)$. Do there exist two sequences
+$\{P_n\}_{n=1}^{\infty}$ and $\{Q_n\}_{n=1}^{\infty}$ of idempotents in
+$\Lop(\mathcal X)$ such that
+\[
+T=\operatorname{sot}\!\lim_{n\to\infty}(P_n+Q_n)?
+\]
+\end{quote}
+
+\begin{center}
+\includegraphics[width=.97\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+Here strong-operator convergence means pointwise norm convergence on
+$\mathcal X$.
+
+\section*{Idea of the Proof}
+
+The Hilbert-space construction behind the source question uses the abundance of
+large complemented subspaces.  The obstruction is to choose a separable space at
+the opposite extreme.  On an indecomposable Banach space, every idempotent has
+finite-dimensional range or finite-dimensional kernel.  Thus a sum of two
+idempotents is always a finite-rank perturbation of exactly one of
+$0$, $\I$, or $2\I$.
+
+Choose an indecomposable separable space without the compact approximation
+property.  If sums of two idempotents converged strongly to
+$\tfrac12\I$, one of the three scalar types would occur along an infinite
+subsequence.  Removing that fixed scalar gives finite-rank operators converging
+strongly to a nonzero scalar multiple of the identity.  Uniform boundedness then
+turns them into bounded finite-rank approximants to $\I$, which converge uniformly
+on compact sets.  This is the bounded approximation property and contradicts the
+choice of the space.
+
+\section*{Counterexample}
+
+\begin{lemma}\label{lem:idempotent}
+Let $X$ be an indecomposable infinite-dimensional Banach space.  For every
+idempotent $P\in\Lop(X)$ there are $\varepsilon\in\{0,1\}$ and a finite-rank
+operator $F$ such that
+\[
+P=\varepsilon\I+F.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $P^2=P$, both $P[X]$ and $\ker P$ are closed and
+\[
+X=P[X]\oplus\ker P.
+\]
+Indecomposability forces one of these two summands to be finite-dimensional.
+If $P[X]$ is finite-dimensional, take $\varepsilon=0$ and $F=P$.
+If $\ker P$ is finite-dimensional, then $\I-P$ is finite-rank, so take
+$\varepsilon=1$ and $F=P-\I$.
+\end{proof}
+
+\begin{lemma}\label{lem:bap}
+Suppose finite-rank operators $R_j\in\Lop(X)$ satisfy
+$R_jx\to x$ for every $x\in X$ and $\sup_j\|R_j\|<\infty$.  Then $X$ has
+the bounded approximation property, and therefore the compact approximation
+property.
+\end{lemma}
+
+\begin{proof}
+Write $M=\sup_j\|R_j\|$.  Let $K\subset X$ be compact and $\eta>0$.
+Choose a finite $\eta/(3(M+1))$-net $\{x_1,\ldots,x_m\}$ in $K$.
+For all sufficiently large $j$,
+$\max_i\|R_jx_i-x_i\|<\eta/3$.  If $x\in K$ and
+$\|x-x_i\|<\eta/(3(M+1))$, then
+\[
+\|R_jx-x\|
+ \le M\|x-x_i\|+\|R_jx_i-x_i\|+\|x_i-x\|<\eta.
+\]
+Hence $R_j\to\I$ uniformly on compact subsets, with uniformly bounded norms.
+This is the bounded approximation property.  Since finite-rank operators are
+compact, it implies the compact approximation property.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+There exists a separable infinite-dimensional Banach space $X$ for which
+$\tfrac12\I_X$ is not a strong-operator limit of sums of two idempotents.
+Consequently Question 5.2.9 of arXiv:2307.03064 has a negative answer.
+
+More generally, on the chosen space, $\lambda\I_X$ is not such a limit for
+any scalar $\lambda\notin\{0,1,2\}$.
+\end{theorem}
+
+\begin{proof}
+Allexandrov, Kutzarova, and Plichko prove that there is a closed subspace $X$
+of the Gowers--Maurey hereditarily indecomposable space which fails the compact
+approximation property~\cite{AKP}.  In particular, $X$ is separable,
+infinite-dimensional, and indecomposable.
+
+Fix $\lambda\notin\{0,1,2\}$ and suppose, toward a contradiction, that
+idempotents $P_n,Q_n\in\Lop(X)$ satisfy
+\[
+P_n+Q_n\xrightarrow{\mathrm{sot}}\lambda\I.
+\]
+By Lemma~\ref{lem:idempotent}, write
+\[
+P_n=\varepsilon_n\I+F_n,\qquad
+Q_n=\delta_n\I+G_n,
+\]
+where $\varepsilon_n,\delta_n\in\{0,1\}$ and $F_n,G_n$ are finite-rank.
+Put $k_n=\varepsilon_n+\delta_n\in\{0,1,2\}$.  One value
+$k\in\{0,1,2\}$ occurs along an infinite subsequence $(n_j)$.  Along this
+subsequence,
+\[
+F_{n_j}+G_{n_j}\xrightarrow{\mathrm{sot}}(\lambda-k)\I.
+\]
+The uniform boundedness principle gives
+$\sup_j\|F_{n_j}+G_{n_j}\|<\infty$.  Because $\lambda-k\ne0$, the
+finite-rank operators
+\[
+R_j=(\lambda-k)^{-1}(F_{n_j}+G_{n_j})
+\]
+are uniformly bounded and converge strongly to $\I$.  Lemma~\ref{lem:bap}
+then gives the compact approximation property for $X$, contradicting its
+construction.  Taking $\lambda=\tfrac12$ gives the announced counterexample.
+\end{proof}
+
+\section*{Verification Notes}
+
+No bound on the individual idempotents is assumed or needed.  Strong
+convergence bounds the sums $P_n+Q_n$; after the scalar type is fixed on a
+subsequence, it therefore bounds the finite-rank remainders used in the proof.
+The changing scalar types cause no difficulty because there are only three of
+them.  The distinction between pointwise convergence and uniform convergence
+on compact sets is handled explicitly in Lemma~\ref{lem:bap}.
+
+\section*{Novelty Check and Limitations}
+
+The local run indexes were searched for arXiv:2307.03064, the source title,
+the exact question wording, strong limits and sums of two idempotents, and the
+bounded/compact approximation properties.  No matching packet or attempt was
+found.  The surrounding source section was checked and does not answer
+Question 5.2.9.
+
+A bounded web search on August 26, 2026 using the exact question and close
+strong-limit phrases found no later answer or this approximation-property
+obstruction.  This was not a comprehensive MathSciNet or zbMATH search, so
+novelty confidence is moderate.
+
+The argument disproves the universal Banach-space statement.  It does not
+classify the separable Banach spaces on which every operator has such an
+approximation, nor does it weaken the HI/CAP construction to a familiar
+classical space.
+
+\section*{Human Review Recommendation}
+
+Send to a Banach-space expert.  The proof itself is elementary once the
+supporting existence proposition is accepted; the main review item is the
+scalar-field scope of that standard HI construction.
+
+\begin{thebibliography}{9}
+\bibitem{Bourin}
+J.-C. Bourin,
+\emph{A Journey into Matrix Analysis},
+arXiv:2307.03064, 2023.
+
+\bibitem{AKP}
+G. Allexandrov, D. Kutzarova, and A. Plichko,
+\emph{A Separable Space with No Schauder Decomposition},
+Proceedings of the American Mathematical Society 127 (1999), no.~9,
+2805--2806,
+\href{https://doi.org/10.1090/S0002-9939-99-05370-8}{doi:10.1090/S0002-9939-99-05370-8}.
+\end{thebibliography}
+
+\end{document}

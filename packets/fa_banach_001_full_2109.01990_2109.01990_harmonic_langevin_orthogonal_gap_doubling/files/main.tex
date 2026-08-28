@@ -1,0 +1,318 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.88in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\definecolor{navy}{HTML}{17365D}
+\definecolor{blue}{HTML}{2A6496}
+\definecolor{pale}{HTML}{EEF4F9}
+\definecolor{green}{HTML}{236B45}
+\hypersetup{colorlinks=true,linkcolor=navy,citecolor=green,urlcolor=blue}
+\setlist{nosep,leftmargin=1.4em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.52em}
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Harmonic Langevin orthogonal dynamics}
+\rhead{arXiv:2109.01990 -- candidate full result}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\HH}{\mathsf H}
+\newcommand{\K}{\mathcal K}
+\newcommand{\Pj}{\mathcal P}
+\newcommand{\Qj}{\mathcal Q}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+
+\title{\vspace{-2.4em}\textbf{Exact Gap Doubling for Harmonic Langevin\\Mori--Zwanzig Orthogonal Dynamics}}
+\author{Candidate solution packet for Zhu, arXiv:2109.01990\\
+\small agent\_lane\_03 \quad Model GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1.1em}
+
+\begin{center}
+\fcolorbox{navy}{pale}{\parbox{0.91\textwidth}{
+\textbf{Status: candidate full result, likely valid.}
+For a natural rank-one Mori projection in a genuinely degenerate harmonic
+Langevin system, the optimal positive orthogonal decay gap is exactly twice
+the original gap.  The fluctuation force and memory kernel have an even
+faster exact exponential law.}}
+\end{center}
+
+\section{Source question and convention repair}
+
+Zhu's Section 5, open problem 1, asks whether the Mori--Zwanzig orthogonal
+dynamics can rigorously have a larger spectral gap and decay faster for a
+degenerate stochastic system \cite{Zhu2021}.  The exact source passage is on
+PDF page 10.  The source writes the desired inequality as
+$\lambda_{\Qj}<\lambda$, while
+its earlier estimates have the form $Ce^{-\lambda t}$.  With positive decay
+exponents, faster decay means the reverse inequality.  We therefore make the
+convention explicit.  For a semigroup $U(t)$ on an invariant Hilbert space
+$E$, set
+\[
+ \operatorname{gap}(U;E):=
+ \sup\{\omega\geq0:\ \exists C<\infty\ \text{with }
+ \|U(t)|_E\|\leq C e^{-\omega t}\ \forall t\geq0\}.
+\]
+Thus a larger positive gap means faster decay.  In the signed spectral-edge
+convention, faster decay means that the rightmost nonzero spectral edge moves
+to the left.  The theorem below proves both equivalent statements.
+
+\clearpage
+\begin{center}
+\includegraphics[width=0.96\textwidth]{figures/open_problem_crop.png}
+
+\small\textit{Source evidence: Section 5 and all of open problem 1, including
+its convention-revealing footnote, on the original PDF page 10.}
+\end{center}
+
+\section{Model and full result}
+
+Fix $\gamma>2$ and consider the one-dimensional harmonic Langevin equation
+\begin{equation}\label{eq:sde}
+ dq_t=p_t\,dt,\qquad
+ dp_t=-q_t\,dt-\gamma p_t\,dt+\sqrt{2\gamma}\,dW_t.
+\end{equation}
+Its backward generator is
+\begin{equation}\label{eq:generator}
+ \K=p\partial_q-q\partial_p-\gamma p\partial_p
+       +\gamma\partial_p^2
+\end{equation}
+on $H=L^2(\mu)$, where
+$d\mu=(2\pi)^{-1}e^{-(q^2+p^2)/2}\,dq\,dp$.  The diffusion in
+\eqref{eq:sde} has rank one in a two-dimensional phase space, so the system
+is genuinely degenerate.  Its drift and noise nevertheless satisfy the
+Kalman condition.
+
+Let $u(q,p)=q$.  Since $\|q\|_H=1$, the natural scalar Mori projection and
+its complement are
+\[
+ \Pj f=\langle f,q\rangle_H q,\qquad \Qj=I-\Pj.
+\]
+Write $T(t)=e^{t\K}$ and let $T_{\Qj}(t)$ be the orthogonal semigroup generated
+by the closure of $\Qj\K\Qj$ on
+$E=\Qj H\cap\{1\}^{\perp}$.  Finally put
+\begin{equation}\label{eq:ab}
+ a=\frac{\gamma-\sqrt{\gamma^2-4}}2,
+ \qquad
+ b=\frac{\gamma+\sqrt{\gamma^2-4}}2.
+\end{equation}
+Then $0<a<b$, $a+b=\gamma$, and $ab=1$.
+
+\begin{theorem}[Exact acceleration]\label{thm:main}
+For the degenerate stochastic system \eqref{eq:sde},
+\begin{align*}
+ \operatorname{gap}(T;\{1\}^{\perp})&=a,\\
+ \operatorname{gap}(T_{\Qj};E)&=2a.
+\end{align*}
+Equivalently, the rightmost nonzero spectral edge moves from $-a$ for
+$\K$ to $-2a$ for $\Qj\K\Qj$.  In particular, the positive orthogonal gap is
+strictly larger and in fact exactly doubles.
+
+Moreover, the Mori fluctuation force $F(t)$ and scalar memory kernel $M(t)$
+for $u=q$ are
+\begin{equation}\label{eq:force-memory}
+ F(t)=T_{\Qj}(t)\Qj\K q=e^{-\gamma t}p,
+ \qquad
+ M(t)=\langle q,\K F(t)\rangle_H=-e^{-\gamma t}.
+\end{equation}
+Thus these two quantities decay at the still faster rate $\gamma>2a$.
+\end{theorem}
+
+\section{Proof intuition}
+
+The Gaussian $L^2$ space splits orthogonally into Wiener chaoses.  Harmonic
+Langevin evolution preserves every chaos, and the $n$th-chaos semigroup is
+the $n$th symmetric tensor power of the two-dimensional first-chaos
+semigroup.  Consequently the slowest centered mode occurs in the first
+chaos.
+
+The Mori projection onto $q$ deletes one direction from that first chaos.
+The remaining first-chaos direction $p$ is driven by the compressed scalar
+generator $-\gamma$.  Crucially, the projection is zero on every higher
+chaos, so the slowest untouched mode is the tensor square of the original
+slow mode.  Its exponent is exactly $2a$.  This explains both the doubling
+and its sharpness; no hypocoercive estimate is being compared to another
+nonsharp estimate.
+
+\section{Proof}
+
+Let
+\[
+ B=\begin{pmatrix}0&1\\-1&-\gamma\end{pmatrix},
+ \qquad e_p=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Then \eqref{eq:sde} is $dX_t=BX_t\,dt+\sqrt{2\gamma}\,e_p\,dW_t$.
+The identity
+\[
+ B+B^{\mathsf T}+2\gamma e_pe_p^{\mathsf T}=0
+\]
+proves invariance of the standard Gaussian.  Also $e_p$ and
+$Be_p=(1,-\gamma)^{\mathsf T}$ span $\R^2$, proving the Kalman condition.
+
+Let $\HH_n$ be the $n$th Gaussian Wiener chaos, so
+$H=\bigoplus_{n\geq0}\HH_n$, $\HH_0=\operatorname{span}\{1\}$, and
+$\HH_1=\operatorname{span}\{q,p\}$.  We next derive, rather than assume, the
+semigroup action on these spaces.
+
+\begin{lemma}[Exact chaos action]\label{lem:chaos}
+Set $S(t)=e^{tB^{\mathsf T}}$ on $\R^2\cong\HH_1$.  Then
+\[
+ T(t)|_{\HH_n}=S(t)^{\odot n},
+ \qquad
+ \|T(t)|_{\HH_n}\|=\|S(t)\|^n
+ \quad(n\geq1),
+\]
+where $\odot n$ denotes the $n$th symmetric tensor power.
+\end{lemma}
+
+\begin{proof}
+For $z\in\R^2$, introduce the Wick exponential
+\[
+ \mathcal E_z(x)=\exp\!\left(z\cdot x-\frac{|z|^2}{2}\right).
+\]
+Conditionally on $X_0=x$, $X_t=e^{tB}x+Y_t$, where $Y_t$ is centered Gaussian
+with covariance $I-e^{tB}e^{tB^{\mathsf T}}$.  Gaussian integration gives
+\[
+ T(t)\mathcal E_z(x)
+ =\exp\!\left((S(t)z)\cdot x-\frac{|S(t)z|^2}{2}\right)
+ =\mathcal E_{S(t)z}(x).
+\]
+Comparing homogeneous terms in $z$ proves the symmetric-tensor identity.
+The upper norm bound is the ordinary tensor-power bound.  Equality follows
+by choosing a unit vector at which the two-dimensional operator $S(t)$
+attains its norm and taking its symmetric pure tensor.
+\end{proof}
+
+Because $T(t)$ is a Markov contraction, $\|S(t)\|\leq1$.  Lemma
+\ref{lem:chaos} therefore yields the exact centered norm identity
+\begin{equation}\label{eq:centered-norm}
+ \|T(t)|_{\{1\}^{\perp}}\|
+ =\sup_{n\geq1}\|S(t)\|^n=\|S(t)\|.
+\end{equation}
+On the ordered basis $(q,p)$, the first-chaos generator is
+\begin{equation}\label{eq:first}
+ \K|_{\HH_1}=B^{\mathsf T}
+ =\begin{pmatrix}0&-1\\1&-\gamma\end{pmatrix},
+ \qquad \K q=p,\quad \K p=-q-\gamma p.
+\end{equation}
+Its two distinct eigenvalues are $-a$ and $-b$.  Finite-dimensional
+diagonalization gives constants $0<c\leq C<\infty$ with
+\[
+ c e^{-at}\leq\|S(t)\|\leq C e^{-at}
+ \qquad(t\geq0).
+\]
+Together with \eqref{eq:centered-norm}, this proves that the original sharp
+gap is $a$.
+
+Now use that $\Pj$ has range in $\HH_1$.  Since $\K$ preserves every chaos,
+$\Qj$ is the identity and $\Qj\K\Qj=\K$ on $\HH_n$ for every $n\geq2$.
+Within the first chaos, $\Qj\HH_1=\operatorname{span}\{p\}$ and
+\eqref{eq:first} gives
+\[
+ \Qj\K\Qj p=-\gamma p.
+\]
+Consequently
+\begin{equation}\label{eq:decomp}
+ E=\operatorname{span}\{p\}\oplus\bigoplus_{n\geq2}\HH_n,
+ \qquad
+ T_{\Qj}(t)=e^{-\gamma t}I_{\operatorname{span}\{p\}}
+ \oplus\bigoplus_{n\geq2}T(t)|_{\HH_n}.
+\end{equation}
+Polynomial chaoses form a core for the Gaussian Ornstein--Uhlenbeck
+generator.  Moreover $\langle\K f,q\rangle=\langle f,\K^*q\rangle$ with
+$\K^*q=-p$, so the rank-one compression term extends boundedly to $H$.
+Thus the closure of the displayed block operator is precisely the
+orthogonal generator, justifying \eqref{eq:decomp} at the semigroup level.
+
+Applying Lemma \ref{lem:chaos} once more gives the exact norm formula
+\begin{equation}\label{eq:qnorm}
+ \|T_{\Qj}(t)|_E\|
+ =\max\{e^{-\gamma t},\sup_{n\geq2}\|S(t)\|^n\}
+ =\max\{e^{-\gamma t},\|S(t)\|^2\}.
+\end{equation}
+Since $\gamma=a+b>2a$, equations \eqref{eq:qnorm} and
+\eqref{eq:centered-norm} imply upper and lower bounds of order $e^{-2at}$.
+Hence the orthogonal sharp gap is $2a$.
+
+For completeness, the same calculation identifies the point spectral sets:
+the nonconstant eigenvalues of $\K$ are
+\[
+ \{-(ma+nb):m,n\in\mathbb N_0,\ m+n\geq1\},
+\]
+whereas after compression the first-chaos slow mode is gone and the retained
+nonzero values are
+\[
+ \{-\gamma\}\cup
+ \{-(ma+nb):m,n\in\mathbb N_0,\ m+n\geq2\}.
+\]
+The rightmost elements are respectively $-a$ and $-2a$.
+
+Finally, \eqref{eq:first} gives $\Qj\K q=p$, and \eqref{eq:decomp} gives
+$T_{\Qj}(t)p=e^{-\gamma t}p$.  Since $\langle q,p\rangle=0$ and
+$\|q\|=1$,
+\[
+ \langle q,\K T_{\Qj}(t)p\rangle
+ =e^{-\gamma t}\langle q,-q-\gamma p\rangle
+ =-e^{-\gamma t}.
+\]
+This proves \eqref{eq:force-memory} and completes the theorem.
+\qed
+
+\section{Verification, novelty, and limitations}
+
+The included checker constructs $\K$ on the normalized product-Hermite basis
+through total degree ten.  For $\gamma\in\{2.1,2.5,3,5,10\}$ it verifies all
+eigenvalues $-(ma+nb)$, the exact symmetric-tensor semigroup norms at three
+times, the compressed first-chaos block, and \eqref{eq:force-memory}.  All
+checks pass.  These computations are regression tests; Lemma
+\ref{lem:chaos} and the direct-sum argument are the proof.
+
+A bounded novelty audit searched the run's lightweight indexes and the web by
+the exact paper id/title and close combinations of ``orthogonal dynamics'',
+``harmonic/underdamped Langevin'', ``spectral gap'', and $\lambda_{\Qj}$.
+It also inspected the relevant parts of arXiv:2503.20457, 2604.20453, and
+2607.25855.  Those papers address semigroup well-posedness or infinite-rank
+Zwanzig projections; their harmonic examples do not state this stochastic
+rank-one gap-doubling theorem.  No exact duplicate was found as of 26 August
+2026.  This is bounded evidence, not an exhaustive literature claim.
+
+The theorem answers only the first open problem on source page 10, after
+repairing its sign convention.  It does not treat the infinite-rank Zwanzig
+projection, singular potentials, or the requested stochastic-analysis proof.
+The restriction $\gamma>2$ avoids the critically damped Jordan case and keeps
+the exact-rate statement free of polynomial prefactors.
+
+\textbf{Human review focus.} Verify the Wick-exponential passage to symmetric
+tensor powers, the core/closure identification behind \eqref{eq:decomp}, and
+the intended interpretation of the source's reversed inequality.  Subject to
+that convention repair, the answer is complete.
+
+\begin{thebibliography}{9}
+\bibitem{Zhu2021}
+Y.~Zhu,
+\emph{A simple hypocoercivity analysis for the effective Mori--Zwanzig equation},
+arXiv:2109.01990, 2021.
+\end{thebibliography}
+
+\end{document}

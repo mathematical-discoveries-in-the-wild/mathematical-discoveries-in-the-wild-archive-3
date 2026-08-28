@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1511.02329",
+  "author_list": [
+    "Jochen Glück"
+  ],
+  "claim_short": "arXiv 1511.02329 Jochen Glueck A note on approximation of operator semigroups open problem unbounded generator absorption semigroup projection damping operator norm strong convergence rotation blocks. Candidate counterexample: on H=ell2(N;C2), let A=direct sum nJ with J=[[0,-1],[1,0]] and let P project each block onto its first coordinate. Then A is an unbounded skew-adjoint generator, QAQ closes to zero on QH, and...",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1425,
+  "copied_file_count": 7,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/figures/open_problem_crop_page2.png",
+      "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/figures/open_problem_crop_page3.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/figures/open_problem_crop_page2.png",
+      "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/figures/open_problem_crop_page3.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1511.02329v2",
+    "source_url": "https://arxiv.org/abs/1511.02329v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid_unconditional_operator_norm_extension",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/",
+  "packet_title": "Unbounded rotation blocks destroy the operator-norm absorption limit",
+  "primary_arxiv_id": "1511.02329",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0165",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1511.02329_1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/files/solution_packet.pdf",
+  "source_authors": "Jochen Glück",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1511.02329_unbounded_rotation_blocks_no_norm_absorption_limit/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1511.02329v2",
+  "source_question": "",
+  "source_title": "A note on approximation of operator semigroups",
+  "source_url": "https://arxiv.org/abs/1511.02329v2",
+  "source_year": "2015",
+  "verification_status": "unverified"
+}

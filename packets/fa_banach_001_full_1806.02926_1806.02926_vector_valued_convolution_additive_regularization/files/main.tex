@@ -1,0 +1,337 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{deepblue}{RGB}{31,67,111}
+\definecolor{softblue}{RGB}{235,242,249}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\C}{\mathcal{C}}
+
+\title{Additive Regularity of Locally Convex-Valued Convolution\\
+\large Candidate full solution to the open problem in arXiv:1806.02926}
+\author{Automated Mathematics Run \texttt{fa\_banach\_001}\\Model: GPT5.6}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{deepblue}{softblue}{\parbox{0.91\linewidth}{
+\textbf{Status.} Candidate full solution, likely valid, pending expert review.
+The argument answers the stated question affirmatively and proves the stronger
+regularity $f*g\in\C^{k+n}$ (with the usual convention when an index is
+$\infty$). Novelty confidence is moderate-to-low because the mechanism is
+elementary and may be folklore, although the bounded search described below
+found no explicit later resolution of the cited open problem.
+}}
+\end{center}
+
+\section{Source and exact question}
+
+The source is K.~Kruse, \emph{The approximation property for weighted spaces
+of differentiable functions}, arXiv:1806.02926, published in \emph{Banach
+Center Publications} 119 (2019), 233--258, DOI
+\href{https://doi.org/10.4064/bc119-14}{10.4064/bc119-14} \cite{Kruse2019}.
+The question occurs on page 16 of the local arXiv PDF, immediately after
+Lemma 4.5 and its identity (11).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+  \caption{The open-problem paragraph and the identity (11) to which it
+  refers, rendered from page 16 of the source PDF.}
+\end{figure}
+
+In the source notation, $E$ is a quasi-complete locally convex Hausdorff space,
+$k,n\in\mathbb N_0\cup\{\infty\}$,
+$f\in\C^k(\R^d,E)$, $g\in\C^n(\R^d)$, and at least one of $f,g$ has compact
+support. The convolution is the Pettis integral
+\[
+ (f*g)(x)=\int_{\R^d}f(y)g(x-y)\,dy.
+\]
+Kruse proves that $f*g\in\C^n$ and
+\[
+ \partial^\beta(f*g)=f*(\partial^\beta g),\qquad |\beta|\le n,
+\]
+as well as
+\[
+ \partial^\beta(f*g)=(\partial^\beta f)*g,\qquad
+ |\beta|\le\min\{k,n\}.
+\]
+The open problem asks whether one always has $f*g\in\C^{\max\{k,n\}}$ and
+the second identity for every $|\beta|\le k$.
+
+\section{Idea of the proof}
+
+The apparent asymmetry is caused by the particular dominated-convergence
+lemma used in the source, not by the convolution itself. Write the same
+convolution in the commuted form
+\[
+ (f*g)(x)=(g*f)(x)=\int_{\R^d}g(y)f(x-y)\,dy.
+\]
+If $g$ is compactly supported, this is already an integral over a fixed
+compact set. If instead $f$ is compactly supported, then for $x$ in a fixed
+small neighbourhood of $x_0$ the integrand vanishes outside one fixed compact
+set $K=\overline U-\supp f$. On a fixed compact set, Pettis integration is
+continuous for uniform convergence in every continuous seminorm. The usual
+compact-uniform difference-quotient argument therefore permits all $k$
+derivatives to fall on the $E$-valued factor $f$.
+
+Once derivatives may be placed independently on either factor, they may be
+split between them. This gives
+\[
+ \partial^{\alpha+\beta}(f*g)
+   = (\partial^\alpha f)*(\partial^\beta g),
+ \qquad |\alpha|\le k,\quad |\beta|\le n,
+\]
+which is the stronger additive-regularity statement.
+
+\section{Compact Pettis integration}
+
+We isolate the only locally convex integration fact needed below.
+
+\begin{lemma}[continuity on a compact integration set]\label{lem:compact}
+Let $E$ be a quasi-complete locally convex Hausdorff space, let
+$K\subset\R^d$ be compact, and let $H:K\to E$ be continuous. Then $H$ is
+Pettis integrable on $K$. For every continuous seminorm $p$ on $E$,
+\begin{equation}\label{eq:seminorm}
+ p\!\left(\int_K H(y)\,dy\right)
+ \le \int_K p(H(y))\,dy
+ \le |K|\sup_{y\in K}p(H(y)).
+\end{equation}
+Consequently the integration map $\C(K,E)\to E$ is continuous for the
+topology of uniform convergence in every continuous seminorm.
+\end{lemma}
+
+\begin{proof}
+The existence assertion is the compact-range Pettis argument used in the
+proof of Kruse's Lemma 4.5 \cite[pp.~15--16]{Kruse2019}. Briefly, for
+$e'\in E'$ the scalar integral of $e'\circ H$ defines a linear functional on
+$E'$. The range $H(K)$ is compact, and quasi-completeness implies that its
+closed absolutely convex hull is compact
+\cite[9-2-10 Example, p.~134]{Wilansky1978}. The Mackey--Arens identification
+then represents the scalar integrals by an element of $E$.
+
+For completeness, let $p^\circ=\{e'\in E':|e'(z)|\le p(z)\text{ for all }
+z\in E\}$. The Hahn--Banach formula for a continuous seminorm gives
+\[
+ p\!\left(\int_KH\right)
+ =\sup_{e'\in p^\circ}\left|\int_K e'(H(y))\,dy\right|
+ \le\int_Kp(H(y))\,dy,
+\]
+which proves \eqref{eq:seminorm} and the continuity assertion.
+\end{proof}
+
+\Needspace{0.34\textheight}
+\begin{lemma}[differentiation of a translated compact integral]
+\label{lem:parameter}
+Let $a\in\C^r(\R^d,E)$, let $K\subset\R^d$ be compact, and let
+$b\in\C(K)$. On any open set $U\subset\R^d$ define
+\[
+ T(x)=\int_K b(y)a(x-y)\,dy.
+\]
+Then $T\in\C^r(U,E)$ and, for every multi-index $\alpha$ with
+$|\alpha|\le r$,
+\begin{equation}\label{eq:parameter}
+ \partial^\alpha T(x)=\int_K b(y)\partial^\alpha a(x-y)\,dy.
+\end{equation}
+Here the assertion is local, so it is enough that $a$ be defined on
+$U-K$.
+\end{lemma}
+
+\begin{proof}
+The integrals exist by Lemma~\ref{lem:compact}. We argue inductively over
+$|\alpha|$. Continuity in \eqref{eq:parameter} follows from the uniform
+continuity, in each continuous seminorm, of $\partial^\alpha a$ on compact
+subsets of $U-K$, together with \eqref{eq:seminorm}.
+
+Suppose $|\alpha|<r$ and fix a coordinate vector $e_j$. For small nonzero
+$h$, subtracting the proposed derivative gives
+\begin{align*}
+ &\frac{\partial^\alpha T(x+he_j)-\partial^\alpha T(x)}{h}
+   -\int_K b(y)\partial^{\alpha+e_j}a(x-y)\,dy\\
+ &\quad=\int_K b(y)\left[
+ \frac{\partial^\alpha a(x+he_j-y)-\partial^\alpha a(x-y)}{h}
+ -\partial^{\alpha+e_j}a(x-y)\right]dy.
+\end{align*}
+The one-dimensional fundamental theorem of calculus for continuous
+locally convex-valued curves and \eqref{eq:seminorm} bound the $p$-seminorm
+of the right-hand side by
+\[
+ |K|\,\|b\|_{\infty,K}
+ \sup_{\substack{y\in K\\0\le t\le1}}
+ p\bigl(\partial^{\alpha+e_j}a(x+the_j-y)
+       -\partial^{\alpha+e_j}a(x-y)\bigr),
+\]
+which tends to zero as $h\to0$. This proves the derivative formula; its
+continuity was already noted. Induction completes the proof.
+\end{proof}
+
+\section{Full result}
+
+\begin{theorem}[additive convolution regularity]\label{thm:main}
+Let $E$ be a quasi-complete locally convex Hausdorff space,
+$k,n\in\mathbb N_0\cup\{\infty\}$,
+$f\in\C^k(\R^d,E)$, and $g\in\C^n(\R^d)$. Suppose that at least one of
+$f$ and $g$ has compact support. Then for all finite multi-indices
+$\alpha,\beta$ satisfying $|\alpha|\le k$ and $|\beta|\le n$,
+\begin{equation}\label{eq:mixed}
+ \partial^{\alpha+\beta}(f*g)
+   =(\partial^\alpha f)*(\partial^\beta g).
+\end{equation}
+In particular, if $k,n<\infty$, then
+\[
+ f*g\in\C^{k+n}(\R^d,E),
+\]
+and if either index is $\infty$, then $f*g\in\C^\infty(\R^d,E)$.
+Consequently the open problem has an affirmative answer.
+\end{theorem}
+
+\begin{proof}
+Kruse's Lemma 4.5 establishes that the convolution is well-defined as a
+Pettis integral and that $f*g=g*f$ under the stated assumptions
+\cite[pp.~14--16]{Kruse2019}. We first show that every derivative available
+on $f$ may be moved through the convolution.
+
+Fix $x_0\in\R^d$ and a bounded open neighbourhood $U$ of $x_0$. In the
+commuted representation
+\begin{equation}\label{eq:commuted}
+ (f*g)(x)=\int_{\R^d}g(y)f(x-y)\,dy,
+\end{equation}
+the integration may be restricted to a fixed compact set for all $x\in U$.
+Indeed, if $K_g=\supp g$ is compact, take $K=K_g$. If instead
+$K_f=\supp f$ is compact, take
+\[
+ K=\overline U-K_f.
+\]
+For $x\in U$ and $y\notin K$ one has $x-y\notin K_f$, so the integrand in
+\eqref{eq:commuted} vanishes. Lemma~\ref{lem:parameter}, applied on $U$,
+therefore gives
+\begin{equation}\label{eq:fderivatives}
+ \partial^\alpha(f*g)=(\partial^\alpha f)*g,
+ \qquad |\alpha|\le k.
+\end{equation}
+Since $x_0$ was arbitrary, the formula holds on all of $\R^d$.
+
+The same fixed-compact argument in the original representation
+\[
+ (f*g)(x)=\int_{\R^d}f(y)g(x-y)\,dy
+\]
+puts every derivative available on $g$: if $K_f$ is compact use $K_f$, and
+if $K_g$ is compact use the local set $\overline U-K_g$. Thus
+\begin{equation}\label{eq:gderivatives}
+ \partial^\beta(f*g)=f*(\partial^\beta g),
+ \qquad |\beta|\le n.
+\end{equation}
+
+Now fix $\beta$ with $|\beta|\le n$. At least one factor in
+$f*(\partial^\beta g)$ is compactly supported: this is immediate if $f$ is
+compactly supported, while if $g$ is compactly supported then
+$\supp(\partial^\beta g)\subseteq\supp g$. Applying
+\eqref{eq:fderivatives} to this convolution and then using
+\eqref{eq:gderivatives} yields
+\[
+ \partial^\alpha\partial^\beta(f*g)
+ =\partial^\alpha\bigl(f*(\partial^\beta g)\bigr)
+ =(\partial^\alpha f)*(\partial^\beta g),
+\]
+which is \eqref{eq:mixed}.
+
+Finally, if $k,n<\infty$ and $\gamma$ is any multi-index with
+$|\gamma|\le k+n$, split it componentwise as
+$\gamma=\alpha+\beta$ with $|\alpha|\le k$ and $|\beta|\le n$. Such a split
+exists by assigning at most $n$ of the $|\gamma|$ coordinate derivatives to
+$\beta$. Formula \eqref{eq:mixed} supplies every derivative of total order at
+most $k+n$ and proves its continuity. The cases involving $\infty$ follow by
+the same argument for each finite order.
+\end{proof}
+
+\section{Verification notes and scope}
+
+\begin{enumerate}[leftmargin=*,itemsep=4pt]
+\item \textbf{The asymmetric support case is covered.} When only $f$ is
+compactly supported, the integration set in the commuted formula is not
+globally fixed, but it is fixed on each bounded neighbourhood $U$ by
+$\overline U-\supp f$. Differentiability is local, so this is sufficient.
+
+\item \textbf{No Banach norm or Bochner integral is used.} All convergence is
+checked in arbitrary continuous seminorms. Quasi-completeness is used only to
+ensure existence of compact-range Pettis integrals, exactly as in the source.
+
+\item \textbf{Compact support survives differentiation.} For every permitted
+multi-index, $\supp(\partial^\beta g)\subseteq\supp g$ and
+$\supp(\partial^\alpha f)\subseteq\supp f$.
+
+\item \textbf{Endpoint orders are included.} If $k=0$ or $n=0$, the proof
+reduces to differentiation on the other factor. If either order is infinite,
+the argument applies at every finite order.
+
+\item \textbf{The stronger exponent is intentional.} The source asks for
+$\max\{k,n\}$ derivatives. Splitting derivatives between the two factors
+gives $k+n$ derivatives when both orders are finite.
+
+\item \textbf{No computational verification is relevant.} The proof is
+topological and local; there is no finite search or numerical dependency.
+\end{enumerate}
+
+\section{Bounded novelty audit}
+
+The audit was performed on 27 August 2026. It included exact-phrase searches
+for the printed open-problem sentence, searches by arXiv id 1806.02926, title,
+author, ``vector-valued convolution'', ``Pettis'', ``quasi-complete'', and
+``$\C^{k+n}$'', together with the published source and the ten citing works
+listed by OpenAlex at the time of the search. Later Kruse papers on weighted
+smooth vector-valued functions and the 2023 habilitation
+\emph{On vector-valued functions and the $\varepsilon$-product} were also
+checked by keyword. No explicit later paper resolving this exact question was
+found.
+
+This is not a certification of originality. The compact-localization argument
+is close to standard convolution folklore and may be implicit in a general
+text on locally convex-valued integration or distributions without citing
+Kruse's question. The packet therefore claims a candidate full answer to the
+printed problem, not a priority claim. A human literature review should focus
+especially on older vector-valued convolution theorems of Schwartz and
+Tr\`eves \cite[Chap.~26]{Treves2006}.
+
+\section{Human-review recommendation}
+
+\textbf{Recommended for expert verification as a full solution.} The highest
+value checks are: (i) confirm the compact-range Pettis integration assertion
+under quasi-completeness in exactly the source convention; (ii) verify the
+local fixed-compact set $\overline U-\supp f$ in the asymmetric support case;
+and (iii) confirm that the mixed-derivative induction justifies the stronger
+$\C^{k+n}$ conclusion. If these checks pass, the stated open problem is fully
+answered affirmatively.
+
+\begin{thebibliography}{9}
+\bibitem{Kruse2019}
+K.~Kruse,
+\emph{The approximation property for weighted spaces of differentiable
+functions}, Banach Center Publ. \textbf{119} (2019), 233--258.
+\href{https://doi.org/10.4064/bc119-14}{doi:10.4064/bc119-14};
+arXiv:1806.02926.
+
+\bibitem{Treves2006}
+F.~Tr\`eves,
+\emph{Topological Vector Spaces, Distributions and Kernels},
+Dover, New York, 2006.
+
+\bibitem{Wilansky1978}
+A.~Wilansky,
+\emph{Modern Methods in Topological Vector Spaces},
+McGraw--Hill, New York, 1978.
+\end{thebibliography}
+
+\end{document}

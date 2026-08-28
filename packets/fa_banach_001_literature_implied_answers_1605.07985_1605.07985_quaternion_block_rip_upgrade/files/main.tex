@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
+\title{A Literature-Implied Upgrade for Quaternion Compressed Sensing}
+\author{Run \texttt{fa\_banach\_001} -- lane 1}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\textbf{Status.} Literature-implied answer. This note records a direct
+identification with a later block-sparse recovery theorem; it is not claimed
+as a new mathematical result.
+
+\section*{Source question}
+
+Bade\'nska and B\l aszczyk prove stable quaternion $\ell_1$ recovery for a
+real sensing matrix under $\delta_{2s}<1/3$ \cite[Theorem 4.1 and Corollary
+5.1]{BB}. Immediately afterward, on PDF page 12, they write that they
+conjecture this requirement is not optimal.
+
+\section*{Supporting theorem}
+
+Gao and Ma prove that mixed $\ell_2/\ell_1$ minimization stably recovers block
+sparse signals when the block restricted isometry constant satisfies
+\[
+  \delta_{2s\mid\mathcal I}<\frac{4}{\sqrt{41}}\approx0.6246,
+\]
+and in the noiseless, exactly block-$s$-sparse case the recovery is exact
+\cite[Theorem 1 and Corollary 1, PDF p.~3]{GM}.
+
+\section*{Identification}
+
+Write each quaternion coordinate as
+\[
+  z_j=a_j+b_j\mathbf i+c_j\mathbf j+d_j\mathbf k
+\]
+and let $R:\HH^n\to\RR^{4n}$ collect $(a_j,b_j,c_j,d_j)$ as the $j$th
+four-dimensional block. Then
+\[
+ \norm{z}_{\ell_1(\HH^n)}
+ =\sum_{j=1}^n |z_j|
+ =\sum_{j=1}^n\norm{Rz[j]}_2
+ =\norm{Rz}_{2,1}.
+\]
+If $\Phi\in\RR^{m\times n}$, realification of $z\mapsto\Phi z$ is, up to a
+coordinate permutation,
+\[
+ A=\Phi\otimes I_4:\RR^{4n}\longrightarrow\RR^{4m}.
+\]
+It preserves Euclidean data and noise norms. Hence the quaternion program in
+\cite{BB} is precisely Gao--Ma's mixed $\ell_2/\ell_1$ program for the block
+partition $\mathcal I=(4,\ldots,4)$.
+
+It remains only to compare the two restricted isometry constants. If $u$ is
+supported on at most $k$ blocks and $u^{(0)},\ldots,u^{(3)}\in\RR^n$ are its
+four component vectors, then each $u^{(r)}$ is $k$-sparse and
+\[
+ \norm{Au}_2^2=\sum_{r=0}^3\norm{\Phi u^{(r)}}_2^2,
+ \qquad
+ \norm{u}_2^2=\sum_{r=0}^3\norm{u^{(r)}}_2^2.
+\]
+Summing the scalar RIP inequalities shows
+$\delta_{k\mid\mathcal I}(A)\leq\delta_k(\Phi)$. Conversely, embed any real
+$k$-sparse vector in the first component and set the other three components to
+zero. This gives the reverse inequality, and therefore
+\[
+ \delta_{k\mid\mathcal I}(\Phi\otimes I_4)=\delta_k(\Phi).
+\]
+
+Applying Gao--Ma with $k=2s$ proves stable quaternion recovery, and exact
+recovery in the noiseless sparse case, whenever
+\[
+ \boxed{\delta_{2s}(\Phi)<4/\sqrt{41}}.
+\]
+Since $4/\sqrt{41}>1/3$, this fully confirms the source's stated
+nonoptimality conjecture in its real-measurement setting.
+
+\section*{Provenance and scope}
+
+This is an agent-identified implication. Gao and Ma do not mention quaternion
+signals or the source paper. The threshold $4/\sqrt{41}$ is recorded only as
+a certified strict improvement, not as the optimal threshold. Quaternion-valued
+sensing matrices are outside the scope.
+
+A bounded search used the exact source title, ``quaternion compressed sensing
+RIP'', ``block sparse recovery'', and the $\delta_{2s}$ threshold terminology.
+It found Gao--Ma's theorem and later block-RIP refinements, but no paper
+explicitly advertising this quaternion specialization.
+
+\begin{thebibliography}{9}
+\bibitem{BB}
+A.~Bade\'nska and \L.~B\l aszczyk,
+\emph{Compressed sensing for real measurements of quaternion signals},
+arXiv:1605.07985; J. Franklin Inst. 354 (2017), 5753--5769.
+
+\bibitem{GM}
+Y.~Gao and M.~Ma,
+\emph{A new bound on the block restricted isometry constant in compressed sensing},
+J. Inequal. Appl. 2017, article 174,
+\href{https://doi.org/10.1186/s13660-017-1448-2}{doi:10.1186/s13660-017-1448-2}.
+\end{thebibliography}
+
+\end{document}
+

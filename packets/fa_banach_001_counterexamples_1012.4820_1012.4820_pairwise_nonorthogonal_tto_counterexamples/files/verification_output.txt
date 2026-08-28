@@ -1,0 +1,8 @@
+n=10, t=0.01
+max ||Q^T Q-I|| entry = 4.441e-16
+max ||S^T-S|| entry = 1.735e-17
+min |<q_i,q_j>|, i<j = 0.020065386714
+max eigenvector residual = 1.776e-15
+TTO-locus dimension bound = 109
+ambient/full-open-locus dimension = 110
+strict dimension gap = 1

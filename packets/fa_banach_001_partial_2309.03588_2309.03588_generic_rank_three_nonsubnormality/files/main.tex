@@ -1,0 +1,425 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=22mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\T}{\mathbb T}
+\newcommand{\D}{\mathbb D}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Mz}{\mathscr M_z}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Disc}{\operatorname{Disc}}
+
+\title{Generic Rank-Three Failure of Cauchy-Dual Subnormality\\
+\large A full-dimensional partial answer to the finite-support characterization problem}
+\author{Candidate partial result for arXiv:2309.03588}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\textbf{Status: candidate substantial partial result, likely valid.}
+For measures supported at exactly three points, the packet proves that the
+subnormal locus is contained in a Lebesgue-null, nowhere-dense real-analytic
+exceptional set.  It also proves non-subnormality throughout a full
+neighborhood of every equal-mass equilateral measure.  The complete
+classification on the exceptional set remains open.}}
+\end{center}
+
+\section{Source problem and claimed contribution}
+
+Khasnis and Sholapurkar state the finite-support Cauchy-dual problem in
+Section~1.2, Problem~1, on source PDF p.~5 \cite{KS}:
+
+\begin{center}
+\includegraphics[width=0.98\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+\noindent\textbf{Exact transcription.}
+``Characterize finitely supported, positive, Borel measures $\mu$ on unit
+circle $\T$ such that the Cauchy dual of $M_z$ on $D(\mu)$ is subnormal.''
+
+For ordered three-point measures, normalize rotation and cyclic order by
+writing
+\begin{equation}\label{eq:chart}
+ \mu_\lambda=c_1\delta_1+c_2\delta_{e^{i\theta_2}}
+       +c_3\delta_{e^{i\theta_3}},\qquad
+ \lambda\in\Omega,
+\end{equation}
+where
+\[
+ \Omega=\{(\theta_2,\theta_3,c_1,c_2,c_3):
+       0<\theta_2<\theta_3<2\pi,\ c_j>0\}.
+\]
+This connected open set is a full parameter chart for rank-three measures,
+up to rotation and relabeling.
+
+\begin{theorem}[Generic rank-three non-subnormality]\label{thm:generic}
+There are two nonzero real-analytic functions $\mathcal D,\mathcal R$ on
+$\Omega$ such that, if the Cauchy dual of $\Mz$ on $D(\mu_\lambda)$ is
+subnormal, then
+\[
+ \mathcal D(\lambda)\mathcal R(\lambda)=0.
+\]
+Consequently the subnormal rank-three measures form a Lebesgue-null and
+nowhere-dense subset of every chart \eqref{eq:chart}.  Equivalently, an open
+dense set of rank-three measures, and almost every such measure in the
+natural angle--mass coordinates, has a non-subnormal Cauchy dual.
+\end{theorem}
+
+\begin{corollary}[Robust equilateral obstruction]\label{cor:stability}
+Fix $c>0$, $\xi\in\T$, and $\omega=e^{2\pi i/3}$.  There is an
+$\varepsilon>0$ such that, whenever the atoms can be labeled so that
+\[
+ |\zeta_j-\xi\omega^j|<\varepsilon,
+ \qquad |c_j-c|<\varepsilon \quad (j=0,1,2),
+\]
+the Cauchy dual on
+$D(\sum_{j=0}^2c_j\delta_{\zeta_j})$ is not subnormal.
+Thus the known equilateral example lies inside a full-dimensional open set
+of arbitrary support triples and arbitrary positive masses.
+\end{corollary}
+
+\section{Rational model and the forbidden-atom criterion}
+
+For a finite positive measure $\mu$ on $\T$, $D(\mu)$ denotes the
+corresponding Dirichlet-type space, and $\Mz f=zf$ is a cyclic analytic
+$2$-isometry.  Its Cauchy dual is
+$\Mz'=\Mz(\Mz^*\Mz)^{-1}$.
+
+The rational de Branges--Rovnyak model of Chavan--Ghara--Reza and Costara
+\cite{CGR,Costara} gives, for every $\lambda\in\Omega$, a monic outer
+polynomial
+\[
+ q_\lambda(z)=\prod_{r=1}^3(z-\alpha_r),\qquad |\alpha_r|>1,
+\]
+and a row Schur function
+\[
+ B=(p_1/q_\lambda,p_2/q_\lambda,p_3/q_\lambda)
+\]
+such that $D(\mu_\lambda)=\mathcal H(B)$ isometrically.  Put
+\begin{equation}\label{eq:G}
+ G_\lambda(z,w)=\sum_{j=1}^3p_j(z)\overline{p_j(w)}.
+\end{equation}
+The polynomial $G_\lambda$ is intrinsic even though a matrix factor producing
+the individual $p_j$ is not unique.
+
+When the roots of $q_\lambda$ are simple, set
+\begin{equation}\label{eq:kappa}
+ \kappa_{rt}=
+ \frac{G_\lambda(\alpha_r,\alpha_t)}
+ {\alpha_r^2\overline{\alpha_t}^{\,2}
+  q_\lambda'(\alpha_r)\overline{q_\lambda'(\alpha_t)}}.
+\end{equation}
+Corollary~4.1 and Remark~4.2 of \cite{CGR} give the following necessary
+condition: if $\Mz'$ is subnormal, then
+\begin{equation}\label{eq:nu}
+ \nu_\lambda=\sum_{r,t=1}^3\kappa_{rt}
+ \delta_{1/(\alpha_r\overline{\alpha_t})}
+\end{equation}
+is a positive measure supported on $[0,1]$.  Equal atom locations in
+\eqref{eq:nu} must be grouped before their coefficients are tested.  In
+particular, every grouped coefficient outside $[0,1]$ must vanish.
+
+The next observation sharpens Corollaries~2.3 and 4.3 of \cite{CGR} by
+removing every hypothesis on the pole products.
+
+\begin{lemma}[Simple-root orthogonality criterion]\label{lem:orthogonality}
+If the roots $\alpha_1,\alpha_2,\alpha_3$ are distinct, then the Cauchy dual
+is subnormal if and only if
+\begin{equation}\label{eq:crosszero}
+ G_\lambda(\alpha_r,\alpha_t)=0\qquad(r\ne t).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put $u_r=1/\alpha_r$ and let $c_{rt}$ denote the quantity in
+\eqref{eq:kappa}.  Theorem~2.1 of \cite{CGR} says that subnormality makes,
+for every integer $\ell\ge1$, the infinite matrix
+\[
+ \left(\sum_{r,t=1}^3 c_{rt}
+ (1-u_r\overline{u_t})^\ell u_r^m\overline{u_t}^{\,n}
+ \right)_{m,n\ge0}
+\]
+formally positive semidefinite.  Compress its leading $3\times3$ block and
+conjugate by the inverse of the Vandermonde matrix
+$(u_r^m)_{0\le m\le2,,1\le r\le3}$.  This gives
+\[
+ C_\ell=\big(c_{rt}(1-u_r\overline{u_t})^\ell\big)_{r,t=1}^3\succeq0.
+\]
+If $G(\alpha_r,\alpha_t)\ne0$, positivity of the numerator Gram kernel makes
+both corresponding diagonal values positive.  The $(r,t)$ principal minor
+of $C_\ell$ would therefore require
+\[
+ c_{rr}c_{tt}\big((1-|u_r|^2)(1-|u_t|^2)\big)^\ell
+ \ge |c_{rt}|^2|1-u_r\overline{u_t}|^{2\ell}.
+\]
+But
+\[
+ |1-u_r\overline{u_t}|^2
+ -(1-|u_r|^2)(1-|u_t|^2)=|u_r-u_t|^2>0,
+\]
+so the displayed inequality fails for all sufficiently large $\ell$.
+Thus every cross value vanishes.  Conversely, Corollary~2.3 of \cite{CGR}
+proves subnormality when all cross values vanish.
+\end{proof}
+
+\subsection*{Proof Intuition}
+
+There are two independent algebraic obstructions.  The discriminant of the
+outer factor detects repeated roots.  Away from that hypersurface,
+Lemma~\ref{lem:orthogonality} forces all cross-Gram values to vanish, and one
+iterated resultant is the product of all nine Gram values
+$G(\alpha_r,\alpha_t)$.  Neither analytic function is identically zero: the
+exact equilateral calculation witnesses both facts.  Proper real-analytic
+zero sets have measure zero and empty interior.
+
+The neighborhood result uses more information at the equilateral point.  Its
+six off-diagonal residues form two clusters, and all three residues in either
+cluster have the same nonzero value.  Under a small perturbation, even if
+atoms collide, no nonempty sum of nearby residues can cancel.  Hence a
+forbidden atom remains outside $[0,1]$.
+
+\section{Analytic dependence and the two obstructions}
+
+\begin{lemma}[Analytic rational data]\label{lem:analytic}
+The coefficients of $q_\lambda$ and $G_\lambda$ depend real-analytically on
+$\lambda\in\Omega$.
+\end{lemma}
+
+\begin{proof}
+Let $s_\lambda(z)=\prod_{j=1}^3(z-\zeta_j)$.  The outer factor is uniquely
+determined, together with $\gamma_\lambda>0$, by
+\begin{equation}\label{eq:fejer}
+ |s_\lambda(z)|^2+
+ \sum_{j=1}^3c_j\left|\frac{s_\lambda(z)}{z-\zeta_j}\right|^2
+ =\gamma_\lambda|q_\lambda(z)|^2,\qquad z\in\T.
+\end{equation}
+The Laurent coefficients on the left are real-analytic in $\lambda$.
+The coefficient map $(\gamma,q)\mapsto\gamma|q|^2|_\T$, with $q$ monic
+and zero-free on $\overline\D$, has invertible linearization.  Indeed, a
+kernel vector would give on $\T$
+\[
+ a+2\operatorname{Re}(h/q)=0,
+\]
+where $a\in\mathbb R$ and $\deg h<\deg q$.  The analytic function $h/q$ on
+$\D$ has constant real part, hence is constant; the degree restriction then
+forces $h=0$, and also $a=0$.  The real-analytic implicit-function theorem
+and uniqueness of the outer factor give analytic dependence of $q$.
+
+Costara's kernel formula expresses $G$ using $q$, $s$, the rational functions
+\[
+ O=\gamma^{-1/2}e^{i\vartheta}s/q,\qquad
+ f_j=\frac{O}{O'(\zeta_j)(z-\zeta_j)},
+\]
+and the inverse of the positive Gram matrix
+$(\langle f_i,f_j\rangle)_{i,j=1}^3$; see Theorem~6.1 and Remark~6.2 of
+\cite{CGR}.  Every denominator stays nonzero on $\Omega$, and the phase
+normalization cancels in the intrinsic product \eqref{eq:G}.  These finite
+algebraic operations and a matrix inverse preserve real-analytic dependence.
+\end{proof}
+
+Define the outer-root discriminant
+\begin{equation}\label{eq:D}
+ \mathcal D(\lambda)=\Disc_z q_\lambda(z).
+\end{equation}
+Thus $\mathcal D\ne0$ exactly when the three outer roots are distinct.
+
+Write $\widehat G_\lambda(z,y)$ for the polynomial obtained from
+$G_\lambda(z,w)$ by replacing $\overline w$ by $y$, and put
+$q_\lambda^c(y)=\overline{q_\lambda(\overline y)}$.  Define
+\begin{equation}\label{eq:R}
+ \mathcal R(\lambda)=
+ \Res_z\!\left(q_\lambda(z),
+   \Res_y\!\left(q_\lambda^c(y),\widehat G_\lambda(z,y)\right)
+ \right).
+\end{equation}
+Both polynomials $q_\lambda$ and $q_\lambda^c$ are monic, so the elementary
+root formula for resultants gives
+\begin{equation}\label{eq:Rproduct}
+ \mathcal R(\lambda)=
+ \prod_{r,t=1}^3G_\lambda(\alpha_r,\alpha_t)
+ =\prod_{r=1}^3G_\lambda(\alpha_r,\alpha_r)
+  \prod_{r<t}|G_\lambda(\alpha_r,\alpha_t)|^2.
+\end{equation}
+In particular $\mathcal R$ is real-valued.  Lemma~\ref{lem:analytic} shows
+that $\mathcal D$ and $\mathcal R$ are real-analytic on $\Omega$.
+
+\section{The two nonzero witnesses}
+
+\begin{lemma}[The resultant is nontrivial]\label{lem:Rnonzero}
+$\mathcal R$ is not identically zero on $\Omega$.
+\end{lemma}
+
+\begin{proof}
+Fix $c>0$ and take the equal-mass equilateral measure
+$c(\delta_1+\delta_\omega+\delta_{\omega^2})$.  Root-of-unity
+orthogonality in \eqref{eq:fejer} gives
+\[
+ q(z)=z^3-\rho,\qquad
+ \rho+\rho^{-1}=2+9c,\qquad \rho>1.
+\]
+The circulant Costara Gram matrix diagonalizes in the Fourier basis and yields
+\begin{equation}\label{eq:P}
+ G(z,w)=P(z\overline w),\qquad
+ P(x)=\sum_{k=1}^3A_kx^k,\qquad
+ A_k=\frac{3\rho(\rho-1)^2}
+ {[3+(k-1)(\rho-1)][3+k(\rho-1)]}>0.
+\end{equation}
+This is the $N=3$ specialization of the same rational-kernel calculation
+used in \cite{JPS}; it also follows directly from Theorem~6.1 of \cite{CGR}.
+
+Put $a=\rho^{1/3}$.  The roots of $q$ are $a,a\omega,a\omega^2$.
+The diagonal value $P(a^2)$ is positive.  If $P(a^2\omega)=0$, real
+coefficients also give $P(a^2\omega^2)=0$.  Hence $P(x)/x$ would be a
+multiple of
+\[
+ (x-a^2\omega)(x-a^2\omega^2)=x^2+a^2x+a^4,
+\]
+forcing $A_2/A_1=a^{-2}=\rho^{-2/3}$.  But \eqref{eq:P} gives
+\[
+ \frac{A_2}{A_1}=\frac{3}{3+2(\rho-1)}<\rho^{-2/3}.
+\]
+For the strict inequality, write $a>1$ and note that
+\[
+ 1+\frac{2(a^3-1)}3-a^2
+\]
+vanishes at $a=1$ and has derivative $2a(a-1)>0$.  Thus both off-diagonal
+values are nonzero.  Every factor in \eqref{eq:Rproduct} is nonzero, so
+$\mathcal R\ne0$ at this equilateral point.
+\end{proof}
+
+\begin{lemma}[The outer-root discriminant is nontrivial]\label{lem:Dnonzero}
+$\mathcal D$ is not identically zero on $\Omega$.
+\end{lemma}
+
+\begin{proof}
+At the equal-mass equilateral point used above,
+$q(z)=z^3-\rho$ with $\rho>1$.  Its three roots are distinct, so
+$\mathcal D\ne0$ there.
+\end{proof}
+
+\section{Proofs of the main results}
+
+\begin{proof}[Proof of Theorem~\ref{thm:generic}]
+Suppose $\mathcal D(\lambda)\ne0$.  Then the roots of $q_\lambda$ are
+distinct.  If the Cauchy dual were subnormal,
+Lemma~\ref{lem:orthogonality} would force \eqref{eq:crosszero}; then
+\eqref{eq:Rproduct} would give $\mathcal R(\lambda)=0$.  Therefore every
+subnormal parameter belongs to
+\[
+ \{\mathcal D=0\}\cup\{\mathcal R=0\}.
+\]
+By Lemmas~\ref{lem:Rnonzero} and \ref{lem:Dnonzero}, these are the zero sets
+of two nonzero real-analytic functions on the connected open set $\Omega$.
+A proper real-analytic zero set has Lebesgue measure zero and empty interior
+\cite{KP}.  Their finite union has the same properties, proving the theorem.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:stability}]
+Rotation is harmless, so take $\xi=1$.  At the equal-mass equilateral point,
+label $\alpha_r=a\omega^r$, $r=0,1,2$.  If $d=r-t\not\equiv0\pmod3$, then
+\eqref{eq:kappa} and $q'(\alpha_r)=3\alpha_r^2$ give the common residue
+\begin{equation}\label{eq:base-residue}
+ \kappa_{rt}=K_d:=
+ \frac{P(a^2\omega^d)}{9\rho^2a^2\omega^d}\ne0.
+\end{equation}
+Thus the three ordered pairs with difference $d=1$ have one common nonzero
+residue, and the three with difference $d=2$ have another.  Their atom
+locations are the two nonreal points
+$a^{-2}\omega^{-1}$ and $a^{-2}\omega^{-2}$.
+
+The outer roots stay simple and can be labeled continuously under a small
+perturbation.  Lemma~\ref{lem:analytic} and \eqref{eq:kappa} show that the
+six residues and their atom locations vary continuously.  Choose disjoint
+neighborhoods $U_1,U_2$ of the two base locations, both disjoint from
+$[0,1]$.  Shrink the parameter neighborhood until every residue in cluster
+$d$ differs from $K_d$ by less than $|K_d|/2$.
+
+Any collision group inside $U_d$ is a nonempty sum of, say, $m$ such
+residues.  Its distance from $mK_d$ is less than $m|K_d|/2$, so the grouped
+coefficient is nonzero.  Hence the measure \eqref{eq:nu} has a nonzero atom
+outside $[0,1]$, contradicting the necessary condition for subnormality.
+This holds for every sufficiently small perturbation, including parameters
+where some pole products collide.
+\end{proof}
+
+\section{Verification, limitations, and novelty audit}
+
+The accompanying script \texttt{code/verify\_rank\_three.py} independently
+constructs the degree-six self-inversive polynomial, selects the three outer
+roots, reconstructs Costara's Gram matrix and the intrinsic polynomial $G$,
+and evaluates the nine pole products, six cross values, and six forbidden
+residues.  It passes three cases: the equal-mass equilateral model, a fully
+nonsymmetric perturbation, and a small-mass generic witness.  In the latter
+two cases all nine pole products are separated and every cross value is
+nonzero.  These floating-point checks are sanity tests, not proof.
+
+\textbf{Adversarial verification focus.}
+The most delicate points are (i) the real-analytic dependence in
+Lemma~\ref{lem:analytic} and (ii) the Vandermonde compression and
+large-$\ell$ principal-minor argument in Lemma~\ref{lem:orthogonality}.
+The local stability proof separately handles pole-product collisions by
+grouping the residues exactly as required by Remark~4.2 of \cite{CGR}.
+
+\textbf{Scope limitation.}
+The theorem does not classify the proper real-analytic exceptional set
+$\{\mathcal D\mathcal R=0\}$.  Subnormal points, if any beyond the known boundary
+and lower-rank cases, must lie there, but membership in that set is not
+sufficient for subnormality.  The full arbitrary-three-point conjecture and
+the characterization for four or more atoms remain open.
+
+\textbf{Bounded novelty audit.}
+The run indexes and primary-source arXiv searches through 26 August 2026 used
+arXiv:2103.10059, 2309.03588, 2510.14004, and 2511.04565; the authors Khasnis,
+Phatak, Sholapurkar, Chavan, Ghara, and Reza; and the phrases ``Cauchy dual
+subnormality,'' ``rank three,'' ``three distinct points,'' ``almost every,''
+``generic,'' and ``perturbation.''  The search found the rational-symbol
+criterion, the original rank-two example, the later rank-two classification,
+and the equal-mass equilateral rank-three example \cite{CGR,KS,JPS}; it found
+no generic, full-measure, or perturbative rank-three theorem.  Novelty is
+plausible, not certified.
+
+\textbf{Human-review recommendation.}
+Send to an operator theorist familiar with rational de Branges--Rovnyak
+spaces.  If the simple-root criterion and analytic-dependence lemma pass
+review, the generic
+theorem is a checkable substantial partial answer; the exceptional
+set is then the natural target for a full classification.
+
+\begin{thebibliography}{9}
+\bibitem{KS}
+M.~N. Khasnis and V.~M. Sholapurkar,
+\emph{Cyclic analytic $2$-isometry of finite rank and Cauchy dual
+subnormality problem}, arXiv:2309.03588v2 (2024).
+
+\bibitem{CGR}
+S. Chavan, S. Ghara, and M.~R. Reza,
+\emph{The Cauchy dual subnormality problem via de Branges--Rovnyak spaces},
+Studia Math. \textbf{265}(3) (2022), 315--351; arXiv:2103.10059.
+
+\bibitem{Costara}
+C. Costara,
+\emph{Reproducing kernels for Dirichlet spaces associated to finitely
+supported measures}, Complex Anal. Oper. Theory \textbf{10} (2016),
+1277--1293.
+
+\bibitem{JPS}
+S.~A. Joshi, G.~M. Phatak, and V.~M. Sholapurkar,
+\emph{An example of a cyclic analytic $2$-isometry with defect operator of
+rank $3$, whose Cauchy dual is not subnormal}, arXiv:2511.04565 (2025).
+
+\bibitem{KP}
+S.~G. Krantz and H.~R. Parks,
+\emph{A Primer of Real Analytic Functions}, second ed., Birkh\"auser, 2002.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,3 @@
+PASS: 400 random reverse one-way protocols obey the LO bound
+PASS: minimum numerical slack = -1.776357e-15
+PASS: conditional diagonal coefficients are nonnegative partitions of unity

@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\title{The Low-$p$ Vector-Valued Hardy-Space Extension\\
+Was Explicitly Answered by arXiv:2001.10021}
+\author{Run \texttt{fa\_banach\_001}, lane 8\\
+\texttt{agent\_lane\_08} (GPT5.6)}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{
+\textbf{Status:} \texttt{literature\_already\_answered}.  This is an exact
+two-paper identification and does not count as a new mathematical solution
+produced by the run.
+}}
+\end{center}
+
+\section{Source problem}
+
+The source is R. D. Carmichael, S. Pilipovi\'{c}, and J. Vindas,
+\emph{Vector valued Hardy spaces related to analytic functions having
+distributional boundary values}, arXiv:1801.06709 (published 2019)
+\cite{source}.  Theorems 4.2--4.4 establish Hardy-space membership and
+Poisson representation for Hilbert-valued analytic functions in the range
+$2\leq p\leq\infty$.  Section 5, PDF page 20, states:
+
+\begin{quote}
+For the cases $1\leq p<2$, results like Theorems 4.2, 4.3, and 4.4 require
+separate proof techniques.  The authors propose to use Banach spaces having
+Fourier type $p$, and say that future research will obtain those theorems in
+the low-$p$ range.
+\end{quote}
+
+Thus the concrete target is to pass below $p=2$, with Fourier type suggested
+as the additional Banach-space hypothesis.
+
+\section{Explicit supporting answer}
+
+The separate later paper by the same authors,
+\emph{Note on vector valued Hardy spaces related to analytic functions having
+distributional boundary values}, arXiv:2001.10021 (2020) \cite{support},
+explicitly identifies the source and its Theorem 4.4.  Its introduction,
+PDF page 1, says that the earlier paper obtained the vector-valued result only
+for $2\leq p\leq\infty$ and only for Hilbert targets, and then states that the
+aim of the note is to prove it for every $1\leq p\leq\infty$ and every Banach
+space.
+
+Theorem 1, on supporting PDF page 2, gives the promised statement.  If $X$ is
+any Banach space, $C$ is a regular open convex cone, $p\in[1,\infty]$, and an
+$X$-valued holomorphic function $F:T^C\to X$ has distributional boundary
+value $f\in L^p(\mathbb R^n,X)$, then
+\[
+ F\in H^p(T^C,X),\qquad
+ \|F\|_{H^p}=\|f\|_{L^p},
+\]
+and the proof identifies $F$ with the Poisson integral of $f$.
+
+\section{Why this answers the proposal}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Feature & 2019 source & 2020 answer \\
+\midrule
+Exponent range & $2\leq p\leq\infty$ & $1\leq p\leq\infty$ \\
+Target space & Hilbert space & arbitrary Banach space \\
+Suggested extra input & Fourier type $p$ & none \\
+Conclusion & Hardy membership/Poisson form & same, in stronger scope \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The later theorem therefore contains the proposed low-$p$ extension as a
+strict special case.  This relation is explicit rather than agent-inferred:
+the supporting authors cite the earlier paper, name Theorem 4.4, describe its
+exact limitation, and announce the improvement before proving it.
+
+\section{Scope and classification}
+
+No part of the source's stated low-$p$ extension remains open under the later
+theorem's hypotheses.  The correct run classification is
+\texttt{literature\_already\_answered}, not a new full or partial solution.
+The source and supporting PDFs are stored with this packet; the precise
+source locations and scope audit are recorded in \texttt{verification.md}.
+
+\begin{thebibliography}{9}
+\bibitem{source}
+R. D. Carmichael, S. Pilipovi\'{c}, and J. Vindas,
+\emph{Vector valued Hardy spaces related to analytic functions having
+distributional boundary values}, Complex Variables and Elliptic Equations
+64 (2019), 1634--1654; arXiv:1801.06709.
+
+\bibitem{support}
+R. D. Carmichael, S. Pilipovi\'{c}, and J. Vindas,
+\emph{Note on vector valued Hardy spaces related to analytic functions having
+distributional boundary values}, arXiv:2001.10021, 2020.
+\end{thebibliography}
+
+\end{document}

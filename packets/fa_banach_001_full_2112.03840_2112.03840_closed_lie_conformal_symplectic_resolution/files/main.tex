@@ -1,0 +1,309 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.88in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,microtype,xcolor}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.52em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sp}{\operatorname{Sp}}
+\newcommand{\CSp}{\operatorname{CSp}^{+}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\newcommand{\pv}{\operatorname{pv}}
+\newcommand{\cstatus}{\textcolor{blue!60!black}{\textbf{candidate full closed-Lie solution---likely valid}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Closed-Lie resolution of the higher-dimensional homogeneous-kernel problem}\par
+\vspace{0.3em}
+{\large Conformal-symplectic existence in even dimension and odd-dimensional impossibility}\par
+\vspace{0.4em}
+\cstatus
+\end{center}
+
+\section*{1. Source problem and scope}
+
+Avetisyan and Karapetyants ask, at the end of Section 4.5 of
+arXiv:2112.03840v1 \cite{AK}, for a natural subgroup of $GL^+(n)$, $n>2$, producing an essentially unique homogeneous integral kernel analogous to their two-dimensional kernel, and for properties of the resulting operator.  A short source excerpt is:
+\begin{quote}
+``what would be a natural choice of a subgroup $G\subset GL^+(n)$ \ldots{} that produces an essentially unique homogeneous integral kernel''
+\end{quote}
+The full statement is visible in the page-31 evidence crop below.  The same open problem is explicitly reiterated in arXiv:2504.04127v1 \cite{AKM}, which studies the two-dimensional operator in function spaces.
+
+\begin{center}
+\includegraphics[width=0.98\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+We give a complete answer in the natural category of closed linear Lie subgroups acting transitively on the punctured space.  In every even dimension the positive conformal-symplectic group gives the desired nontrivial Case-B mechanism.  In odd dimension, Kramer's classification of transitive linear groups \cite{Kramer} shows that no nonzero essentially unique Case-B kernel can exist: the only essentially unique kernel is the constant, Case-A kernel for $SL(n)$.  Thus the apparent odd-dimensional gap is an obstruction, not a missing construction.
+
+\section*{2. Definitions}
+
+For the constructive half, let $V=\R^{2m}$, $m\geq2$, and fix a nondegenerate alternating form $\omega$ on $V$.  Define the positive conformal-symplectic group
+\[
+ \CSp(V,\omega)
+ :=\{g\in GL(V):\ \omega(gx,gy)=c(g)\omega(x,y)\text{ for some }c(g)>0\}.
+\]
+Writing $g=c(g)^{1/2}s$ shows that $s\in\Sp(V,\omega)$ and
+\begin{equation}\label{eq:det}
+ \det g=c(g)^m>0.
+\end{equation}
+Thus $G:=\CSp(V,\omega)$ is a natural subgroup of $GL^+(2m)$ and acts by dilations of Lebesgue measure with character $\lambda_g=\det g$.
+
+Following \cite{AK}, a measurable kernel $K$ is strongly $G$-homogeneous when
+\begin{equation}\label{eq:kernel-hom}
+ K(gx,gy)=(\det g)^{-1}K(x,y)
+\end{equation}
+for all $g\in G$, modulo the usual almost-everywhere identification.  We call $K$ symmetric or antisymmetric when $K(y,x)=K(x,y)$ or $K(y,x)=-K(x,y)$, respectively.
+
+\section*{3. Proof intuition}
+
+The symplectic product is the missing relative invariant.  The group $G$ rescales it by $c(g)$ while Lebesgue measure rescales by $c(g)^m$.  Consequently a kernel of weight $(\det g)^{-1}$ must have degree $-m$ in $\omega(x,y)$.  Moreover, $G$ is transitive on pairs with a fixed sign of $\omega(x,y)$; hence only two constants, one for each sign, survive.  Swap symmetry relates those constants and leaves a one-dimensional class, just as in the source's orientation-preserving two-dimensional example.
+
+The higher-order singularity is the analytic subtlety.  The parity-matched function $t^{-m}$ has a canonical homogeneous finite-part distribution, obtained by differentiating $\pv(1/t)$.  Pulling it back through $t=\omega(x,y)$ gives the operator.  This also reveals why the direct antisymmetric analogue behaves best for odd $m$: exactly then $t^{-m}$ is antisymmetric.
+
+Odd dimensions are controlled by classification rather than construction.  Kramer's theorem leaves only similarity groups, $SL(d)$ and its scalar extensions, and the exceptional similarity group $G_2\R_{>0}$ in dimension seven.  Similarity groups preserve continuous Gram parameters and therefore admit infinitely many kernels; $SL(d)$ is generically two-frame transitive and leaves only constants; adjoining any nontrivial scalar makes the determinant covariance incompatible with that constant and forces the kernel to vanish.  These three elementary orbit calculations exhaust the odd-dimensional problem.
+
+\section*{4. Generic-orbit classification and essential uniqueness}
+
+\begin{lemma}[generic pair orbits]\label{lem:orbits}
+The group $G=\CSp(V,\omega)$ acts transitively on $V\setminus\{0\}$.  Its diagonal action on
+\[
+ U=\{(x,y)\in V\times V:\omega(x,y)\ne0\}
+\]
+has exactly two orbits,
+$U_+=\{\omega(x,y)>0\}$ and $U_-=\{\omega(x,y)<0\}$.
+\end{lemma}
+
+\begin{proof}
+For $x\ne0$, choose $z$ with $\omega(x,z)=1$ and extend $(x,z)$ to a symplectic basis.  Mapping one such basis to another proves that $\Sp(V,\omega)$, hence $G$, is transitive on nonzero vectors.
+
+Now take $(x,y),(x',y')\in U$ with $\omega(x,y)$ and $\omega(x',y')$ of the same sign, and put
+$c=\omega(x',y')/\omega(x,y)>0$.  The prescribed map $x\mapsto x'$, $y\mapsto y'$ is $c$-conformal on the symplectic plane $\operatorname{span}\{x,y\}$.  Choose symplectic complements of this plane and its target and extend the map there by $c^{1/2}$ times a symplectic isomorphism.  The resulting element of $G$ sends $(x,y)$ to $(x',y')$.  The sign cannot change because $c(g)>0$.
+\end{proof}
+
+\begin{theorem}[even-dimensional kernel classification]\label{thm:classification}
+Modulo a null set, every measurable kernel satisfying \eqref{eq:kernel-hom} has the form
+\begin{equation}\label{eq:AB}
+ K_{A,B}(x,y)=
+ \begin{cases}
+ A\,|\omega(x,y)|^{-m},&\omega(x,y)>0,\\
+ B\,|\omega(x,y)|^{-m},&\omega(x,y)<0,
+ \end{cases}
+\end{equation}
+for unique constants $A,B$.  Conversely, every such kernel is strongly homogeneous.  Hence the space of homogeneous kernels is two-dimensional.
+
+The symmetric and antisymmetric subspaces are each one-dimensional: symmetry is equivalent to $B=A$, while antisymmetry is equivalent to $B=-A$.  In particular, the parity-matched kernel
+\begin{equation}\label{eq:Km}
+ K_m(x,y)=\omega(x,y)^{-m}
+\end{equation}
+spans the unique class satisfying
+$K_m(y,x)=(-1)^mK_m(x,y)$.  It is antisymmetric exactly when $m$ is odd, i.e. when $\dim V\equiv2\pmod4$.
+\end{theorem}
+
+\begin{proof}
+The hypersurface $\{\omega=0\}$ has Lebesgue measure zero in $V\times V$.  By Lemma~\ref{lem:orbits}, a homogeneous kernel is determined on $U_+$ and $U_-$ by its values at pairs with symplectic product $1$ and $-1$.  If $p$ lies in either orbit and $t=\omega(p)$, an element taking the corresponding normalized pair to $p$ has multiplier $|t|$.  Equations \eqref{eq:det} and \eqref{eq:kernel-hom} therefore force the factor $|t|^{-m}$, giving \eqref{eq:AB}.  Direct substitution proves the converse.  Swapping the variables exchanges the two sign orbits, so the assertions about $A,B$ and parity follow.
+\end{proof}
+
+For $m=1$, $G=GL^+(2)$ and Theorem~\ref{thm:classification} recovers exactly the two-dimensional orientation-split kernel space in \cite{AK}; its antisymmetric class is $1/\omega(x,y)$.  Thus the construction is not merely analogous at the level of a formula: it extends the same orbit mechanism.
+
+\section*{5. A canonical finite-part operator}
+
+Let
+\begin{equation}\label{eq:um}
+ u_m:=\Pf\frac1{t^m}
+ :=\frac{(-1)^{m-1}}{(m-1)!}\,D^{m-1}\!\left(\pv\frac1t\right).
+\end{equation}
+Then $u_m$ agrees with $t^{-m}$ off the origin, is homogeneous of degree $-m$ under positive dilations, and has parity
+$u_m(-t)=(-1)^m u_m(t)$.  For a Schwartz function $\phi$,
+\begin{equation}\label{eq:um-action}
+ \langle u_m,\phi\rangle
+ =\frac1{(m-1)!}\,\pv\!\int_{\R}\frac{\phi^{(m-1)}(t)}t\,dt.
+\end{equation}
+
+For $x\ne0$, the linear functional $\ell_x(y)=\omega(x,y)$ is a submersion.  Define
+\begin{equation}\label{eq:Tm}
+ (T_mf)(x):=\big\langle u_m(\ell_x(\cdot)),f\big\rangle,
+ \qquad f\in\mathcal S(V).
+\end{equation}
+Equivalently, let the one-direction Radon slice be
+\[
+ (R_xf)(t)=\int_{\ell_x(y)=t}\frac{f(y)}{\|\nabla\ell_x\|}\,d\sigma_t(y).
+\]
+The coarea formula and \eqref{eq:um-action} give the rigorous representation
+\begin{equation}\label{eq:radon-hilbert}
+ (T_mf)(x)=\frac1{(m-1)!}\,
+ \pv\!\int_{\R}\frac{(R_xf)^{(m-1)}(t)}t\,dt.
+\end{equation}
+This is a higher-order Radon/Hilbert formula.  When $m=1$ it reduces to the principal-value mechanism of the source's two-dimensional operator.
+
+\begin{proposition}[operator properties]\label{prop:operator}
+The operator \eqref{eq:Tm} has the following properties.
+\begin{enumerate}
+\item It maps $\mathcal S(V)$ to smooth functions on $V\setminus\{0\}$ and is nonzero.
+\item With $L_gf(x)=f(g^{-1}x)$, it is $G$-homogeneous:
+\[
+ T_mL_g=L_gT_m\qquad(g\in G).
+\]
+\item Every output is homogeneous of degree $-m$:
+\[
+ (T_mf)(rx)=r^{-m}(T_mf)(x)\qquad(r>0).
+\]
+Consequently, if $T_mf\ne0$, then $T_mf\notin L^p(V)$ for every $1\le p\le\infty$.
+\item On compactly supported smooth test functions away from the origin, its distributional kernel has formal-adjoint parity
+\[
+ T_m^*=(-1)^mT_m.
+\]
+Thus it is formally skew-adjoint for odd $m$ and formally self-adjoint for even $m$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The pullback of a distribution by a submersion is well defined, and its dependence on the nonzero parameter $x$ is smooth.  To see nonvanishing directly, fix $x_0\ne0$ and symplectic coordinates $(a,t,w)$ with $\omega(x_0,y)=t$.  Choose a Schwartz function $q(a,w)$ of integral $1$ and put $f(a,t,w)=q(a,w)t^me^{-t^2}$.  The singularity cancels ordinarily and $(T_mf)(x_0)=\int_{\R}e^{-t^2}dt\ne0$.
+
+For covariance, substitute $y=gz$ in \eqref{eq:Tm}.  Since
+\[
+ \omega(x,gz)=c(g)\omega(g^{-1}x,z),\qquad
+ u_m(c(g)t)=c(g)^{-m}u_m(t),
+\]
+the factor $c(g)^{-m}$ cancels the Jacobian $\det g=c(g)^m$, leaving $(T_mf)(g^{-1}x)$.  Separate scaling in the first argument of $\omega$ proves output homogeneity.
+
+If a nonzero smooth function $h$ on $V\setminus\{0\}$ is homogeneous of degree $-m$, its polar $L^p$ integral contains
+\[
+ \int_0^\infty r^{2m-1-mp}\,dr,
+\]
+which diverges at infinity for $p<2$, at the origin for $p>2$, and logarithmically at both ends for $p=2$.  For $p=\infty$, nonzero homogeneity forces blow-up at the origin.  Finally,
+$\omega(y,x)=-\omega(x,y)$ and the parity of $u_m$ give the formal-adjoint identity after swapping variables.
+\end{proof}
+
+\section*{6. Ordinary principal values and the parity obstruction}
+
+The finite part in \eqref{eq:Tm} is genuinely needed for $m>1$.  For fixed $x\ne0$, the ordinary symmetric truncation
+\begin{equation}\label{eq:trunc}
+ \lim_{\varepsilon\downarrow0}
+ \int_{|\omega(x,y)|>\varepsilon}\frac{f(y)}{\omega(x,y)^m}\,dy
+\end{equation}
+exists if and only if
+\begin{equation}\label{eq:cancellation}
+ (R_xf)^{(j)}(0)=0
+ \quad\text{for every }0\le j\le m-2\text{ with }j\equiv m\pmod2.
+\end{equation}
+Indeed, Taylor expansion of $R_xf(t)$ at zero shows that precisely these terms produce even, nonintegrable powers in the symmetric truncation; all opposite-parity singular terms cancel.  Under \eqref{eq:cancellation}, \eqref{eq:trunc} equals the finite-part value.
+
+There is also a sharp one-dimensional obstruction explaining the modulo-$4$ distinction.  Let
+\[
+ k_{A,B}(t)=
+ \begin{cases}A|t|^{-m},&t>0,\\B|t|^{-m},&t<0.\end{cases}
+\]
+Among scalar pullback regularizations $u(\omega(x,y))$, an exactly homogeneous distributional extension of degree $-m$ exists only if
+\begin{equation}\label{eq:residue-condition}
+ B=(-1)^mA.
+\end{equation}
+To prove this, for $\Re z>-1$ consider
+\[
+ \langle F_z,\phi\rangle
+ =\int_0^\infty r^z\big(A\phi(r)+B\phi(-r)\big)\,dr.
+\]
+Its meromorphic continuation has at $z=-m$ a residue proportional to
+\[
+ \big(A+(-1)^{m-1}B\big)\delta^{(m-1)}.
+\]
+If this coefficient is nonzero, the finite part has a logarithmic scaling anomaly.  The anomaly cannot be removed by adding a distribution supported at zero: for the Euler operator $E=tD$,
+\[
+ (E+m)\delta^{(j)}=(m-j-1)\delta^{(j)},
+\]
+so the obstructing $\delta^{(m-1)}$ coefficient is unchanged.  This proves necessity; \eqref{eq:um} proves sufficiency.  Requiring the parity $(-1)^m$ also removes the otherwise possible homogeneous contact term $c\delta^{(m-1)}$, so $u_m$ is canonical.
+
+Consequently, for odd $m$ the unique antisymmetric measurable class is precisely the class with a canonical homogeneous scalar finite part.  For even $m$, the canonical scalar finite-part class is symmetric, while the antisymmetric measurable class requires either the cancellation domain appropriate to its stronger singularity or a regularization with a scaling anomaly.  This is an analytic limitation, not a failure of the kernel classification.
+
+\section*{7. Odd-dimensional classification and impossibility}
+
+We now write $d\geq3$ for an odd integer and $M=\R^d\setminus\{0\}$.  The next theorem treats every closed subgroup $G\subset GL^+(d)$ acting transitively on $M$, not merely connected ones.
+
+\begin{theorem}[odd-dimensional closed-Lie obstruction]\label{thm:odd}
+Let $d\geq3$ be odd, and let $G\subset GL^+(d,\R)$ be closed and transitive on $M$.  Up to linear conjugacy, exactly one of the following kernel alternatives occurs.
+\begin{enumerate}
+\item $G=SO(d)\R_{>0}$, or $d=7$ and $G=G_2\R_{>0}$.  These are Case-A groups and their homogeneous measurable kernel spaces are infinite-dimensional.
+\item $G=SL(d,\R)$.  This is Case A and the homogeneous kernels are exactly the constants modulo null sets; the associated operator is
+\[
+ Tf(x)=C\int_{\R^d}f(y)\,dy.
+\]
+\item $SL(d,\R)\subsetneq G\subseteq GL^+(d,\R)$, including $G=GL^+(d,\R)$.  Then the only homogeneous measurable kernel is zero.  These are Case-B groups.
+\end{enumerate}
+Consequently, no closed transitive subgroup of $GL^+(d)$ in odd dimension produces a nonzero essentially unique Case-B kernel.  The constant $SL(d)$ kernel is the sole essentially unique odd-dimensional alternative, but it is the degenerate Case-A solution already reduced by the source theory to invariant measure.
+\end{theorem}
+
+\begin{proof}
+Because $M$ is connected, the identity component $G^\circ$ is transitive.  Indeed, $G^\circ$ has the same Lie algebra as $G$, so each $G^\circ$-orbit has full dimension and is open; normality of $G^\circ$ makes all such orbits open, and connectedness permits only one.
+
+Kramer's Theorem 6.17 \cite{Kramer} classifies closed connected linear groups transitive on nonzero real vectors.  In odd dimension its list reduces to
+\[
+ SO(d)\R_{>0},\qquad SL(d,\R),\qquad GL^+(d,\R),
+\]
+together with $G_2\R_{>0}$ when $d=7$.  The normalizer table in Kramer's Theorem 6.14 shows that the first and exceptional groups have no larger subgroup inside $GL^+(d)$ with the same identity component.  If $G^\circ=SL(d)$, every $g\in G$ can be written $g=rs$ with $r>0$ and $s\in SL(d)$; since $s\in G$, the scalar $rI$ also lies in $G$.  Thus the remaining disconnected possibilities are precisely scalar extensions between $SL(d)$ and $GL^+(d)$.
+
+It remains to compute kernels in these cases.  For the similarity group, simultaneous rotation and positive scaling give all kernels
+\begin{equation}\label{eq:similarity-kernels}
+ K(x,y)=|x|^{-d}
+ F\!\left(\frac{|y|}{|x|},\frac{\langle x,y\rangle}{|x||y|}\right),
+\end{equation}
+where $F$ is an arbitrary measurable function.  Conversely every expression \eqref{eq:similarity-kernels} is homogeneous.  The formula is exact modulo the null coordinate sets because $SO(d)$ is transitive on pairs with a fixed Gram matrix when $d\geq3$.  Hence this space is infinite-dimensional.  Since $G_2\R_{>0}\subset SO(7)\R_{>0}$, all the kernels in \eqref{eq:similarity-kernels} remain homogeneous for the exceptional group, so its kernel space is also infinite-dimensional.  In either similarity case, fixing a nonzero vector forces the scalar factor to be one, so the stabilizer has determinant one and the group is Case A.
+
+For $SL(d)$, the set of linearly independent pairs has full measure, and $SL(d)$ is transitive on it: extend each pair to a basis and adjust one complementary basis vector to make the change-of-basis determinant one.  Since the determinant character is trivial, every homogeneous kernel is therefore constant almost everywhere.
+
+Finally suppose $G$ properly contains $SL(d)$.  Then $rI\in G$ for some $r\ne1$.  $SL(d)$-invariance makes a kernel constant, say $C$, on the generic pair orbit, whereas covariance under $rI$ gives
+\[
+ C=K(rx,ry)=r^{-d}K(x,y)=r^{-d}C.
+\]
+Thus $C=0$.  Moreover, after fixing $x\ne0$, choose $s\in SL(d)$ with $sx=r^{-1}x$; then $rs$ fixes $x$ and has determinant $r^d\ne1$, so this is Case B.  The three alternatives are exhaustive.
+\end{proof}
+
+\begin{corollary}[closed-Lie resolution of the source problem]\label{cor:full}
+Within closed transitive linear Lie groups, the higher-dimensional problem has a complete answer.  For even $d=2m$, $G=\CSp(2m,\R)$ gives the nonzero two-orientation kernel space in Theorem~\ref{thm:classification}, with a unique symmetric and a unique antisymmetric class and the finite-part operator properties proved above.  For odd $d$, Theorem~\ref{thm:odd} rules out every nonzero essentially unique Case-B kernel; only the constant $SL(d)$ Case-A operator remains.
+\end{corollary}
+
+\section*{8. Verification and novelty boundary}
+
+The even-dimensional proof is self-contained apart from standard distribution pullback and coarea facts.  The odd-dimensional exhaustion relies decisively on Kramer's published Theorems 6.14 and 6.17 \cite{Kramer}; the deduction from the list is proved above.  The orbit argument was checked explicitly in the low-dimensional cases $m=1,2,3$, and the accompanying script verifies determinant, covariance, and swap parity for random elementary conformal-symplectic matrices.  Computation is only a sanity check, not part of the proof.
+
+A bounded search used the run's four lightweight indexes; local arXiv source metadata; arXiv-id, title, author, ``conformal symplectic'', ``homogeneous integral kernel'', ``transitive on nonzero vectors'', Kramer, and $GL^+(n)$ keyword combinations; and close-variant web searches.  No paper was found that explicitly ties the conformal-symplectic construction or Kramer's classification to the open problem in \cite{AK}.  However, Clerc--Kobayashi--\O rsted--Pevzner \cite{CKOP} study kernels given by powers of the standard symplectic form, their homogeneous-distribution continuation, and associated intertwining operators on spheres.  Therefore this packet does \emph{not} claim novelty for symplectic-form power kernels, their general distribution theory, or the transitive-group classification itself.  The candidate contribution is their exact synthesis in the source framework: the $\CSp$ generic-orbit theorem and operator, plus the exhaustive odd-dimensional obstruction.  A broader representation-theoretic review is still required before a publication-level novelty claim.
+
+\section*{9. Scope boundary and further research}
+
+The extracted problem is resolved in the closed linear Lie category used by the source's geometric setup.  The following broader questions remain outside that claim:
+\begin{itemize}
+\item pathological nonclosed subgroups for which measurable invariance need not automatically extend to the closure;
+\item a function-space boundedness theory adapted to degree-$-m$ outputs;
+\item for dimensions divisible by $4$, a comparably canonical antisymmetric operator without a scalar scaling anomaly;
+\item a comprehensive novelty comparison with symplectic Knapp--Stein and prehomogeneous-vector-space literature.
+\end{itemize}
+
+Human review should focus on the use of Kramer's list and normalizers in Theorem~\ref{thm:odd}, the orbit-extension step in Lemma~\ref{lem:orbits}, the distributional covariance calculation, and the residue obstruction.  The current recommendation is to retain this as a likely-valid candidate full closed-Lie solution.
+
+\begin{thebibliography}{9}
+\bibitem{AK}
+Z.~Avetisyan and A.~Karapetyants,
+\emph{Homogeneous operators and homogeneous integral operators},
+arXiv:2112.03840v1; Math. Methods Appl. Sci. 46 (2023), 811--829,
+\href{https://doi.org/10.1002/mma.8549}{doi:10.1002/mma.8549}.
+
+\bibitem{AKM}
+Z.~Avetisyan, A.~Karapetyants, and A.~Mirotin,
+\emph{On a unique two-dimensional integral operator homogeneous with respect to all orientation preserving linear transformations},
+arXiv:2504.04127v1 (2025).
+
+\bibitem{CKOP}
+J.-L.~Clerc, T.~Kobayashi, B.~\O rsted, and M.~Pevzner,
+\emph{Generalized Bernstein--Reznikov integrals},
+arXiv:0906.2874v4 (2010).
+
+\bibitem{Kramer}
+L.~Kramer,
+\emph{Two-transitive Lie groups},
+J. Reine Angew. Math. 563 (2003), 83--113.
+\end{thebibliography}
+
+\end{document}

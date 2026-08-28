@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2502.05533",
+  "author_list": [
+    "David Norrbo"
+  ],
+  "claim_short": "Conjecture 2 predicts an increasing radial weight v, a disk automorphism phi, and an f in BMOA_v for which f composed with phi is not in BMOA_v.",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2502.05533v2",
+    "source_url": "https://arxiv.org/abs/2502.05533v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate counterexample/disproof likely valid: Conjecture 2 is false because every disk automorphism acts boundedly and invertibly on BMOA_{v,p} and VMOA_{v,p} for every positive nondecreasing radial weight",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/",
+  "packet_title": "Automorphism invariance for arbitrary increasing radial weights",
+  "primary_arxiv_id": "2502.05533",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0549",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2502.05533_2502.05533_automorphism_invariance_disproof/files/solution_packet.pdf",
+  "source_authors": "David Norrbo",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2502.05533_automorphism_invariance_disproof/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2502.05533v2",
+  "source_question": "",
+  "source_title": "Compactness and related properties of weighted composition operators on weighted BMOA spaces",
+  "source_url": "https://arxiv.org/abs/2502.05533v2",
+  "source_year": "2025",
+  "verification_status": "unverified"
+}

@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1210.0835",
+  "author_list": [
+    "Plamen Djakov",
+    "Boris Mityagin"
+  ],
+  "claim_short": "For every m>=1,",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1098,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1210.0835v1",
+    "source_url": "https://arxiv.org/abs/1210.0835v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate counterexample likely valid: the proposed B3(2m+1) lower bound C^m/m! is impossible",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/",
+  "packet_title": "The proposed B3 factorial lower bound is impossible",
+  "primary_arxiv_id": "1210.0835",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0106",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_1210.0835_1210.0835_b3_lower_bound_superfactorial_obstruction/files/solution_packet.pdf",
+  "source_authors": "Plamen Djakov, Boris Mityagin",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/1210.0835_b3_lower_bound_superfactorial_obstruction/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1210.0835v1",
+  "source_question": "",
+  "source_title": "Combinatorial identities related to eigenfunction decompositions of Hill operators: Open Questions",
+  "source_url": "https://arxiv.org/abs/1210.0835v1",
+  "source_year": "2012",
+  "verification_status": "unverified"
+}

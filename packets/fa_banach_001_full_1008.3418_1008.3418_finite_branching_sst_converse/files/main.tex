@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathcal E}
+
+\title{The Converse for Spherically Symmetric Trees\\
+\large A candidate full solution to the question after Theorem 2.2 of arXiv:1008.3418}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 9}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate full solution, likely valid, pending expert review.  The argument is
+self-contained apart from the standard equivalence between generalized
+roundness and supremal negative type recalled in the source paper.}}
+\end{center}
+
+\section{Source question and answer}
+
+Caffarelli, Doust, and Weston prove in Theorem 2.2 of
+\cite{CaffarelliDoustWeston} that if the downward degree sequence
+$(d_0,d_1,\ldots)$ of a countable spherically symmetric tree (SST) has
+infinitely many entries larger than one, then the tree has generalized
+roundness one.  On page 5, immediately before Section 3, they ask:
+
+\begin{quote}
+``We do not know if the converse of Theorem 2.2 is true.''
+\end{quote}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{Theorem 2.2 and the converse question on page 5 of the source paper.}
+\end{figure}
+
+The answer is affirmative.  We prove a stronger metric-tree statement.  A
+\emph{finite-topological tree} will mean a geodesic metric tree obtained by
+gluing finitely many compact intervals and half-lines at endpoints, without
+creating a cycle.  Its open edges are the interval or half-line interiors
+after a finite vertex set has been chosen.  Subdivision only increases the
+number of open edges, so no minimality convention is needed.
+
+\section{Proof intuition}
+
+For a finite signed configuration of total mass zero on a tree, there is a
+unique cumulative flow along each oriented edge.  Integrating the
+distance-power form twice transfers the coefficients to these flows.  On one
+edge the mixed derivative of $|s-t|^p$ has the favorable sign and produces the
+positive Riesz kernel $|s-t|^{p-2}$.  Between two distinct edges, the distance
+is affine in the two edge coordinates, so the unfavorable contribution has
+the shifted Hankel kernel $(s+t+c)^{p-2}$.
+
+The key point is quantitative: when $p$ is just above one, every Hankel cross
+term is a small fraction of the corresponding within-edge Riesz energies.  A
+logarithmic change of variables converts both homogeneous kernels into
+convolution kernels.  Their Fourier-multiplier ratio is exactly
+\[
+  \frac{\cos(\pi\alpha/2)}{\cosh(\pi\xi)},\qquad \alpha=2-p.
+\]
+Hence the relative norm is $\cos(\pi\alpha/2)
+=\sin(\pi(p-1)/2)$, which tends to zero as $p\downarrow1$.
+There are only finitely many edge pairs, so diagonal dominance proves
+$p$-negative type for some $p>1$.
+
+\section{The Riesz--Hankel estimate}
+
+Fix $0<\alpha<1$.  For bounded compactly supported real functions on
+$\R_+=(0,\infty)$, set
+\begin{align*}
+ A_\alpha(f,g)
+   &=\int_0^\infty\!\int_0^\infty
+       f(s)g(t)|s-t|^{-\alpha}\,ds\,dt,\\
+ H_{\alpha,c}(f,g)
+   &=\int_0^\infty\!\int_0^\infty
+       f(s)g(t)(s+t+c)^{-\alpha}\,ds\,dt
+       \qquad(c\ge0).
+\end{align*}
+Write $A_\alpha(f)=A_\alpha(f,f)$.
+
+\begin{lemma}[Sharp half-line comparison]\label{lem:hankel}
+For all such $f,g$ and every $c\ge0$,
+\[
+ |H_{\alpha,c}(f,g)|
+ \le r_\alpha A_\alpha(f)^{1/2}A_\alpha(g)^{1/2},
+ \qquad r_\alpha=\cos\frac{\pi\alpha}{2}.
+\]
+In particular, $A_\alpha$ is a positive definite quadratic form.
+\end{lemma}
+
+\begin{proof}
+We first take $c=0$.  Make the logarithmic substitution $s=e^x$ and define
+\[
+  (Uf)(x)=e^{(1-\alpha/2)x}f(e^x).
+\]
+Direct cancellation of the powers of $e^x$ and $e^y$ gives
+\begin{align*}
+ A_\alpha(f,g)
+ &=\int_{\R^2}(Uf)(x)(Ug)(y)a_\alpha(x-y)\,dx\,dy,\\
+ H_{\alpha,0}(f,g)
+ &=\int_{\R^2}(Uf)(x)(Ug)(y)b_\alpha(x-y)\,dx\,dy,
+\end{align*}
+where
+\[
+ a_\alpha(u)=\bigl(2|\sinh(u/2)|\bigr)^{-\alpha},
+ \qquad
+ b_\alpha(u)=\bigl(2\cosh(u/2)\bigr)^{-\alpha}.
+\]
+Both kernels are integrable because $0<\alpha<1$.  With any consistent
+Fourier-transform convention, beta integration gives, for
+$z=\alpha/2+i\xi$,
+\begin{align*}
+ \widehat b_\alpha(\xi)
+ &=\frac{|\Gamma(z)|^2}{\Gamma(\alpha)},\\
+ \widehat a_\alpha(\xi)
+ &=\Gamma(1-\alpha)
+ \left(
+ \frac{\Gamma(z)}{\Gamma(1-\overline z)}
+ +\frac{\Gamma(\overline z)}{\Gamma(1-z)}
+ \right).
+\end{align*}
+The reflection identity for the gamma function yields
+\[
+ \widehat a_\alpha(\xi)
+ =\frac{2\Gamma(1-\alpha)|\Gamma(z)|^2
+          \sin(\pi\alpha/2)\cosh(\pi\xi)}{\pi}>0.
+\]
+Using $\Gamma(\alpha)\Gamma(1-\alpha)=\pi/\sin(\pi\alpha)$,
+we therefore obtain the exact quotient
+\begin{equation}\label{eq:ratio}
+ \frac{\widehat b_\alpha(\xi)}{\widehat a_\alpha(\xi)}
+ =\frac{\cos(\pi\alpha/2)}{\cosh(\pi\xi)}
+ \le r_\alpha.
+\end{equation}
+Plancherel and weighted Cauchy--Schwarz now prove the asserted bilinear
+estimate for $c=0$, while positivity of $\widehat a_\alpha$ proves positivity
+of $A_\alpha$.
+
+For $c>0$, translate both zero-extended functions to the right by $c/2$:
+\[
+ f_c(u)=f(u-c/2)\mathbf 1_{(c/2,\infty)}(u),
+ \qquad
+ g_c(u)=g(u-c/2)\mathbf 1_{(c/2,\infty)}(u).
+\]
+Then $H_{\alpha,c}(f,g)=H_{\alpha,0}(f_c,g_c)$, whereas translation
+invariance of $|s-t|^{-\alpha}$ gives
+$A_\alpha(f_c)=A_\alpha(f)$ and similarly for $g$.  The result follows.
+\end{proof}
+
+The same estimate applies when either function is supported on a finite
+interval: extend it by zero to the half-line.  Reversing an interval coordinate
+does not change its diagonal Riesz energy.
+
+\section{Flows on a finite-topological tree}
+
+Let $G$ be a finite-topological tree with open edges
+$e=1,\ldots,N$.  Choose a root and orient each edge away from it.  For a
+finitely supported signed measure
+\[
+  \mu=\sum_{k=1}^m a_k\delta_{x_k},\qquad \sum_{k=1}^m a_k=0,
+\]
+define $F_e(s)$ to be the $\mu$-mass of the component lying beyond the point
+at coordinate $s$ on edge $e$.  On every half-line $F_e$ has compact support.
+At a branch vertex, the incoming value minus the sum of the outgoing values
+is exactly the atom of $\mu$ at that vertex.  Consequently, edgewise
+integration by parts gives
+\begin{equation}\label{eq:flowibp}
+  \int_G \varphi\,d\mu
+  =\sum_{e=1}^N\int_e F_e(s)\,\partial_e\varphi(s)\,ds
+\end{equation}
+for every continuous function that is continuously differentiable on open
+edges.  This identity incorporates atoms at vertices through the preceding
+Kirchhoff balance; there are no omitted boundary terms.
+
+\begin{lemma}[Finite-edge coercivity]\label{lem:tree}
+Let $1<p<2$, put $\alpha=2-p$, and let
+$r_p=\sin(\pi(p-1)/2)=\cos(\pi\alpha/2)$.  Then
+\begin{equation}\label{eq:coercive}
+ -\int_G\!\int_G d(x,y)^p\,d\mu(x)d\mu(y)
+ \ge p(p-1)\bigl(1-(N-1)r_p\bigr)
+       \sum_{e=1}^N A_\alpha(F_e).
+\end{equation}
+In particular, if $(N-1)r_p\le1$, then $G$ has $p$-negative type.
+\end{lemma}
+
+\begin{proof}
+Apply \eqref{eq:flowibp} in both variables.  Since
+$\alpha\in(0,1)$, all resulting second-derivative kernels are locally
+integrable, so the calculation is justified by ordinary approximation or
+Fubini's theorem.  On a single edge,
+\[
+ -\partial_s\partial_t|s-t|^p
+ =p(p-1)|s-t|^{-\alpha}.
+\]
+For two distinct open edges $e\ne f$, the path joining their interior points
+exits each edge through a fixed endpoint.  If $u,v$ denote distances from
+those endpoints, then
+\[
+ d(x_e(u),x_f(v))=u+v+c_{ef}
+\]
+for some $c_{ef}\ge0$.  Relative to the globally chosen orientations,
+$u$ or $v$ may be reversed; hence the corresponding mixed derivative has an
+inessential sign.  It follows that
+\begin{align*}
+ -\int_G\!\int_G d(x,y)^p\,d\mu(x)d\mu(y)
+ =p(p-1)\bigg(&\sum_e A_\alpha(F_e)\\
+ &+\sum_{e\ne f}\varepsilon_{ef}
+ H_{\alpha,c_{ef}}(\widetilde F_e,\widetilde F_f)\bigg),
+\end{align*}
+where $\varepsilon_{ef}\in\{-1,1\}$ and each tilde records at most a
+coordinate reversal and zero extension.
+
+Lemma \ref{lem:hankel} bounds the absolute value of the $(e,f)$ term by
+$r_p A_\alpha(F_e)^{1/2}A_\alpha(F_f)^{1/2}$.  Therefore
+\begin{align*}
+ \frac{-\iint d(x,y)^p\,d\mu(x)d\mu(y)}{p(p-1)}
+ &\ge \sum_e A_\alpha(F_e)
+ -r_p\sum_{e\ne f}\sqrt{A_\alpha(F_e)A_\alpha(F_f)}\\
+ &\ge \bigl(1-(N-1)r_p\bigr)\sum_e A_\alpha(F_e).
+\end{align*}
+The last inequality follows from
+$(\sum_e\sqrt{A_e})^2\le N\sum_e A_e$.  This proves
+\eqref{eq:coercive}.  When its coefficient is nonnegative, the defining
+zero-sum quadratic inequality for $p$-negative type follows.
+\end{proof}
+
+\begin{theorem}[Finite-topological trees have roundness above one]
+\label{thm:finite-topological}
+Every finite-topological tree has generalized roundness strictly greater than
+one.  More explicitly, if it is presented with $N$ open edges, then it has
+$p$-negative type for every $1<p<2$ satisfying
+\begin{equation}\label{eq:range}
+ (N-1)\sin\frac{\pi(p-1)}2\le1.
+\end{equation}
+For example, the universally safe choice
+\[
+ p=1+\frac2\pi\arcsin\!\left(\frac{1}{2\max\{1,N-1\}}\right)
+\]
+is strictly larger than one.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{lem:tree} proves the zero-sum quadratic inequality for every finite
+configuration in $G$.  This is $p$-negative type.  Generalized roundness equals
+supremal negative type, as recalled in the source paper
+\cite{CaffarelliDoustWeston}, so the displayed safe exponent gives
+$\gamma(G)>1$.
+\end{proof}
+
+\section{Resolution of the converse}
+
+\begin{corollary}[Converse of source Theorem 2.2]
+Let $(T,\rho)$ be a countable spherically symmetric tree with downward degree
+sequence $(d_0,d_1,\ldots)$.  Then
+\[
+ \gamma(T,\rho)=1
+ \quad\Longleftrightarrow\quad
+ \bigl|\{j:d_j>1\}\bigr|=\aleph_0.
+\]
+\end{corollary}
+
+\begin{proof}
+The reverse implication is Theorem 2.2 of
+\cite{CaffarelliDoustWeston}.  Conversely, suppose that only finitely many
+$d_j$ exceed one.  Because the tree is countably infinite, its downward
+degrees are positive; after the last branching level every descendant chain
+is a ray.  There are finitely many such rays and only a finite subtree before
+them.  Suppressing degree-two vertices in its geometric realization therefore
+presents it as a finite-topological tree with some finite number $N$ of open
+edges.  The original vertex set $T$ is an isometric subset of that realization.
+By Theorem \ref{thm:finite-topological}, the realization, and hence its subset
+$T$, has $p$-negative type for some $p>1$.  Thus $\gamma(T)>1$.
+\end{proof}
+
+\section{Verification and limitations}
+
+The proof gives a lower bound depending on the chosen finite edge
+decomposition, not the exact generalized roundness.  Subdividing edges makes
+the bound weaker but cannot invalidate it.  The argument also proves the
+stronger result for arbitrary finite-topological trees, without spherical
+symmetry or unit edge lengths.
+
+The accompanying script \texttt{code/verify\_finite\_edge\_bound.py} checks
+the closed multiplier ratio on five $\alpha$ values and 4,001 frequencies per
+value, and independently compares the beta/gamma formulas with that closed
+ratio at 25 parameter pairs.  It also tests the explicit safe exponent on
+2,400 random weighted finite trees by compressing the powered distance matrix
+to the zero-sum subspace.  These checks are designed to catch sign,
+factor-of-two, and edge-count errors; they are not used in the proof.
+
+The points most deserving human verification are (i) the edgewise
+integration-by-parts identity at branch vertices, and (ii) the fact that the
+sum over distinct edges is an ordered sum, matching the factor
+$N-1$ in the final Cauchy--Schwarz estimate.
+
+\section{Bounded novelty check}
+
+On 27 August 2026, the run's registry, solution, attempt, and proof-gap indexes
+were searched for arXiv:1008.3418, its title, the exact converse wording, and
+finite-ended/finitely-branching negative-type variants.  Bounded arXiv and web
+searches used the same phrases and inspected the related arXiv papers
+1608.03699, 0901.0695, and 1108.0451.  The searches found the original question
+and adjacent results on generalized roundness and finite metric spaces, but no
+exact answer to this converse and no matching finite-topological-tree theorem.
+This makes novelty plausible but does not certify it.
+
+\begin{thebibliography}{9}
+\bibitem{CaffarelliDoustWeston}
+E. Caffarelli, I. Doust, and A. Weston,
+\emph{Metric trees of generalized roundness one},
+Aequationes Math. 83 (2012), arXiv:1008.3418v2,
+doi:10.1007/s00010-011-0108-8.
+\end{thebibliography}
+
+\end{document}

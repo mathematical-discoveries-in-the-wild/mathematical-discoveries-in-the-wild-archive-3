@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1505.07205",
+  "author_list": [
+    "György Pál Gehér"
+  ],
+  "claim_short": "1505.07205 Geher Asymptotic behaviour of Hilbert space operators with applications open problem after Theorem 4.2 describe L asymptotic limits of operators similar to unitary operators on infinite-dimensional spaces. Candidate full separable characterization: for each fixed Banach limit L, A=A_{T,L} for some T similar to a unitary iff A is positive invertible and 1 belongs to the essential numerical range W_e(A),...",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 1126,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1505.07205v1",
+    "source_url": "https://arxiv.org/abs/1505.07205v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate full separable solution likely valid: essential numerical range characterization of L-asymptotic limits of operators similar to unitaries",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/",
+  "packet_title": "Essential numerical range characterization of unitary-similar L-asymptotic limits",
+  "primary_arxiv_id": "1505.07205",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0800",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_1505.07205_1505.07205_essential_numerical_range_l_asymptotic_limits/files/solution_packet.pdf",
+  "source_authors": "György Pál Gehér",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/1505.07205_essential_numerical_range_L_asymptotic_limits/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1505.07205v1",
+  "source_question": "",
+  "source_title": "Asymptotic behaviour of Hilbert space operators with applications",
+  "source_url": "https://arxiv.org/abs/1505.07205v1",
+  "source_year": "2015",
+  "verification_status": "unverified"
+}

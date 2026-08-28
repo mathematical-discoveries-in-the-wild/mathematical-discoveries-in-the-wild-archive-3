@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=0.92in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\setlength{\emergencystretch}{2em}
+
+\definecolor{accent}{RGB}{48,76,101}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\T}{\mathbb T}
+\newcommand{\D}{\mathbb D}
+\newcommand{\A}{\mathcal A}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\m}{m}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{14pt}
+\lhead{Explicit Cauchy transforms under log--log entropy}
+\rhead{Lane 4}
+\cfoot{\thepage}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \lhead{Explicit Cauchy transforms under log--log entropy}%
+  \rhead{Lane 4}%
+  \cfoot{\thepage}%
+}
+
+\title{\color{accent}Explicit Disk-Algebra Cauchy Transforms\\
+under Log--Log Entropy\\[3pt]
+\large A substantial partial answer to Limani--Malman}
+\author{Automated Mathematics Run \texttt{fa\_banach\_001}, lane 4}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\linewidth}{\textbf{Status.}
+\texttt{candidate\_substantial\_partial\_likely\_valid}.  An explicit
+formula is obtained for a class strictly larger than the
+Beurling--Carleson class.  The problem for an arbitrary closed set remains
+open.}}
+\end{center}
+
+\section{Source problem}
+
+In the Introduction of arXiv:2111.14112v3, PDF page~6, Limani and Malman
+ask for an explicit formula for a nonzero measurable function $h$ supported
+on a given closed set $E\subset\T$ such that
+\[
+ C_h(z)=\int_E\frac{h(\zeta)}{1-z\overline\zeta}\,d\m(\zeta)
+\]
+belongs to the disk algebra $\A$ \cite{LM}.  Their construction gives the
+stronger conclusion $C_h\in\A^\infty$ when $E$ is a positive-measure
+Beurling--Carleson set.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+  \caption{The open statement in the Introduction of the source paper,
+  PDF page~6.}
+\end{figure}
+
+We assume throughout that $E$ is proper and has positive normalized Lebesgue
+measure; these are necessary for a nonzero integrable density supported on
+$E$.  The case $E=\T$ is trivial.
+
+\section{Statement and proof intuition}
+
+Let $\{I_n\}$ be the component arcs of $\T\setminus E$, and set
+\[
+ \Phi(t)=\log\!\bigl(e+\log(1/t)\bigr),\qquad 0<t\leq1.
+\]
+The source construction places poles just outside Whitney subarcs and weights
+a subarc of length $\ell$ by $\ell\log(1/\ell)$.  This pays enough entropy to
+make the cutoff flat to every order.  For the disk algebra, flatness is not
+needed.  We instead use the smaller weight $\ell\Phi(\ell)$.  The cutoff then
+decays like a chosen negative power of $\log(e/\dist(\cdot,E))$.
+
+On the complement of $E$, conjugate the cutoff and extend it by zero across
+$E$.  A two-scale estimate shows that the extension has modulus of continuity
+\[
+ \omega(\delta)\lesssim
+  \bigl(\log(e/\delta)\bigr)^{-p}+\delta^{1/3},
+ \qquad p>1.
+\]
+This is a Dini modulus.  The classical Dini theorem makes its harmonic
+conjugate continuous, hence its analytic projection lies in $\A$.  Finally,
+the untruncated conjugate cutoff is anti-analytic, so its analytic projection
+vanishes.  Splitting the circle into $E$ and its complement gives the desired
+Cauchy transform supported on $E$.
+
+\begin{theorem}[Log--log entropy construction]\label{thm:main}
+Let $E\subsetneq\T$ be closed with $\m(E)>0$.  Suppose its complementary
+arcs satisfy
+\begin{equation}\label{eq:llentropy}
+ \sum_n |I_n|\,\Phi(|I_n|)<\infty.
+\end{equation}
+Then there is an explicit bounded nonzero function $h$, supported on $E$,
+such that $C_h\in\A$.
+\end{theorem}
+
+\section{The explicit formula}
+
+Perform the Whitney decomposition from Lemma~2.1 of \cite{LM}:
+\[
+ I_n=\bigcup_{k\in\mathbb Z}B_{n,k},\qquad
+ \ell_{n,k}:=|B_{n,k}|=\frac{|I_n|}{3\cdot2^{|k|}},
+\]
+where $\ell_{n,k}=\dist(B_{n,k},E)$.  Relabel these arcs as $B_j$, their
+lengths as $\ell_j$, and their midpoints as $b_j\in\T$.  Put $r_j=1+\ell_j$.
+
+For a fixed numerical $K>0$ chosen sufficiently large, define
+\begin{equation}\label{eq:Fg}
+ F_E(z)=-K\sum_j
+ \frac{b_j\ell_j\Phi(\ell_j)}{r_jb_j-z},
+ \qquad g_E(z)=\exp(F_E(z)),\qquad z\in\D.
+\end{equation}
+If $g_E^*$ denotes the almost-everywhere radial boundary value, set
+\begin{equation}\label{eq:h}
+ h_E(\zeta)=1_E(\zeta)\,
+ \overline{\zeta g_E^*(\zeta)}.
+\end{equation}
+Equations \eqref{eq:Fg}--\eqref{eq:h} are the promised formula.
+
+\section{Proof}
+
+\begin{lemma}[Whitney summability]\label{lem:sum}
+Condition \eqref{eq:llentropy} implies
+\[
+ \sum_j\ell_j\Phi(\ell_j)<\infty.
+\]
+\end{lemma}
+\begin{proof}
+For $L=|I_n|$, the contribution of its Whitney pieces is
+\[
+ \frac L3\Phi(L/3)+
+ 2\sum_{k\geq1}\frac{L}{3\cdot2^k}
+ \Phi\!\left(\frac{L}{3\cdot2^k}\right).
+\]
+Since $\Phi(L/(3\cdot2^k))\leq C(\Phi(L)+\log(k+2))$ and both
+$\sum2^{-k}$ and $\sum2^{-k}\log(k+2)$ converge, this is at most
+$CL(1+\Phi(L))$.  Here $\Phi\geq1$, so summing in $n$ proves the claim.
+\end{proof}
+
+By Lemma~\ref{lem:sum}, the series in \eqref{eq:Fg} converges normally on
+compact subsets of $\D$.  Moreover
+\[
+ \Re\frac{b_j}{r_jb_j-z}
+ =\Re\frac1{r_j-\overline b_jz}>0,
+\]
+so $\Re F_E<0$ and $|g_E|\leq1$.  The function is nonzero in $\D$, and
+the boundary uniqueness theorem for $H^\infty$ implies
+$g_E^*\neq0$ almost everywhere on $\T$.  Consequently $h_E$ in
+\eqref{eq:h} is bounded and nonzero.
+
+The poles in \eqref{eq:Fg} cluster only at $E$, so $g_E$ continues
+analytically across each compact subarc of $\T\setminus E$.  If
+$\zeta\in B_j$, the $j$th summand and Whitney geometry give
+\[
+ \Re\frac{b_j}{r_jb_j-\zeta}\geq\frac{c}{\ell_j}.
+\]
+All summands have positive real part before multiplication by $-K$; hence
+\begin{equation}\label{eq:decay}
+ |g_E(\zeta)|\leq
+ \exp\{-cK\Phi(\ell_j)\}
+ =\bigl(e+\log(1/\ell_j)\bigr)^{-cK}.
+\end{equation}
+For $\zeta\in B_j$, $\ell_j\asymp\dist(\zeta,E)$.  Choosing $K$ so that
+$p:=cK>2$, equation \eqref{eq:decay} becomes
+\begin{equation}\label{eq:logdecay}
+ |g_E(\zeta)|\leq
+ C\bigl(\log(e/\dist(\zeta,E))\bigr)^{-p}.
+\end{equation}
+
+Define on the circle
+\[
+ S(\zeta)=1_{\T\setminus E}(\zeta)
+ \overline{\zeta g_E^*(\zeta)},
+\]
+using the analytic continuation on $\T\setminus E$ and the value zero on
+$E$.  We next verify the Dini modulus claimed above.  Write
+$d(\zeta)=\dist(\zeta,E)$.  Whitney geometry also gives, uniformly in
+$j$,
+\[
+ |r_jb_j-\zeta|\geq c\,d(\zeta),\qquad \zeta\in\T\setminus E.
+\]
+Indeed, a Whitney center close to $\zeta$ has length comparable with
+$d(\zeta)$, while every other center is separated from $\zeta$ by a
+constant multiple of $d(\zeta)$.  With
+$M=\sum_j\ell_j\Phi(\ell_j)<\infty$, differentiation of
+\eqref{eq:Fg} therefore yields
+\begin{equation}\label{eq:deriv}
+ |F_E'(\zeta)|\leq CKM d(\zeta)^{-2},
+ \qquad |S'(\zeta)|\leq C_Ed(\zeta)^{-2}.
+\end{equation}
+
+Let two circle points be at arc distance at most $\delta$.  If either is
+within $2\delta^{1/3}$ of $E$, then both are within $3\delta^{1/3}$ of
+$E$, and \eqref{eq:logdecay} bounds their two values by
+$C(\log(e/\delta))^{-p}$.  Otherwise the shorter connecting arc stays at
+distance at least $\delta^{1/3}$ from $E$, and \eqref{eq:deriv} plus the
+mean-value theorem bounds the difference by $C_E\delta^{1/3}$.  Thus
+\begin{equation}\label{eq:modulus}
+ \omega_S(\delta)\leq C_E\left[
+ (\log(e/\delta))^{-p}+\delta^{1/3}\right].
+\end{equation}
+Since $p>1$, the right-hand side divided by $\delta$ is integrable near
+zero.  Hence $S$ is Dini continuous.
+
+The Dini theorem for conjugate functions states that the harmonic conjugate
+of a Dini-continuous circle function is continuous \cite[Chapter III]{Zyg}.
+Equivalently, its nonnegative-frequency Riesz projection $P_+S$ is the
+boundary function of an element of $\A$.
+
+Finally, $s:=\overline{\zeta g_E^*(\zeta)}$ belongs to
+$\overline{zH^2}$, so $P_+s=0$.  Since $s=h_E+S$,
+\[
+ C_{h_E}=P_+h_E=-P_+S\in\A.
+\]
+If this function were zero, then $h_E\in\overline{zH^2}$; but $h_E$
+vanishes on the nonempty open set $\T\setminus E$, so boundary uniqueness
+would force $h_E=0$, a contradiction.  This completes the proof of
+Theorem~\ref{thm:main}. \qed
+
+\section{Strict extension beyond Beurling--Carleson sets}
+
+\begin{example}\label{ex:strict}
+For each sufficiently large integer $k$, take
+$N_k=\lfloor a e^k/k^2\rfloor$ disjoint arcs of length $e^{-k}$, with
+$a>0$ small enough that their total length is less than one, and let $E$ be
+the complement of their union.  Then $\m(E)>0$ and
+\[
+ \sum_kN_ke^{-k}\Phi(e^{-k})
+ \asymp\sum_k\frac{\log(k+e)}{k^2}<\infty,
+\]
+whereas
+\[
+ \sum_kN_ke^{-k}\log(e^k)
+ \asymp\sum_k\frac1k=\infty.
+\]
+Thus $E$ satisfies Theorem~\ref{thm:main} but is not a
+Beurling--Carleson set.  Hence the explicit formula \eqref{eq:Fg} applies
+directly to closed sets outside the hypothesis of the source paper's
+cutoff construction.
+\end{example}
+
+\section{Verification, novelty, and limitations}
+
+The proof uses only positive-term estimates.  The accompanying script checks
+the convergence/divergence separation in Example~\ref{ex:strict} and the
+bounded ratio between the Whitney and original log--log entropy sums.  It is
+a consistency check, not part of the proof.
+
+A bounded literature search through 27 August 2026 used arXiv:2111.14112 and
+the phrases ``explicit Cauchy transform closed set'', ``Dini Cauchy transform
+Beurling--Carleson'', ``log log Beurling--Carleson'', and ``loglog entropy
+disk algebra''.  It found the source article and standard Dini-regular
+Cauchy-transform results, but no matching weakening of the source's entropy
+hypothesis.  Novelty confidence is moderate, not definitive.
+
+The theorem does not solve the stated problem for every positive-measure
+closed set.  The remaining obstruction is exactly the possible divergence
+of \eqref{eq:llentropy}; the present positive exterior-pole construction then
+cannot simultaneously have finite pole mass and a uniform Dini modulus.
+
+\paragraph{Human-review recommendation.}
+Review as a likely-valid substantial partial result.  The highest-value
+checks are the denominator estimate preceding \eqref{eq:deriv}, the two-case
+Dini modulus proof, and the boundary uniqueness step proving nontriviality.
+
+\begin{thebibliography}{9}
+\bibitem{LM}
+A.~Limani and B.~Malman,
+\emph{Constructions of some families of smooth Cauchy transforms},
+Canadian Journal of Mathematics \textbf{76} (2024), 319--344;
+arXiv:2111.14112.
+
+\bibitem{Zyg}
+A.~Zygmund,
+\emph{Trigonometric Series}, Vol.~I,
+Cambridge University Press, third edition, 2002.
+\end{thebibliography}
+
+\end{document}

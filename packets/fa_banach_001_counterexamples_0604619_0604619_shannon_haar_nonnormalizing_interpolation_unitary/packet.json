@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "0604619",
+  "author_list": [
+    "David R. Larson"
+  ],
+  "claim_short": "",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 0,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/",
+  "files": {
+    "code_zip": "",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/math/0604619v1",
+    "source_url": "https://arxiv.org/abs/math/0604619v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "",
+  "needs_manual_summary": "yes",
+  "notes": "",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/",
+  "packet_title": "Shannon-Haar counterexample to interpolation-unitary normalization",
+  "primary_arxiv_id": "0604619",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0035",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_0604619_0604619_shannon_haar_nonnormalizing_interpolation_unitary/files/solution_packet.pdf",
+  "source_authors": "David R. Larson",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/0604619_shannon_haar_nonnormalizing_interpolation_unitary/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/math/0604619v1",
+  "source_question": "",
+  "source_title": "Unitary systems and wavelet sets",
+  "source_url": "https://arxiv.org/abs/math/0604619v1",
+  "source_year": "2006",
+  "verification_status": "unverified"
+}

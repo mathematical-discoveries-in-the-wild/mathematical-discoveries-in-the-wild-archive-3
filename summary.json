@@ -1,0 +1,83 @@
+{
+  "by_archive_id": {
+    "archive-1": 1358,
+    "archive-2": 1483,
+    "archive-3": 103
+  },
+  "by_claim_type": {
+    "conditional": 34,
+    "counterexample": 758,
+    "full": 909,
+    "human_verified": 7,
+    "literature": 467,
+    "partial": 769
+  },
+  "by_model": {
+    "GPT5.5": 1041,
+    "GPT5.6": 1887,
+    "unknown": 16
+  },
+  "by_packet_class": {
+    "conditional": 22,
+    "counterexamples": 634,
+    "full": 755,
+    "literature_already_answered": 490,
+    "literature_implied_answers": 289,
+    "partial": 754
+  },
+  "by_result_class": {
+    "conditional": 21,
+    "counterexamples": 611,
+    "full": 738,
+    "human_verified": 42,
+    "literature_already_answered": 490,
+    "literature_implied_answers": 289,
+    "partial": 753
+  },
+  "by_review_detail": {
+    "rejected": 11,
+    "unverified": 2902,
+    "verified": 31
+  },
+  "by_review_state": {
+    "rejected": 11,
+    "unverified": 2902,
+    "verified": 31
+  },
+  "by_source_year": {
+    "2000": 14,
+    "2001": 13,
+    "2002": 14,
+    "2003": 19,
+    "2004": 19,
+    "2005": 26,
+    "2006": 30,
+    "2007": 40,
+    "2008": 49,
+    "2009": 61,
+    "2010": 88,
+    "2011": 88,
+    "2012": 103,
+    "2013": 109,
+    "2014": 107,
+    "2015": 136,
+    "2016": 143,
+    "2017": 137,
+    "2018": 137,
+    "2019": 169,
+    "2020": 223,
+    "2021": 176,
+    "2022": 215,
+    "2023": 196,
+    "2024": 226,
+    "2025": 269,
+    "2026": 137
+  },
+  "by_verification_status": {
+    "rejected": 11,
+    "unverified": 2902,
+    "verified": 31
+  },
+  "total_results": 2944,
+  "unique_primary_arxiv_ids": 2824
+}

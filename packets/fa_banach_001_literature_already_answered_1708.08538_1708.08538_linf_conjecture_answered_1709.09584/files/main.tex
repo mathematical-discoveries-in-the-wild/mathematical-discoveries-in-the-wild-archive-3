@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,array,booktabs}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!65!black]{hyperref}
+
+\newcommand{\linf}{\ell_\infty}
+\emergencystretch=2em
+
+\title{The complex $\linf(\Gamma)$ and $C(K)$ Mazur--Ulam conjecture\\
+was answered affirmatively}
+\author{Literature-resolution packet for arXiv:1708.08538}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\begin{minipage}{0.91\textwidth}
+\textbf{Status: literature already answered (full conjecture).}
+Peralta explicitly proves the $\linf(\Gamma)$ clause in arXiv:1709.09584.
+Mori--Ozawa's Theorem~1 in arXiv:1804.10674 proves the Mazur--Ulam property
+for every unital complex $C^*$-algebra, which settles both $\linf(\Gamma)$
+and $C(K)$.
+\end{minipage}}
+\end{center}
+
+\section{Exact source conjecture}
+
+A Banach space $Z$ has the \emph{Mazur--Ulam property} if, for every Banach
+space $Y$, each surjective isometry $S(Z)\to S(Y)$ extends uniquely to a
+surjective real-linear isometry $Z\to Y$.  Jim\'enez-Vargas, Morales Campoy,
+Peralta, and Ram\'irez prove this for complex $c_0(\Gamma)$ in
+arXiv:1708.08538.  On PDF page~15 they state:
+\begin{quote}
+``We conjecture that the complex spaces $\linf(\Gamma)$ and $C(K)$ also
+satisfy the Mazur--Ulam property.''
+\end{quote}
+Thus the target is a two-clause affirmative conjecture, not merely the
+$\linf$ question highlighted by the later title.
+
+\section{Direct answer to the \texorpdfstring{$\linf(\Gamma)$}{l-infinity(Gamma)} clause}
+
+Peralta's arXiv:1709.09584 explicitly identifies arXiv:1708.08538 as the
+source of the conjecture.  Its introduction says that the paper provides a
+proof, and Theorem~1.1 states that for every infinite set $\Gamma$ the complex
+space $\linf(\Gamma)$ has the Mazur--Ulam property.  This is an exact match in
+the domain, quantifiers, target Banach space, and real-linear conclusion.
+
+\section{A theorem settling both clauses}
+
+Theorem~1 of Mori and Ozawa, arXiv:1804.10674, states that every unital complex
+$C^*$-algebra, regarded as a real Banach space, has the Mazur--Ulam property.
+Both spaces in the source conjecture fall under that theorem:
+\[
+  \linf(\Gamma)\cong C(\beta\Gamma)
+  \quad\text{and}\quad
+  C(K),
+\]
+with their usual pointwise operations and supremum norm, are unital
+commutative complex $C^*$-algebras.  Therefore Mori--Ozawa directly implies
+the Mazur--Ulam property for each.  No additional separability, metrizability,
+or cardinality hypothesis occurs in their theorem.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.19\textwidth}
+                >{\raggedright\arraybackslash}p{0.34\textwidth}
+                >{\raggedright\arraybackslash}p{0.32\textwidth}}
+\toprule
+Clause & Answer & Provenance \\
+\midrule
+$\linf(\Gamma)$ & Peralta, Theorem~1.1; also Mori--Ozawa, Theorem~1
+& Explicit source-aware answer, plus a later general implication \\
+$C(K)$ & Mori--Ozawa, Theorem~1 & Direct $C^*$-algebra implication \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Scope and audit}
+
+The source conjecture as written has no unresolved clause.  This packet does
+not claim that Tingley's problem is solved for arbitrary Banach spaces; only
+the two named domain classes are closed here.
+
+The official arXiv PDFs of 1708.08538, 1709.09584, and 1804.10674 were
+inspected.  The source conjecture occurs on PDF page~15; the explicit
+$\linf$ answer occurs on PDF page~2 of 1709.09584; and the unital
+$C^*$-algebra theorem occurs on PDF page~1 of 1804.10674.  The first match is
+explicitly source-aware.  The second is recorded as a theorem implication;
+no claim is made here that Mori--Ozawa intended to answer this exact source
+conjecture.  Human review should confirm only the bibliographic linkage and
+this provenance distinction.
+
+\begin{raggedright}
+\begin{thebibliography}{9}
+\bibitem{JMPR}
+A.~Jim\'enez-Vargas, A.~Morales Campoy, A.~M.~Peralta, and M.~I.~Ram\'irez,
+\emph{The Mazur--Ulam property for the space of complex null sequences},
+arXiv:1708.08538; Linear Multilinear Algebra 67 (2019).
+
+\bibitem{Peralta}
+A.~M.~Peralta,
+\emph{Extending surjective isometries defined on the unit sphere of
+$\linf(\Gamma)$}, arXiv:1709.09584; Rev. Mat. Complut. 32 (2019), 99--114.
+
+\bibitem{MO}
+M.~Mori and N.~Ozawa,
+\emph{Mankiewicz's theorem and the Mazur--Ulam property for $C^*$-algebras},
+arXiv:1804.10674; Studia Math. 250 (2020), 265--281.
+\end{thebibliography}
+\end{raggedright}
+
+\end{document}

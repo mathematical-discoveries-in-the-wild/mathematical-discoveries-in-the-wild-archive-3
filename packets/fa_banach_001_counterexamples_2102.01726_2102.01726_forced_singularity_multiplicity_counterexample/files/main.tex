@@ -1,0 +1,307 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+
+\title{A Counterexample to the Conjectured Multiplicity\\
+at the Forced Points at Infinity}
+\author{Run \texttt{fa\_banach\_001}, lane 8\\
+\texttt{agent\_lane\_08} (GPT5.6)}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\linewidth}{
+\textbf{Status:} \texttt{candidate\_full\_negative\_solution\_likely\_valid}.\\
+The conjectured value is false.  The sharp generic multiplicity is
+$\ceil{(d\bmod n)/2}$, and this smaller value occurs inside the strictly
+hyperbolic locus for every residue covered by the conjecture.
+}}
+\end{center}
+
+\begin{abstract}
+Simon and Vinzant conjecture that, when $r=d\bmod n\geq3$, the two forced
+complex singularities $[0:1:\pm i]$ of a $C_n$-invariant hyperbolic plane
+curve each have multiplicity $\binom r2$.  We show that the invariant
+monomial support forces only the sharp lower bound $\ceil{r/2}$ and that this
+is the generic exact multiplicity.  For every $d=qn+r$ with $q\geq1$ and
+$r\geq3$, we construct normalized strictly hyperbolic real forms, invariant
+even under the associated dihedral symmetry, whose multiplicity at both
+points is exactly $\ceil{r/2}$.  Since $\ceil{r/2}<\binom r2$, these are full
+counterexamples.  In particular, for $(n,d)=(4,7)$ the multiplicity is $2$
+rather than $3$.
+\end{abstract}
+
+\section{Source conjecture and evidence}
+
+The source is Faye Pasley Simon and Cynthia Vinzant, \emph{Invariant
+hyperbolic curves: determinantal representations and applications to the
+numerical range}, arXiv:2102.01726 (2021) \cite{SimonVinzant}.  In Section 8.1,
+PDF/printed page 20, the authors write that for $d\bmod n\geq3$ the invariant
+curves have complex singularities at $[t:x:y]=[0:1:\pm i]$ and conjecture
+that each has multiplicity
+\[
+    \binom{d\bmod n}{2}.
+\]
+They immediately recall the invariant monomial basis that we use below.  The
+following is a direct crop rendered from that source page.
+
+\begin{center}
+\includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+\paragraph{Precise transcription.}
+``For curves with $d\bmod n\geq3$, it seems there are always multiple
+singularities at infinity [\ldots]. More specifically, there are complex
+singularities at the points $[t:x:y]=[0:1:\pm i]$. We conjecture they each
+have multiplicity $\binom{d\bmod n}{2}$.''
+
+\section{Definitions and local coordinates}
+
+Put
+\[
+    u=x+iy,\qquad v=x-iy.
+\]
+The degree-$d$ invariant space has the basis recorded in the source:
+\begin{equation}\label{eq:basis}
+ \C[t,x,y]^{C_n}_d
+ =\operatorname{span}_{\C}
+ \bigl\{t^{d-j-k}u^jv^k:
+ j\equiv k\pmod n,\ j+k\leq d\bigr\}.
+\end{equation}
+For a homogeneous plane curve $f=0$, its multiplicity at a projective point
+is the least total degree of a nonzero term in a dehomogenized local Taylor
+expansion.
+
+At $P_+=[0:1:i]$, work in the chart $x=1$ and write $t=\tau$, $y=i+z$.
+Then
+\[
+   u=iz,\qquad v=2-iz,
+\]
+so $v$ is a local unit.  Consequently
+\begin{equation}\label{eq:localorder}
+ \ord_{P_+}\bigl(t^{d-j-k}u^jv^k\bigr)
+ =(d-j-k)+j=d-k.
+\end{equation}
+At $P_-=[0:1:-i]$, the roles of $u$ and $v$ are reversed and the order is
+$d-j$.
+
+\section{Proof intuition}
+
+The source's own exponent diagram contains the obstruction to the proposed
+number.  At $P_+$, maximizing the exponent $k$ minimizes local order by
+\eqref{eq:localorder}.  The congruence $j\equiv k\pmod n$ and the degree
+constraint allow $k$ to reach
+$qn+\floor{r/2}$, not merely a value compatible with order $\binom r2$.
+The corresponding support point is unique, so its coefficient cannot cancel
+against another monomial.  This gives the exact generic order $\ceil{r/2}$.
+
+To ensure this is not an artifact of leaving the hyperbolic locus, start with
+a radial form having $d$ uniformly separated real roots in the $t$-direction
+and add the two conjugate extremal monomials.  A compact sign argument keeps
+all $d$ roots real and distinct for small perturbations, while the extremal
+term lowers the local multiplicity to $\ceil{r/2}$ at both forced points.
+
+\section{The sharp support calculation}
+
+Write throughout
+\[
+   d=qn+r,\qquad 0\leq r<n,
+   \qquad s=\floor{r/2},\qquad \delta=r-2s\in\{0,1\}.
+\]
+
+\begin{lemma}[extremal invariant monomial]\label{lem:support}
+Among the pairs $(j,k)$ in \eqref{eq:basis},
+\[
+ \max k=qn+s,
+\]
+and equality holds only for $(j,k)=(s,qn+s)$.  Symmetrically,
+$\max j=qn+s$, uniquely at $(j,k)=(qn+s,s)$.
+\end{lemma}
+
+\begin{proof}
+Write $k=an+b$ with $0\leq b<n$.  Since $j\equiv k\pmod n$ and $j\geq0$,
+we have $j\geq b$.  Hence
+\[
+ d\geq j+k\geq an+2b.
+\]
+In particular $a\leq q$.  If $a\leq q-1$, then
+$k\leq(q-1)n+(n-1)=qn-1\leq qn+s$.  If $a=q$, the displayed inequality
+gives $2b\leq r$, so $b\leq s$ and again $k\leq qn+s$.
+
+The pair $(j,k)=(s,qn+s)$ is admissible because its exponent difference is
+$qn$ and its sum is $qn+2s\leq qn+r=d$.  If $k=qn+s$, every nonnegative
+$j\equiv s\pmod n$ has the form $s+\ell n$; the degree constraint gives
+$\ell n\leq r-2s=\delta<n$, hence $\ell=0$.  This proves uniqueness.  The
+statement for $j$ follows by symmetry.
+\end{proof}
+
+\begin{theorem}[sharp forced and generic multiplicity]\label{thm:generic}
+Every $f\in\C[t,x,y]^{C_n}_d$ vanishes at $P_+$ and $P_-$ to order at least
+$\ceil{r/2}$ whenever $r>0$.  This bound is sharp.  More precisely, the
+coefficient of the unique extremal monomial
+\[
+ t^\delta u^s v^{qn+s}
+\]
+determines the lowest homogeneous part at $P_+$, and the coefficient of its
+swapped monomial determines it at $P_-$.  Thus a Zariski-open dense set of
+invariant forms has exact multiplicity $\ceil{r/2}$ at both points.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:localorder} and Lemma~\ref{lem:support}, every invariant basis
+monomial has order at least
+\[
+ d-(qn+s)=r-s=\ceil{r/2}
+\]
+at $P_+$.  Equality comes from the unique stated monomial.  Therefore its
+nonzero coefficient gives exact order and cannot cancel.  Swapping $j,k$
+proves the assertion at $P_-$.  Nonvanishing of each of the two extremal
+coefficients is the complement of a pair of coefficient hyperplanes, hence
+is Zariski open and dense.
+\end{proof}
+
+\section{Strictly hyperbolic counterexamples}
+
+Recall that a real homogeneous degree-$d$ form $f$ is strictly hyperbolic
+with respect to $e=(1,0,0)$ if $f(e)>0$ and, for every nonzero $(x,y)$, the
+polynomial $t\mapsto f(t,x,y)$ has $d$ distinct real roots.
+
+\begin{theorem}[counterexamples for every conjectured residue]\label{thm:counter}
+Let $d=qn+r$ with $q\geq1$ and $3\leq r<n$.  There exists $\varepsilon_0>0$
+such that, for every real $\varepsilon$ with
+$0<|\varepsilon|<\varepsilon_0$, the form $F_\varepsilon$ defined below is
+real, normalized by $F_\varepsilon(1,0,0)=1$, strictly hyperbolic, and
+$C_n$-invariant (indeed invariant under swapping $u,v$), while
+\[
+ \operatorname{mult}_{P_+}(F_\varepsilon)
+ =\operatorname{mult}_{P_-}(F_\varepsilon)
+ =\ceil{r/2}<\binom r2.
+\]
+Consequently the multiplicity conjecture in Section 8.1 of
+\cite{SimonVinzant} is false.
+\end{theorem}
+
+\begin{proof}
+Let $m=\floor{d/2}$ and define the radial form
+\[
+ H_d(t,x,y)=
+ \begin{cases}
+ \displaystyle\prod_{a=1}^{m}\bigl(t^2-a^2uv\bigr),&d=2m,\\[6pt]
+ \displaystyle t\prod_{a=1}^{m}\bigl(t^2-a^2uv\bigr),&d=2m+1.
+ \end{cases}
+\]
+Define the extremal real invariant form
+\[
+ G_{n,d}=t^\delta
+ \left(u^s v^{qn+s}+u^{qn+s}v^s\right),
+ \qquad F_\varepsilon=H_d+\varepsilon G_{n,d}.
+\]
+Both summands have degree $d$.  Complex conjugation swaps $u,v$, so
+$G_{n,d}$ has real coefficients.  Under the generator of $C_n$, $u$ and $v$
+acquire reciprocal $n$th-root factors; the two exponent differences are
+$\pm qn$, so $G_{n,d}$ is invariant.  It is also fixed by the reflection
+$u\leftrightarrow v$.  The same properties are immediate for $H_d$, and
+$F_\varepsilon(1,0,0)=1$.
+
+At $P_+$, the first monomial of $G_{n,d}$ has local order
+$\delta+s=\ceil{r/2}$ and a nonzero initial term, while the second has larger
+order.  At $P_-$ their roles reverse.  Each factor
+$t^2-a^2uv$ has local order $1$ at either point, so $H_d$ has order
+$\ceil{d/2}$.  Since $q\geq1$ and $r<n$, we have
+$\ceil{d/2}>\ceil{r/2}$.  Thus every $\varepsilon\ne0$ gives exact
+multiplicity $\ceil{r/2}$ at both points.
+
+It remains to preserve strict hyperbolicity.  On the unit circle
+$x^2+y^2=uv=1$, $H_d(t,x,y)$ is the fixed monic polynomial
+\[
+ Q_d(t)=
+ \begin{cases}
+ \prod_{a=1}^{m}(t^2-a^2),&d=2m,\\
+ t\prod_{a=1}^{m}(t^2-a^2),&d=2m+1,
+ \end{cases}
+\]
+whose $d$ roots are distinct and real.  Choose pairwise disjoint small closed
+intervals around those roots such that $Q_d$ has opposite nonzero signs at
+the two endpoints of every interval.  There are finitely many endpoints,
+and $G_{n,d}$ is continuous on their product with the unit circle.  Hence,
+for all sufficiently small $|\varepsilon|$, the perturbation does not change
+any endpoint sign.  The intermediate value theorem then supplies a real root
+of $F_\varepsilon(\,cdot\,,x,y)$ in each of the $d$ disjoint intervals.
+Because the polynomial is monic of degree $d$, these are all its roots and
+are distinct.  Homogeneity reduces every nonzero $(x,y)$ to the unit circle,
+proving strict hyperbolicity.
+
+Finally, $\ceil{r/2}<r(r-1)/2=\binom r2$ for every $r\geq3$, so the exact
+multiplicity contradicts the conjectured value.
+\end{proof}
+
+\subsection*{The concrete $(n,d)=(4,7)$ example}
+
+Here $q=1$, $r=3$, $s=1$, and $\delta=1$.  The construction is
+\[
+ H=t(t^2-uv)(t^2-4uv)(t^2-9uv),\qquad
+ G=t(uv^5+u^5v),\qquad F_\varepsilon=H+\varepsilon G.
+\]
+At $P_+$, using $u=iz$, $v=2-iz$, the initial part of $G$ is
+$32i\,\tau z$, of total degree $2$, whereas $H$ begins in degree $4$.
+At $P_-$ the initial part is $-32i\,\tau z$.  Thus both multiplicities are
+$2$, not $\binom32=3$.
+
+\section{Verification, novelty, and limitations}
+
+\paragraph{Exact checks.}
+The included script \texttt{code/verify\_local\_orders.py} expands the
+concrete example at both points, checks orders $4$ and $2$, verifies real
+coefficients and quarter-turn/reflection invariance, and brute-forces the
+support formula over a finite grid.  These checks are not used as proof; the
+general argument is Lemma~\ref{lem:support} and Theorems~\ref{thm:generic}--
+\ref{thm:counter}.  Full commands and outputs are recorded in
+\texttt{verification.md}.
+
+\paragraph{Bounded novelty search.}
+On 27 August 2026, the run's registry, solution, attempt, and proof-gap
+indexes were searched by arXiv id and core terms.  Live web/arXiv searches
+used the exact conjecture sentence, title, authors, arXiv id, and combinations
+of ``$d$ mod $n$'', ``multiplicity'', ``singularity'', ``correction'', and
+``counterexample''.  They found the source and mirrors, but no later paper or
+correction resolving this conjecture.  This is a bounded search, not an
+exhaustive novelty guarantee.
+
+\paragraph{Scope and interpretation.}
+The argument uses ordinary plane-curve multiplicity, namely local Taylor
+order at the named projective points.  It disproves both a universal reading
+and a generic reading: Theorem~\ref{thm:generic} gives the generic value, and
+Theorem~\ref{thm:counter} places it inside the strict hyperbolicity locus.
+No assertion is made here about the distinct determinantal-representation
+question that follows later in Section 8.1 of the source.
+
+\paragraph{Human review recommendation.}
+Check equation \eqref{eq:localorder}, the uniqueness clause in
+Lemma~\ref{lem:support}, and the compact endpoint-sign argument for strict
+hyperbolicity.  No external result beyond the source's invariant basis is
+needed.
+
+\begin{thebibliography}{9}
+\bibitem{SimonVinzant}
+F. Pasley Simon and C. Vinzant,
+\emph{Invariant hyperbolic curves: determinantal representations and
+applications to the numerical range}, arXiv:2102.01726, 2021.
+\end{thebibliography}
+
+\end{document}

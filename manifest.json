@@ -1,0 +1,64 @@
+{
+  "archive_id": "archive-3",
+  "classes": [
+    "conditional",
+    "counterexamples",
+    "full",
+    "literature_already_answered",
+    "literature_implied_answers",
+    "partial"
+  ],
+  "collections": {
+    "pipeline_results": {
+      "count": 2944,
+      "label": "Automatic pipeline",
+      "path": "results.json"
+    },
+    "selected_proofs": {
+      "count": 5,
+      "label": "Selected proofs",
+      "path": "selected_proofs.json"
+    }
+  },
+  "generated_at": "2026-08-28T09:25:33Z",
+  "human_statuses": [
+    "accepted",
+    "rejected",
+    "verified"
+  ],
+  "include_human_verified": true,
+  "owned_archives": [
+    {
+      "archive_id": "archive-1",
+      "git_ref": "HEAD",
+      "result_count": 1359
+    },
+    {
+      "archive_id": "archive-2",
+      "git_ref": "HEAD",
+      "result_count": 2841
+    }
+  ],
+  "paths": {
+    "authors": "authors.json",
+    "packets": "packets/",
+    "results": "results.json",
+    "selected_proof_files": "selected_proofs/",
+    "selected_proofs": "selected_proofs.json",
+    "summary": "summary.json"
+  },
+  "refreshed_owned_packets": {
+    "archive-1": 1
+  },
+  "require_packet_pdf": true,
+  "result_count": 2944,
+  "reused_owned_packets": {
+    "archive-1": 1357,
+    "archive-2": 1483
+  },
+  "run_dir": "/Users/pacuaviva/Desktop/personal/repos/arxiv_automatic_math/runs/fa_banach_001",
+  "run_id": "fa_banach_001",
+  "selected_proof_count": 5,
+  "skipped_missing_packet_pdf": 5,
+  "version": 4
+}

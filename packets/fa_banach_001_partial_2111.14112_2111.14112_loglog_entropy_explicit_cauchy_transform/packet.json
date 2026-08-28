@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2111.14112",
+  "author_list": [
+    "Adem Limani",
+    "Bartosz Malman"
+  ],
+  "claim_short": "2111.14112 Limani Malman explicit Cauchy transform arbitrary closed set disk algebra A Beurling Carleson log log entropy Dini continuity Whitney exterior pole cutoff candidate substantial partial likely valid",
+  "claim_type": "partial",
+  "code_bundle_size_bytes": 1010,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2111.14112v3",
+    "source_url": "https://arxiv.org/abs/2111.14112v3"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_substantial_partial_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "partial",
+  "packet_path": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/",
+  "packet_title": "Explicit disk-algebra Cauchy transforms under log-log entropy",
+  "primary_arxiv_id": "2111.14112",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/files/README.md",
+  "result_class": "partial",
+  "result_id": "fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:2582",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_partial_2111.14112_2111.14112_loglog_entropy_explicit_cauchy_transform/files/solution_packet.pdf",
+  "source_authors": "Adem Limani, Bartosz Malman",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/partial/2111.14112_loglog_entropy_explicit_cauchy_transform/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2111.14112v3",
+  "source_question": "",
+  "source_title": "Constructions of some families of smooth Cauchy transforms",
+  "source_url": "https://arxiv.org/abs/2111.14112v3",
+  "source_year": "2021",
+  "verification_status": "unverified"
+}

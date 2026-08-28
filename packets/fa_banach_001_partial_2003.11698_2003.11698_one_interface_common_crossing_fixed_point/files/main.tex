@@ -1,0 +1,743 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=0.92in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\BV}{BV_{\mathrm{loc}}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\V}{\mathsf{V}}
+\newcommand{\Tmap}{\mathcal{T}}
+\newcommand{\Cb}{C_b}
+\DeclareMathOperator{\dist}{dist}
+
+\title{Variability from Bounded Compression and Transversal Fixed Points}
+\author{Automatic Math Discovery Run \texttt{fa\_banach\_001}\\Model: GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{blue!45!black}{blue!4}{\parbox{0.91\textwidth}{
+\textbf{Status.} Candidate substantial partial result, likely valid.  The
+bounded-compression theorem covers general $BV$ coefficients for almost every
+initial point and the interface theorems give explicit fixed-point classes.
+The packet still does not replace the Doss transform for a general rough
+driver at every prescribed initial point.
+}}
+\end{center}
+
+\begin{abstract}
+Hinz, T\"olle, and Viitasaari ask for assumptions under which the integral
+process for a $BV$ coefficient is itself variable.  The main new observation
+is measure theoretic: if a family of trajectories has uniformly bounded
+compression, then for Lebesgue-almost every initial point its trajectory is
+$(s,1)$-variable with respect to every locally $BV$ coefficient, simultaneously
+for all $s<1$.  Applied to the source's bi-Lipschitz Doss flow, this removes
+all occupation assumptions on an arbitrary H\"older driver for almost every
+initial point.  Applied to Ambrosio's regular Lagrangian flow theorem, it gives
+a non-Doss result for bounded $BV$ coefficients with bounded column
+divergences and Lipschitz drivers.  We also retain two pointwise fixed-point
+theorems for a genuine hyperplane jump.  A common normal row and a
+bi-Lipschitz driver clock yield Young--Picard solutions for rough drivers; a
+positive normal velocity yields a direct Schauder solution for absolutely
+continuous drivers.  Both have the sharp conclusion
+$X\in\mathsf V(\sigma,s,p)$ for $sp<1$.  An exact elliptic example shows that
+exceptional initial points and tangential collapse cannot simply be omitted.
+\end{abstract}
+
+\section{Source question and answer}
+
+The source is Hinz, T\"olle, and Viitasaari~\cite{HTV}.  In Section 1.2,
+PDF page 6, after their Doss-transform existence theory, they write that the
+main open problem is to prove, under reasonable assumptions, that ``the
+integral process itself will be variable,'' with the goal of using standard
+fixed-point arguments.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The source statement on PDF page 6.  This is a direct crop of the
+  source paper.}
+\end{figure}
+
+This packet now gives two complementary advances.  First, bounded compression
+forces variability for almost every starting point with no geometric
+regularity of the singular set.  This applies to the full multidimensional
+Doss class of the source and, in a different time-regularity regime, to
+regular Lagrangian flows without Doss structure.  Second, for one
+codimension-one jump interface it gives pointwise fixed-point constructions.
+The rough interface theorem keeps $Y\in C^\gamma$, $\gamma>1/2$, while the
+absolutely continuous theorem allows a state-dependent normal velocity.
+
+\section{Definitions and setup}
+
+Let $H=\{x\in\R^n:h(x)=0\}$, where
+\[
+ h(x)=\nu\cdot x-a,\qquad |\nu|=1.
+\]
+Given two matrix fields $\sigma_\pm:\R^n\to\R^{n\times n}$, set
+\begin{equation}\label{eq:sigma-piecewise}
+ \sigma(x)=
+ \begin{cases}
+  \sigma_+(x),&h(x)\geq0,\\
+  \sigma_-(x),&h(x)<0.
+ \end{cases}
+\end{equation}
+The representative chosen on $H$ is irrelevant to all distributional
+derivatives and to the integrals below, because a solution meets $H$ at most
+once.
+
+For a scalar $\varphi\in\BV(\R^n)$, a continuous path
+$X:[0,T]\to\R^n$ is $(s,p)$-variable with respect to $\varphi$ if some
+relatively compact open neighborhood $U$ of $X([0,T])$ satisfies
+\[
+ t\longmapsto \int_U |X_t-z|^{-n+1-s}\,\lVert D\varphi\rVert(dz)
+ \quad\text{in }L^p(0,T).
+\]
+For a matrix coefficient this is required componentwise, and we write
+$X\in\V(\sigma,s,p)$.  The source notation $\V(\sigma,s)$ means $p=1$.
+
+We study
+\begin{equation}\label{eq:main-equation}
+ X_t=x_0+\int_0^t\sigma(X_u)\,dY_u.
+\end{equation}
+For H\"older drivers, integrals on intervals that do not contain the crossing
+are ordinary Young integrals.  The global integral is their additive
+concatenation.  It equals the source's generalized Lebesgue--Stieltjes
+integral: the integrand is H\"older on each side, has at most one jump in
+time, changing its value at the crossing does not alter either integral, and
+the restriction property joins the two pieces.
+
+\section{Idea of the proof}
+
+For bounded compression, the proof is a one-line interchange of integrals
+with a decisive consequence.  If $\Phi_t$ pushes Lebesgue measure forward
+with density at most $L$, then for $\mu=|D\varphi|\restriction_U$,
+\[
+ \int_B\!\int_0^T\!\int_U
+ |\Phi_t(x)-z|^{-n+1-s}\,\mu(dz)\,dt\,dx
+ \leq L T\!\int_U\!\int_K |y-z|^{-n+1-s}\,dy\,\mu(dz).
+\]
+The last integral is finite because $n-1+s<n$.  Hence the variability energy
+is finite for almost every initial point.  Taking a countable sequence
+$s_j\uparrow1$ gives one exceptional null set valid for every $s<1$.
+
+The source's Doss trajectories are conjugates of translations by a fixed
+bi-Lipschitz map, hence have bounded compression.  Independently, Ambrosio's
+regular Lagrangian flows have bounded compression by definition.  These two
+facts turn the abstract estimate into the generic-start results below.
+
+The decisive quantity is the signed distance $h(X_t)$.  A common-row identity
+for $\sigma_+$ and $\sigma_-$ makes this coordinate independent of the unknown
+path:
+\[
+ \nu^\top\sigma_\pm(x)=\lambda^\top
+ \quad\Longrightarrow\quad
+ h(X_t)=h(x_0)+\lambda\cdot(Y_t-Y_0).
+\]
+If the right-hand side is a strictly increasing bi-Lipschitz clock, the side
+of the interface occupied at every time is known before solving the equation.
+One therefore solves an ordinary smooth Young equation with $\sigma_-$ before
+the unique crossing and one with $\sigma_+$ afterward.  Standard Picard
+contractions give the two pieces and uniqueness.
+
+The same identity proves variability.  Locally, the derivative measure of a
+piecewise smooth coefficient is bounded by volume measure plus surface measure
+on $H$.  The volume contribution to the relevant Riesz potential is uniformly
+bounded.  The surface contribution at a point $x$ has size
+\[
+ \int_H |x-z|^{-n+1-s}\,d\HH^{n-1}(z)
+ \asymp \dist(x,H)^{-s}.
+\]
+Linear crossing turns this into $|t-\tau|^{-s}$ near the unique hitting time
+$\tau$, and its $p$th power is integrable exactly when $sp<1$.
+
+For an absolutely continuous driver the normal velocity need not be a fixed
+row.  It is enough that both one-sided vector fields have uniformly positive
+normal speed.  Candidate paths with that same speed form a compact convex set.
+Although $\sigma$ is discontinuous, uniform convergence of candidate paths
+gives pointwise convergence of the integrands away from the single crossing
+time.  Dominated convergence makes the Picard operator continuous, so
+Schauder applies.
+
+\section{The bounded-compression principle}
+
+The next theorem has no interface or rectifiability hypothesis.  It is the
+strongest result in the packet.
+
+\begin{theorem}[Bounded compression forces generic variability]
+\label{thm:compression}
+Let $B\subset\R^n$ be bounded and measurable and let
+$\Phi:[0,T]\times B\to\R^n$ be measurable, with each trajectory
+$t\mapsto\Phi_t(x)$ continuous.  Suppose that
+\begin{equation}\label{eq:compression}
+ (\Phi_t)_\#(\mathbf1_B\mathcal L^n)\leq L\mathcal L^n
+ \qquad(0\leq t\leq T)
+\end{equation}
+for a constant $L$, and that all the trajectories take values in one bounded
+set $K$.  Let $\varphi\in BV_{\rm loc}(\R^n)$.  Then, outside one
+Lebesgue-null subset of $B$, the path $t\mapsto\Phi_t(x)$ is
+$(s,1)$-variable with respect to $\varphi$ simultaneously for every
+$s\in(0,1)$.  The same conclusion holds componentwise for any finite matrix
+of locally $BV$ functions.
+\end{theorem}
+
+\begin{proof}
+Choose a bounded open set $U$ containing the closure of $K$ and put
+$\mu=|D\varphi|\restriction_U$.  For fixed $s\in(0,1)$ define
+\[
+ E_s(x)=\int_0^T\int_U
+ |\Phi_t(x)-z|^{-n+1-s}\,\mu(dz)\,dt.
+\]
+Tonelli's theorem and~\eqref{eq:compression} give
+\begin{align}
+ \int_B E_s(x)\,dx
+ &\leq L\int_0^T\int_U\int_K
+ |y-z|^{-n+1-s}\,dy\,\mu(dz)\,dt.\label{eq:energy-average}
+\end{align}
+If $K\cup U$ has diameter at most $R$, translation and polar coordinates
+give, uniformly in $z\in U$,
+\[
+ \int_K|y-z|^{-n+1-s}\,dy
+ \leq |\mathbb S^{n-1}|\int_0^R r^{-s}\,dr
+ =\frac{|\mathbb S^{n-1}|R^{1-s}}{1-s}.
+\]
+Since $\mu(U)<\infty$, the right-hand side of
+\eqref{eq:energy-average} is finite.  Thus $E_s(x)<\infty$ for almost every
+$x$, which is precisely $(s,1)$-variability.
+
+To obtain a single null set, apply the preceding argument to a countable
+sequence $s_j\uparrow1$.  Given $s<s_j$, split distances at one; on the
+bounded set $U$ the kernel of exponent $n-1+s$ is bounded by a constant times
+one plus the kernel of exponent $n-1+s_j$.  Hence finiteness for $s_j$
+implies finiteness for $s$.  A finite intersection handles all entries of a
+matrix coefficient.
+\end{proof}
+
+\begin{corollary}[Generic starts in the full Doss class]
+\label{cor:doss-generic}
+Assume the multidimensional hypotheses of the source that produce a
+bi-Lipschitz Doss map $f:\R^n\to\R^n$ satisfying
+$\nabla f=\sigma\circ f$: namely its Assumptions 3.12 and 3.15 together with
+its angle condition (3.10).  Let $Y\in C^\gamma([0,T];\R^n)$ with
+$\gamma>1/2$.  Then for Lebesgue-almost every initial point $x\in\R^n$,
+\begin{equation}\label{eq:doss-flow}
+ X_t^x=f\bigl(Y_t-Y_0+f^{-1}(x)\bigr)
+\end{equation}
+belongs to $\V(\sigma,s)$ for every $s<1$.  Consequently it is the source's
+variability solution, and hence its unique variability solution under the
+source's uniqueness hypotheses.  No upper-regularity, occupation-density, or
+Riesz-energy assumption on the driver is required.
+\end{corollary}
+
+\begin{proof}
+Set $\Phi_t=f\circ\tau_{Y_t-Y_0}\circ f^{-1}$.  Its inverse is
+$f\circ\tau_{Y_0-Y_t}\circ f^{-1}$, so
+\[
+ \operatorname{Lip}(\Phi_t^{-1})
+ \leq\operatorname{Lip}(f)\operatorname{Lip}(f^{-1})
+\]
+uniformly in $t$.  The standard measure estimate for a Lipschitz map gives
+\eqref{eq:compression} on every bounded set $B$, with
+$L\leq(\operatorname{Lip}(f)\operatorname{Lip}(f^{-1}))^n$.  The range of
+$[0,T]\times B$ is bounded because $Y([0,T])$ and $B$ are bounded and $f$
+is bi-Lipschitz.  Theorem~\ref{thm:compression}, first on $B(0,m)$ and then
+for all $m\in\mathbb N$, proves the simultaneous variability assertion.
+
+This argument is not circular: formula~\eqref{eq:doss-flow} defines a
+continuous path before an integral is invoked.  Bounded compression proves
+its variability.  One may then follow the second half of the source's
+Lemma 5.7: the $BV$ composition estimate for the bi-Lipschitz inverse transfers
+variability of $X$ with respect to $\sigma$ to variability of
+$Y-Y_0+f^{-1}(x)$ with respect to each entry of $\nabla f=\sigma\circ f$.
+The source's Theorem 2.13 then applies the change-of-variables formula and
+identifies $X$ with a solution of~\eqref{eq:main-equation}.  The path is
+$\gamma$-H\"older.  Choose $(1-\gamma)/\gamma<s<1$ to meet Definition 3.1
+of the source.  Its uniqueness theorem then applies whenever its stated Doss
+hypotheses are in force.
+\end{proof}
+
+The same averaging lemma also combines with a completely different existence
+theory and thereby removes the Doss assumptions, at the price of a smoother
+driver and an almost-everywhere flow notion.
+
+\begin{corollary}[A non-Doss regular-Lagrangian-flow theorem]
+\label{cor:ambrosio}
+Let $\sigma:\R^n\to\R^{n\times n}$ be bounded with locally $BV$ entries and
+write $\sigma^{(k)}$ for its $k$th column.  Assume
+\[
+ \operatorname{div}\sigma^{(k)}\in L^\infty(\R^n),
+ \qquad k=1,\ldots,n.
+\]
+For $Y\in W^{1,\infty}([0,T];\R^n)$, the vector field
+$b_t(x)=\sigma(x)\dot Y_t$ has a unique regular Lagrangian flow $X_t(x)$.
+For almost every $x$, its trajectory belongs to
+$\V(\sigma,s)$ simultaneously for every $s<1$ and solves
+\[
+ X_t(x)=x+\int_0^t\sigma(X_u(x))\dot Y_u\,du.
+\]
+In particular, regarding $Y$ as $C^\gamma$ for any
+$\gamma\in(1/2,1)$ and choosing $s\in(1-\gamma,1)$, this trajectory is a
+variability solution in the sense of the source.
+\end{corollary}
+
+\begin{proof}
+The field $b$ belongs to $L^1_tBV_{\rm loc,x}$, is bounded, and
+\[
+ \operatorname{div}b_t
+ =\sum_{k=1}^n\dot Y_t^k\operatorname{div}\sigma^{(k)}
+ \in L^1(0,T;L^\infty(\R^n)).
+\]
+Its boundedness supplies Ambrosio's growth condition.  The regular
+Lagrangian flow theorem~\cite{Ambrosio,AmbrosioOverview} therefore gives existence,
+uniqueness in the regular-flow class, and a uniform compression bound.  For
+almost every initial point its trajectory is absolutely continuous; discard
+the exceptional null set, which can only decrease each pushforward measure.
+For
+initial points in a bounded $B$, the estimate
+$|X_t(x)-x|\leq\|\sigma\|_\infty\|\dot Y\|_{L^1}$ places the trajectories
+in a common bounded set.  Theorem~\ref{thm:compression} applies to every
+matrix entry.  Finally the trajectories are Lipschitz, so in Definition 3.1
+one may take path exponent $\alpha=1$; the required inequality is then
+$s>1-\gamma$.
+\end{proof}
+
+\section{The rough-driver fixed-point theorem}
+
+We first recall the standard smooth Young equation in the precise strength
+needed here.
+
+\begin{lemma}[Young--Picard lemma]\label{lem:young-picard}
+Let $\gamma\in(1/2,1)$, $Y\in C^\gamma([r,q];\R^n)$, and
+$V\in C_b^2(\R^n;\R^{n\times n})$.  For every $z\in\R^n$ there is a unique
+$Z\in C^\gamma([r,q];\R^n)$ satisfying
+\[
+ Z_t=z+\int_r^t V(Z_u)\,dY_u.
+\]
+It is obtained by Picard contraction on sufficiently short subintervals and
+concatenation.  If $V$ is bounded, the concatenation reaches all of $[r,q]$.
+\end{lemma}
+
+\begin{proof}
+For $f\in C^\gamma$ the Young--Loeve estimate gives, on an interval $I$,
+\[
+ \left|\int_u^v f\,dY-f_u(Y_v-Y_u)\right|
+ \leq C_\gamma[f]_\gamma[Y]_\gamma|v-u|^{2\gamma}.
+\]
+On a $C^\gamma$ ball of paths with a common initial value, boundedness of
+$DV$ and $D^2V$ gives
+\begin{align*}
+ \|V(X)-V(Z)\|_\infty&\leq \|DV\|_\infty\|X-Z\|_\infty,\\
+ [V(X)-V(Z)]_\gamma
+ &\leq C_V\bigl([X-Z]_\gamma+
+ ([X]_\gamma+[Z]_\gamma)\|X-Z\|_\infty\bigr).
+\end{align*}
+Since $X$ and $Z$ agree at the left endpoint,
+$\|X-Z\|_\infty\leq |I|^\gamma[X-Z]_\gamma$.  The Young--Loeve estimate
+therefore makes the integral map a contraction when $|I|$ is small enough;
+the same estimate makes the chosen ball invariant.  Iteration constructs the
+local solution.  Uniqueness allows adjacent pieces to concatenate.  The
+bounded vector field supplies a uniform local range bound, so finitely many
+pieces cover the compact time interval.
+\end{proof}
+
+\begin{theorem}[Rough clock-row theorem]\label{thm:rough}
+Let $\gamma\in(1/2,1)$ and $Y\in C^\gamma([0,T];\R^n)$.  Suppose
+$\sigma_\pm\in C_b^2(\R^n;\R^{n\times n})$ and there is
+$\lambda\in\R^n$ such that
+\begin{equation}\label{eq:common-row}
+ \nu^\top\sigma_+(x)=\nu^\top\sigma_-(x)=\lambda^\top
+ \qquad(x\in\R^n).
+\end{equation}
+Assume the scalar control
+\begin{equation}\label{eq:g-def}
+ g(t)=h(x_0)+\lambda\cdot(Y_t-Y_0)
+\end{equation}
+is increasing and bi-Lipschitz: for some $0<m\leq M$,
+\begin{equation}\label{eq:bilip-clock}
+ m(t-u)\leq g(t)-g(u)\leq M(t-u),\qquad 0\leq u<t\leq T.
+\end{equation}
+Then equation~\eqref{eq:main-equation} has a unique
+$X\in C^\gamma([0,T];\R^n)$ solution, constructed entirely by standard
+Young--Picard fixed points.  Moreover,
+\begin{equation}\label{eq:sp-conclusion}
+ X\in\V(\sigma,s,p)
+ \quad\text{for every }s\in(0,1),\ p\in[1,\infty)
+ \text{ with }sp<1.
+\end{equation}
+In particular, choosing
+\[
+ \frac{1-\gamma}{\gamma}<s<1
+\]
+makes $X$ a variability solution for $\sigma$ and $Y$ in the exact sense of
+the source.
+\end{theorem}
+
+\begin{proof}
+The strictly increasing function $g$ has at most one zero.  If it has a zero,
+call it $\tau$; otherwise the sign is constant.  On every interval on which
+$g<0$, solve the smooth Young equation with coefficient $\sigma_-$ using
+Lemma~\ref{lem:young-picard}; on every interval on which $g>0$, use
+$\sigma_+$.  If there is a crossing, use the endpoint of the first solution as
+the initial value of the second.
+
+Taking the scalar product with $\nu$ in either smooth equation and using
+\eqref{eq:common-row} gives
+\[
+ h(X_t)=h(x_0)+\int_0^t\lambda\cdot dY_u=g(t).
+\]
+Thus the constructed path lies in the half-space whose coefficient was used,
+so its concatenation solves the piecewise equation.  The possible discrepancy
+at $t=\tau$ is a one-point change of the integrand and has zero integral.
+
+Conversely, any solution of the piecewise equation has the same normal
+coordinate $g$.  Its switching schedule is therefore identical.  On each
+side it solves the corresponding smooth Young equation, where
+Lemma~\ref{lem:young-picard} gives uniqueness.  This proves global uniqueness.
+
+It remains to prove~\eqref{eq:sp-conclusion}.  Let $U\Subset\R^n$ be a bounded
+open neighborhood of $X([0,T])$.  The $BV$ product rule for
+\eqref{eq:sigma-piecewise} and the bounded first derivatives of the two
+branches give, for every scalar entry $\sigma_{jk}$,
+\begin{equation}\label{eq:measure-majorization}
+ |D\sigma_{jk}|\!\restriction_U
+ \leq C_U\,\mathcal L^n\!\restriction_U
+   +J_U\,\HH^{n-1}\!\restriction_{H\cap U}.
+\end{equation}
+The volume part has uniformly bounded potential because $s<1$:
+\[
+ \sup_{x\in X([0,T])}\int_U|x-z|^{-n+1-s}\,dz<\infty.
+\]
+For $x\notin H$, rotate and translate coordinates, enlarge $H\cap U$ to the
+whole hyperplane, and scale the tangential variable to obtain
+\begin{align}\label{eq:hyperplane-potential}
+ \int_{H\cap U}|x-z|^{-n+1-s}\,d\HH^{n-1}(z)
+ &\leq \int_{\R^{n-1}}
+ (|w|^2+|h(x)|^2)^{-(n-1+s)/2}\,dw\\
+ &=C_{n,s}|h(x)|^{-s}.
+\end{align}
+For $n=1$ this is the same identity with $\HH^0$ on a point.
+
+If $g$ never vanishes, compactness gives $|g|\geq\delta>0$.  If it vanishes
+at $\tau$,~\eqref{eq:bilip-clock} gives
+\[
+ |h(X_t)|=|g(t)|\geq m|t-\tau|.
+\]
+Combining this with~\eqref{eq:measure-majorization} and
+\eqref{eq:hyperplane-potential} bounds each variability potential by
+$C(1+|t-\tau|^{-s})$.  Its $p$th power is integrable precisely when $sp<1$;
+the infinite value at $t=\tau$ is immaterial.  This proves
+\eqref{eq:sp-conclusion}.
+
+Finally, $X$ is $\gamma$-H\"older.  Because $\gamma>1/2$, the interval
+$((1-\gamma)/\gamma,1)$ is nonempty.  For any $s$ in it we have
+$X\in\V(\sigma,s)$ and $\gamma s+\gamma>1$, exactly the source definition of
+a variability solution.  On each side the generalized integral agrees with
+the Young integral, and additivity across the single crossing proves that the
+constructed equation is the source equation.
+\end{proof}
+
+\begin{remark}[A concrete rough family]
+After a linear change of coordinates, take $\nu=\lambda=e_1$ and
+$Y_t=(t,W_t)$, where $W$ is any $(n-1)$-dimensional $\gamma$-H\"older path,
+$\gamma>1/2$.  Any two bounded $C^2$ branches whose first matrix row is
+$e_1^\top$ satisfy the theorem, regardless of the size of their jump in the
+remaining rows.  Thus the theorem is not merely an ordinary smooth-time ODE:
+all tangential equations may be driven by a genuinely rough signal.
+\end{remark}
+
+\section{A direct Schauder theorem for absolutely continuous drivers}
+
+The next theorem allows the normal row to depend on the point and to differ on
+the two sides.  A common positive normal velocity replaces the algebraic
+identity~\eqref{eq:common-row}.
+
+\begin{theorem}[Common-crossing Schauder theorem]\label{thm:schauder}
+Let $Y\in W^{1,\infty}([0,T];\R^n)$ and let the bounded fields
+$\sigma_\pm:\R^n\to\R^{n\times n}$ be locally Lipschitz.  Assume there are
+constants $0<c\leq M<\infty$ such that, for almost every $t$ and every
+$x\in\R^n$,
+\begin{equation}\label{eq:crossing}
+ |\sigma_\pm(x)\dot Y_t|\leq M,
+ \qquad
+ \nu\cdot\sigma_\pm(x)\dot Y_t\geq c.
+\end{equation}
+Then the discontinuous integral equation
+\[
+ X_t=x_0+\int_0^t\sigma(X_u)\dot Y_u\,du
+\]
+has a unique absolutely continuous solution.  It is obtained as a fixed point
+of the global discontinuous Picard map by the ordinary Schauder theorem, and
+it satisfies
+\[
+ X\in\V(\sigma,s,p)
+ \qquad(0<s<1,\ 1\leq p<\infty,\ sp<1).
+\]
+\end{theorem}
+
+\begin{proof}
+Work in $C([0,T];\R^n)$ and define $K$ as the set of paths $Z$ such that
+$Z_0=x_0$ and, for $0\leq u<t\leq T$,
+\begin{equation}\label{eq:K}
+ |Z_t-Z_u|\leq M(t-u),
+ \qquad h(Z_t)-h(Z_u)\geq c(t-u).
+\end{equation}
+The set is nonempty (it contains $x_0+ct\nu$), convex, closed, uniformly
+bounded, and equicontinuous.  Hence it is compact by Arzel\`a--Ascoli.
+
+Define
+\[
+ (\Tmap Z)_t=x_0+\int_0^t\sigma(Z_u)\dot Y_u\,du.
+\]
+The two inequalities in~\eqref{eq:crossing} show directly that
+$\Tmap(K)\subset K$.
+
+We claim that $\Tmap:K\to K$ is continuous even though $\sigma$ is not.  If
+$Z^k\to Z$ uniformly in $K$, then $t\mapsto h(Z_t)$ is strictly increasing by
+\eqref{eq:K}; consequently $Z$ meets $H$ at at most one time.  At every other
+time, $Z_t$ lies strictly in one half-space, $Z^k_t$ eventually lies in the
+same half-space, and local continuity of that branch gives
+\[
+ \sigma(Z^k_t)\dot Y_t\longrightarrow\sigma(Z_t)\dot Y_t
+\]
+for almost every $t$.  The difference of the integrands is bounded by $2M$.
+Dominated
+convergence therefore yields
+\[
+ \|\Tmap Z^k-\Tmap Z\|_\infty
+ \leq\int_0^T
+ |\sigma(Z^k_t)\dot Y_t-\sigma(Z_t)\dot Y_t|\,dt\longrightarrow0.
+\]
+Schauder's theorem supplies a fixed point $X\in K$.
+
+For uniqueness, every absolutely continuous solution automatically belongs to
+$K$.  On each open time interval on which it stays in one half-space, it solves
+a time-dependent locally Lipschitz ODE.  Two solutions agree by Gronwall until
+the first one reaches $H$; since their paths then agree, their hitting times
+and hitting points agree.  After the crossing they solve the same one-sided
+ODE from the same initial value.  Thus they coincide globally.
+
+Finally,~\eqref{eq:K} implies that $h(X_t)$ crosses zero at most once and, at a
+crossing time $\tau$, $|h(X_t)|\geq c|t-\tau|$.  The measure estimate
+\eqref{eq:measure-majorization} remains valid for locally Lipschitz branches on
+the bounded neighborhood $U$, and the argument
+\eqref{eq:hyperplane-potential} gives the stated $(s,p)$-variability.
+\end{proof}
+
+\section{Why transversality is doing real work}
+
+The conclusion is false if one keeps strong matrix nondegeneracy but drops
+output crossing.  The companion packet proves the following exact example;
+we repeat its algebraic core to delimit Theorems~\ref{thm:rough} and
+\ref{thm:schauder}.
+
+\begin{proposition}[Tangential-collapse obstruction]\label{prop:obstruction}
+In $\R^2$ let $H=\{x_2=0\}$ and
+\[
+ A_+=\begin{pmatrix}2&-1\\-1&1\end{pmatrix},\qquad
+ A_-=\begin{pmatrix}\frac32&-\frac12\\-\frac12&\frac12\end{pmatrix},
+ \qquad
+ \sigma=A_+\mathbf1_{\{x_2\geq0\}}+A_-\mathbf1_{\{x_2<0\}}.
+\]
+The coefficient is bounded, symmetric, and uniformly positive definite; its
+inverse has distributionally curl-free rows, and it satisfies the determinant
+and angle assumptions in the source's multidimensional Doss theory.  For every
+$s\in(0,1)$ and finite $p$, choose
+$0<\alpha<\min\{1,(sp)^{-1}\}$ and set
+\[
+ X_t=(0,t^\alpha),\qquad Y_t=(t,t).
+\]
+Then $X\in\V(\sigma,s,p)$, but
+\[
+ \int_0^t\sigma(X_u)\,dY_u=(t,0)
+\]
+lies on $H$ and is not $(\rho,q)$-variable for any $\rho>0$ and any
+$q\geq1$.
+\end{proposition}
+
+\begin{proof}
+The eigenvalues of $A_+$ are $(3\pm\sqrt5)/2$ and those of $A_-$ are
+$1\pm1/\sqrt2$.  Both matrices are therefore uniformly positive definite.
+Their inverses are
+\[
+ A_+^{-1}=\begin{pmatrix}1&1\\1&2\end{pmatrix},\qquad
+ A_-^{-1}=\begin{pmatrix}1&1\\1&3\end{pmatrix};
+\]
+because they differ only in the $(2,2)$ entry, the inverse rows have zero
+distributional curl across the horizontal line.  Also
+$A_+(1,1)^\top=A_-(1,1)^\top=(1,0)^\top$.
+
+The jump measure is a nonzero multiple of $\HH^1\restriction_H$.  At distance
+$t^\alpha$ from $H$, its order-$(1-s)$ potential is $Ct^{-\alpha s}$, which is
+in $L^p$ when $\alpha sp<1$.  The Picard image is $(t,0)$ by the displayed
+matrix identity.  On $H$ the potential contains
+$\int_{-\varepsilon}^{\varepsilon}|r|^{-1-\rho}dr=\infty$ at every time,
+so the image is in no positive variability class.
+\end{proof}
+
+\begin{corollary}[The generic-start qualifier is sharp]
+\label{cor:exceptional}
+For the coefficient in Proposition~\ref{prop:obstruction}, let
+$B\in C^\gamma([0,T])$ be nonconstant with $\gamma>1/2$, put
+$Y=(B,B)$, and start at any $x\in H$.  Then
+\[
+ X_t=x+(B_t-B_0,0)
+\]
+is a solution that remains in $H$ and is not $(s,p)$-variable for any
+$s>0$ and $p\geq1$.  Moreover, there is no variability solution from such
+an initial point.  Thus Theorem~\ref{thm:compression} cannot in general be
+improved from almost every start to every start, even for a uniformly elliptic
+coefficient satisfying the source's Doss structural conditions.
+\end{corollary}
+
+\begin{proof}
+Both matrices satisfy
+$A_+(1,1)^\top=A_-(1,1)^\top=e_1$.  On the displayed candidate the chosen
+representative is the constant matrix $A_+$, so the Young integral is exactly
+$e_1(B_t-B_0)$ and the equation holds.  Its range lies in $H$, where the
+Riesz potential of the nonzero jump measure is infinite at every time.
+
+If a variability solution existed, all its component integrals would exist
+and their linearity, together with the same column-sum identity on both sides,
+would force it to equal the displayed candidate.  That candidate is not
+variable, a contradiction.
+\end{proof}
+
+Thus uniform ellipticity, smooth driving, and input variability do not make the
+Picard map preserve variability.  The crossing hypotheses in the two main
+theorems prevent exactly the tangential collapse exhibited above.
+
+\section{Sharpness, limitations, and novelty}
+
+Theorem~\ref{thm:compression} is optimal in two immediate senses.  The
+restriction $s<1$ is exactly the local-integrability threshold for its Riesz
+kernel, and Corollary~\ref{cor:exceptional} exhibits an entire null
+hyperplane of initial points whose trajectories fail every positive
+variability condition.  Bounded compression controls spatial averages; it
+cannot prohibit a singular exceptional orbit.
+
+The threshold $sp<1$ is sharp for a genuine jump and a linear crossing.  If a
+component has nonzero jump trace at the hitting point, the hyperplane potential
+is comparable from below to $|t-\tau|^{-s}$, which is not in $L^p$ when
+$sp\geq1$.  The $p=1$ range nevertheless contains every $s<1$, and hence the
+source compatibility interval $s>(1-\gamma)/\gamma$ for every
+$\gamma>1/2$.
+
+The rough theorem deliberately assumes a single flat interface, smooth
+one-sided branches, a common normal row, and a bi-Lipschitz clock projection.
+The tangential driver can be fully H\"older-rough, but a driver with no monotone
+projection is not covered.  Curved or multiple interfaces should be approachable
+with event functions and finitely many transversal hits, but their crossing
+schedule is no longer algebraically fixed and is not claimed here.  The
+Schauder theorem allows state-dependent normal motion but requires an
+absolutely continuous driver.
+
+The generic Doss corollary is broad in the coefficient and driver but still
+uses the Doss transform to construct the trajectory.  The Ambrosio corollary
+does not use Doss and permits noninvertible coefficients, but it assumes a
+Lipschitz driver, bounded column divergences, and obtains a regular
+Lagrangian flow only for almost every initial point.  Therefore neither
+corollary is the requested general rough-driver fixed-point theorem at an
+arbitrary prescribed start.  They instead identify bounded compression as a
+powerful sufficient mechanism for the authors' central output-variability
+property.
+
+A bounded search on 26 August 2026 covered the run's lightweight indexes, the
+exact source phrase and arXiv id, the authors' follow-ups, and combinations of
+``variability,'' ``fixed point,'' ``bounded compression,'' ``regular
+Lagrangian flow,'' ``hyperplane interface,'' and ``transversality.''  No
+matching bounded-compression-to-variability theorem or fixed-point-plus-
+variability theorem was found.  Ambrosio~\cite{Ambrosio} supplies the regular
+Lagrangian flow theorem used in Corollary~\ref{cor:ambrosio}, but not the
+Riesz-energy averaging conclusion.  Burden--Sastry--Koditschek--Revzen~\cite{Burden} prove well-defined
+piecewise-differentiable flows for event-selected discontinuous vector fields
+under transversality, but do not formulate the Riesz-potential variability
+conclusion or the rough clock-row theorem.  L\'opez Pouso~\cite{Pouso} uses
+Schauder ideas for discontinuous boundary-value problems; its null-contact-set
+continuity mechanism is philosophically close, but the equations and
+variability conclusion are different.  The source itself proves that smooth
+curves with finitely many transversal hits are variable, but it does not use
+that fact to construct a fixed point.  The present contribution is the
+combination: fixed-point construction, forced crossing geometry, and the sharp
+$sp<1$ estimate.
+
+Because the search is bounded rather than a systematic citation review, the
+proper label is \emph{candidate substantial partial result, likely valid}.
+The bounded-compression result covers the source's full Doss coefficient class
+only generically in the initial point, and the pointwise fixed-point results
+remain restricted to one interface.  This is not a full answer to the source
+problem.
+
+\section{Verification checklist}
+
+The proof reduces to seven independently checkable mechanisms:
+\begin{enumerate}
+\item Tonelli plus bounded compression changes the initial-point average of
+the variability energy into an ordinary locally integrable Riesz kernel.
+\item Bi-Lipschitz conjugates of translations have a uniform compression
+constant, so the estimate applies to the source's Doss flow before its chain
+rule is used.
+\item Ambrosio's theorem applies to
+$b_t=\sum_k\dot Y_t^k\sigma^{(k)}$ under the stated bounded-divergence and
+growth hypotheses.
+\item The common-row identity forces the normal coordinate of every solution
+to equal the prescribed clock $g$.
+\item The fixed crossing schedule reduces the rough discontinuous equation to
+at most two standard smooth Young equations, each obtained by Picard
+contraction.
+\item Surface measure on a hyperplane has Riesz potential exactly of order
+$\dist(\cdot,H)^{-s}$; linear crossing gives the sharp condition $sp<1$.
+\item In the absolutely continuous case, a candidate path contacts the jump
+set at most once, which is enough for dominated convergence and continuity of
+the global Picard map.
+\end{enumerate}
+No numerical evidence is used as proof.
+
+\begin{thebibliography}{9}
+
+\bibitem{HTV}
+M. Hinz, J. M. T\"olle, and L. Viitasaari,
+\emph{Variability of paths and differential equations with
+$BV$-coefficients}, Ann. Inst. H. Poincar\'e Probab. Statist. 59 (2023),
+2036--2082; \href{https://arxiv.org/abs/2003.11698}{arXiv:2003.11698}.
+
+\bibitem{Ambrosio}
+L. Ambrosio,
+\emph{Transport equation and Cauchy problem for $BV$ vector fields},
+Invent. Math. 158 (2004), 227--260;
+\href{https://doi.org/10.1007/s00222-004-0367-2}{doi:10.1007/s00222-004-0367-2}.
+
+\bibitem{AmbrosioOverview}
+L. Ambrosio,
+\emph{Transport equation and Cauchy problem for $BV$ vector fields and
+applications}, Journ\'ees \'equations aux d\'eriv\'ees partielles (2004),
+Expos\'e no.~1;
+\href{https://doi.org/10.5802/jedp.1}{doi:10.5802/jedp.1}.
+
+\bibitem{Burden}
+S. A. Burden, S. S. Sastry, D. E. Koditschek, and S. Revzen,
+\emph{Event-selected vector field discontinuities yield
+piecewise-differentiable flows},
+\href{https://arxiv.org/abs/1407.1775}{arXiv:1407.1775}.
+
+\bibitem{Pouso}
+R. L\'opez Pouso,
+\emph{Schauder's fixed-point theorem: new applications and a new version for
+discontinuous operators}, Boundary Value Problems 2012, Article 92;
+\href{https://doi.org/10.1186/1687-2770-2012-92}{doi:10.1186/1687-2770-2012-92}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,382 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist[itemize]{leftmargin=1.45em,itemsep=0.2em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\dd}{\,d}
+\newcommand{\pa}{\partial}
+\newcommand{\ad}{A^{\dagger}}
+\DeclareMathOperator{\im}{Im}
+
+\begin{document}
+
+\begin{center}
+{\Large Full Solution Packet}\\[0.25em]
+{\large A single line determines all twisted spherical means on $\C$}\\[0.45em]
+\textbf{Status:} candidate full solution, likely valid\\
+\textbf{Target:} the odd-Coxeter conjecture in arXiv:1103.4571
+\end{center}
+
+\section*{Source and exact conjecture}
+
+The source is R. K. Srivastava, \emph{Coxeter system of lines are sets of
+injectivity for the twisted spherical means on $\C$}, arXiv:1103.4571
+\cite{SriLines}.  On page 14, after proving injectivity for Coxeter systems
+with an even number of lines, the paper asks the following.
+
+\begin{center}
+\includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+In the source notation, if $\omega$ is an $N$th root of unity and
+$\Sigma_N=\bigcup_{l=0}^{N-1}\omega^l\R$, the conjecture says that
+for $f\in L^2(\C)$,
+\[
+ f\times\mu_r(\omega^l x)=0
+ \quad(r>0,\ x\in\R,\ 0\le l<N)
+ \qquad\Longrightarrow\qquad f=0\quad\text{a.e.}
+\]
+The surrounding discussion treats odd $N$ as the unresolved case.  The
+result below proves the stronger assertion that the centers on just one line
+through the origin suffice, and it works for every $L^p$ with $1\le p\le2$.
+
+\section*{Definitions and normalization}
+
+For $z,w\in\C$, write
+\[
+ (f\times g)(z)=\int_{\C}f(z-w)g(w)
+ e^{\frac{i}{2}\im(z\bar w)}\dd w.
+\]
+If $\mu_r$ is normalized arc measure on $|w|=r$, then the twisted
+spherical mean is
+\[
+ f\times\mu_r(z)=\int_{|w|=r}f(z-w)
+ e^{\frac{i}{2}\im(z\bar w)}\dd\mu_r(w).
+\]
+Let
+\[
+ \varphi_k(z)=L_k\!\left(\frac{|z|^2}{2}\right)e^{-|z|^2/4},
+ \qquad Q_k f=f\times\varphi_k.
+\]
+Harmless nonzero normalization constants in $\varphi_k$ do not affect any
+vanishing statement.  The special Hermite operator is
+\[
+ \mathcal L=-\Delta+\frac{|z|^2}{4}
+ -i\left(x\frac{\pa}{\pa y}-y\frac{\pa}{\pa x}\right),
+ \qquad z=x+iy.
+\]
+The standard special Hermite expansion says that $Q_k f$ belongs to the
+$\mathcal L$-eigenspace with eigenvalue $2k+1$, and the collection of these
+projections reconstructs $f$ \cite{SriLines,GangulyThangavelu}.  We include
+the part of this structure needed for the new uniqueness argument.
+
+\section*{Result}
+
+\begin{theorem}[Single-line injectivity]\label{thm:main}
+Let $1\le p\le2$ and $f\in L^p(\C)$.  Suppose
+\[
+ f\times\mu_r(x)=0
+ \qquad\text{for every }x\in\R\text{ and }r>0.
+\]
+Then $f=0$ almost everywhere.
+\end{theorem}
+
+\begin{corollary}[Odd Coxeter systems]\label{cor:coxeter}
+Every line through the origin is a set of injectivity for twisted spherical
+means on $L^p(\C)$, $1\le p\le2$.  Consequently every Coxeter system
+$\Sigma_N$ is a set of injectivity, whether $N$ is odd or even.  In
+particular, the conjecture on page 14 of arXiv:1103.4571 holds.
+\end{corollary}
+
+\section*{Proof intuition}
+
+The spherical-mean hypothesis forces every spectral projection $Q_kf$ to
+vanish on the real axis.  The missing point in the source is to show that
+restriction to the axis is injective on each infinite-dimensional Landau
+level.
+
+Introduce annihilation and creation operators
+\[
+ A=\pa_z+\frac{\bar z}{4},
+ \qquad
+ \ad=-\pa_{\bar z}+\frac z4.
+\]
+Every vector in the $k$th level is $(\ad)^k$ applied to an
+anti-holomorphic Fock vector $e^{-|z|^2/4}h(\bar z)$.  On the real axis,
+the equation that this vector vanishes is a normal-ordered differential
+equation
+\[
+ \sum_{j=0}^k\binom{k}{j}\left(\frac x2\right)^{k-j}
+ (-1)^j h^{(j)}(x)=0.
+\]
+After $h(x)=e^{x^2/4}p(x)$, it becomes a constant-coefficient ODE
+$P_k(D)p=0$, where
+\[
+ P_k(s)=2^{-k}i^kH_k(is).
+\]
+The zeros of the Hermite polynomial $H_k$ are real and simple, so $p$ is a
+finite sum of exponentials with distinct real frequencies.  The Fock norm,
+however, reduces to the $L^2$ norm of that exponential sum along every
+horizontal line.  Such a sum has positive mean square unless it is zero.
+Thus each $Q_kf$ is zero everywhere; special-Hermite reconstruction then
+gives $f=0$.
+
+\section*{The eigenspace restriction theorem}
+
+Put
+\[
+ \cE_k=\ker_{L^2(\C)}(\mathcal L-(2k+1)I).
+\]
+
+\begin{lemma}[Creation representation]\label{lem:creation}
+For every $v\in\cE_k$ there is an entire function $h$ such that
+\begin{equation}\label{eq:creation}
+ v(z)=c_k(\ad)^k\left(e^{-|z|^2/4}h(\bar z)\right),
+ \qquad c_k\ne0,
+\end{equation}
+and
+\begin{equation}\label{eq:fock}
+ \int_{\C}|h(\bar z)|^2e^{-|z|^2/2}\dd z<\infty.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A direct calculation gives
+\[
+ [A,\ad]=\frac12I,
+ \qquad
+ \mathcal L=4\ad A+I.
+\]
+Thus $A$ lowers the eigenvalue by $2$ and $\ad$ raises it by $2$.
+If $v\in\cE_k$, then
+\[
+ \ad Av=\frac{k}{2}v.
+\]
+For $k>0$ this identity can be iterated, giving
+\[
+ v=\frac{2^k}{k!}(\ad)^kA^kv.
+\]
+Set $u=A^kv$.  Then $u\in\cE_0$, and the factorization gives
+$4\|Au\|_2^2=\langle(\mathcal L-I)u,u\rangle=0$.  Thus $Au=0$, which is
+\[
+ \pa_z\left(e^{|z|^2/4}u(z)\right)=0.
+\]
+Hence $u(z)=e^{-|z|^2/4}h(\bar z)$ for an entire $h$.  Since $u\in L^2$,
+its norm is exactly the integral in \eqref{eq:fock}.  This proves the
+claim, including $k=0$.
+\end{proof}
+
+\begin{lemma}[A Landau level cannot vanish on a line]\label{lem:axis}
+If $v\in\cE_k$ and $v(x)=0$ for every $x\in\R$, then $v=0$.
+\end{lemma}
+
+\begin{proof}
+Use Lemma \ref{lem:creation}.  Writing $w=\bar z$, induction gives
+\[
+ (\ad)^k\left(e^{-|z|^2/4}h(w)\right)
+ =e^{-|z|^2/4}\left(\frac z2-\pa_w\right)^kh(w),
+\]
+where $z$ is held fixed while $\pa_w$ acts.  Therefore restriction to
+$z=w=x\in\R$ yields
+\begin{equation}\label{eq:normal}
+ T_kh(x):=\sum_{j=0}^k\binom{k}{j}
+ \left(\frac x2\right)^{k-j}(-1)^jh^{(j)}(x)=0.
+\end{equation}
+The left side is entire, so the identity holds for complex $x$ as well.
+
+Write $h(x)=e^{x^2/4}p(x)$.  The exponential generating function of the
+operators in \eqref{eq:normal} is
+\begin{align*}
+ \sum_{k=0}^{\infty}\frac{t^k}{k!}T_kh(x)
+ &=e^{tx/2}h(x-t)\\
+ &=e^{x^2/4}e^{t^2/4}p(x-t).
+\end{align*}
+Consequently
+\[
+ T_kh(x)=e^{x^2/4}P_k(D)p(x),
+ \quad D=\frac{d}{dx},
+\]
+where
+\begin{equation}\label{eq:pk}
+ P_k(s)=k!\sum_{r=0}^{\lfloor k/2\rfloor}
+ \frac{(-s)^{k-2r}}{4^r r!(k-2r)!}
+ =2^{-k}i^kH_k(is).
+\end{equation}
+For $k=0$, \eqref{eq:normal} immediately gives $h=0$.  Suppose $k\ge1$.
+The physicists' Hermite polynomial $H_k$ has $k$ distinct real zeros
+$\xi_1,\ldots,\xi_k$ \cite{Szego}.  Hence the roots of $P_k$ are the
+distinct imaginary numbers $-i\xi_j$.  Every entire solution of
+$P_k(D)p=0$ has the form
+\begin{equation}\label{eq:exp-sum}
+ p(w)=\sum_{j=1}^kc_je^{-i\xi_jw}.
+\end{equation}
+
+It remains to use the Fock condition, which is the decisive obstruction.
+For $z=x+iy$ and $w=\bar z=x-iy$,
+\begin{align*}
+ e^{-|z|^2/2}|h(\bar z)|^2
+ &=e^{-(x^2+y^2)/2}
+   \left|e^{(x-iy)^2/4}p(x-iy)\right|^2\\
+ &=e^{-y^2}|p(x-iy)|^2.
+\end{align*}
+For a fixed $y$, \eqref{eq:exp-sum} is a finite exponential sum in $x$:
+\[
+ p(x-iy)=\sum_{j=1}^k c_je^{-\xi_jy}e^{-i\xi_jx}.
+\]
+Distinct frequencies are orthogonal in mean, so
+\[
+ \lim_{R\to\infty}\frac1{2R}\int_{-R}^{R}|p(x-iy)|^2\dd x
+ =\sum_{j=1}^k|c_j|^2e^{-2\xi_jy}.
+\]
+If one $c_j$ is nonzero, the right side is positive and the integral over
+$x\in\R$ is infinite.  Tonelli's theorem then contradicts
+\eqref{eq:fock}.  Thus all $c_j=0$, whence $h=0$ and $v=0$.
+\end{proof}
+
+\section*{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Fix $k\ge0$.  Choose $s\in[1,2]$ from
+\[
+ 1+\frac12=\frac1p+\frac1s.
+\]
+Because $\varphi_k$ is a polynomial times a Gaussian, it belongs to every
+$L^s(\C)$.  The twisted Young inequality gives
+\[
+ \|Q_kf\|_2=\|f\times\varphi_k\|_2
+ \le \|f\|_p\|\varphi_k\|_s<\infty.
+\]
+Thus $Q_kf\in\cE_k$.  Polar coordinates and Fubini give, with a nonzero
+normalization constant $c$ independent of $x$,
+\[
+ Q_kf(x)=c\int_0^{\infty}
+ (f\times\mu_r)(x)\varphi_k(r)r\dd r=0,
+ \qquad x\in\R.
+\]
+The integral is absolutely legitimate: translation preserves $L^p$, while
+the Gaussian factor belongs to the dual space.  Lemma \ref{lem:axis} now
+implies
+\[
+ Q_kf=0\qquad\text{for every }k\ge0.
+\]
+
+For completeness, use the special-Hermite heat kernel.  The Laguerre
+generating function gives
+\[
+ K_t(z)=\frac1{2\pi}\sum_{k=0}^{\infty}
+ e^{-(2k+1)t}\varphi_k(z)
+ =\frac{1}{4\pi\sinh t}
+   \exp\!\left(-\frac14\coth(t)|z|^2\right).
+\]
+The series converges rapidly for $t>0$.  Hence, in tempered distributions
+and in $L^p$,
+\[
+ e^{-t\mathcal L}f
+ =f\times K_t
+ =\frac1{2\pi}\sum_{k=0}^{\infty}e^{-(2k+1)t}Q_kf=0.
+\]
+Moreover, $K_t$ is a Gaussian concentrating at the origin and
+$\int_{\C}K_t=1/\cosh t\to1$.  Strong continuity of twisted translations
+therefore gives $f\times K_t\to f$ in $L^p(\C)$ as $t\downarrow0$ for every
+$1\le p<\infty$ (the usual approximate-identity proof applies verbatim).
+Therefore $f=0$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:coxeter}]
+Twisted convolution with radial measures is covariant under rotations.
+Applying Theorem \ref{thm:main} after a rotation proves injectivity for
+every line $e^{i\theta}\R$.  Every Coxeter system $\Sigma_N$ contains at
+least one such line, so vanishing for centers on $\Sigma_N$ implies vanishing
+on that line and hence $f=0$.
+\end{proof}
+
+\section*{Verification and novelty check}
+
+The exact checker
+\texttt{code/check\_hermite\_axis\_ode.py} verifies for levels
+$0\le k\le12$ that:
+\begin{itemize}
+\item coefficient extraction from $e^{t^2/4-ts}$ gives \eqref{eq:pk};
+\item $P_k(s)=2^{-k}i^kH_k(is)$ exactly;
+\item direct normal ordering on a generic polynomial agrees with
+      $T_k(e^{x^2/4}p)=e^{x^2/4}P_k(D)p$; and
+\item the computed Hermite zeros are real and distinct.
+\end{itemize}
+It was run with
+\begin{center}
+\texttt{conda run --no-capture-output -n sandbox python\\
+code/check\_hermite\_axis\_ode.py --max-k 12}
+\end{center}
+and passed all levels.  This finite computation is not used as proof; the
+generating-function and Hermite-zero argument above handles every $k$.
+
+The bounded novelty search was performed on 26 August 2026.  The run's
+registry, solution, attempt, and proof-gap indexes were searched for the
+three relevant arXiv ids and for ``odd Coxeter'', ``twisted spherical means'',
+and ``single line''; no prior packet was found.  The local parsed arXiv corpus
+was searched for the title, arXiv:1103.4571, and the odd-line terminology.
+The only directly relevant hits were the source, the adjacent papers
+arXiv:1204.2773 and arXiv:1204.3076, and the later arXiv:1306.5658, which still
+describes real-cone injectivity as unsolved.  Web searches restricted to
+arXiv used the same phrases together with ``real axis'', ``Landau level'',
+and ``polyanalytic Fock''.  They found background papers on polyanalytic Fock
+spaces but no paper claiming the single-line theorem or the odd-Coxeter
+conjecture.  This is a bounded search, not a proof of novelty.
+
+\section*{Limitations and human-review recommendation}
+
+The theorem is confined to $1\le p\le2$, exactly the range in which twisted
+Young places every spectral projection in $L^2$.  It concerns lines through
+the origin and does not settle the source's broader questions about arbitrary
+real-analytic curves.  As usual, the hypothesis is interpreted wherever the
+twisted spherical means are defined pointwise; the proof itself uses only the
+resulting polar-integral identities.
+
+The packet is recommended for expert review as a candidate full solution.
+The highest-value checks are: (i) consistency of the twist convention with
+$\mathcal L=4\ad A+I$ and the assignment of $Q_kf$ to $\cE_k$;
+(ii) the normal-order generating function in Lemma \ref{lem:axis}; and
+(iii) the $L^p$ special-Hermite heat-kernel reconstruction at $p=1$.
+
+\begin{thebibliography}{9}
+
+\bibitem{SriLines}
+R. K. Srivastava,
+\emph{Coxeter system of lines are sets of injectivity for the twisted
+spherical means on $\C$}, arXiv:1103.4571.
+
+\bibitem{SriExpansion}
+R. K. Srivastava,
+\emph{Real analytic expansion of spectral projection and extension of
+Hecke--Bochner identity}, arXiv:1204.3076.
+
+\bibitem{GangulyThangavelu}
+P. Ganguly and S. Thangavelu,
+\emph{Theorems of Chernoff and Ingham for certain eigenfunction expansions},
+arXiv:2011.09940.
+
+\bibitem{Szego}
+G. Szeg\H{o}, \emph{Orthogonal Polynomials}, American Mathematical Society
+Colloquium Publications, Vol. 23, 4th ed., 1975.
+
+\end{thebibliography}
+
+\end{document}

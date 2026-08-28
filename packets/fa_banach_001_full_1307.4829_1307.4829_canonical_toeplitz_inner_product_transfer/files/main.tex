@@ -1,0 +1,496 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Cn}{\mathbb C^n}
+\newcommand{\Fc}[2]{F^{#1}_{#2}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Sc}{\mathcal S}
+\newcommand{\Tc}{\mathcal T}
+\newcommand{\Tm}{T}
+
+\title{Canonical-inner-product Toeplitz operators on Fock--Sobolev type spaces\\
+\large An identity-plus-compact transfer theorem}
+\author{Run \texttt{fa\_banach\_001}, lane 6}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.90\textwidth}{\textbf{Status.}
+Candidate full result, likely valid.  Theorems A--C of
+Cho--Isralowitz--Joo transfer to the canonical inner product, including the
+canonical Berezin-transform characterization for every Schatten exponent
+\(0<t<\infty\).  The proof is a direct operator-theoretic transfer, augmented
+by an exact canonical-kernel localization lemma.}}
+\end{center}
+
+\section{Source question}
+
+The source is H. R. Cho, J. Isralowitz and J.-C. Joo, \emph{Toeplitz
+operators on Fock--Sobolev type spaces}, arXiv:1307.4829, later published in
+Integral Equations and Operator Theory 82 (2015), 1--32 \cite{CIJ}.
+Section 5 asks whether its Theorems A, B and C remain true when the Toeplitz
+operator is defined from the reproducing kernel for the natural inner product,
+and specifically asks for a direct operator-theoretic transfer between the two
+equivalent Hilbert inner products.  The decisive source passage is reproduced
+below.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.96\textwidth]{figures/open_problem_crop.png}
+  \caption{The open problem in Section 5, page 31 of arXiv:1307.4829v2.}
+\end{figure}
+
+\section{\mbox{\hspace{0.45em}Definitions and statement}}
+
+Write
+\[
+ d v_\alpha(z)=(1+|z|)^{-\alpha}\,dv(z),\qquad
+ \|f\|_{\Fc p\alpha}^p=\int_{\Cn}|f(z)|^p e^{-p|z|^2/2}\,dv_\alpha(z).
+\]
+The canonical Hilbert inner product on \(\Fc 2\alpha\) is
+\[
+ C(f,g):=\int_{\Cn}f\overline g\,e^{-|z|^2}(1+|z|)^{-\alpha}\,dv.
+\]
+Let \(K^c_z\) be its reproducing kernel.  For a positive locally finite
+Borel measure \(\mu\), the canonical Toeplitz operator is initially defined on
+polynomials by
+\[
+ \Tc_\mu f(z)=\int_{\Cn} f(w)\overline{K^c_z(w)}e^{-|w|^2}
+ (1+|w|)^{-\alpha}\,d\mu(w).                                      \tag{2.1}
+\]
+Equivalently,
+\[
+ C(\Tc_\mu f,g)=C_\mu(f,g):=
+ \int_{\Cn}f\overline g\,e^{-|z|^2}(1+|z|)^{-\alpha}\,d\mu.       \tag{2.2}
+\]
+
+Let \(M\) be the modified inner product used in \cite{CIJ}.  If
+\(\alpha\leq0\),
+\[
+ M(f,g)=\int f\overline g\,e^{-|z|^2}|z|^{-\alpha}\,dv.
+\]
+If \(\alpha>0\), let \(P\) be the Taylor projection onto homogeneous
+degrees at most \(\alpha/2\), let \(Q=I-P\), and put
+\[
+ M(f,g)=\int Pf\,\overline{Pg}\,e^{-|z|^2}\,dv
+ +\int Qf\,\overline{Qg}\,e^{-|z|^2}|z|^{-\alpha}\,dv.           \tag{2.3}
+\]
+The source operator \(\Tm_\mu\) represents the analogous form \(M_\mu\).
+
+Fix a sufficiently small radius \(r>0\) and an \(r\)-lattice
+\(\{a_j\}\subset\Cn\).  The choice of lattice and radius is immaterial for
+the conditions below.
+
+\begin{theorem}[Canonical operator/geometric criteria]\label{thm:main}
+Let \(\alpha\in\mathbb R\), and let \(\mu\geq0\) satisfy the natural
+dense-domain condition for \((2.1)\).  Then:
+\begin{enumerate}
+\item For every \(1\leq p<\infty\), \(\Tc_\mu\) extends boundedly on
+\(\Fc p\alpha\) if and only if
+\[
+ \sup_{z\in\Cn}\mu(B(z,r))<\infty.                                \tag{2.4}
+\]
+\item For every \(1\leq p<\infty\), \(\Tc_\mu\) is compact on
+\(\Fc p\alpha\) if and only if
+\[
+ \mu(B(z,r))\longrightarrow0\quad (|z|\to\infty).                 \tag{2.5}
+\]
+\item For every \(0<t<\infty\), as an operator on the canonical Hilbert
+space \(\Fc2\alpha\),
+\[
+ \Tc_\mu\in\Sc_t
+ \quad\Longleftrightarrow\quad
+ \mu(B(\mathord\cdot,r))\in L^t(dv)
+ \quad\Longleftrightarrow\quad
+ \{\mu(B(a_j,r))\}_j\in\ell^t.                                   \tag{2.6}
+\]
+\end{enumerate}
+Moreover, if \(\widetilde\mu_c(z)=C(\Tc_\mu k^c_z,k^c_z)\) is the
+canonical Berezin transform, then it is bounded exactly under \((2.4)\), and
+it vanishes at infinity exactly under \((2.5)\).  For every \(0<t<\infty\),
+\[
+ \widetilde\mu_c\in L^t(dv)\quad\Longleftrightarrow\quad
+ \Tc_\mu\in\Sc_t.                                                  \tag{2.7}
+\]
+\end{theorem}
+
+Thus all clauses of source Theorems A, B and C survive the canonical inner
+product.
+
+\section{Proof intuition}
+
+Equivalent Hilbert norms alone do not preserve Toeplitz operators, because a
+Toeplitz operator also remembers the symbol form.  Here the two forms have much
+more structure.  Outside a fixed ball their weights differ by
+\[
+ q(z)=\left(\frac{|z|}{1+|z|}\right)^\alpha,
+ \qquad q(z)\longrightarrow1,
+\]
+while for \(\alpha>0\) all terms involving the low Taylor projection \(P\)
+have finite rank.  Contributions from a fixed ball are better still: analytic
+Taylor approximation makes them belong to every Schatten class.
+
+The operator \(S\) changing the modified inner product into the canonical one
+therefore satisfies \(S=I+K\) with \(K\) compact on every \(\Fc p\alpha\).
+Radiality makes \(S\) diagonal with strictly positive diagonal entries, so it
+is injective; Fredholm theory makes it invertible.  After multiplication by
+\(S\), the canonical Toeplitz operator is the source Toeplitz operator with
+symbol \(q\mu\), modulo the local and finite-rank corrections.  Since
+\(q\asymp1\) off a fixed ball, all ball-mass criteria transfer unchanged.
+To handle the quasi-Banach Berezin clause, the canonical weight is smoothed
+only on a fixed ball.  Generalized-Fock kernel localization for the smoothed
+weight transfers back through a compactly supported norm change and yields
+exponential off-diagonal decay for the \emph{exact} canonical kernel.
+
+\section{The transfer argument}
+
+\begin{lemma}[Compactly supported forms are super-smoothing]\label{lem:local}
+Suppose \(\sigma\) is a finite positive measure supported in a fixed ball.
+The operator representing \(C_\sigma\), with respect to either of the two
+equivalent Hilbert structures, belongs to \(\Sc_t\) for every \(t>0\).
+The corresponding operator on \(\Fc p\alpha\) is compact for every
+\(1\leq p<\infty\).  The same conclusion holds for the high-high modified
+form containing \(|z|^{-\alpha}\), after applying \(Q\) when \(\alpha>0\).
+\end{lemma}
+
+\begin{proof}
+Let \(\Pi_N\) be the Taylor projection onto total degree at most \(N\).  Its
+rank is \(O(N^n)\).  On a fixed ball, the normalized monomial estimates for a
+Gaussian Fock norm give
+\[
+ \sup_{|z|\leq R}|(I-\Pi_N)f(z)|
+ \leq A_R\frac{B_R^N}{\sqrt{N!}}\,\|f\|_{\Fc2\alpha}.              \tag{4.1}
+\]
+For the high part, multiplication by \(|z|^{-\alpha/2}\) is harmless once
+\(N>\alpha/2\), because every omitted term vanishes to higher order at zero.
+Consequently the approximation numbers of the local embedding decay faster
+than any power after a rank \(O(N^n)\) truncation.  The embedding, and hence
+its positive square, lies in every Schatten class.  The same Taylor
+truncations converge in operator norm on \(\Fc p\alpha\), proving compactness.
+\end{proof}
+
+Define \(S\) first on polynomials by
+\[
+ M(Sf,g)=C(f,g).                                                    \tag{4.2}
+\]
+
+\begin{lemma}[The norm-change operator]\label{lem:S}
+For every \(1\leq p<\infty\), \(S\) extends to a bounded invertible operator
+on \(\Fc p\alpha\), and
+\[
+ S-I\text{ is compact on }\Fc p\alpha.                             \tag{4.3}
+\]
+On \(\Fc2\alpha\), the compact difference belongs to every Schatten class
+after removal of the exterior source-Toeplitz term described below.
+The kernels satisfy
+\[
+ K^c_z=S^{-1}K^m_z.                                                 \tag{4.4}
+\]
+\end{lemma}
+
+\begin{proof}
+Take a cutoff at \(|z|=R\geq1\).  On the exterior high-degree block,
+\(C-M\) is the modified Toeplitz form with scalar symbol \(q-1\), where
+\(q=(|z|/(1+|z|))^\alpha\).  This symbol is bounded there and tends to zero.
+The compactness part of Theorem B in \cite{CIJ}, applied to \(|q-1|dv\),
+shows that this exterior difference is compact on every \(\Fc p\alpha\).
+The interior difference is compact by Lemma \ref{lem:local}.  When
+\(\alpha>0\), the remaining blocks contain \(P\) and hence have finite rank.
+This proves \((4.3)\) and boundedness.
+
+Both radial forms make the monomials orthogonal.  Thus \(S\) is diagonal on
+homogeneous polynomials, and every diagonal coefficient is a ratio of two
+strictly positive moments.  Hence \(S\) is injective on every \(\Fc p\alpha\).
+Since \(S=I+\text{compact}\), it is Fredholm of index zero and therefore
+invertible.  Finally, for every \(f\),
+\[
+ f(z)=M(f,K^m_z)=M(Sf,K^c_z)=M(f,SK^c_z),
+\]
+which gives \((4.4)\).
+\end{proof}
+
+\begin{lemma}[Toeplitz transfer modulo negligible blocks]\label{lem:transfer}
+Assume \(\sup_z\mu(B(z,r))<\infty\).  Put
+\[
+ d\nu(z)=\mathbf1_{\{|z|>R\}}
+ \left(\frac{|z|}{1+|z|}\right)^\alpha d\mu(z).
+\]
+Then, on every \(\Fc p\alpha\),
+\[
+ S\Tc_\mu=\Tm_\nu+E_\mu,                                         \tag{4.5}
+\]
+where \(E_\mu\) is compact.  On \(\Fc2\alpha\),
+\(E_\mu\in\bigcap_{t>0}\Sc_t\).  In particular, for every \(t>0\),
+\[
+ \Tc_\mu\in\Sc_t\quad\Longleftrightarrow\quad\Tm_\nu\in\Sc_t.\tag{4.6}
+\]
+\end{lemma}
+
+\begin{proof}
+For \(\alpha\leq0\), the exterior canonical form is exactly the modified
+form with symbol \(\nu\), because
+\[
+ |z|^{-\alpha}\left(\frac{|z|}{1+|z|}\right)^\alpha
+ =(1+|z|)^{-\alpha}.
+\]
+For \(\alpha>0\), the same identity gives equality of the high-high blocks.
+Every discrepancy involving \(P\) has finite rank.  The part supported in
+\(B(0,R)\) is covered by Lemma \ref{lem:local}.  Equation \((4.5)\) follows
+from the defining identity \(M(S\Tc_\mu f,g)=C_\mu(f,g)\).
+The Schatten assertion follows because the error is in every \(\Sc_t\) and
+left multiplication by the bounded invertible operator \(S\) preserves every
+Schatten ideal, including the quasi-ideals with \(t<1\).
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+We first prove necessity of \((2.4)\) without any kernel estimate.  Put
+\(E_a(z)=e^{z\cdot\overline a}\).  Gaussian localization gives
+\[
+ \|E_a\|_{\Fc p\alpha}\asymp
+ e^{|a|^2/2}(1+|a|)^{-\alpha/p}.                                  \tag{4.7}
+\]
+Use the analogous conjugate-exponent normalization, with the unweighted
+Fock \(F^\infty\) norm when \(p=1\).  If \(f_a,g_a\) are the two normalized
+exponentials, then \((2.2)\) and \(|w-a|<r\) give
+\[
+ |C(\Tc_\mu f_a,g_a)|=C_\mu(f_a,g_a)\gtrsim\mu(B(a,r)).             \tag{4.8}
+\]
+The canonical pairing is bounded by Holder's inequality, so boundedness of
+\(\Tc_\mu\) makes the right side uniformly bounded.
+
+Conversely, \((2.4)\) implies that \(\nu\) in Lemma \ref{lem:transfer} has
+uniformly bounded ball masses.  Theorem A of \cite{CIJ} makes \(\Tm_\nu\)
+bounded on every \(\Fc p\alpha\).  Equation \((4.5)\) and invertibility of
+\(S\) prove boundedness of \(\Tc_\mu\).
+
+If \((2.5)\) holds, the ball masses of \(\nu\) vanish, so source Theorem B
+and \((4.5)\) make \(\Tc_\mu\) compact.  Conversely, compactness first gives
+boundedness and hence \((2.4)\).  Then \((4.5)\) makes \(\Tm_\nu\) compact;
+source Theorem B implies that the ball masses of \(\nu\), and therefore those
+of \(\mu\) outside a fixed ball, vanish.  This proves \((2.5)\).
+
+Finally, source Theorem C says
+\[
+ \Tm_\nu\in\Sc_t\quad\Longleftrightarrow\quad
+ \{\nu(B(a_j,r))\}\in\ell^t.
+\]
+Since \(q\asymp1\) on the exterior and only finitely many lattice cells meet
+the omitted ball, this sequence lies in \(\ell^t\) exactly when
+\(\{\mu(B(a_j,r))\}\) does.  Lemma \ref{lem:transfer} proves \((2.6)\).
+The equivalence with \(\mu(B(\mathord\cdot,r))\in L^t\) is the standard
+bounded-overlap lattice discretization (valid also for \(0<t<1\)).
+\end{proof}
+
+\section{Canonical Berezin transform}
+
+Put
+\[
+ \phi_c(z)=\frac{|z|^2}{2}+\frac{\alpha}{2}\log(1+|z|),
+ \qquad e^{-2\phi_c(z)}=e^{-|z|^2}(1+|z|)^{-\alpha}.
+\]
+
+\begin{lemma}[Exact canonical off-diagonal decay]\label{lem:canonical-decay}
+There are constants \(C,\varepsilon>0\), depending only on \(n\) and
+\(\alpha\), such that
+\[
+ |K^c_z(w)|e^{-\phi_c(z)-\phi_c(w)}
+ \leq C e^{-\varepsilon|z-w|},                                   \tag{5.1}
+\]
+and
+\[
+ K^c_z(z)e^{-2\phi_c(z)}\asymp1.                                 \tag{5.2}
+\]
+Consequently,
+\[
+ |k^c_z(w)|^2e^{-2\phi_c(w)}\leq C e^{-2\varepsilon|z-w|}.       \tag{5.3}
+\]
+\end{lemma}
+
+\begin{proof}
+We first remove the harmless nonsmoothness of \(\phi_c\) at the origin without
+changing it at infinity.  For \(s>0\), write \(\phi_c(z)=F_0(|z|^2)\).  If
+\(r=\sqrt{s}\), the tangential and radial eigenvalues of the complex Hessian
+are, up to the fixed normalization of \(dd^c\),
+\[
+ F_0'(s)=\frac12+\frac{\alpha}{4r(1+r)},\qquad
+ F_0'(s)+sF_0''(s)=\frac12+\frac{\alpha}{8r(1+r)^2}.              \tag{5.4}
+\]
+They are bounded above and below by positive constants for \(r\) sufficiently
+large.  A standard radial interpolation now gives
+\(\psi\in C^2(\Cn)\), equal to \(\phi_c\) outside a ball, such that
+\[
+ c\,\omega_0\leq dd^c\psi\leq C\,\omega_0.                      \tag{5.5}
+\]
+For completeness, set \(g_0(s)=sF_0'(s)\) on a sufficiently large exterior
+interval.  Extend it smoothly to \(s=0\), with \(g(s)=\lambda s\) near zero,
+so that \(0<c\leq g'(s)\leq C\), while retaining \(g=g_0\) on the exterior.
+This is possible because both \(g_0'(s)\) and \(g_0(s)/s\) have such bounds
+there.  Integrating \(\Psi'(s)=g(s)/s\) and choosing the additive constant at
+the joining radius gives \(\psi(z)=\Psi(|z|^2)\); its Hessian eigenvalues are
+\(g(s)/s\) and \(g'(s)\), proving \((5.5)\).
+
+Let \(H_\psi\) be the generalized Fock Hilbert space with weight
+\(e^{-2\psi}\), and let \(L_z\) be its reproducing kernel.  The generalized
+Fock kernel estimate \cite[Lemmas 2.1--2.2]{IVW} gives
+\[
+ |L_z(w)|e^{-\psi(z)-\psi(w)}\leq C e^{-\varepsilon|z-w|},
+ \qquad L_z(z)e^{-2\psi(z)}\asymp1.                              \tag{5.6}
+\]
+Since \(\psi=\phi_c\) off a compact set, the two Hilbert norms differ by a
+bounded compactly supported multiplier.  More precisely, with
+\[
+ h=e^{2(\psi-\phi_c)}-1,
+\]
+we have
+\[
+ C(f,g)=\ip{Af}{g}_{\psi},\qquad A=I+T_h^\psi,                   \tag{5.7}
+\]
+where \(T_h^\psi=P_\psi M_h\).  The operator \(A\) is positive and boundedly
+invertible, while \(T_h^\psi\) is a compactly supported operator of the type
+in Lemma \ref{lem:local}.  Reproducing gives
+\[
+ K^c_z=A^{-1}L_z=L_z+BL_z,
+ \qquad B=A^{-1}-I=-A^{-1}T_h^\psi.                              \tag{5.8}
+\]
+
+Projection contractivity, compact support of \(h\), and \((5.6)\) imply
+\[
+ \|T_h^\psi L_z\|_\psi
+ \leq \|hL_z\|_{L^2(e^{-2\psi})}
+ \leq C e^{\psi(z)}e^{-\varepsilon|z|}.                         \tag{5.9}
+\]
+Point evaluation and the diagonal estimate in \((5.6)\) therefore give
+\[
+ |(BL_z)(w)|\leq C e^{\psi(z)+\psi(w)}e^{-\varepsilon|z|}.       \tag{5.10}
+\]
+The operator \(B\) is self-adjoint, so its kernel is Hermitian; interchanging
+\(z,w\) gives the same bound with \(e^{-\varepsilon|w|}\).  Taking the better
+bound and using
+\(\max\{|z|,|w|\}\geq |z-w|/2\) shows that the correction in \((5.8)\)
+has the exponential off-diagonal bound in \((5.1)\).  Combining this with
+\((5.6)\), and using that \(\psi-\phi_c\) is bounded, proves \((5.1)\).
+
+Equivalent Hilbert norms give comparable squared norms for every point
+evaluation.  Thus \((5.6)\) implies \((5.2)\), and division by
+\(K^c_z(z)\) gives \((5.3)\).
+\end{proof}
+
+We record why no explicit formula for \(K^c\) is needed for the bounded and
+vanishing clauses.  The normalized modified kernels \(k^m_z\) converge weakly
+to zero as \(|z|\to\infty\).  Lemma \ref{lem:S} therefore yields
+\[
+ \|(S^{-1}-I)k^m_z\|_{M}\longrightarrow0.                         \tag{5.11}
+\]
+The source near-diagonal lower estimate for \(K^m\), together with point
+evaluation and \((4.4)\), implies that for some \(r_0,c>0\),
+\[
+ |K^c_z(w)|\geq c\sqrt{K^c_z(z)K^c_w(w)}
+ \quad\text{when }|w-z|<r_0\text{ and }|z|\text{ is large}.        \tag{5.12}
+\]
+Indeed, the difference in \((5.11)\), evaluated at \(w\), is
+\(o(\sqrt{K^m_w(w)})\), uniformly in \(w\), while the source kernel has a
+fixed lower constant on the ball.  Equivalent Hilbert norms give
+\[
+ K^c_z(z)\asymp K^m_z(z)\asymp(1+|z|)^\alpha e^{|z|^2}.            \tag{5.13}
+\]
+It follows from \((5.12)\)--\((5.13)\) that
+\[
+ \widetilde\mu_c(z)\gtrsim\mu(B(z,r_0))                           \tag{5.14}
+\]
+for large \(|z|\).  Thus boundedness or vanishing of the canonical Berezin
+transform forces the corresponding ball condition.  The converses follow
+from boundedness or compactness of \(\Tc_\mu\); normalized canonical kernels
+are weakly null at infinity.
+
+For \(t\geq1\), positivity and Jensen's inequality give
+\[
+ \widetilde\mu_c(z)^t\leq C((\Tc_\mu)^t k^c_z,k^c_z).
+\]
+The canonical continuous-frame measure
+\[
+ K^c_z(z)e^{-|z|^2}(1+|z|)^{-\alpha}\,dv(z)
+\]
+is comparable with \(dv(z)\) by \((5.3)\).  Integration proves
+\(\|\widetilde\mu_c\|_{L^t}^t\lesssim\|\Tc_\mu\|_{\Sc_t}^t\).
+The reverse implication follows from \((5.14)\), lattice discretization, and
+\((2.6)\).
+
+It remains only to prove the forward implication when \(0<t<1\).  Suppose
+\(\Tc_\mu\in\Sc_t\).  By \((2.6)\), if
+\(m_j=\mu(B(a_j,r))\), then \(\{m_j\}\in\ell^t\).  Choose a measurable
+partition \(\{D_j\}\) of \(\Cn\) with \(D_j\subset B(a_j,r)\).  Lemma
+\ref{lem:canonical-decay} gives
+\[
+ \widetilde\mu_c(z)
+ \leq C\int_{\Cn}e^{-2\varepsilon|z-w|}\,d\mu(w)
+ \leq C_r\sum_j m_j e^{-\varepsilon|z-a_j|}.                    \tag{5.15}
+\]
+Since \(0<t<1\), subadditivity and translation invariance yield
+\[
+ \int_{\Cn}\widetilde\mu_c(z)^t\,dv(z)
+ \leq C_{r,t}\sum_j m_j^t
+ \int_{\Cn}e^{-t\varepsilon|z-a_j|}\,dv(z)
+ \leq C'_{r,t}\sum_jm_j^t<\infty.                               \tag{5.16}
+\]
+This proves \((2.7)\) throughout the quasi-Banach range and completes all
+claims.
+
+\section{Verification, scope, and novelty}
+
+\begin{itemize}
+\item The proof uses only the source Theorems A--C, its modified-kernel
+near-diagonal estimate, elementary Fredholm theory, Taylor approximation, and
+the generalized-Fock kernel estimate of Isralowitz--Virtanen--Wolf.
+\item The potentially singular factor at the origin is always placed after
+the high Taylor projection \(Q\); Lemma \ref{lem:local} explicitly uses the
+resulting order of vanishing.
+\item All assertions involving arbitrary \(p\) concern boundedness and
+compactness.  Schatten ideals concern the canonical Hilbert space
+\(\Fc2\alpha\).
+\item The exact canonical kernel is proved exponentially localized by a
+compactly supported smoothing of the weight.  The correction kernel decays in
+one variable by support localization and in the other by self-adjointness.
+\item A bounded search on 27 August 2026 used the exact source id/title and
+the canonical/natural-inner-product Fock--Sobolev Toeplitz keywords.  No
+matching transfer result was located.  A 2023 paper still uses the modified
+inner product and repeats the canonical-kernel difficulty; this is evidence
+of continued relevance, not proof of novelty.
+\end{itemize}
+
+\paragraph{Human-review recommendation.}
+Focused expert review should audit the local-form compactness in Lemma
+\ref{lem:local}, the \(\alpha>0\) block identity \((4.5)\), and the radial
+interpolation/self-adjoint two-variable decay in Lemma
+\ref{lem:canonical-decay}.
+
+\begin{thebibliography}{9}
+\bibitem{CIJ}
+H. R. Cho, J. Isralowitz and J.-C. Joo,
+\emph{Toeplitz operators on Fock--Sobolev type spaces},
+Integral Equations Operator Theory 82 (2015), 1--32;
+\href{https://arxiv.org/abs/1307.4829}{arXiv:1307.4829}.
+
+\bibitem{CCK}
+H. R. Cho, B. R. Choe and H. Koo,
+\emph{Fock--Sobolev spaces of fractional order},
+Potential Analysis 43 (2015), 199--240;
+\href{https://arxiv.org/abs/1307.2670}{arXiv:1307.2670}.
+
+\bibitem{IVW}
+J. Isralowitz, J. A. Virtanen and L. Wolf,
+\emph{Schatten class Toeplitz operators on generalized Fock spaces},
+J. Math. Anal. Appl. 421 (2015), 329--337;
+\href{https://arxiv.org/abs/1402.2567}{arXiv:1402.2567}.
+\end{thebibliography}
+
+\end{document}

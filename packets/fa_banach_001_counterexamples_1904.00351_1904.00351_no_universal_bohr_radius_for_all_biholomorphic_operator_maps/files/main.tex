@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newcommand{\D}{\mathbb D}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BH}{\mathcal B(\mathcal H)}
+\newcommand{\diag}{\operatorname{diag}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.62em}
+
+\title{No Universal Bohr Radius for Arbitrary\\Operator-Valued Biholomorphic Curves}
+\author{Run \texttt{fa\_banach\_001}, lane 9}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\textbf{Status.} Candidate scoped counterexample, likely valid, for human
+review.
+
+\section{Source question}
+
+Bhowmik and Das consider an operator-valued holomorphic function
+\(f:\D\to\BH\) and a subordinate function
+\[
+ g(z)=\sum_{k=0}^{\infty}B_kz^k\in S(f).
+\]
+Their final Remark~(ii) asks whether there is a universal \(r_0>0\) such that
+for every biholomorphic \(f\), every \(g\in S(f)\), and every
+\(0\leq r\leq r_0\),
+\begin{equation}\label{eq:bohr}
+ \sum_{k=1}^{\infty}\|B_k\|r^k
+ \leq \liminf_{|z|\to1^-}\|f(z)-f(0)\|.
+\end{equation}
+They suggest that the answer might be negative, perhaps even when \(f\) is
+convex \cite[final Remark (ii), PDF p.~13]{BD}.
+
+\begin{center}
+\includegraphics[width=0.98\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+\section{Convention needed to read the question}
+
+The paper's printed definition says that \(f(\D)\) is a domain in the ambient
+space \(\BH\). If ``domain'' has its standard meaning of an ambient open set,
+this is incompatible with every non-scalar example: the derivative of a map
+from \(\C\) has rank at most one, so it cannot have a holomorphic local inverse
+onto an open subset of a space of dimension greater than one. Thus, read
+literally, the operator-valued part of the final question is empty.
+
+The paper operates with the natural curve-level convention instead: \(f\) is
+holomorphic and injective, and its inverse on the one-dimensional image is
+holomorphic. Two internal signals make this intent concrete. The final
+question treats \(A_1=f'(0)\) as an invertible member of \(\BH\), not as an
+isomorphism \(\C\to\BH\). More decisively, the downloadable arXiv TeX contains
+a commented-out explanatory paragraph that calls
+\(z\mapsto\diag(z,t(z))\) biholomorphic for arbitrary holomorphic \(t\), in
+order to observe that its higher coefficients can be arbitrarily large.
+
+The following theorem answers the question under that operative convention.
+It does not claim to satisfy the incompatible ambient-open clause.
+
+\section{Claimed contribution}
+
+\begin{theorem}\label{thm:main}
+Under the source paper's operative curve convention, there is no universal
+\(r_0>0\) for which \eqref{eq:bohr} holds for every operator-valued
+biholomorphic \(f\) and every \(g\in S(f)\). A counterexample exists in
+\(\mathcal B(\C^2)\) for every proposed positive radius.
+\end{theorem}
+
+\section{Proof intuition}
+
+Keep one diagonal coordinate equal to \(z\). This permanently records the
+parameter, so injectivity and a holomorphic inverse are automatic. Use the
+other coordinate to add two arbitrarily large, cancelling Taylor
+coefficients. Their norms add on the left of \eqref{eq:bohr}, but the
+cancellation makes that coordinate return to the value one at the boundary.
+The first coordinate simultaneously forces the boundary liminf to be exactly
+one. Thus the coefficient side can be made larger than the geometric side at
+any prescribed positive radius.
+
+\section{Proof}
+
+Let \(r_0>0\) be arbitrary and put
+\[
+ r=\min\{r_0/2,1/2\}.
+\]
+Then \(0<r\leq r_0\). Choose a real number
+\begin{equation}\label{eq:Mchoice}
+ M>\frac{1-r}{r^2(1+r)}
+\end{equation}
+and take \(\mathcal H=\C^2\). Define
+\begin{equation}\label{eq:fdef}
+ f_M(z)=
+ \begin{pmatrix}
+ z&0\\
+ 0&z+Mz^2-Mz^3
+ \end{pmatrix},
+ \qquad z\in\D,
+\end{equation}
+and let \(g=f_M\).
+
+The map \(f_M\) is a holomorphic polynomial. Its first diagonal coordinate is
+\(z\), so it is injective. Its inverse on \(f_M(\D)\) is the restriction of
+the bounded complex-linear coordinate functional
+\[
+ \pi_{11}:\mathcal B(\C^2)\longrightarrow\C,
+ \qquad \pi_{11}(T)=T_{11}.
+\]
+Consequently \(f_M\) is biholomorphic under the operative convention.
+Taking the identity Schwarz function \(\phi(z)=z\) gives
+\(g=f_M\circ\phi\), hence \(g\in S(f_M)\).
+
+Since \(f_M(0)=0\), the nonzero Taylor coefficients of \(g\) are
+\[
+ B_1=I_2,\qquad
+ B_2=\diag(0,M),\qquad
+ B_3=\diag(0,-M).
+\]
+Their operator norms are \(1,M,M\), respectively. Therefore the left-hand
+side of \eqref{eq:bohr} at the chosen radius is
+\begin{align*}
+ \sum_{k=1}^{\infty}\|B_k\|r^k
+ &=r+Mr^2+Mr^3\\
+ &=r+Mr^2(1+r)>1,
+\end{align*}
+where the last inequality is exactly \eqref{eq:Mchoice}.
+
+It remains to compute the right-hand side. For every \(z\in\D\),
+\[
+ \|f_M(z)\|
+ =\max\{|z|,\,|z+Mz^2-Mz^3|\}\geq |z|.
+\]
+It follows that
+\[
+ \liminf_{|z|\to1^-}\|f_M(z)\|\geq1.
+\]
+On the other hand, along positive real numbers \(z=\rho\uparrow1\),
+\[
+ \rho+M\rho^2-M\rho^3
+ =\rho+M\rho^2(1-\rho)\longrightarrow1,
+\]
+while the first diagonal coordinate \(\rho\) also tends to one. Hence
+\[
+ \lim_{\rho\uparrow1}\|f_M(\rho)\|=1,
+\]
+and therefore
+\begin{equation}\label{eq:rhs}
+ \liminf_{|z|\to1^-}\|f_M(z)-f_M(0)\|=1.
+\end{equation}
+The strict coefficient estimate and \eqref{eq:rhs} contradict
+\eqref{eq:bohr} at \(r\leq r_0\). Since \(r_0>0\) was arbitrary, no universal
+positive radius exists. \qed
+
+\section{Verification and limitations}
+
+The script \texttt{code/verify\_counterexample.py} checks the coefficient
+identities, the choice of \(M\), and the strict inequality with exact rational
+arithmetic for representative radii. The proof itself is symbolic and uses no
+numerical approximation.
+
+The construction settles the unrestricted question only under the operative
+curve convention. It is not convex. Accordingly it does not settle the
+stronger suggestion that failure may persist for convex biholomorphic maps.
+Under the printed ambient-open definition, the non-scalar class is empty
+instead; that is a defect in the formulation, not an additional conclusion of
+the counterexample.
+
+\section{Bounded novelty check}
+
+The search on 27 August 2026 covered the run's registry, solution, attempt,
+and proof-gap indexes; exact searches for arXiv:1904.00351, its title, and
+phrases from the final question; the arXiv source and Cambridge publisher
+page; and the later operator-valued Bohr papers surfaced by those searches.
+No explicit proof or counterexample to this unrestricted question was found.
+This supports, but cannot certify, novelty.
+
+\textbf{Human review recommendation.} Ask an expert in holomorphic mappings
+in Banach spaces or operator-valued Bohr phenomena to confirm the source
+convention. Once the operative convention is accepted, the mathematical
+calculation is elementary and exact.
+
+\begin{thebibliography}{9}
+\bibitem{BD}
+B. Bhowmik and N. Das,
+\emph{Bohr phenomenon for operator valued functions},
+Proc. Edinburgh Math. Soc. \textbf{64} (2021), 72--86;
+arXiv:1904.00351,
+\url{https://arxiv.org/abs/1904.00351};
+\url{https://doi.org/10.1017/S0013091520000395}.
+\end{thebibliography}
+
+\end{document}

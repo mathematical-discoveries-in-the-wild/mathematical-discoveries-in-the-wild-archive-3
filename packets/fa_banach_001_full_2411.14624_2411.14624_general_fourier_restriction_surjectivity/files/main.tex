@@ -1,0 +1,322 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+
+\definecolor{deepblue}{RGB}{26,67,120}
+\definecolor{softgray}{RGB}{245,247,250}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\G}{\mathcal G}
+\newcommand{\Hil}{\mathcal H}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\C}{\mathbb C}
+
+\title{\vspace{-2.5em}\textbf{Fourier-algebra restriction to isotropy is always surjective}\\
+\large A full answer to Remark 3.10 of arXiv:2411.14624}
+\author{Candidate solution packet --- run \texttt{fa\_banach\_001}, lane 2}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent
+\colorbox{softgray}{\parbox{0.95\linewidth}{
+\textbf{Status.} Candidate full solution, likely valid; human review is recommended.
+For every locally compact Hausdorff groupoid with a left Haar system, restriction
+from the groupoid Fourier algebra to the Fourier algebra of any isotropy group is
+surjective. No countability, \'{e}tale, unimodularity, or right-invariance
+hypothesis is required.}}
+
+\section{Source question}
+
+Joseph DeGaetani and Mahya Ghandehari, \emph{On the restriction maps of the
+Fourier and Fourier-Stieltjes algebras over locally compact groupoids},
+arXiv:2411.14624, prove the result for \'{e}tale groupoids in Theorem 3.7.
+Remark 3.10 (printed page 13) asks whether that theorem is true in full
+generality.  The exact source passage is reproduced below.
+
+\begin{center}
+\includegraphics[width=0.96\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+In symbols, if $\G$ is a locally compact Hausdorff groupoid with a left Haar
+system $\{\lambda^v\}_{v\in\G^{(0)}}$, $u\in\G^{(0)}$, and
+$H=\G_u^u$, the question is whether
+\[
+        R_u:A(\G)\longrightarrow A(H),\qquad R_u\varphi=\varphi|_H,
+\]
+is onto without assuming that $\G$ is \'{e}tale.
+
+\section{Definitions and the source reduction}
+
+Put $X=\G^u=r^{-1}(u)$ and $\mu=\lambda^u$.  The isotropy group
+$H=\G_u^u$ acts on $X$ by left multiplication.  Fix a left Haar measure
+$dh$ on $H$.  Write $\lambda$ for the left regular representation on
+$L^2(H,dh)$,
+\[
+  (\lambda(k)\xi)(h)=\xi(k^{-1}h),
+\]
+and let $\sigma$ be the restriction to $H$ of the groupoid left-regular
+representation,
+\[
+  (\sigma(k)g)(x)=g(k^{-1}x),\qquad g\in L^2(X,\mu).
+\]
+For a unitary representation $\pi$ of $H$, $A_\pi(H)$ denotes the closed
+linear span in $B(H)$ of its coefficient functions. Thus
+$A_\lambda(H)=A(H)$.
+
+Two general steps already contained in the proof of Theorem 3.7 of the source
+paper do not use etaleness:
+\begin{equation}\label{eq:source-reduction}
+       R_u(A(\G))=A_\sigma(H)\subseteq A(H).
+\end{equation}
+Indeed, each coefficient of $\sigma$ lifts to a coefficient of the groupoid
+regular representation by the continuous-section extension theorem.  An
+absolutely summable coefficient decomposition in $A_\sigma(H)$ then lifts
+term by term, proving surjectivity onto $A_\sigma(H)$.  Conversely, restriction
+of compactly supported groupoid coefficients lies in $C_c(H)\cap B(H)$, and
+continuity gives the inclusion in $A(H)$.  The source uses etaleness only in
+its subsequent attempt to identify $A_\sigma(H)$ with $A(H)$ by splitting
+$X$ into individual source fibers.  We replace that step.
+
+We shall use only the elementary coefficient-norm estimate
+\[
+ \|\pi_{\xi,\eta}\|_{B(H)}\leq \|\xi\|\,\|\eta\|.
+\]
+
+\section{Proof intuition}
+
+The tempting proof disintegrates $\mu$ over $H\backslash X$ and identifies
+$\sigma$ with an amplification of $\lambda$.  That route introduces
+second-countability and measurable-selection hypotheses which are absent from
+the question.
+
+Instead, average a compactly supported function on $X$ along each $H$-orbit.
+For $f\in C_c(X)$ this produces a bounded intertwiner
+$W_f:L^2(H)\to L^2(X)$.  Properness of the free isotropy action gives the
+bound.  More importantly, the whole family $\{W_f:f\in C_c(X)\}$ separates
+the vectors of $L^2(H)$: restrict to one closed orbit and extend an arbitrary
+$C_c(H)$ test function to $C_c(X)$.  Thus the adjoint ranges $\ran W_f^*$
+span $L^2(H)$ densely.  A regular coefficient whose two vectors lie in finite
+sums of these ranges is, by the intertwining equations, a finite sum of
+$\sigma$-coefficients. Approximation in coefficient norm yields
+$A(H)\subseteq A_\sigma(H)$, and \eqref{eq:source-reduction} finishes the
+proof.
+
+\section{The theorem}
+
+\begin{theorem}[Full restriction theorem]\label{thm:main}
+Let $\G$ be a locally compact Hausdorff groupoid admitting a left Haar system.
+For every $u\in\G^{(0)}$, the restriction map
+\[
+           R_u:A(\G)\longrightarrow A(\G_u^u)
+\]
+is a contractive surjective algebra homomorphism.
+\end{theorem}
+
+The contractive homomorphism assertion is Proposition 3.6 of the source.  We
+prove surjectivity through three lemmas.
+
+\begin{lemma}[The isotropy action]\label{lem:proper}
+The left action of $H$ on $X$ is free and proper.
+\end{lemma}
+
+\begin{proof}
+If $hx=x$, multiplication on the right by $x^{-1}$ gives $h=u$, so the action
+is free. Consider the shear map
+\[
+ \Theta:H\times X\longrightarrow X\times X,\qquad \Theta(h,x)=(hx,x).
+\]
+Its image is the equivalence relation
+\[
+ \mathcal R=\{(y,x)\in X\times X:s(y)=s(x)\}.
+\]
+The inverse on $\mathcal R$ is $(y,x)\mapsto(yx^{-1},x)$, so $\Theta$ is a
+homeomorphism onto $\mathcal R$.  Since $\G^{(0)}$ is Hausdorff and $s$ is
+continuous, $\mathcal R$ is closed in $X\times X$. Therefore $\Theta$ is
+proper, which is precisely properness of the action.
+\end{proof}
+
+\begin{lemma}[A separating family of intertwiners]\label{lem:W}
+For each $f\in C_c(X)$, the formula initially defined for $\xi\in C_c(H)$ by
+\begin{equation}\label{eq:W}
+       (W_f\xi)(x)=\int_H \xi(h)f(h^{-1}x)\,dh
+\end{equation}
+extends to a bounded operator $W_f:L^2(H)\to L^2(X,\mu)$ satisfying
+\[
+       W_f\lambda(k)=\sigma(k)W_f\qquad(k\in H).
+\]
+Moreover,
+\[
+       \bigcap_{f\in C_c(X)}\ker W_f=\{0\}.
+\]
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+     a_f(x)=\int_H |f(h^{-1}x)|\,dh.
+\]
+Properness implies that $a_f$ is continuous: near a fixed $x$, the $h$ for
+which $h^{-1}x\in\supp f$ lie in one compact subset of $H$, so ordinary
+compact-support dominated convergence applies.  The function is
+$H$-invariant and, on the quotient $H\backslash X$, its support is contained
+in the compact set which is the image of $\supp f$. Consequently
+$M_f:=\sup_X a_f<\infty$.
+
+By Cauchy--Schwarz and Tonelli,
+\begin{align*}
+ |W_f\xi(x)|^2
+ &\le a_f(x)\int_H |\xi(h)|^2|f(h^{-1}x)|\,dh,\\
+ \|W_f\xi\|_2^2
+ &\le M_f\int_H |\xi(h)|^2
+       \left(\int_X|f(h^{-1}x)|\,d\mu(x)\right)dh\\
+ &=M_f\|f\|_{L^1(X,\mu)}\|\xi\|_2^2.
+\end{align*}
+The last equality is exactly the left invariance of the Haar-system measure
+$\mu=\lambda^u$. Thus $W_f$ extends boundedly. A change of variables
+$h=k\ell$ gives
+\[
+ W_f\lambda(k)\xi(x)
+ =\int_H\xi(\ell)f(\ell^{-1}k^{-1}x)\,d\ell
+ =\sigma(k)W_f\xi(x).
+\]
+
+We next record a pointwise fact needed for separation. For every
+$\xi\in L^2(H)$, $W_f\xi$ has a continuous representative. Indeed, on any
+compact subset of $X$, properness confines the supports of
+$h\mapsto f(h^{-1}x)$ to a common compact subset of $H$, and the map
+$x\mapsto[h\mapsto f(h^{-1}x)]$ is continuous into $L^2(H)$. Approximation of
+$\xi$ by $C_c(H)$ therefore gives locally uniform convergence of the
+corresponding functions in \eqref{eq:W}.
+
+Suppose now that $W_f\xi=0$ in $L^2(X,\mu)$ for every $f\in C_c(X)$.  A Haar
+system has full support, so continuity forces each $W_f\xi$ to vanish
+pointwise. Fix $x_0\in X$. Its orbit $O=Hx_0$ is closed, and the map
+\[
+       H\longrightarrow O,\qquad h\longmapsto h^{-1}x_0
+\]
+is a homeomorphism. Given $\phi\in C_c(H)$, define $g\in C_c(O)$ by
+$g(h^{-1}x_0)=\phi(h)$. The standard compact-support extension lemma for
+closed subspaces of locally compact Hausdorff spaces supplies
+$f\in C_c(X)$ with $f|_O=g$.  For clarity, this lemma needs no normality
+assumption on $X$: extend $g$ by $0$ at infinity from $O\cup\{\infty\}$ in
+the compact Hausdorff one-point compactification of $X$, apply Tietze there,
+and multiply by a compactly supported cutoff equal to $1$ on $\supp g$.
+Then
+\[
+       0=(W_f\xi)(x_0)=\int_H\xi(h)\phi(h)\,dh.
+\]
+As $\phi$ was arbitrary and $C_c(H)$ is dense in $L^2(H)$ for the Radon Haar
+measure, $\xi=0$. This proves the common-kernel assertion.
+\end{proof}
+
+\begin{lemma}[Separating intertwiners and coefficients]\label{lem:coefficients}
+Let $\pi$ and $\rho$ be unitary representations of a locally compact group.
+If a family of bounded intertwiners $T_i:\Hil_\pi\to\Hil_\rho$ has
+$\bigcap_i\ker T_i=\{0\}$, then
+\[
+                         A_\pi(H)\subseteq A_\rho(H).
+\]
+\end{lemma}
+
+\begin{proof}
+The orthogonal complement of
+$\overline{\operatorname{span}}_i\ran T_i^*$ is $\bigcap_i\ker T_i$, so the
+former space is all of $\Hil_\pi$. It is therefore enough to consider
+coefficient vectors
+\[
+       \xi'=\sum_{i=1}^mT_i^*\alpha_i,
+       \qquad \eta'=\sum_{j=1}^nT_j^*\beta_j.
+\]
+For every group element $k$, the adjoint intertwining relation gives
+\begin{align*}
+ \langle\pi(k)\xi',\eta'\rangle
+ &=\sum_{i,j}\langle\pi(k)T_i^*\alpha_i,T_j^*\beta_j\rangle\\
+ &=\sum_{i,j}\langle\rho(k)T_jT_i^*\alpha_i,\beta_j\rangle.
+\end{align*}
+This is a finite sum of coefficients of $\rho$. Approximating arbitrary
+$\xi,\eta\in\Hil_\pi$ by such $\xi',\eta'$ and using
+\[
+ \|\pi_{\xi,\eta}-\pi_{\xi',\eta'}\|_{B(H)}
+ \leq \|\xi-\xi'\|\,\|\eta\|+\|\xi'\|\,\|\eta-\eta'\|
+\]
+proves that every coefficient of $\pi$ belongs to $A_\rho(H)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply Lemmas \ref{lem:W} and \ref{lem:coefficients} with $\pi=\lambda$ and
+$\rho=\sigma$. They give directly
+\[
+           A(H)=A_\lambda(H)\subseteq A_\sigma(H).
+\]
+Together with the source reduction \eqref{eq:source-reduction}, this gives
+$A_\sigma(H)=A(H)$ and
+\[
+           R_u(A(\G))=A(H).
+\]
+This is surjectivity. Contractivity and multiplicativity were already
+established in the source at the stated generality.
+\end{proof}
+
+\section{Scope, checks, and novelty}
+
+\paragraph{Why the former extra hypotheses disappear.}
+The argument never restricts $\lambda^u$ to $H$ and never assigns positive
+measure to an individual orbit.  Thus it applies even when
+$\lambda^u(H)=0$, as in nondiscrete pair groupoids.  It uses only left Haar
+measure and left invariance, so nonunimodular isotropy groups cause no modular
+factor.  Every integral is first taken over compact supports; no separability,
+sigma-finiteness, Borel section, or disintegration theorem is used.
+
+\paragraph{Verification.}
+The proof was audited at its four nonformal points: (i) the shear-map proof of
+properness; (ii) the Schur--Cauchy bound for $W_f$; (iii) continuity plus
+compact-support extension from a closed orbit; and (iv) the adjoint-range
+coefficient calculation in Lemma \ref{lem:coefficients}. No computational
+check is relevant. The most valuable human check is a line-by-line comparison
+of \eqref{eq:source-reduction} with Claim 1 in the source proof.
+
+\paragraph{Bounded novelty search.}
+On 27 August 2026, bounded searches used the exact arXiv id and title, the
+authors' names, and the phrases ``Fourier algebra groupoid restriction
+isotropy surjective'', ``$A(\G)\to A(\G_u^u)$'', and ``proper action Koopman
+regular representation''.  The cached source, including its May 2026 update,
+still contains Remark 3.10. The searches found the source and general
+proper-action/Koopman background, but no later work stating this
+countability-free restriction theorem. This is evidence, not a guarantee, of
+novelty.
+
+\paragraph{Human-review recommendation.}
+Treat this as a likely-valid candidate full solution pending expert review.
+In particular, verify the compact-support control in Lemma \ref{lem:W}, the
+closed-orbit extension argument, and the source reduction. If those checks
+pass, the result answers Remark 3.10 exactly.
+
+\begin{thebibliography}{9}
+\bibitem{DG}
+J. DeGaetani and M. Ghandehari,
+\emph{On the restriction maps of the Fourier and Fourier-Stieltjes algebras
+over locally compact groupoids}, arXiv:2411.14624 (2024; updated 2026).
+
+\bibitem{Arsac}
+G. Arsac, \emph{Sur l'espace de Banach engendr\'{e} par les coefficients
+d'une repr\'{e}sentation unitaire}, Publ. D\'{e}p. Math. (Lyon) 13 (1976),
+no. 2, 1--101.
+
+\bibitem{KL}
+E. Kaniuth and A. T. Lau, \emph{Fourier and Fourier--Stieltjes Algebras on
+Locally Compact Groups}, Mathematical Surveys and Monographs 231, American
+Mathematical Society, 2018; see in particular Section 2.8.
+\end{thebibliography}
+
+\end{document}

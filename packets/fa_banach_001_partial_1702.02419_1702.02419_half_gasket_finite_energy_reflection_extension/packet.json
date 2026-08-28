@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1702.02419",
+  "author_list": [
+    "Shiping Cao",
+    "Hua Qiu"
+  ],
+  "claim_short": "1702.02419 Sierpinski gasket finite energy extension half domain reflection resistance form exact energy identity level l SG_l",
+  "claim_type": "partial",
+  "code_bundle_size_bytes": 1741,
+  "copied_file_count": 5,
+  "database_packet_path": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1702.02419v1",
+    "source_url": "https://arxiv.org/abs/1702.02419v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_partial_likely_valid (all level-l vertical half domains)",
+  "novelty_status": "unknown",
+  "packet_class": "partial",
+  "packet_path": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/",
+  "packet_title": "Finite-energy extension from every level-l half gasket",
+  "primary_arxiv_id": "1702.02419",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/files/README.md",
+  "result_class": "partial",
+  "result_id": "fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:2374",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_partial_1702.02419_1702.02419_half_gasket_finite_energy_reflection_extension/files/solution_packet.pdf",
+  "source_authors": "Shiping Cao, Hua Qiu",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/partial/1702.02419_half_gasket_finite_energy_reflection_extension/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1702.02419v1",
+  "source_question": "",
+  "source_title": "Boundary Value Problems for harmonic functions on domains in Sierpinski gaskets",
+  "source_url": "https://arxiv.org/abs/1702.02419v1",
+  "source_year": "2017",
+  "verification_status": "unverified"
+}

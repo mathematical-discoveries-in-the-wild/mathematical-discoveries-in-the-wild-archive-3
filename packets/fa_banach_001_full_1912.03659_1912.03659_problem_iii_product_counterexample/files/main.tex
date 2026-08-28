@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\setlength{\emergencystretch}{3em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cC}{\mathfrak c}
+\newcommand{\epsprod}{\varepsilon}
+
+\title{A Product Counterexample to Problem 5.14(iii)\\
+\large Strict admissibility does not characterize the three classes in Theorem 4.3}
+\author{Candidate solution packet for arXiv:1912.03659}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+Candidate full negative answer to Problem 5.14(iii), likely valid and awaiting
+human review.  The result answers only part (iii) of the four-part problem.
+
+\section{Source question}
+
+The source is Karsten Kruse, \emph{Vector-valued Fourier hyperfunctions and
+boundary values}, arXiv:1912.03659v2, 5 November 2025
+\cite{Kruse}.  On source PDF page 46, Problem 5.14(iii) asks:
+
+\begin{quote}
+``Is strict admissibility of a sequentially complete $E$ equivalent to
+belonging to the classes of spaces from Theorem 4.3?''
+\end{quote}
+
+Theorem 4.3 gives the following three sufficient classes: (a) complex
+Fr\'echet spaces; (b) strong duals $F'_b$ of complex Fr\'echet spaces $F$
+satisfying $(DN)$; and (c) complex ultrabornological PLS-spaces satisfying
+$(PA)$ \cite[Theorem 4.3]{Kruse}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{Problem 5.14 in the source paper, source PDF page 46.}
+\end{figure}
+
+\section{Definitions used}
+
+A complex locally convex Hausdorff space $E$ is \emph{admissible} if, for
+every compact $K\subset\overline{\mathbb R}$, the Cauchy--Riemann operator
+\[
+ \overline\partial:\cE^{\exp}(\overline\C\setminus K,E)
+ \longrightarrow \cE^{\exp}(\overline\C\setminus K,E)
+\]
+is surjective.  It is \emph{strictly admissible} if it is admissible and
+\[
+ \overline\partial:C^\infty(U,E)\longrightarrow C^\infty(U,E)
+\]
+is surjective for every open $U\subset\C$ \cite[Definition 4.1]{Kruse}.
+
+Write $\cC=|\mathbb R|=|\C|$ for the cardinality of the continuum.  Let $I$
+be any set with $|I|=2^{\cC}$ and equip
+\[
+                         E:=\C^I
+\]
+with its product locally convex topology.
+
+\section{Proof intuition}
+
+The analytic property in the question is completely coordinatewise for a
+product.  A smooth map into $\C^I$ is precisely a family of scalar smooth
+maps, and every continuous seminorm on the product sees only finitely many
+coordinates.  Scalar $\overline\partial$-solutions can therefore be chosen
+independently in every coordinate without losing any weighted estimate.  This
+makes $\C^I$ strictly admissible for an arbitrary index set $I$.
+
+The rest of the argument chooses $I$ deliberately large and separates the
+resulting product from the three classes by elementary invariants.  It is not
+metrizable; it has no countable fundamental family of bounded sets, while a
+strong dual of a Fr\'echet space does; and its underlying cardinality is larger
+than the continuum, while every PLS-space has cardinality at most the
+continuum.  Completeness is preserved by arbitrary products.
+
+\section{Formal result}
+
+\begin{lemma}[Products preserve strict admissibility]\label{lem:product}
+Let $(E_j)_{j\in J}$ be any family of strictly admissible complex locally
+convex Hausdorff spaces.  Then $\prod_{j\in J}E_j$, with the product topology,
+is strictly admissible.  If every $E_j$ is complete, then the product is
+complete.
+\end{lemma}
+
+\begin{proof}
+Put $X=\prod_{j\in J}E_j$ and denote the coordinate projections by $\pi_j$.
+A map into a locally convex product is smooth exactly when all its coordinate
+maps are smooth, with derivatives computed coordinatewise.  Moreover, every
+continuous seminorm $p$ on $X$ is dominated by
+\[
+             C\max_{j\in F}p_j\circ\pi_j
+\]
+for some finite $F\subset J$, some continuous seminorms $p_j$ on $E_j$, and
+some $C>0$.
+
+Fix a compact $K\subset\overline{\mathbb R}$ and
+$f\in\cE^{\exp}(\overline\C\setminus K,X)$.  For every $j$, the coordinate
+$f_j=\pi_j\circ f$ belongs to
+$\cE^{\exp}(\overline\C\setminus K,E_j)$.  Admissibility of $E_j$ gives
+$u_j$ in that same space with $\overline\partial u_j=f_j$.  Define
+$u=(u_j)_{j\in J}$.  Coordinatewise smoothness makes $u$ smooth.  The finite
+coordinate domination of every continuous seminorm shows, directly in each
+defining weighted seminorm, that
+$u\in\cE^{\exp}(\overline\C\setminus K,X)$.  Hence
+$\overline\partial u=f$.
+
+The identical coordinatewise construction, without weights, solves
+$\overline\partial u=f$ for every $f\in C^\infty(U,X)$ and every open
+$U\subset\C$.  Thus $X$ is strictly admissible.  Finally, an arbitrary
+product of complete Hausdorff uniform spaces is complete, so the last claim
+follows.
+\end{proof}
+
+\begin{lemma}[Two size obstructions]\label{lem:obstructions}
+Let $I$ be uncountable.
+\begin{enumerate}
+\item The product $\C^I$ is not metrizable and has no countable fundamental
+family of bounded sets.
+\item Every PLS-space has underlying cardinality at most $\cC$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For the first assertion, suppose $(V_n)$ were a countable neighborhood base at
+zero.  Each product neighborhood restricts only finitely many coordinates.
+The union of those finite coordinate sets is countable, so one may choose
+$i\in I$ outside it.  Every $V_n$ then contains the whole $i$-th coordinate
+line, whereas the neighborhood $\{x:|x_i|<1\}$ does not.  This is a
+contradiction.
+
+A subset of $\C^I$ is bounded exactly when it is bounded in every coordinate.
+Given any sequence $(B_n)$ of bounded sets, choose distinct $i_n\in I$, put
+\[
+       M_n:=\sup_{x\in B_n}|x_{i_n}|<\infty,
+\]
+and define $x\in\C^I$ by $x_{i_n}=M_n+1$ and $x_i=0$ on all other
+coordinates.  The singleton $\{x\}$ is bounded, but $x\notin B_n$ for every
+$n$.  Hence no countable sequence of bounded sets is cofinal.
+
+For the second assertion, recall that a DFS-space is the strong dual of a
+Fr\'echet--Schwartz space.  Every Fr\'echet--Schwartz space is separable: in a
+Banach-step representation the relevant linking maps are compact with dense
+range, so each Banach step is separable, and the Fr\'echet space embeds into a
+countable product of separable metrizable spaces.  A continuous functional on
+a separable Hausdorff topological vector space is determined by its values on
+a countable dense set.  Therefore every DFS-space has cardinality at most
+$\cC$.  A PLS-space is a projective limit of a sequence of DFS-spaces, hence
+is a subset of their countable product and has cardinality at most
+$\cC^{\aleph_0}=\cC$.
+\end{proof}
+
+\begin{theorem}[Negative answer to Problem 5.14(iii)]\label{thm:main}
+Strict admissibility of a sequentially complete complex locally convex
+Hausdorff space is not equivalent to membership in the three classes of
+Theorem 4.3 of \cite{Kruse}.
+
+More explicitly, if $|I|=2^{\cC}$, then $E=\C^I$ is complete and strictly
+admissible, but it is neither
+\begin{enumerate}
+\item a Fr\'echet space,
+\item a strong dual $F'_b$ of a Fr\'echet space $F$ satisfying $(DN)$, nor
+\item an ultrabornological PLS-space satisfying $(PA)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The scalar field $\C$ is a complete strictly admissible space; this is also the
+one-dimensional instance of Theorem 4.3(a) in \cite{Kruse}.  Lemma
+\ref{lem:product} therefore shows that $E=\C^I$ is complete, hence
+sequentially complete, and strictly admissible.
+
+Because $I$ is uncountable, Lemma \ref{lem:obstructions}(1) shows that $E$ is
+not metrizable, so it is not Fr\'echet.
+
+Suppose next that $E$ were topologically isomorphic to $F'_b$ for some
+Fr\'echet space $F$ (the condition $(DN)$ is not needed here).  Let $(U_n)$ be
+a countable zero-neighborhood base in $F$.  Every bounded subset $B$ of the
+strong dual is pointwise bounded and hence equicontinuous by Banach--Steinhaus,
+because $F$ is barrelled.  Thus $B\subset U^\circ$ for some zero-neighborhood
+$U$; choosing $n$ with $U_n\subset U$ gives
+$B\subset U^\circ\subset U_n^\circ$.  Consequently $(U_n^\circ)$ is a
+countable fundamental family of bounded sets in $F'_b$.  This contradicts
+Lemma \ref{lem:obstructions}(1).
+
+Finally,
+\[
+ |E|=|\C|^{|I|}=\cC^{,2^{\cC}}
+      =(2^{\aleph_0})^{2^{\cC}}=2^{2^{\cC}}>\cC.
+\]
+Lemma \ref{lem:obstructions}(2) therefore rules out even that $E$ is a
+PLS-space, a fortiori that it belongs to class (c).  This excludes all three
+classes and proves the result.
+\end{proof}
+
+\section{Verification notes}
+
+\begin{itemize}
+\item \textbf{Hypotheses.}  The example is a complex locally convex Hausdorff
+space and is complete, not merely sequentially complete.
+\item \textbf{Analytic step.}  Both weighted and unweighted
+$\overline\partial$ equations are checked coordinatewise.  The only topology
+fact used is that continuous seminorms on a product depend on finitely many
+coordinates.
+\item \textbf{Class (b).}  The obstruction is stronger than required: the
+example is not the strong dual of any Fr\'echet space, regardless of $(DN)$.
+\item \textbf{Class (c).}  The cardinal argument rules out the PLS property
+itself, before $(PA)$ or ultrabornologicity is considered.
+\item \textbf{Set theory.}  The choice $|I|=2^{\cC}$ and the strict inequality
+$2^{2^{\cC}}>\cC$ use only Cantor's theorem and are valid in ZFC.
+\end{itemize}
+
+\section{Scope and novelty check}
+
+This settles the literal form of Problem 5.14(iii) negatively.  It does not
+address Problems 5.14(i), (ii), or (iv).  The counterexample is intentionally
+very large and nonmetrizable.  If the intended question was restricted to an
+unstated smaller category of ``natural'' locally convex spaces, that narrower
+variant remains open and should be distinguished from the printed statement.
+
+A bounded novelty check was performed on 27 August 2026.  The four local run
+indexes were searched for arXiv:1912.03659 and the phrases ``strict
+admissibility'', ``admissible'', ``Fourier hyperfunctions'', and ``product''.
+Web/arXiv searches used the exact wording of Problem 5.14(iii), the paper title
+and author, and the phrases ``strictly admissible product'' and ``classes of
+spaces from Theorem 4.3''.  The current arXiv v2 source, dated 5 November 2025,
+still states the problem.  No separate paper or packet asserting this product
+counterexample or answering Problem 5.14(iii) was found.  This is a bounded,
+not exhaustive, novelty search; novelty confidence is therefore moderate.
+
+\section{Human-review recommendation}
+
+Promote as a full negative answer to Problem 5.14(iii) if a reviewer confirms
+(1) that the problem is intended literally over all sequentially complete
+complex locally convex Hausdorff spaces, and (2) the standard cardinal bound
+$|X|\leq\cC$ for PLS-spaces.  The coordinatewise strict-admissibility argument
+and the strong-dual bounded-set obstruction are otherwise elementary.
+
+\begin{thebibliography}{9}
+\bibitem{Kruse}
+K.~Kruse,
+\emph{Vector-valued Fourier hyperfunctions and boundary values},
+arXiv:1912.03659v2 (5 November 2025),
+\url{https://arxiv.org/abs/1912.03659};
+published in \emph{Kyoto Journal of Mathematics},
+\href{https://doi.org/10.1215/21562261-2024-0030}{doi:10.1215/21562261-2024-0030}.
+\end{thebibliography}
+
+\end{document}

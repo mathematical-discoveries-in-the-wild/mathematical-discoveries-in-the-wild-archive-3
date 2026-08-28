@@ -1,0 +1,255 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=0.72in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\W}{\mathcal W}
+\newcommand{\JJ}{\mathcal J}
+\newcommand{\supp}{\operatorname{supp}}
+
+\title{Zero Jordan product determination for discrete and SIN group algebras}
+\author{Candidate substantial partial solution for arXiv:1902.04846}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Result and relation to the source question}
+
+Alaminos, Bre\v{s}ar, Extremera, and Villena prove that $L^1(G)$ is zero
+Jordan product determined when $G$ is amenable, and ask whether this holds for
+every locally compact group \cite[Question 3.7]{ABEV}:
+
+\begin{center}
+\includegraphics[width=.92\textwidth,trim=0 85 0 0,clip]{figures/open_problem_crop.png}
+\end{center}
+
+Recall that a locally compact group is a \emph{SIN group} if the identity has
+a neighborhood basis invariant under conjugation.
+
+\begin{theorem}\label{thm:main}
+If $G$ is a locally compact SIN group, then $L^1(G)$ is zero Jordan product
+determined.  In particular, $\ell^1(G)$ is zero Jordan product determined for
+every discrete group $G$.
+\end{theorem}
+
+Thus there is no amenability, torsion, or finite-generation restriction in
+the discrete case.  The result includes the torsion-free nonamenable free
+groups.  It also includes nondiscrete nonamenable groups, for example
+$F_2\times\mathbb R$.
+
+\section*{The commutator criterion}
+
+For a Banach algebra $A$, put $a\circ b=ab+ba$ and
+\[
+ \JJ(A)=\overline{\operatorname{span}}
+ \{ab:a,b\in A,\ a\circ b=0\}.
+\]
+The source proves the following criterion: if $A$ is weakly amenable, has
+property $\mathbb B$, and has a bounded approximate identity, then $A$ is
+zero Jordan product determined if and only if
+\[
+ [A,A]\subseteq\JJ(A).                                      \tag{1}
+\]
+It also records that every group algebra $L^1(G)$ has all three hypotheses
+\cite{ABEV}.  We will therefore prove (1).
+
+The engine is an elementary synthesis statement for the Wiener algebra
+\[
+ \W=A(\TT)=\left\{f(z)=\sum_{n\in\mathbb Z}\widehat f(n)z^n:
+       \|f\|_{\W}=\sum_n|\widehat f(n)|<\infty\right\}.
+\]
+Via Fourier coefficients,
+$A(\TT^2)=\W\widehat\otimes_\pi\W$ isometrically.
+
+\section*{A separated-support Wiener lemma}
+
+\begin{lemma}\label{lem:wiener}
+In $A(\TT^2)$ the function
+\[
+ D(z,w)=z-w
+\]
+belongs to the closed linear span of the tensors $g\otimes h$ with
+$g,h\in\W$ and $\supp g\cap\supp h=\varnothing$.
+\end{lemma}
+
+\begin{proof}
+We give the cutoff proof in full.  For small $\varepsilon>0$, choose a smooth
+$2\pi$-periodic function $\chi_\varepsilon$ which is $1$ for
+$|t|\leq\varepsilon$, is $0$ for $|t|\geq2\varepsilon$, and satisfies
+$|\chi_\varepsilon'|\leq C/\varepsilon$.  Define
+\[
+ d_\varepsilon(e^{it})=(e^{it}-1)\chi_\varepsilon(t),\qquad
+ q_\varepsilon(z)=(z-1)-d_\varepsilon(z).
+\]
+For every smooth $d$ on $\TT$, Cauchy--Schwarz on its Fourier coefficients
+gives
+\[
+ \|d\|_{\W}\leq
+ \left(\sum_{n\in\mathbb Z}(1+n^2)^{-1}\right)^{1/2}
+ \|d\|_{H^1(\TT)}.                                         \tag{2}
+\]
+On an arc of length $O(\varepsilon)$ we have
+$|e^{it}-1|=O(\varepsilon)$.  Hence
+\[
+ \|d_\varepsilon\|_2=O(\varepsilon^{3/2}),\qquad
+ \|d_\varepsilon'\|_2=O(\varepsilon^{1/2}),
+\]
+and (2) implies $\|d_\varepsilon\|_{\W}\to0$.
+
+Write $r=z\overline w$.  Since $D(z,w)=w(r-1)$, the smooth function
+\[
+ Q_\varepsilon(z,w)=wq_\varepsilon(z\overline w)
+\]
+vanishes on a neighborhood of the diagonal.  Moreover the change of Fourier
+indices $(n\mapsto(n,1-n))$ gives
+\[
+ \|D-Q_\varepsilon\|_{A(\TT^2)}
+ =\|d_\varepsilon\|_{\W}\longrightarrow0.                 \tag{3}
+\]
+
+It remains to decompose $Q_\varepsilon$.  Its compact support is covered by
+finitely many product arcs $U_j\times V_j$ with
+$\overline U_j\cap\overline V_j=\varnothing$.  Take a smooth partition of
+unity on the support and write
+$Q_\varepsilon=\sum_j Q_j$, where
+$\supp Q_j\Subset U_j\times V_j$.  Choose smooth $\alpha_j,\beta_j$ supported
+in $U_j,V_j$, respectively, and equal to $1$ on the corresponding coordinate
+projections of $\supp Q_j$.  The double Fourier series
+\[
+ Q_j(z,w)=\sum_{m,n\in\mathbb Z}c^{(j)}_{mn}z^mw^n
+\]
+has absolutely summable coefficients.  Therefore, in projective norm,
+\[
+ Q_j=\alpha_j(z)\beta_j(w)Q_j(z,w)
+ =\sum_{m,n}c^{(j)}_{mn}
+       (\alpha_j(z)z^m)\otimes(\beta_j(w)w^n).              \tag{4}
+\]
+The two factors in every tensor in (4) have disjoint supports.  Equations
+(3)--(4) prove the lemma.
+\end{proof}
+
+\section*{All discrete groups}
+
+Let $G$ be any discrete group and $s\in G$.  There is a contractive unital
+homomorphism
+\[
+ \pi_s:\W\longrightarrow\ell^1(G),\qquad
+ \pi_s(f)=\sum_{n\in\mathbb Z}\widehat f(n)\delta_{s^n}.   \tag{5}
+\]
+This remains valid when $s$ has finite order: repeated point masses simply
+combine, and absolute convergence proves both contractivity and
+multiplicativity.
+
+Fix $s,t\in G$ and define a bounded map
+\[
+ \Theta_{s,t}:A(\TT^2)\longrightarrow\ell^1(G),\qquad
+ \Theta_{s,t}(g\otimes h)=\pi_s(g)\delta_t\pi_s(h).         \tag{6}
+\]
+If $\supp g\cap\supp h=\varnothing$, choose $u\in C^\infty(\TT)$ such that
+$u=1$ on $\supp g$ and $u=-1$ on $\supp h$.  Set
+\[
+ a=\pi_s(u),\qquad b=\pi_s(g)\delta_t\pi_s(h).
+\]
+Since $ug=g$ and $hu=-h$, we have
+\[
+ ab=b,\qquad ba=-b.
+\]
+Thus $a\circ b=0$ and $b=ab\in\JJ(\ell^1(G))$.  Lemma
+\ref{lem:wiener}, the continuity of (6), and
+\[
+ \Theta_{s,t}(D)=\delta_s\delta_t-\delta_t\delta_s
+\]
+show that every point-mass commutator belongs to $\JJ(\ell^1(G))$.
+
+For arbitrary $p,q\in\ell^1(G)$,
+\[
+ [p,q]=\sum_{s,t\in G}p(s)q(t)[\delta_s,\delta_t]          \tag{7}
+\]
+converges absolutely in $\ell^1(G)$, since the sum of the norms is at most
+$2\|p\|_1\|q\|_1$.  The space $\JJ(\ell^1(G))$ is closed and linear, so
+(7) proves (1).  The source criterion completes the discrete case.
+
+\section*{Transfer to locally compact SIN groups}
+
+Let now $G$ be locally compact and SIN.  Shrinking relatively compact
+conjugation-invariant neighborhoods $U$ of the identity give
+\[
+ e_U=m(U)^{-1}\mathbf1_U\in L^1(G).                         \tag{8}
+\]
+These form a contractive approximate identity.  They are central even in the
+measure algebra $M(G)$.  Indeed, invariance of one such $U$ of finite positive
+measure shows that inner automorphisms preserve Haar measure, so $G$ is
+unimodular; conjugation invariance then gives
+$\delta_s*e_U=e_U*\delta_s$ for every $s$, and integration gives commutation
+with every measure.
+
+Formula (5) now defines a contractive homomorphism $\pi_s:\W\to M(G)$.
+Fix $s\in G$ and $k\in L^1(G)$, and put
+\[
+ \Theta_{s,k}(g\otimes h)=\pi_s(g)*k*\pi_s(h).             \tag{9}
+\]
+For a separated-support tensor, choose $u$ as above and set
+\[
+ a=\pi_s(u)\in M(G),\qquad b=\pi_s(g)*k*\pi_s(h)\in L^1(G).
+\]
+Again $a*b=b$ and $b*a=-b$.  Although $a$ need not lie in $L^1(G)$, define
+$a_U=a*e_U\in L^1(G)$.  Centrality of $e_U$ gives the \emph{exact} identities
+\[
+ a_U*b=b*e_U,\qquad b*a_U=-b*e_U,
+\]
+so $a_U\circ b=0$ and $b*e_U=a_U*b\in\JJ(L^1(G))$.  Letting
+$U$ shrink yields $b*e_U\to b$, hence $b\in\JJ(L^1(G))$.
+Applying Lemma \ref{lem:wiener} to (9) now gives
+\[
+ [\delta_s,k]=\delta_s*k-k*\delta_s\in\JJ(L^1(G))         \tag{10}
+\]
+for all $s\in G$ and $k\in L^1(G)$.
+
+If $f\in C_c(G)$, norm continuity of left and right translation makes the
+following a Bochner integral in $L^1(G)$:
+\[
+ [f,k]=\int_G f(s)[\delta_s,k]\,ds.                        \tag{11}
+\]
+The integrand in (11) takes values in the closed linear space
+$\JJ(L^1(G))$ by (10), so its Bochner integral does too.  Density of
+$C_c(G)$ in $L^1(G)$ extends this to every $f\in L^1(G)$.  Thus (1) holds,
+and the source criterion proves Theorem \ref{thm:main}.
+
+\section*{Boundary of the method and novelty status}
+\enlargethispage{3\baselineskip}
+
+For a general locally compact group the cyclic calculus (5) still lives in
+$M(G)$, but a bounded approximate identity need not be central.  Replacing
+$a$ by $a*e_i$ then destroys the exact relation
+$(a*e_i)\circ b=0$.  Approximate anticommutation is insufficient for the
+definition of $\JJ(A)$.  We therefore do not claim a solution for arbitrary
+locally compact groups.
+
+A bounded novelty search on 27 August 2026 checked the run indexes and close
+web/arXiv combinations of the source id with ``all discrete groups'', ``SIN
+group'', ``central approximate identity'', ``Wiener algebra'', and
+``diagonal synthesis''.  No explicit statement of either theorem above was
+found.  This is provisional: an expert citation search is still required.
+
+Human review should focus on projective-norm convergence in (4), the central
+approximate identity in (8), and the multiplier-to-$L^1$ transfer.  These
+steps are included explicitly to make the candidate independently auditable.
+
+\begin{thebibliography}{9}
+\bibitem{ABEV}
+J. Alaminos, M. Bre\v{s}ar, J. Extremera, and A. R. Villena,
+\emph{Zero Jordan product determined Banach algebras}, J. Aust. Math. Soc.
+111 (2021), 145--158; arXiv:1902.04846.
+\end{thebibliography}
+
+\end{document}

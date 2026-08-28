@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\A}{\mathcal A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Ncap}[1]{\lVert #1\rVert_{1\cap\infty}}
+\newcommand{\Nsum}[1]{\lVert #1\rVert_{1+\infty}}
+
+\title{Duality closes the intermediate-trace gap for\\
+positive isometries of $L^1\cap L^\infty$}
+\author{Candidate full solution packet for arXiv:2007.02324}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.}
+Candidate full solution, likely valid, pending expert review.  The argument
+answers the open problem in Remark~5.6 of de Jager--Conradie
+\cite{deJagerConradieExtreme} and in fact proves a slightly stronger theorem.
+
+\section{Source question}
+
+The source is Pierre de Jager and Jurie Conradie, \emph{Extreme point methods
+in the study of isometries on certain non-commutative spaces},
+arXiv:2007.02324, Remark~5.6 on printed/PDF page~21
+\cite{deJagerConradieExtreme}.  The complete source passage is reproduced
+below directly from the paper.
+
+\begin{center}
+\includegraphics[width=0.97\textwidth]{figures/open_problem_crop.png}
+\end{center}
+
+\noindent\textbf{Transcription of the question.}
+Describe the positive surjective isometries
+\[
+ U:L^1\cap L^\infty(\A)\longrightarrow L^1\cap L^\infty(\B)
+\]
+if $1<\tau(\one_\A)<2$ or $1<\nu(\one_\B)<2$.  Here $(\A,\tau)$ and
+$(\B,\nu)$ are non-atomic semifinite von Neumann algebras, as throughout the
+source section.
+
+For a semifinite traced algebra $(\mathcal M,\mu)$, write
+\[
+ E_\mathcal M=L^1(\mathcal M,\mu)\cap\mathcal M,
+ \qquad
+ \|x\|_{1\cap\infty}=\max\{\|x\|_1,\|x\|_\infty\},
+\]
+and
+\[
+ F_\mathcal M=L^1(\mathcal M,\mu)+\mathcal M,
+ \qquad
+ \|a\|_{1+\infty}=
+ \inf_{a=a_1+a_\infty}
+   \bigl(\|a_1\|_1+\|a_\infty\|_\infty\bigr).
+\]
+
+\section{Proof intuition}
+
+The obstruction noted by the source is specific to its direct extreme-point
+argument: when the total trace is below two, there are not two orthogonal
+trace-one projections.  The key idea is to change sides of the duality rather
+than repair that argument.
+
+If $1<\tau(\one_\A)<2$, then $E_\A=\A$ and $\one_\A$ is an order unit.  Since
+a positive onto isometry is an order isomorphism, its image is an order unit
+in $E_\B$.  An infinite-trace intersection space has no order unit; hence
+\(\nu(\one_\B)<\infty\) and $E_\B=\B$.  Extreme points then rule out
+\(\nu(\one_\B)\leq1\).
+
+Both algebras are therefore finite with total trace greater than one.  The
+normal preadjoint of $U$ is a positive surjective isometry for the polar
+\(L^1+L^\infty\) norms.  The source paper has already classified precisely
+those sum-space isometries when both total traces exceed one.  It gives a
+trace-preserving Jordan isomorphism, and the trace pairing shows that $U$ is
+its inverse.
+
+\section{Result}
+
+\begin{theorem}[Intermediate-trace classification]\label{thm:main}
+Let $(\A,\tau)$ and $(\B,\nu)$ be non-atomic semifinite von Neumann algebras,
+and let
+\[
+ U:E_\A\longrightarrow E_\B
+\]
+be a positive surjective linear isometry.  Suppose that
+\(1<\tau(\one_\A)<\infty\) or \(1<\nu(\one_\B)<\infty\).  Then both identity
+traces are finite and greater than one, they are equal, and $U$ is a
+trace-preserving Jordan $*$-isomorphism from $\A$ onto $\B$.
+
+Conversely, every trace-preserving Jordan $*$-isomorphism from $\A$ onto
+$\B$ restricts to a positive surjective isometry $E_\A\to E_\B$.
+In particular, this completely answers the source question, whose finite
+trace is assumed to lie in $(1,2)$.
+\end{theorem}
+
+\begin{proof}
+De Jager--Conradie prove that a positive isometry between noncommutative
+symmetric spaces reflects positivity; if it is onto, it and its inverse are
+order isomorphisms and are normal
+\cite[Lemma~3.1]{deJagerConradieSymmetric}.  Thus, if the finite trace in the
+hypothesis is $\nu(\one_\B)$, we may replace $U$ by $U^{-1}$.  Assume from now
+on that
+\[
+ 1< t:=\tau(\one_\A)<\infty.
+\]
+Then $E_\A=\A$ as a set, and $\one_\A$ is an order unit.
+
+\medskip
+\noindent\emph{Step 1: the target trace is finite.}
+Set $y=U(\one_\A)\geq0$.  For every $z\in(E_\B)_{\rm sa}$, positivity of
+$U$ and $U^{-1}$ gives
+\[
+ -\|U^{-1}z\|_\infty y\leq z\leq
+ \|U^{-1}z\|_\infty y.
+\]
+Hence $y$ is an order unit of $E_\B$.
+
+We claim that $E_\B$ has no order unit when $\nu(\one_\B)=\infty$.  Indeed,
+let $0\leq y\in E_\B$.  For each integer $k\geq1$, Markov's inequality gives
+\[
+ \nu\!\left(\mathbf1_{(1/k,\infty)}(y)\right)\leq k\nu(y)<\infty,
+\]
+so $e_k=\mathbf1_{[0,1/k]}(y)$ has infinite trace.  By semifiniteness and
+non-atomicity, recursively choose nonzero, mutually orthogonal projections
+$q_k\leq e_k$ with $\nu(q_k)\leq2^{-k}$.  The strong sum
+$q=\sum_{k\geq1}q_k$ is a projection of finite trace, so $q\in E_\B$.
+If $q\leq cy$ for some $c>0$, compression by $q_k$ yields
+\[
+ q_k\leq c q_k yq_k\leq \frac{c}{k}q_k,
+\]
+which is impossible for $k>c$.  Thus $y$ is not an order unit.  This
+contradiction proves $s:=\nu(\one_\B)<\infty$, and hence $E_\B=\B$.
+
+\medskip
+\noindent\emph{Step 2: the target total is greater than one.}
+The source paper characterizes the extreme points of the intersection-space
+unit ball: they are the partial isometries $v$ satisfying
+\[
+ \nu(|v|)=\min\{1,\nu(\one_\B)\}
+\]
+(and analogously for $\A$)
+\cite[Proposition~5.1]{deJagerConradieExtreme}.  Since $\A$ is non-atomic and
+$t>1$, it has two distinct projections $p_1,p_2$ of trace one.  (Starting from
+one such projection, move equal small-trace pieces between it and its nonzero
+complement.)  Both $p_i$ are extreme points.
+
+A surjective linear isometry preserves extreme points, so each $U(p_i)$ is a
+positive extreme point.  A positive partial isometry is a projection.  If
+$s\leq1$, the displayed characterization forces
+\(\nu(U(p_i))=s=\nu(\one_\B)\), whence faithfulness gives
+$U(p_i)=\one_\B$.  This contradicts injectivity because $p_1\ne p_2$.
+Therefore $s>1$.
+
+\medskip
+\noindent\emph{Step 3: pass to the normal dual.}
+On each finite algebra the intersection norm is equivalent to the operator
+norm:
+\[
+ \|x\|_\infty\leq\Ncap{x}\leq
+ \max\{1,\mu(\one)\}\|x\|_\infty.
+\]
+Consequently the positive normal maps $U:\A\to\B$ and $U^{-1}$ have inverse
+normal preadjoints.  Write
+\begin{equation}\label{eq:pairing}
+ V:L^1(\B,\nu)\longrightarrow L^1(\A,\tau),
+ \qquad \tau(V(b)x)=\nu(bU(x)).
+\end{equation}
+For normal functionals, intersection/sum polarity gives
+\begin{equation}\label{eq:polar}
+ \|a\|_{1+\infty}
+ =\sup\bigl\{|\mu(ax)|:\ x\in\mathcal M,
+                   \ \|x\|_{1\cap\infty}\leq1\bigr\}.
+\end{equation}
+This is the standard noncommutative K\"othe-duality formula
+\cite{DoddsDoddsDePagter}.  Equivalently, it is the polar formula for the
+maximum norm on an intersection:
+the polar unit ball is the closed convex hull of the two polar unit balls,
+equivalently the infimal-convolution sum norm.  It remains valid here after
+restricting to normal functionals, which are represented by $L^1$.
+
+Using \eqref{eq:pairing}, \eqref{eq:polar}, and
+$U(B_{E_\A})=B_{E_\B}$, we obtain
+\[
+ \|V(b)\|_{1+\infty}
+ =\sup_{\Ncap{x}\leq1}|\nu(bU(x))|
+ =\sup_{\Ncap{z}\leq1}|\nu(bz)|
+ =\|b\|_{1+\infty}.
+\]
+The preadjoint of $U^{-1}$ is $V^{-1}$, and positivity of $U$ and $U^{-1}$
+implies positivity of both preadjoints.  Thus
+\[
+ V:F_\B\longrightarrow F_\A
+\]
+is a positive surjective isometry.  Notice that finite trace makes
+$F_\A=L^1(\A,\tau)$ and $F_\B=L^1(\B,\nu)$ as sets, though not with their
+ordinary $L^1$ norms.
+
+\medskip
+\noindent\emph{Step 4: apply the sum-space classification and return.}
+Both total traces are now greater than one, so Theorem~4.2 and its positive
+corollary in the source paper apply to $V$
+\cite[Theorem~4.2]{deJagerConradieExtreme}.  They show that $V$ is the
+restriction of a trace-preserving Jordan $*$-isomorphism
+\[
+ J:\B\longrightarrow\A.
+\]
+We finally identify the original map.  Jordan isomorphisms preserve
+$a\circ b=(ab+ba)/2$, and a trace satisfies
+$\mu(ab)=\mu(a\circ b)$.  Therefore, for $b\in\B$ and $x\in\A$,
+\begin{equation}\label{eq:trace-pairing}
+ \tau(J(b)x)
+ =\tau(J(b)\circ x)
+ =\tau\!\left(J\bigl(b\circ J^{-1}(x)\bigr)\right)
+ =\nu\bigl(b\circ J^{-1}(x)\bigr)
+ =\nu(bJ^{-1}(x)).
+\end{equation}
+Equations \eqref{eq:pairing}, \eqref{eq:trace-pairing}, and $V=J$ give
+\(\nu(bU(x))=\nu(bJ^{-1}(x))\) for all $b\in\B$.  Since bounded normal
+functionals separate points of the finite algebra $\B$, $U(x)=J^{-1}(x)$ for
+all $x\in\A$.  Hence $U$ is a trace-preserving Jordan $*$-isomorphism.
+In particular it is unital, so
+\[
+ \tau(\one_\A)=\nu(\one_\B).
+\]
+
+The converse is exactly the norm calculation in the source theorem: a
+trace-preserving Jordan $*$-isomorphism preserves both the $L^1$ norm and the
+operator norm, hence their maximum.  This completes the proof.
+\end{proof}
+
+\section{Verification, limitations, and novelty status}
+
+The proof is non-computational.  Its two external mathematical inputs were
+checked in the locally stored papers: the order-isomorphism/normality result is
+Lemma~3.1 of \cite{deJagerConradieSymmetric}, and the sum-space classification
+is Theorem~4.2 with its positive corollary in
+\cite{deJagerConradieExtreme}.  The source paper's Proposition~5.1 supplies
+the extreme-point characterization used only to exclude a target total at
+most one.
+
+The theorem addresses positive surjective linear isometries under the source
+paper's standing non-atomicity and semifiniteness assumptions.  It does not
+classify non-positive isometries, nor does it remove non-atomicity.
+
+A bounded literature search through 27 August 2026 used arXiv:2007.02324, the
+exact title and authors, the quoted open-problem phrase, combinations of
+``positive surjective isometry'', ``$L^1\cap L^\infty$'', and ``trace between
+1 and 2'', and a forward-citation check.  It found the arXiv/journal versions
+of the source and one unrelated citing paper, but no later claimed answer to
+this question.  This supports, but does not guarantee, novelty.
+
+\medskip
+\noindent\textbf{Human-review recommendation.}
+Review as a candidate full result.  The main checkpoint is formula
+\eqref{eq:polar} on the normal predual and its use to make the preadjoint an
+onto sum-space isometry.  The order-unit and trace-pairing arguments should be
+checked next.
+
+\begin{thebibliography}{9}
+
+\bibitem{deJagerConradieExtreme}
+P. de Jager and J. Conradie,
+\emph{Extreme point methods in the study of isometries on certain
+non-commutative spaces}, arXiv:2007.02324; Glasgow Math. J.,
+doi:10.1017/S0017089521000227.
+
+\bibitem{deJagerConradieSymmetric}
+P. de Jager and J. J. Conradie,
+\emph{Isometries between non-commutative symmetric spaces associated with
+semi-finite von Neumann algebras}, Positivity \textbf{24} (2020), 815--835;
+arXiv:1907.06452.
+
+\bibitem{DoddsDoddsDePagter}
+P. G. Dodds, T. K.-Y. Dodds, and B. de Pagter,
+\emph{Non-commutative K\"othe duality}, Trans. Amer. Math. Soc.
+\textbf{339} (1993), 717--750.
+
+\end{thebibliography}
+
+\end{document}

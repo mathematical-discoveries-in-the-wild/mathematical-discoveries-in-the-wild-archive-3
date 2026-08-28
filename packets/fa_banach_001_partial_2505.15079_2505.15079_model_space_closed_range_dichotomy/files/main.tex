@@ -1,0 +1,283 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{softblue}{RGB}{236,244,250}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\D}{\mathbb D}
+\newcommand{\T}{\mathbb T}
+\newcommand{\C}{\mathbb C}
+\newcommand{\K}{K_{\theta}^{p}}
+\newcommand{\Kh}{K_{\theta}^{2}}
+
+\title{\textbf{The Model-Space Closed-Range Dichotomy}\\
+\large A sampling/interpolation theorem prompted by arXiv:2505.15079}
+\author{Agent lane 2 (\texttt{agent\_lane\_02})\\Model: GPT5.6}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent
+\colorbox{softblue}{\parbox{0.94\linewidth}{
+\textbf{Status: substantial partial result, likely valid.}
+The packet gives a complete structural dichotomy for all $1\le p<\infty$,
+an exact frame/Riesz criterion for $K_\theta^2$, and a concrete infinite
+product-inner classification.  It does not geometrically characterize all
+sampling and interpolation measures for arbitrary $\theta$ and $p$.
+}}
+
+\section{Source proposal}
+
+Dyakonov's paper \cite{Dyakonov2025} classifies closed-range Carleson
+embeddings for Hardy and Bergman spaces.  On page 6 it proposes the analogous
+study for the star-invariant spaces
+\[
+ K_\theta^p:=H^p\cap\theta\bar z\,\overline{H^p},
+ \qquad 1\le p<\infty,
+\]
+where $\theta$ is inner, and predicts that the answer should resemble the
+Bergman sampling/interpolation pattern rather than the Hardy pattern.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.98\linewidth]{figures/open_problem_crop.png}
+  \caption{The complete model-space future-work passage on page 6 of the
+  source PDF.}
+\end{figure}
+
+Throughout, $\mu$ is a positive Borel measure on the open disk such that the
+restriction operator
+\[
+ J_\mu:K_\theta^p\longrightarrow L^p(\mu),\qquad J_\mu f=f|_{\operatorname{supp}\mu},
+\]
+is bounded.  We call $\mu$ \emph{sampling} if
+\begin{equation}\label{eq:sampling}
+ \|f\|_{H^p}\le C\|f\|_{L^p(\mu)}\qquad(f\in K_\theta^p).
+\end{equation}
+If $\mu=\sum_n a_n\delta_{z_n}$, we call the support
+\emph{$\mu$-interpolating} when $J_\mu$ is onto $L^p(\mu)$.
+
+\section{Proof intuition}
+
+There are only two possible geometries.  If restriction is injective, closed
+range is exactly the reverse estimate \eqref{eq:sampling}.  If it is not
+injective, choose a nonzero $F$ in the kernel.  The measure is forced onto the
+discrete zero set of $F$.  More importantly, model spaces allow inner
+division: removing the full Blaschke factor at one zero keeps the quotient in
+$K_\theta^p$.  Doing this at each support point produces every coordinate
+vector in the trace range.  The range is therefore dense, so closed range is
+equivalent to interpolation (surjectivity).
+
+In the Hilbert case, restriction is an analysis operator for weighted
+reproducing kernels.  Surjectivity of the analysis operator is equivalent to
+its synthesis adjoint being bounded below, which is precisely the
+Riesz-sequence condition.  Thus the proposed Bergman-type split becomes a
+frame-versus-Riesz dichotomy.
+
+\section{The structural dichotomy for every finite exponent}
+
+\begin{lemma}[Star-invariant division]\label{lem:division}
+Let $1\le p<\infty$, let $a\in\D$, and let $b_a$ be a Blaschke factor with
+zero $a$.  If $F\in K_\theta^p$ has a zero of order at least $m$ at $a$, then
+$F/b_a^m\in K_\theta^p$.
+\end{lemma}
+
+\begin{proof}
+The quotient $G:=F/b_a^m$ is analytic and belongs to $H^p$, since $b_a$ is
+inner.  In terms of boundary functions, write
+$F=\theta\bar z\,\overline h$ with $h\in H^p$.  Since
+$1/b_a^m=\overline{b_a^m}$ almost everywhere on $\T$,
+\[
+ G=\theta\bar z\,\overline{b_a^m h}.
+\]
+Thus $G$ belongs to both defining factors of $K_\theta^p$.
+\end{proof}
+
+\begin{theorem}[Sampling/interpolation dichotomy]\label{thm:allp}
+Let $\theta$ be a nonconstant inner function, $1\le p<\infty$, and suppose
+$J_\mu:K_\theta^p\to L^p(\mu)$ is bounded.  Its range is closed if and only
+if exactly one of the following alternatives holds.
+\begin{enumerate}
+\item[(S)] $J_\mu$ is injective and $\mu$ is sampling for $K_\theta^p$.
+\item[(I)] $J_\mu$ is not injective; the measure has the form
+\[
+ \mu=\sum_n a_n\delta_{z_n}
+\]
+on a finite or countable discrete zero set, and that support is
+$\mu$-interpolating for $K_\theta^p$.
+\end{enumerate}
+In alternative \emph{(I)}, any closed range is automatically all of
+$L^p(\mu)$.
+\end{theorem}
+
+\begin{proof}
+Suppose first that $J_\mu$ is injective.  If its range is closed, then it maps
+the Banach space $K_\theta^p$ isomorphically onto its range.  The bounded
+inverse theorem gives \eqref{eq:sampling}.  Conversely, that inequality makes
+$J_\mu$ bounded below, hence gives closed range.  This proves (S).
+
+Now suppose that the kernel contains a nonzero function $F$.  Since
+$F=0$ $\mu$-almost everywhere, continuity forces
+\begin{equation}\label{eq:support}
+ \operatorname{supp}\mu\subset\{z\in\D:F(z)=0\}.
+\end{equation}
+Indeed, if $F(w)\ne0$ at a support point, then $|F|$ is bounded away from zero
+on some neighborhood of $w$ having positive $\mu$-measure, a contradiction.
+The zero set in \eqref{eq:support} is discrete, so
+$\operatorname{supp}\mu=\{z_n\}$ is countable and
+$\mu=\sum_n a_n\delta_{z_n}$ with $a_n>0$.
+
+Let $m_n$ be the exact zero multiplicity of $F$ at $z_n$.  By
+Lemma~\ref{lem:division},
+\[
+ G_n:=\frac{F}{b_{z_n}^{m_n}}\in K_\theta^p.
+\]
+The function $G_n$ is nonzero at $z_n$ and vanishes at every other support
+point.  After scalar normalization, $J_\mu G_n$ is the $n$th coordinate
+vector.  Therefore the range of $J_\mu$ contains all finitely supported
+sequences, a dense subspace of $L^p(\mu)$.  Its range is closed exactly when
+it equals $L^p(\mu)$, which is alternative (I).  The converse is immediate.
+\end{proof}
+
+\section{Complete Hilbert-space criterion}
+
+For $K_\theta^2=H^2\ominus\theta H^2$, write
+\[
+ k_z^\theta(w)=\frac{1-\overline{\theta(z)}\theta(w)}{1-\bar z w}
+\]
+for the reproducing kernel at $z$.
+
+\begin{theorem}[Frame/Riesz form]\label{thm:hilbert}
+Let $J_\mu:K_\theta^2\to L^2(\mu)$ be bounded.
+\begin{enumerate}
+\item If $J_\mu$ is injective, then it has closed range exactly when $\mu$ is
+sampling.  For an atomic uniqueness support
+$\mu=\sum_n a_n\delta_{z_n}$, this is equivalent to
+$\{\sqrt{a_n}k_{z_n}^\theta\}$ being a frame for $K_\theta^2$.
+\item If $J_\mu$ is not injective, then $\mu=\sum_n a_n\delta_{z_n}$ as in
+Theorem~\ref{thm:allp}, and $J_\mu$ has closed range exactly when
+\begin{equation}\label{eq:riesz}
+ \{\sqrt{a_n}k_{z_n}^\theta\}_n
+\end{equation}
+is a Riesz sequence in $K_\theta^2$.
+\end{enumerate}
+Thus these two alternatives classify every bounded closed-range embedding of
+$K_\theta^2$ into an interior $L^2$ space.
+\end{theorem}
+
+\begin{proof}
+Only the noninjective assertion needs proof beyond
+Theorem~\ref{thm:allp}.  Identify $L^2(\mu)$ unitarily with $\ell^2$ by
+$g\mapsto(\sqrt{a_n}g(z_n))_n$.  Under this identification, $J_\mu$ becomes
+the analysis operator
+\[
+ Tf=(\langle f,\sqrt{a_n}k_{z_n}^\theta\rangle)_n,
+\]
+and
+\[
+ T^*(c_n)=\sum_n c_n\sqrt{a_n}k_{z_n}^\theta.
+\]
+Boundedness of $T$ supplies the upper Riesz bound.  By
+Theorem~\ref{thm:allp}, closed range in the noninjective branch is equivalent
+to surjectivity of $T$.  A Hilbert-space operator is onto exactly when its
+adjoint is bounded below, which supplies the lower Riesz bound for
+\eqref{eq:riesz}.  The atomic injective statement is the usual analysis-
+operator characterization of a frame.
+\end{proof}
+
+\section{An exact infinite product-inner family}
+
+\begin{corollary}\label{cor:product}
+Let $B_1$ be an infinite interpolating Blaschke product with zeros
+$\mathcal Z=\{z_n\}$, let $B_2$ be a nonconstant inner function, and put
+$\theta=B_1B_2$.  For positive weights $a_n$, define
+$\mu=\sum_n a_n\delta_{z_n}$.  Then
+\[
+ J_\mu:K_{B_1B_2}^2\longrightarrow L^2(\mu)
+\]
+is bounded if and only if
+\begin{equation}\label{eq:upperweight}
+ \sup_n\frac{a_n}{1-|z_n|^2}<\infty.
+\end{equation}
+Under this boundedness condition, its range is closed if and only if
+\begin{equation}\label{eq:twoweight}
+ 0<\inf_n\frac{a_n}{1-|z_n|^2}
+ \le \sup_n\frac{a_n}{1-|z_n|^2}<\infty.
+\end{equation}
+In the closed-range case the map is onto and
+\[
+ \ker J_\mu=B_1K_{B_2}^2.
+\]
+\end{corollary}
+
+\begin{proof}
+The standard orthogonal decomposition
+\[
+ K_{B_1B_2}^2=K_{B_1}^2\oplus B_1K_{B_2}^2
+\]
+shows that restriction to $\mathcal Z$ kills the second summand.  Because
+$B_1$ is interpolating, the normalized kernels
+\[
+ \frac{\sqrt{1-|z_n|^2}}{1-\overline{z_n}z}
+\]
+form a Riesz basis for $K_{B_1}^2$.  At a zero $z_n$ of $B_1$, the
+$K_{B_1B_2}^2$ kernel is the same Szeg\H{o} kernel.  Consequently the weighted
+family in \eqref{eq:riesz} is Bessel exactly under
+\eqref{eq:upperweight}, and is Riesz exactly under
+\eqref{eq:twoweight}.  Theorem~\ref{thm:hilbert} gives the range assertions.
+The orthogonal decomposition also makes the displayed kernel identity exact.
+\end{proof}
+
+\section{Verification, novelty, and remaining scope}
+
+The accompanying verifier checks 500 deterministic finite product-inner
+models using a Malmquist--Walsh basis.  It verifies full row rank, the expected
+$\deg B_2$ nullity, and agreement between the restriction and kernel Gram
+matrices.  These computations are sanity checks, not the proof.
+
+The run indexes and bounded exact web/arXiv searches on 26 August 2026 used
+the source id and combinations of ``closed range'', ``model space'',
+``star-invariant'', ``sampling'', ``interpolation'', and ``Riesz sequence''.
+They found the source, the reverse-Carleson theory for model spaces
+\cite{BFGHR2012}, and interpolation work, but no statement of the
+noninjective density mechanism or Theorems~\ref{thm:allp}--\ref{thm:hilbert}.
+This is bounded novelty evidence, not an exhaustive priority claim.
+
+The broad source program is not finished: geometric tests for all sampling
+and interpolation measures remain difficult and depend on $\theta$ and $p$.
+The packet settles the operator-theoretic architecture, completely settles
+the Hilbert criterion in frame/Riesz terms, and gives a nontrivial infinite
+family with an explicit weight characterization.
+
+\section{Human-review recommendation}
+
+Review as a substantial partial result.  The crucial audit points are
+Lemma~\ref{lem:division}, the support implication \eqref{eq:support}, and the
+closed-range-to-surjectivity step.  The frame/Riesz theorem then follows from
+standard Hilbert closed-range duality.
+
+\begin{thebibliography}{9}
+\bibitem{Dyakonov2025}
+K. M. Dyakonov,
+\emph{Carleson-type embeddings with closed range},
+arXiv:2505.15079, 2025--2026.
+
+\bibitem{BFGHR2012}
+A. Blandign\`eres, E. Fricain, F. Gaunard, A. Hartmann, and W. T. Ross,
+\emph{Reverse Carleson embeddings for model spaces},
+arXiv:1205.3260, 2012.
+
+\bibitem{FricainMashreghi2016}
+E. Fricain and J. Mashreghi,
+\emph{Introduction to Model Spaces and Their Operators},
+Cambridge University Press, 2016.
+\end{thebibliography}
+
+\end{document}

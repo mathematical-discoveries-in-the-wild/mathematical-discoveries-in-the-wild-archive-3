@@ -1,0 +1,254 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Bn}{\mathbb B_n}
+\newcommand{\A}{A^2_\alpha(\Bn)}
+\newcommand{\BMO}{BMO^1_\alpha}
+\newcommand{\Lfin}{L^\infty_{\mathrm{fin}}}
+\newcommand{\Tfin}{\mathcal T_{L^\infty_{\mathrm{fin}}}}
+\newcommand{\cL}{\mathcal L}
+
+\title{A One-Column Counterexample to the Reverse\\
+Toeplitz-Algebra Implication}
+\author{Candidate solution packet for arXiv:2510.19589\\
+\small agent\_lane\_04 (GPT5.6)}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{\textbf{Status.}
+Candidate counterexample, likely valid, awaiting human review.}}
+\end{center}
+
+\section{Source question}
+
+The source is B\'ekoll\`e, D\'efo, and Tchoundja,
+\emph{Analysis of Toeplitz Operators with $BMO^1_\alpha$ operator-valued
+symbols on $\ell^2$-valued Bergman spaces}, arXiv:2510.19589 (2025)
+\cite{BDT}.  Section 13, page 41 asks whether
+\[
+ b,b^*\in \BMO\bigl(\Bn,\cL(\ell^2,\ell^1\cap\ell^2)\bigr),
+ \qquad
+ \widetilde b\in L^\infty\bigl(\Bn,\cL(\ell^2)\bigr),
+\]
+together with
+\[
+ \lim_{d\to\infty}\|T_bQ_d\|=0,
+\]
+implies $T_b\in\Tfin$.  Here $Q_d=M_{I_{(d)}}$ is the orthogonal projection
+of $\ell^2$ onto $\overline{\operatorname{span}}\{e_j:j>d\}$, acting
+pointwise on $A^2_\alpha(\Bn,\ell^2)$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+\caption{The open question in Section 13, page 41 of the source paper.}
+\end{figure}
+
+\section{Proof intuition}
+
+The hypothesis controls only input-coordinate tails.  We therefore choose a
+symbol having exactly one nonzero input column; then $T_bQ_d=0$ automatically
+for every $d\geq1$.  That column is distributed among infinitely many output
+coordinates using pairwise disjoint angular sectors of the ball.  Normalized
+Bergman kernels concentrate at boundary points, so each sector produces a
+scalar Toeplitz component of norm one.  Hence no output-coordinate tail can
+decay.  This is incompatible with $\Tfin$, because its finite-symbol words
+have finite row and column support, and norm closure preserves two-sided tail
+decay.
+
+\section{Definitions}
+
+Let $P_\alpha$ be the scalar weighted Bergman projection, acting coordinatewise
+on $L^2_\alpha(\Bn,\ell^2)$.  For a bounded operator-valued symbol $b$, set
+$T_b=P_\alpha M_b$.  The normalized scalar kernel is
+\[
+ k_a^\alpha(w)=
+ \frac{(1-|a|^2)^{(n+1+\alpha)/2}}
+ {(1-\langle w,a\rangle)^{n+1+\alpha}}.
+\]
+Write $P_d=I-Q_d$ for projection onto the first $d$ coordinates.
+The algebra $\Tfin$ is the operator-norm closure of finite sums of finite
+products of Toeplitz operators whose symbols have only finitely many nonzero
+matrix entries, all bounded \cite{BDT}.
+
+We use either standard norm on $\ell^1\cap\ell^2$ (the sum or maximum of the
+two norms); the construction is bounded for both.
+
+\section{The counterexample}
+
+\begin{lemma}[A necessary two-sided tail condition]\label{lem:tails}
+If $S\in\Tfin$, then
+\[
+ \|SQ_d\|\longrightarrow0
+ \quad\text{and}\quad
+ \|Q_dS\|\longrightarrow0.
+\]
+\end{lemma}
+
+\begin{proof}
+If $u\in\Lfin$, choose $N$ larger than every row and column index on which
+$u$ has a nonzero matrix entry.  Since $P_\alpha$ acts coordinatewise,
+\[
+ Q_NT_u=0,\qquad T_uQ_N=0.
+\]
+For a finite product of such Toeplitz operators, the leftmost factor gives
+finite row support and the rightmost factor gives finite column support.
+Thus every finite sum of finite products has both tails identically zero once
+$d$ is large enough.  If $S$ is an operator-norm limit of such operators, an
+$\varepsilon$-approximation immediately gives
+$\limsup_d\|Q_dS\|\leq\varepsilon$ and
+$\limsup_d\|SQ_d\|\leq\varepsilon$.  Let $\varepsilon\downarrow0$.
+\end{proof}
+
+\begin{lemma}[Disjoint sectors with norm-one Toeplitz operators]
+There are pairwise disjoint Borel sets $E_1,E_2,\ldots\subset\Bn$ such that
+\[
+ \|T_{\chi_{E_j}}\|=1\qquad(j\geq1).
+\]
+\end{lemma}
+
+\begin{proof}
+Choose pairwise disjoint relatively open caps $C_j$ of the unit sphere and a
+point $\zeta_j\in C_j$.  Let $E_j$ be the radial sector consisting of nonzero
+$w\in\Bn$ whose direction $w/|w|$ lies in $C_j$.  These sets are disjoint,
+and $E_j$ contains a relative neighborhood of $\zeta_j$ in the closed ball.
+
+The probability measures
+\[
+ d\mu_{r\zeta_j}(w)=|k_{r\zeta_j}^\alpha(w)|^2\,d\nu_\alpha(w)
+\]
+converge weakly to the point mass at $\zeta_j$ as $r\uparrow1$.  For
+completeness, if $V$ is any relative neighborhood of $\zeta_j$, compactness
+gives $c_V>0$ such that
+\[
+ |1-r\langle w,\zeta_j\rangle|\geq c_V
+ \quad(w\in\overline{\Bn}\setminus V)
+\]
+for all $r$ sufficiently close to one.  Therefore
+\[
+ \mu_{r\zeta_j}(\Bn\setminus V)
+ \leq C_V(1-r^2)^{n+1+\alpha}\longrightarrow0.
+\]
+Taking $V\cap\Bn\subset E_j$ yields
+$\widetilde{\chi_{E_j}}(r\zeta_j)\to1$.  Since $T_{\chi_{E_j}}$ is a positive
+contraction and
+\[
+ \big\langle T_{\chi_{E_j}}k_a^\alpha,k_a^\alpha\big\rangle
+ =\widetilde{\chi_{E_j}}(a),
+\]
+its norm is exactly one.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+For every $n\geq1$ and $\alpha>-1$, the question in Section 13 of
+arXiv:2510.19589 has a negative answer.  More strongly, there is a bounded
+strongly measurable symbol
+\[
+ b:\Bn\to\cL(\ell^2,\ell^1\cap\ell^2)
+\]
+whose Hilbert-space adjoint has the same property, such that
+\[
+ b,b^*\in\BMO\bigl(\Bn,\cL(\ell^2,\ell^1\cap\ell^2)\bigr),
+ \qquad
+ \|\widetilde b\|_{L^\infty(\cL(\ell^2))}\leq1,
+\]
+and
+\[
+ T_bQ_d=0\quad(d\geq1),
+ \qquad
+ \|Q_dT_b\|=1\quad(d\geq1).
+\]
+Consequently $T_b\notin\Tfin$.
+\end{theorem}
+
+\begin{proof}
+For the sectors above, define
+\[
+ v(w)=\sum_{j\geq1}\chi_{E_j}(w)e_j,
+ \qquad
+ b(w)x=\langle x,e_1\rangle v(w).
+\]
+Because the $E_j$ are disjoint, $v(w)$ is either zero or one standard basis
+vector.  Hence $b$ is strongly measurable, takes only countably many values,
+and is uniformly bounded from $\ell^2$ into $\ell^1\cap\ell^2$.  Its adjoint is
+\[
+ b(w)^*x=\langle x,v(w)\rangle e_1,
+\]
+and has the same boundedness and measurability properties.
+
+Every bounded Banach-valued symbol $c$ belongs to the paper's $\BMO$ class:
+from its definition,
+\[
+ \sup_{z\in\Bn}\int_{\Bn}
+ \|c\circ\varphi_z(w)-\widetilde c(z)\|\,d\nu_\alpha(w)
+ \leq2\|c\|_\infty.
+\]
+Thus both required $\BMO$ hypotheses hold.
+
+Set
+\[
+ p_j(z)=\widetilde{\chi_{E_j}}(z)
+ =\int_{E_j}|k_z^\alpha(w)|^2\,d\nu_\alpha(w).
+\]
+Then $p_j(z)\geq0$ and disjointness gives $\sum_jp_j(z)\leq1$.  Moreover,
+\[
+ \widetilde b(z)x
+ =\langle x,e_1\rangle\sum_{j\geq1}p_j(z)e_j.
+\]
+The output vector has $\ell^2$ norm at most its $\ell^1$ norm, which is at
+most one.  Hence $\|\widetilde b(z)\|_{\cL(\ell^2)}\leq1$ uniformly in $z$.
+
+For $d\geq1$, $b(w)Q_d=0$ pointwise, so $T_bQ_d=0$.  On the other hand, for a
+scalar $f\in\A$,
+\[
+ T_b(fe_1)=\bigl(T_{\chi_{E_1}}f,
+ T_{\chi_{E_2}}f,\ldots\bigr).
+\]
+Fix $j>d$.  The $j$th component implies
+\[
+ \|Q_dT_b\|\geq\|T_{\chi_{E_j}}\|=1.
+\]
+Since $b$ is pointwise contractive, $\|T_b\|\leq1$, so equality holds.
+Lemma~\ref{lem:tails} now shows that $T_b\notin\Tfin$.
+\end{proof}
+
+By Theorem 1.19 of the source paper, this $T_b$ is also sufficiently localized.
+Thus the example disproves the proposed infinite-dimensional reverse
+implication even inside the source's localized Toeplitz class.
+
+\section{Verification, scope, and novelty}
+
+The proof is exact and uses no computation.  The construction satisfies the
+question with the stronger identity $T_bQ_d=0$ for every $d\geq1$.  It does
+not challenge Proposition 1.16 of the source: that proposition additionally
+assumes the missing left-tail condition $\|Q_dT_b\|\to0$, which fails here as
+strongly as possible.
+
+A bounded novelty search on 26 August 2026 used the exact arXiv id and title,
+the notation $\Tfin$, exact phrases from Section 13, and combinations of
+operator-valued BMO, Toeplitz algebra, and reverse implication.  It found the
+source paper, mirrors, and summaries, but no later explicit answer.  This is
+not an exhaustive bibliographic guarantee.
+
+\textbf{Human-review recommendation.}  Treat Theorem~\ref{thm:main} as a
+high-priority candidate counterexample.  In particular, verify the bounded
+Banach-valued BMO observation and Lemma~\ref{lem:tails}; neither step hides a
+compactness or uniformity assumption.
+
+\begin{thebibliography}{9}
+\bibitem{BDT}
+D. B\'ekoll\`e, H. O. D\'efo, and E. L. Tchoundja,
+\emph{Analysis of Toeplitz Operators with $BMO^1_\alpha$ operator-valued
+symbols on $\ell^2$-valued Bergman spaces}, arXiv:2510.19589, 2025.
+\end{thebibliography}
+
+\end{document}

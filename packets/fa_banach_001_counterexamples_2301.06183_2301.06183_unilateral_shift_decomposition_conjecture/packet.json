@@ -1,0 +1,61 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2301.06183",
+  "author_list": [
+    "Jahangir Cheshmavar",
+    "Ayyaneh Dallaki",
+    "Javad Baradaran"
+  ],
+  "claim_short": "2301.06183 Cheshmavar Dallaki Baradaran operator representation frames final conjecture E(H) direct sum invariant Hilbert subspaces frame orbit unilateral shift multiplicity one irreducible reducing subspace commutant idempotent literal zero summands tautology",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1891,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2301.06183v1",
+    "source_url": "https://arxiv.org/abs/2301.06183v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_counterexample_likely_valid_scoped",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/",
+  "packet_title": "Counterexample Packet: The Unilateral Shift Blocks the Nontrivial Decomposition Conjecture",
+  "primary_arxiv_id": "2301.06183",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0435",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2301.06183_2301.06183_unilateral_shift_decomposition_conjecture/files/solution_packet.pdf",
+  "source_authors": "Jahangir Cheshmavar, Ayyaneh Dallaki, Javad Baradaran",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2301.06183_unilateral_shift_decomposition_conjecture/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2301.06183v1",
+  "source_question": "Jahangir Cheshmavar, Ayyaneh Dallaki, and Javad Baradaran, *On abstract results of operator representation of frames in Hilbert spaces*, arXiv:2301.06183v1; Journal of Pseudo-Differential Operators and Applications 14 (2023), article 30, DOI 10.1007/s11868-023-00524-8. Source location: page 11, final conjecture. Local PDF: source_paper.pdf. Evidence crop: figures/open_problem_crop.png.",
+  "source_title": "On abstract results of operator representation of frames in Hilbert spaces",
+  "source_url": "https://arxiv.org/abs/2301.06183v1",
+  "source_year": "2023",
+  "verification_status": "unverified"
+}

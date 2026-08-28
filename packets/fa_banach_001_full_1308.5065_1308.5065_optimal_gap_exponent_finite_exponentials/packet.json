@@ -1,0 +1,59 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "1308.5065",
+  "author_list": [
+    "Ole Christensen"
+  ],
+  "claim_short": "1308.5065 Ole Christensen Six problems in frame theory Section 7.2 lower frame bound finite collection exponentials L2(-pi,pi) separated real frequencies gap delta. Candidate full fixed-N small-gap answer: for n=N-1, the unrestricted infimum m_N(delta) satisfies lim m_N(delta)/delta^(2n) = 2 pi^(2n+1) 4^n / ((2n+1) binom(2n,n)^3). Newton divided differences, monic Legendre polynomial, barycentric weights,...",
+  "claim_type": "full",
+  "code_bundle_size_bytes": 2052,
+  "copied_file_count": 7,
+  "database_packet_path": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/1308.5065v1",
+    "source_url": "https://arxiv.org/abs/1308.5065v1"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate full asymptotic solution likely valid: the unrestricted worst lower frame bound has an exact fixed-N small-gap constant, attained uniquely to leading order by arithmetic frequency clusters",
+  "novelty_status": "unknown",
+  "packet_class": "full",
+  "packet_path": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/",
+  "packet_title": "Sharp small-gap lower frame bound for finite exponentials",
+  "primary_arxiv_id": "1308.5065",
+  "proof_status": "packet_claim",
+  "readme_path": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/files/README.md",
+  "result_class": "full",
+  "result_id": "fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0757",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_full_1308.5065_1308.5065_optimal_gap_exponent_finite_exponentials/files/solution_packet.pdf",
+  "source_authors": "Ole Christensen",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/full/1308.5065_optimal_gap_exponent_finite_exponentials/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/1308.5065v1",
+  "source_question": "",
+  "source_title": "Six problems in frame theory",
+  "source_url": "https://arxiv.org/abs/1308.5065v1",
+  "source_year": "2013",
+  "verification_status": "unverified"
+}

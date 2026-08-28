@@ -1,0 +1,255 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=0.78in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx,microtype,enumitem,xcolor,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!55!black,citecolor=blue!45!black}
+\setlist{nosep,leftmargin=1.7em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\B}{\mathcal B}
+\newcommand{\K}{\mathcal K}
+\newcommand{\D}{\mathbb D}
+\newcommand{\T}{\mathbb T}
+\newcommand{\ellp}{\ell_p}
+\newcommand{\ellq}{\ell_q}
+\definecolor{answer}{RGB}{35,80,125}
+
+\title{SOT$^*$-density of $\ell_p$ contractions with compact-free commutant\\
+\large A substantial partial answer to Question 6.4 of arXiv:2105.04635}
+\author{Automated mathematical discovery run \texttt{fa\_banach\_001}, lane 0}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{answer}{answer!6}{\parbox{0.91\linewidth}{
+\textbf{Candidate substantial partial result.}
+For every complex $\ell_p$, $1<p<\infty$, contractions which commute with no
+nonzero compact operator are SOT$^*$-dense in the unit ball of
+$\B(\ell_p)$.  This proves density, not the comeagerness requested by the
+word ``typical'' in the source question.  The stronger Lomonosov-hypothesis
+clause is not addressed.
+}}
+\end{center}
+
+\section*{Source question}
+Grivaux and Matheron ask in Question 6.4 of \cite{GM}:
+\begin{quote}
+Let $X=\ell_p$, $1<p<\infty$. Is it true that a typical
+$T\in\B_1(X)$ does not satisfy the assumptions of the Lomonosov Theorem?
+Is it at least true that a typical $T\in\B_1(X)$ does not commute with a
+non-zero compact operator?
+\end{quote}
+Here ``typical'' means comeager in the SOT$^*$ topology on the contraction
+ball.  The source recalls that the fallback assertion is known for $p=2$
+from \cite[Theorem 7.5]{GMM}.
+
+\section*{Definitions}
+For a reflexive Banach space $X$, SOT$^*$ convergence $T_j\to T$ means
+$T_jx\to Tx$ for every $x\in X$ and $T_j^*x^*\to T^*x^*$ for every
+$x^*\in X^*$.  We write
+\[
+ \{T\}'=\{R\in\B(X):RT=TR\}
+\]
+for the commutant.  The coordinate projections onto the first $N$
+coordinates of $\ell_p$ and $\ell_q$ are both denoted by $P_N$.
+
+\section*{Proof intuition}
+An SOT$^*$ neighborhood only monitors finitely many vectors and
+functionals.  Thus, after a sufficiently large finite coordinate block, one
+may install a unilateral forward-shift tail.  Couple the finite block into
+the first tail coordinate through a tiny cyclic functional.  The coupling is
+small enough to preserve contractivity, yet it makes the eigenspaces of the
+adjoint one-dimensional and their eigenvectors total.
+
+Any operator commuting with this adjoint must act on those eigenspaces by a
+bounded holomorphic scalar $\varphi$.  As the eigenvalue approaches any
+point of the unit circle, the geometric tail of the eigenvector blows up;
+after normalization, the eigenvector tends weakly to zero.  A compact
+commutant sends it to zero in norm, forcing every radial boundary value of
+$\varphi$ to be zero.  Bounded analytic uniqueness gives $\varphi=0$, and
+totality then gives that the compact commutant itself is zero.
+
+\clearpage
+\section*{Original source image}
+\begin{center}
+\includegraphics[width=0.99\textwidth,height=0.78\textheight,keepaspectratio]{figures/open_problem_crop.png}
+\end{center}
+\noindent\footnotesize Source: Grivaux--Matheron, arXiv:2105.04635,
+PDF p.~18, Question 6.4.  This is a direct full-width crop from
+\texttt{source\_paper.pdf}.
+\normalsize
+
+\section*{The density theorem}
+\begin{theorem}\label{thm:main}
+Let $1<p<\infty$ and let $X=\ell_p$ over the complex scalars.  Then
+\[
+ \bigl\{T\in\B_1(X):\{T\}'\cap\K(X)=\{0\}\bigr\}
+\]
+is SOT$^*$-dense in $\B_1(X)$.
+\end{theorem}
+
+\begin{proof}
+Let $T_0\in\B_1(X)$ and fix a basic SOT$^*$ neighborhood of $T_0$.
+Because $P_N\to I$ strongly on both $\ell_p$ and its dual $\ell_q$, the
+finite compressions $P_NT_0P_N$ converge to $T_0$ in SOT$^*$.  Choose $N$
+large.  On the finite-dimensional space $E=P_NX$, first scale the
+compression slightly and then perturb it slightly to an operator
+$A\in\B(E)$ such that
+\[
+ r:=\|A\|<1
+ \quad\hbox{and}\quad
+ A^*\text{ has pairwise distinct eigenvalues}.
+\]
+Matrices with simple spectrum are dense, so this can be done while retaining
+membership in the prescribed neighborhood after the construction below.
+
+Choose a norm-one cyclic vector $v^*\in E^*$ for $A^*$.  Such a vector exists:
+if $u_1^*,\dots,u_d^*$ are eigenvectors for the distinct eigenvalues, any
+linear combination having all coefficients nonzero is cyclic.  Decompose
+$X=E\oplus_p F$, identify $F$ with $\ell_p(\mathbb Z_+)$, and let
+\[
+ S(y_0,y_1,\dots)=(0,y_0,y_1,\dots)
+\]
+be the forward shift on $F$.  Choose $\delta>0$ so small that
+\[
+ r^p+\delta^p\leq1
+\]
+and so that the coupling below is invisible to the chosen neighborhood.
+Define
+\begin{equation}\label{eq:T}
+ T(x,y)=\bigl(Ax,\ \delta v^*(x)e_0+Sy\bigr),
+ \qquad x\in E,\ y\in F.
+\end{equation}
+The three displayed output blocks have disjoint coordinate supports, hence
+\[
+ \|T(x,y)\|_p^p
+ =\|Ax\|_p^p+\delta^p|v^*(x)|^p+\|y\|_p^p
+ \leq(r^p+\delta^p)\|x\|_p^p+\|y\|_p^p.
+\]
+Thus $T$ is a contraction.  Moreover, $T$ can be made arbitrarily close to
+$T_0$ in SOT$^*$: on the prescribed primal test vectors the shift sees only
+their small tails and the new coupling has norm at most $\delta$; on the dual
+test vectors the same assertion follows from their small $\ell_q$ tails.
+This proves the required approximation once we show that $T$ has no nonzero
+compact operator in its commutant.
+
+Let $q=p/(p-1)$ and let $B$ be the backward shift on $\ell_q$.  From
+\eqref{eq:T},
+\[
+ T^*(u,z)=\bigl(A^*u+\delta z_0v^*,\ Bz\bigr),
+ \qquad u\in E^*,\ z\in\ell_q.
+\]
+For $\lambda\in\Omega:=\D\setminus\sigma(A^*)$, put
+\[
+ k_\lambda=(1,\lambda,\lambda^2,\dots)\in\ell_q,
+ \qquad
+ h_\lambda=
+ \bigl(\delta(\lambda I-A^*)^{-1}v^*,\ k_\lambda\bigr).
+\]
+Then $T^*h_\lambda=\lambda h_\lambda$.  Conversely,
+$Bz=\lambda z$ forces $z$ to be a scalar multiple of $k_\lambda$, and the
+first coordinate equation then determines $u$.  Therefore
+\begin{equation}\label{eq:onedim}
+ \ker(T^*-\lambda I)=\mathbb C h_\lambda
+ \qquad(\lambda\in\Omega).
+\end{equation}
+
+The family $(h_\lambda)_{\lambda\in\Omega}$ is total in $X^*$.  Indeed,
+suppose $(a,y)\in E\oplus_pF$ is annihilated by every $h_\lambda$.  Then
+\begin{equation}\label{eq:meromorphic}
+ \delta\bigl[(\lambda I-A^*)^{-1}v^*\bigr](a)
+ +\sum_{n\geq0}y_n\lambda^n=0
+ \qquad(\lambda\in\Omega).
+\end{equation}
+Let $Q_j$ be the spectral projections of $A^*$ associated with its distinct
+eigenvalues $\mu_j$.  Comparing residues at $\mu_j$ in
+\eqref{eq:meromorphic} gives $(Q_jv^*)(a)=0$ for every $j$.  Cyclicity says
+that the nonzero vectors $Q_jv^*$ form a basis of $E^*$, so $a=0$.  The
+remaining power series is identically zero, whence $y=0$.
+
+Now let $K\in\K(X)$ commute with $T$.  By Schauder's theorem, $K^*$ is
+compact, and it commutes with $T^*$.  Equation \eqref{eq:onedim} yields
+\[
+ K^*h_\lambda=\varphi(\lambda)h_\lambda
+ \qquad(\lambda\in\Omega).
+\]
+The scalar function $\varphi$ is holomorphic on $\Omega$: it is obtained by
+evaluating the first tail coordinate of $K^*h_\lambda$, since that coordinate
+of $h_\lambda$ is $1$.  Also
+$|\varphi(\lambda)|\leq\|K^*\|$, because $\varphi(\lambda)$ is an eigenvalue
+of $K^*$.  Its finitely many singularities are therefore removable, so
+$\varphi\in H^\infty(\D)$.
+
+Fix $\zeta\in\T$ and let $\lambda=r\zeta$ tend radially to $\zeta$.  The
+finite-dimensional component of $h_{r\zeta}$ stays uniformly bounded, since
+$\|A\|<1$, whereas
+\[
+ \|k_{r\zeta}\|_q=(1-r^q)^{-1/q}\longrightarrow\infty.
+\]
+Consequently $u_r:=h_{r\zeta}/\|h_{r\zeta}\|$ is bounded and converges
+coordinatewise to zero.  Since finitely supported vectors are dense in
+$(\ell_q)^*=\ell_p$, it follows that $u_r\rightharpoonup0$ in $X^*$.
+Compactness gives $\|K^*u_r\|\to0$, while the eigenvector identity gives
+\[
+ \|K^*u_r\|=|\varphi(r\zeta)|.
+\]
+Thus $\varphi$ has radial limit zero at every $\zeta\in\T$.  Since it is
+bounded, dominated convergence in the Cauchy coefficient formula forces
+every Taylor coefficient of $\varphi$ to vanish.  Hence $\varphi=0$.
+The operator $K^*$ therefore annihilates the total family
+$\{h_\lambda:\lambda\in\Omega\}$, so $K^*=0$ and $K=0$.
+\end{proof}
+
+\section*{Verification and exact remaining gap}
+The proof uses four independent checks:
+\begin{enumerate}
+\item contractivity is the displayed disjoint-support $p$-norm identity;
+\item SOT$^*$ density uses strong convergence of coordinate projections on
+both $\ell_p$ and $\ell_q$;
+\item totality follows from residues at the simple finite-block eigenvalues
+and then uniqueness of a scalar power series;
+\item compactness turns radial weak convergence into norm convergence, while
+bounded analytic uniqueness converts the boundary vanishing into
+$\varphi=0$.
+\end{enumerate}
+
+\paragraph{Why this is not yet the full source answer.}
+The theorem proves density, whereas ``typical'' requires a comeager set.
+The Hilbert proof in \cite{GMM} inserts a dense class into a specially
+constructed dense $G_\delta$ by showing
+$\|R\|=\|R\|_{\mathrm e}$ for every commutant element $R$; its key model
+estimate uses the Hilbert-space von Neumann inequality.  The boundary
+argument above proves that compact commutant elements vanish, but it does not
+prove that norm--essential-norm equality for arbitrary noncompact commutant
+elements on $\ell_p$.  Density by itself cannot be promoted to
+comeagerness.  The first, stronger clause concerning the full Lomonosov
+hypothesis is also untouched.
+
+\paragraph{Novelty audit.}
+The run indexes were searched for arXiv:2105.04635, arXiv:2012.02016,
+``typical contraction'', ``compact operator'', ``commutant'', and
+``Lomonosov''.  Bounded primary-source arXiv/web searches through 26 August
+2026 used the exact question phrase and close SOT$^*$/$\ell_p$ variants.
+They recovered the source paper, the earlier Hilbert-space theorem
+\cite{GMM}, and later papers on positive contractions, but no theorem giving
+this all-$p$ density statement or resolving Question 6.4 for $p\ne2$.
+Novelty confidence is moderate, not definitive.
+
+\paragraph{Human review recommendation.}
+Immediate expert review is recommended.  Priority checks are the residue
+argument establishing totality, the radial weak-null assertion in $\ell_q$,
+and the distinction between this density theorem and the still-missing Baire
+upgrade.
+
+\begin{thebibliography}{9}
+\bibitem{GM} S. Grivaux and É. Matheron,
+\emph{Local spectral properties of typical contractions on $\ell_p$-spaces},
+arXiv:2105.04635, especially Question 6.4 on PDF p.~18.
+\bibitem{GMM} S. Grivaux, É. Matheron, and Q. Menet,
+\emph{Does a typical $\ell_p$-space contraction have a non-trivial invariant
+subspace?}, arXiv:2012.02016, especially Theorem 7.5 and its proof.
+\end{thebibliography}
+
+\end{document}

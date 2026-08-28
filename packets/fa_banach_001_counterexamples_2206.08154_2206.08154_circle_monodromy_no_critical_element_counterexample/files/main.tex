@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx,xcolor,enumitem,microtype,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\A}{\mathcal A}
+\newcommand{\T}{\mathbb T}
+\newcommand{\wind}{\operatorname{wind}}
+\title{\vspace{-2em}A Cubic with No Critical Element over $C(S^1)$\\
+\large Counterexample to two C*-algebraic mean value conjectures}
+\author{Counterexample packet for arXiv:2206.08154}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+\begin{center}
+\fcolorbox{red!65!black}{red!3}{\parbox{0.91\textwidth}{
+\textbf{Status: candidate full counterexample, likely valid.}
+There is a degree-three polynomial over the commutative C*-algebra
+$C(S^1)$ whose derivative has no zero in the algebra.  At an explicitly
+chosen noncritical point, this contradicts the existential conclusion common
+to the C*-algebraic Smale and Dubinin--Sugawa conjectures, including their
+strong forms.
+}}
+\end{center}
+
+\section{Source and exact conjectures}
+
+The source is K.~Mahesh Krishna,
+\emph{C*-algebraic Smale Mean Value Conjecture and Dubinin--Sugawa Dual Mean
+Value Conjecture}, arXiv:2206.08154 (2022) \cite{Krishna}.
+For a commutative C*-algebra $\A$ and
+\(P(x)=\prod_{j=1}^n(x-a_j)\), it defines a critical element to be
+$w\in\A$ with $P'(w)=0$.
+
+Conjecture~2.1 says that if $z$ is not critical, there is a critical
+$w\in\A$ satisfying the proposed Smale upper estimate.  Conjecture~3.1
+says that, under the same hypotheses, there is a critical $w\in\A$ satisfying
+the proposed Dubinin--Sugawa lower estimate.  Conjectures~2.2 and 3.2 make
+stronger C*-order assertions but retain the same existence claim.  The formal
+statements are on source pages 4--5 and 7; both complete conjectures also
+appear in the abstract on source page 1.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.65\textheight,keepaspectratio]{figures/open_problem_crop.png}
+\caption{The source abstract on PDF page 1, containing the two conjectures in
+full and noting that the paper proves only degree two.}
+\end{figure}
+\clearpage
+
+\section{Proof intuition}
+
+For a cubic, solving $P'(w)=0$ requires choosing a square root of its
+discriminant.  Over the scalar field this is automatic.  Over $C(S^1)$, an
+element is a continuous function, so a root of the derivative must amount to
+a continuous choice of one of the two scalar critical points in every fiber.
+
+We arrange for the derivative discriminant to trace a nonvanishing loop of
+odd winding number.  It has two distinct square roots in every individual
+fiber but no continuous square root around the circle: traversing the circle
+exchanges the two roots.  Hence the polynomial has no critical element at
+all.  Choosing $z=0$ with $P'(0)$ invertible meets the conjectures' hypothesis,
+while their required $w$ cannot exist; the numerical inequalities never enter.
+
+\section{The construction and proof}
+
+Write $\T=\{\zeta\in\mathbb C:|\zeta|=1\}$ and let
+$u\in C(\T)$ be the coordinate function $u(\zeta)=\zeta$.  Set
+\[
+ \rho=e^{i\pi/3}=\frac{1+i\sqrt3}{2},\qquad
+ \varepsilon=\frac14,\qquad c=\rho+\varepsilon u.
+\]
+
+\begin{lemma}[Odd winding has no continuous square root]\label{lem:winding}
+If $q\in C(\T)$ is nowhere zero and $\wind(q)$ is odd, then there is no
+$h\in C(\T)$ with $h^2=q$.
+\end{lemma}
+
+\begin{proof}
+Such an $h$ would also be nowhere zero.  Winding number is additive under
+pointwise multiplication, so
+$\wind(q)=\wind(h^2)=2\wind(h)$, an even integer.
+\end{proof}
+
+\begin{theorem}\label{thm:counterexample}
+In the unital commutative C*-algebra $\A=C(\T)$, the cubic
+\[
+                    P(x)=x(x-1)(x-c)
+\]
+has no critical element.  Nevertheless $z=0$ is not critical.  Consequently
+Conjectures~2.1, 2.2, 3.1, and 3.2 of \cite{Krishna} are false in degree
+three.
+\end{theorem}
+
+\begin{proof}
+Expanding in the commutative algebra gives
+\[
+ P(x)=x^3-(1+c)x^2+cx,\qquad
+ P'(x)=3x^2-2(1+c)x+c.
+\]
+At $z=0$ we have $P'(0)=c$.  Pointwise,
+\[
+              |c(\zeta)|=|\rho+\varepsilon\zeta|
+                 \geq 1-\varepsilon=\frac34,
+\]
+so $c$ is invertible in $C(\T)$; in particular, $z$ is not critical.
+
+Suppose that $w\in C(\T)$ were a critical element.  From $P'(w)=0$ we get
+\[
+ 9w^2=6(1+c)w-3c.
+\]
+Thus, with $h=3w-(1+c)$,
+\begin{align*}
+ h^2
+ &=9w^2-6(1+c)w+(1+c)^2 \\
+ &=(1+c)^2-3c=c^2-c+1.
+\end{align*}
+Because $\rho^2-\rho+1=0$ and $2\rho-1=i\sqrt3$,
+\begin{equation}\label{eq:qfactor}
+ q:=c^2-c+1
+   =\varepsilon u\bigl(i\sqrt3+\varepsilon u\bigr).
+\end{equation}
+The second factor never vanishes since
+$|i\sqrt3+\varepsilon\zeta|\geq\sqrt3-\varepsilon>0$.
+Its image is a circle centered at $i\sqrt3$ of radius $\varepsilon$, which
+does not surround the origin, so its winding number is zero.  The factor
+$\varepsilon u$ has winding number one.  Therefore
+\[
+                         \wind(q)=1+0=1.
+\]
+Equation \eqref{eq:qfactor} and Lemma~\ref{lem:winding} contradict $h^2=q$.
+Hence $P'$ has no zero in $C(\T)$.
+
+The polynomial has degree three and the required factor form with roots
+$0,1,c\in\A$.  Each of the four cited conjectures applies at a noncritical
+$z$ and concludes that some critical $w\in\A$ exists.  Our admissible
+$z=0$ has no such $w$, so all four conclusions fail.
+\end{proof}
+
+\paragraph{Fiberwise interpretation.}
+The obstruction is genuinely global, not scalar.  At every
+$\zeta\in\T$, the scalar derivative has the two distinct roots
+\[
+ w_\pm(\zeta)=\frac{1+c(\zeta)\pm\sqrt{q(\zeta)}}3,
+\]
+because $q(\zeta)\neq0$.  Odd monodromy prevents either choice from defining
+a continuous function on the whole circle.
+
+\section{Verification, novelty, and scope}
+
+\paragraph{Verification.}
+The argument is exact and uses only polynomial algebra and the elementary
+winding-number obstruction.  The included checker samples 16,384 points,
+verifies \eqref{eq:qfactor}, the lower bounds for $|c|$ and $|q|$, winding
+number one, and the scalar derivative roots.  It is not used as proof.
+
+\paragraph{Bounded novelty search.}
+The four run indexes were searched for arXiv:2206.08154, the exact conjecture
+titles, $C(S^1)$, critical points, continuous square roots, monodromy, and
+winding.  Exact-title, exact-phrase, author/id, counterexample, degree-three,
+and close-variant arXiv/web searches through 26 August 2026 found the source
+paper but no later paper claiming this construction or an exact resolution.
+Novelty is plausible, not certified.
+
+\paragraph{Scope and review.}
+This is a full counterexample to the unrestricted commutative C*-algebra
+statements in Conjectures~2.1 and 3.1 and, a fortiori, to their proposed
+strong forms.  It does not address the classical scalar Smale or
+Dubinin--Sugawa conjectures.  It also leaves open versions over algebras whose
+spectrum has no square-root monodromy obstruction.  Human review should check
+the derivative identity, the source's critical-point definition, and the
+winding calculation.
+
+\begingroup
+\sloppy
+\raggedright
+\begin{thebibliography}{9}
+\bibitem{Krishna}
+K.~Mahesh Krishna,
+\emph{C*-algebraic Smale Mean Value Conjecture and Dubinin--Sugawa Dual Mean
+Value Conjecture},
+\href{https://arxiv.org/abs/2206.08154}{arXiv:2206.08154}, 2022.
+\end{thebibliography}
+\endgroup
+\end{document}

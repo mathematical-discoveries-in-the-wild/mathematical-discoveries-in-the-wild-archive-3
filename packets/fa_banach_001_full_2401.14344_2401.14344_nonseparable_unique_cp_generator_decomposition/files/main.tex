@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\Bcal}{\mathcal B}
+\newcommand{\CP}{\mathsf{CP}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\id}{\mathbf 1}
+\newcommand{\Cw}{\mathsf C}
+\newcommand{\vecg}{\operatorname{vec}}
+
+\title{Separability is unnecessary for the unique decomposition of bounded CP-semigroup generators}
+\author{Candidate full answer to the first open question in arXiv:2401.14344}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\fbox{\parbox{0.94\linewidth}{\textbf{Status: candidate full
+solution, likely valid.}  The main bijectivity theorem of vom Ende remains
+true on an arbitrary complex Hilbert space.  The proof uses the source's
+weighted Choi kernel lemma one coordinate at a time and treats arbitrary
+Kraus families as nets over finite subsets.}}
+
+\section{Source question}
+
+Vom Ende proves a unique decomposition theorem for generators of
+norm-continuous completely positive semigroups on a \emph{separable} Hilbert
+space \cite[Theorem~5.8 in the arXiv HTML; label \texttt{thm\_main} in the
+source]{vomEnde}.  Section~6, PDF page~19, asks:
+\begin{quote}
+``An obvious question is whether separability of the underlying Hilbert space
+is a necessary assumption in Theorem~5.1.''
+\end{quote}
+The PDF's production numbering displays the theorem and proposition as 5.1;
+the arXiv HTML identifies them as Theorem~5.8 and Proposition~5.6.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{figures/open_problem_crop.png}
+\caption{The first open question in Section~6 of arXiv:2401.14344v4,
+PDF page~19.}
+\end{figure}
+
+\section{Definitions and source tools}
+
+Let $\Hh$ be a complex Hilbert space, with no separability assumption.
+Write $\Bcal^1(\Hh)$ for the trace class and $\Bcal(\Hh)$ for the bounded
+operators.  The cone $\CP(\Hh)$ consists of bounded completely positive maps
+on $\Bcal^1(\Hh)$.  For $B\in\Bcal^1(\Hh)$ the source defines
+\[
+ \CP_B(\Hh)=\left\{\Phi\in\CP(\Hh):
+ \tr\bigl(\Phi(B^*(\cdot)B)\bigr)=0\right\},
+\]
+where the displayed trace is the trace of the induced trace-class operator on
+the Hilbert--Schmidt class.  By Lemma~4.7 of the source, if
+\[
+ \Phi(X)=\sum_{j\in J}V_jXV_j^*,
+ \qquad \sup_{F\Subset J}\left\|\sum_{j\in F}V_j^*V_j\right\|<\infty,
+\]
+then $\Phi\in\CP_B(\Hh)$ exactly when
+$\tr(B^*V_j)=0$ for every $j\in J$.  Here and below $F\Subset J$ means that
+$F$ is finite, and sums over arbitrary $J$ are finite-subset nets.
+
+We use one consequence of Lemmas~5.2 and~5.4 of the source.  Let
+$G=\{g_j\}_{j\in J}$ be an orthonormal basis, let
+$\lambda\in\ell^2(J)$, and put
+\[
+ D_\lambda=\sum_{j\in J}\lambda_j|g_j\rangle\langle g_j|.
+\]
+For a bounded map $\Psi$ let $\Cw_{\lambda,G}(\Psi)$ be the source's weighted
+Choi operator.  If $X\in\Bcal^2(\Hh)$ and
+$\Psi\in\CP_{XD_\lambda}(\Hh)$, then
+\begin{equation}\label{eq:kernel-tool}
+ \Cw_{\lambda,G}(\Psi)\vecg_G(X)=0.
+\end{equation}
+Crucially, this kernel statement is proved in the source for arbitrary
+Hilbert spaces; it does not require that the weighted Choi map be injective.
+
+\section{Proof intuition}
+
+The separable proof chooses one square-summable diagonal weight which is
+nonzero on every basis vector.  Such a weight cannot exist on an uncountable
+basis.  But the proof only divides by the weight at the column currently
+being inspected.  We therefore choose a new weight for each column: it is
+supported on the countable singular support of $B$ together with that one
+basis vector.  The source's kernel computation then determines that column of
+$K$.  Repetition over the basis proves that $K$ is scalar.
+
+For existence, a CP map on a nonseparable space may have an uncountable Kraus
+index set.  The centering coefficients nevertheless form an $\ell^2(J)$
+family.  Cauchy--Schwarz therefore makes the relevant finite-subset net
+converge in operator norm and keeps the centered Kraus square sums uniformly
+bounded.  This is the net version of the source's countable calculation.
+
+\section{The uniqueness obstruction without separability}
+
+\begin{proposition}\label{prop:obstruction}
+Let $\Hh$ be an arbitrary complex Hilbert space,
+$B\in\Bcal^1(\Hh)$ with $\tr(B)\ne0$, and $K\in\Bcal(\Hh)$.  If
+\[
+ K(\cdot)+(\cdot)K^*\in
+ \CP_B(\Hh)-\CP_B(\Hh),
+\]
+then $K=i\alpha\id$ for some $\alpha\in\mathbb R$.
+\end{proposition}
+
+\begin{proof}
+Choose a Schmidt decomposition
+\[
+ B=\sum_{n\in N}s_n|f_n\rangle\langle g_n|,
+ \qquad s_n>0,
+\]
+where $N$ is countable because $B$ is trace class.  Extend
+$\{g_n:n\in N\}$ to an orthonormal basis
+$G=\{g_j\}_{j\in J}$ of $\Hh$.  Define the Hilbert--Schmidt operator
+\[
+ B_1=\sum_{n\in N}\sqrt{s_n}|f_n\rangle\langle g_n|.
+\]
+
+Fix one $k\in J$.  Define a nonnegative weight
+$\lambda^{(k)}\in\ell^2(J)$ by
+\[
+ \lambda^{(k)}_n=\sqrt{s_n}\quad(n\in N),\qquad
+ \lambda^{(k)}_k=1\quad(k\notin N),\qquad
+ \lambda^{(k)}_j=0\quad(j\notin N\cup\{k\}).
+\]
+The clauses are disjoint, and
+$\|\lambda^{(k)}\|_2^2\leq\|B\|_1+1$.  With
+\[
+ B_2^{(k)}=\sum_{j\in J}\lambda^{(k)}_j
+ |g_j\rangle\langle g_j|
+\]
+we have $B_2^{(k)}\in\Bcal^2(\Hh)$,
+$\lambda^{(k)}_k>0$, and, importantly,
+\begin{equation}\label{eq:factorization}
+ B_1B_2^{(k)}=B.
+\end{equation}
+
+Write
+\[
+ K(\cdot)+(\cdot)K^*=\Phi_1-\Phi_2,
+ \qquad \Phi_1,\Phi_2\in\CP_B(\Hh).
+\]
+By \eqref{eq:factorization}, the kernel relation
+\eqref{eq:kernel-tool} applies to each $\Phi_r$ with $X=B_1$ and
+$D_\lambda=B_2^{(k)}$.  Hence it also applies to their difference.  Taking
+the matrix coefficient at $g_k\otimes g_j$ and expanding the weighted Choi
+operator exactly as in the proof of Proposition~5.6 of the source gives, for
+every $j\in J$,
+\begin{align}
+0&=\left\langle g_k\otimes g_j,
+ \Cw_{\lambda^{(k)},G}\bigl(K(\cdot)+(\cdot)K^*\bigr)
+ \vecg_G(B_1)\right\rangle \notag\\
+&=\lambda^{(k)}_k\left(
+ \langle g_j,Kg_k\rangle\sum_{b\in J}\langle g_b,Bg_b\rangle
+ +\delta_{jk}\sum_{b\in J}\langle g_b,K^*Bg_b\rangle
+ \right)\notag\\
+&=\lambda^{(k)}_k\left(
+ \langle g_j,Kg_k\rangle\tr(B)
+ +\delta_{jk}\tr(BK^*)\right).
+\label{eq:column}
+\end{align}
+The sums are legitimate because $B$ and $BK^*$ are trace class.  Notice that
+only $\lambda^{(k)}_k$, not weights at all basis coordinates, is divided out.
+
+Since $\lambda^{(k)}_k>0$ and $\tr(B)\ne0$, equation
+\eqref{eq:column} gives
+\[
+ \langle g_j,Kg_k\rangle=0\quad(j\ne k),\qquad
+ \langle g_k,Kg_k\rangle
+ =-\frac{\tr(BK^*)}{\tr(B)}=:c.
+\]
+The scalar $c$ is independent of $k$.  Since $k\in J$ was arbitrary,
+$Kg_k=cg_k$ for every basis vector, hence $K=c\id$.
+
+Finally, both $\Phi_1$ and $\Phi_2$ have zero $B$-weighted superoperator
+trace.  Lemma~4.5(iv) of the source therefore gives
+\[
+0=\tr(KB^*)\tr(B)+\tr(B^*)\tr(BK^*)
+  =2|\tr(B)|^2\operatorname{Re}c.
+\]
+Thus $\operatorname{Re}c=0$, proving $K=i\alpha\id$ with
+$\alpha\in\mathbb R$.
+\end{proof}
+
+\section{Full nonseparable extension}
+
+Let $\mathsf L(\CP(\Hh))$ denote the generators of norm-continuous
+one-parameter semigroups of completely positive maps on
+$\Bcal^1(\Hh)$.  The standard bounded-generator representation used in the
+source says that every $L$ in this Lie wedge has the form
+\begin{equation}\label{eq:standard}
+ L=K_0(\cdot)+(\cdot)K_0^*+\Phi_0,
+ \qquad K_0\in\Bcal(\Hh),\quad\Phi_0\in\CP(\Hh),
+\end{equation}
+and is valid without a separability hypothesis
+\cite{ChristensenEvans,vomEnde}.
+
+\begin{theorem}\label{thm:main}
+Let $\Hh$ be an arbitrary complex Hilbert space and let
+$B\in\Bcal^1(\Hh)$ satisfy $\operatorname{Re}\tr(B)\ne0$.  Then
+\[
+\begin{aligned}
+\Xi_B:\{K\in\Bcal(\Hh):\operatorname{Im}\tr(B^*K)=0\}
+ \times\CP_B(\Hh)&\longrightarrow\mathsf L(\CP(\Hh)),\\
+(K,\Phi)&\longmapsto K(\cdot)+(\cdot)K^*+\Phi
+\end{aligned}
+\]
+is bijective.  In particular, separability is not necessary in the source's
+main theorem.
+\end{theorem}
+
+\begin{proof}
+We first prove surjectivity.  Take $L$ and a representation
+\eqref{eq:standard}.  The arbitrary-Hilbert-space Kraus theorem recalled in
+Section~4 of the source gives an index set $J$ and operators
+$\{V_j\}_{j\in J}\subset\Bcal(\Hh)$ such that
+\[
+ \Phi_0(X)=\sum_{j\in J}V_jXV_j^*,\qquad
+ M:=\left\|\sum_{j\in J}V_j^*V_j\right\|<\infty.
+\]
+Put
+\[
+ a_j=\frac{\tr(B^*V_j)}{\tr(B^*)}.
+\]
+The denominator is nonzero, and Lemma~4.7 of the source gives
+$a=(a_j)_{j\in J}\in\ell^2(J)$.  For $F\Subset J$ and $x\in\Hh$,
+\[
+ \left\|\sum_{j\in F}\overline{a_j}V_jx\right\|
+ \leq\left(\sum_{j\in F}|a_j|^2\right)^{1/2}
+      \left(\sum_{j\in F}\|V_jx\|^2\right)^{1/2}
+ \leq\|a|_F\|_2\sqrt M\,\|x\|.
+\]
+Applied to tails, this shows that the finite-subset net converges in operator
+norm.  Denote its limit and the squared norm of $a$ by
+\[
+ W=\sum_{j\in J}\overline{a_j}V_j,
+ \qquad q=\sum_{j\in J}|a_j|^2.
+\]
+
+Set $\widetilde V_j=V_j-a_j\id$.  For every finite $F$ and $x\in\Hh$,
+\[
+ \sum_{j\in F}\|\widetilde V_jx\|^2
+ \leq2\sum_{j\in F}\|V_jx\|^2
+     +2\sum_{j\in F}|a_j|^2\|x\|^2
+ \leq2(M+q)\|x\|^2.
+\]
+Thus the centered family defines a completely positive map
+\[
+ \Phi(X)=\sum_{j\in J}\widetilde V_jX\widetilde V_j^*.
+\]
+Moreover,
+$\tr(B^*\widetilde V_j)=\tr(B^*V_j)-a_j\tr(B^*)=0$,
+so $\Phi\in\CP_B(\Hh)$ by Lemma~4.7 of the source.
+
+Expanding finite sums and passing to the trace-norm limit gives
+\[
+ \Phi(X)=\Phi_0(X)-WX-XW^*+qX
+ \qquad(X\in\Bcal^1(\Hh)).
+\]
+Indeed, the Kraus sums converge in trace norm by Lemma~4.3 of the source,
+$W_F\to W$ in operator norm, and the scalar partial sums tend to $q$.
+Consequently, with
+\[
+ \widetilde K=K_0+W-\frac q2\id,
+\]
+we have
+\[
+ L=\widetilde K(\cdot)+(\cdot)\widetilde K^*+\Phi.
+\]
+Finally put
+\[
+ K=\widetilde K-i\,
+ \frac{\operatorname{Im}\tr(B^*\widetilde K)}
+      {\operatorname{Re}\tr(B)}\,\id.
+\]
+The added imaginary scalar does not change
+$K(\cdot)+(\cdot)K^*$, and direct calculation gives
+$\operatorname{Im}\tr(B^*K)=0$.  This proves surjectivity.
+
+For injectivity, suppose
+$\Xi_B(K_1,\Phi_1)=\Xi_B(K_2,\Phi_2)$.  Then
+\[
+ (K_2-K_1)(\cdot)+(\cdot)(K_2-K_1)^*=\Phi_1-\Phi_2.
+\]
+Proposition~\ref{prop:obstruction} gives
+$K_2-K_1=i\alpha\id$ for some real $\alpha$.  The two domain gauge
+conditions imply
+\[
+0=\operatorname{Im}\tr\bigl(B^*(K_2-K_1)\bigr)
+ =\alpha\operatorname{Re}\tr(B),
+\]
+so $\alpha=0$.  Hence $K_1=K_2$, and the displayed generator identity then
+gives $\Phi_1=\Phi_2$.
+\end{proof}
+
+The source's corollaries for bounded quantum-dynamical semigroup generators
+are obtained formally from the main theorem and therefore also lose their
+separability hypothesis.
+
+\section{Verification, scope, and novelty}
+
+The proof uses only results which the source states for arbitrary Hilbert
+spaces: the weighted Choi kernel identity, the arbitrary-index Kraus
+representation and convergence lemma, and the trace formula for centered
+Kraus operators.  The new point in Proposition~\ref{prop:obstruction} is that
+the Choi weight varies with $k$; no injectivity of the weighted Choi map is
+claimed or needed.  The existence proof explicitly uses nets indexed by
+finite subsets, so it does not hide a separability assumption.
+
+No computational evidence is used.  The main expert-review targets are
+equation~\eqref{eq:column}, the passage from arbitrary-index Kraus sums to the
+centered map, and the separability-free scope of the standard representation
+\eqref{eq:standard}.
+
+Bounded searches on 27 August 2026 covered the run's four lightweight indexes,
+arXiv/web searches for the exact question, the paper title and author,
+``Proposition 5.6'', ``nonseparable'', and close CP-generator-decomposition
+phrases.  They found the source, its publication record, and the author's
+finite-dimensional predecessor, but no later solution or equivalent
+nonseparable extension.  This supports only moderate novelty confidence: the
+search was not exhaustive, and the coordinatewise-weight observation is
+elementary once isolated.
+
+\begin{thebibliography}{9}
+\bibitem{vomEnde}
+F.~vom Ende,
+\emph{From the Choi Formalism in Infinite Dimensions to Unique
+Decompositions of Generators of Completely Positive Dynamical Semigroups},
+arXiv:2401.14344v4 (2024),
+\url{https://arxiv.org/abs/2401.14344}.
+
+\bibitem{ChristensenEvans}
+E.~Christensen and D.~E.~Evans,
+\emph{Cohomology of operator algebras and quantum dynamical semigroups},
+J. London Math. Soc. (2) \textbf{20} (1979), 358--368.
+\end{thebibliography}
+
+\end{document}
+

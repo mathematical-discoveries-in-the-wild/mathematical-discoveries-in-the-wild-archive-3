@@ -1,0 +1,266 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ga}{\gamma}
+\newcommand{\Lp}{L^p}
+
+\title{The Smirnov Property for Every Nondegenerate Bivariate Gaussian Density}
+\author{fa\_banach\_001, agent\_lane\_01}
+\date{August 26, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Status}
+
+Candidate full solution, likely valid, pending human review.
+
+\section*{Source Question}
+
+Mayerhofer, \emph{The Smirnov Property for Weighted Lebesgue Spaces},
+arXiv:2101.02470, Definition 2.4, calls a density $w$ Smirnov (for
+$q>1$) when
+\[
+ F(x)+G(y)\in L^q(w),\qquad F,G\in L^1(w),
+\]
+forces $F,G\in L^q(w)$.  The harmless factor $1/2$ in the paper's
+definition has been suppressed.  Remark 2.10 asks whether this property holds
+for a bivariate standard normal density with nonzero correlation.
+
+\begin{center}
+\includegraphics[width=.97\linewidth]{figures/open_problem_crop.png}
+\end{center}
+
+We answer this question affirmatively.  In fact, the result holds for every
+nondegenerate bivariate Gaussian law and every $1<q<\infty$.
+
+\section*{Proof Idea}
+
+After standardization, conditional expectation between the two Gaussian
+coordinates is the one-dimensional Gaussian noise operator $P_\rho$.  If
+$H=F(X)+G(Y)\in L^q$, then conditioning on $X$ and on $Y$ gives
+\[
+ A=F+P_\rho G\in L^q(\ga),\qquad
+ B=P_\rho F+G\in L^q(\ga).
+\]
+The first summand cancels from $B-P_\rho A$, leaving
+\[
+ (I-P_{\rho^2})G\in L^q(\ga).
+\]
+The key rigidity fact is that an $L^1(\ga)$ function whose image under
+$I-P_t$ lies in $L^q(\ga)$ must itself lie in $L^q(\ga)$, up to its constant
+part.  On mean-zero functions, a sufficiently high power of $P_t$ is a strict
+$L^q$ contraction.  This follows by interpolating its exact $L^2$ spectral
+gap with the elementary $L^1$ or $L^\infty$ bound.  Thus $I-P_t$ is invertible
+on mean-zero $L^q$.  An $L^1$ fixed-point argument rules out any residual
+solution outside $L^q$.
+
+\section*{Gaussian Noise Operators}
+
+Let $\ga$ be standard Gaussian measure on $\R$.  For $-1<r<1$, define
+\[
+ (P_r f)(x)=\int_{\R}f\bigl(rx+\sqrt{1-r^2}\,z\bigr)\,d\ga(z).
+\]
+The operators $P_r$ are contractions on every $L^s(\ga)$,
+$1\leq s\leq\infty$, by Jensen's inequality and invariance of $\ga$.  They
+satisfy
+\[
+ P_rP_s=P_{rs},\qquad P_0=\Pi,
+\]
+where $\Pi f=\int f\,d\ga$ is the projection onto constants.  These identities
+follow directly by combining the two independent Gaussian noises.
+
+\begin{lemma}[Resolvent rigidity]\label{lem:rigidity}
+Let $0\leq t<1$ and $1<q<\infty$.  If $g\in L^1(\ga)$ and
+$(I-P_t)g\in L^q(\ga)$, then $g-\int g\,d\ga\in L^q(\ga)$.
+\end{lemma}
+
+\begin{proof}
+Put $T=P_t-\Pi$, considered on the full space $L^s(\ga)$.  Since
+$P_t\Pi=\Pi P_t=\Pi$, for every integer $m\geq1$,
+\[
+ T^m=P_{t^m}-\Pi.
+\]
+Consequently $\|T^m\|_{L^1\to L^1}\leq2$ and
+$\|T^m\|_{L^\infty\to L^\infty}\leq2$.
+
+On $L^2(\ga)$, the normalized Hermite polynomials form an orthonormal basis,
+$P_sH_k=s^kH_k$, and $\Pi$ removes $H_0$.  Hence
+\[
+ \|T^m\|_{L^2\to L^2}=t^m.
+\]
+For completeness, the eigenvalue identity follows immediately by applying
+$P_s$ to the generating function
+$\exp(ux-u^2/2)=\sum_{k\geq0}H_k(x)u^k/k!$ and integrating the independent
+Gaussian noise.
+
+If $1<q<2$, interpolation between $L^1$ and $L^2$ gives
+\[
+ \|T^m\|_{L^q\to L^q}
+ \leq 2^{1-\theta}t^{m\theta},
+ \qquad \theta=2\left(1-\frac1q\right)>0.
+\]
+If $2<q<\infty$, interpolation between $L^2$ and $L^\infty$ gives the same
+form of estimate with $\theta=2/q>0$.  For $q=2$ the displayed $L^2$ norm is
+already enough.  Thus, in every case, some $m$ satisfies
+$\|T^m\|_{L^q\to L^q}<1$.  Therefore $I-T^m$ is invertible on $L^q$ by a
+Neumann series, and so is $I-T$, since
+\[
+ (I-T)^{-1}=(I+T+\cdots+T^{m-1})(I-T^m)^{-1}.
+\]
+
+Set $u=(I-P_t)g$.  Then $u\in L^q(\ga)$ and $\Pi u=0$.  Let
+$v=(I-T)^{-1}u\in L^q(\ga)$.  Taking expectations in $(I-T)v=u$ shows
+$\Pi v=0$; hence $Tv=P_tv$ and
+\[
+ (I-P_t)v=u.
+\]
+Now
+\[
+ d=g-\Pi g-v\in L^1(\ga),\qquad \Pi d=0,\qquad P_td=d.
+\]
+Iteration gives $d=P_{t^m}d$ for all $m$.  As $t^m\to0$,
+$P_{t^m}d\to\Pi d=0$ in $L^1(\ga)$.  To see this last convergence without
+any hidden regularity assumption, approximate $d$ in $L^1(\ga)$ by a bounded
+continuous function $\phi$.  Dominated convergence gives
+$P_s\phi\to\Pi\phi$ in $L^1(\ga)$ as $s\to0$, while the $L^1$ contraction
+of $P_s$ controls the two approximation errors uniformly in $s$.
+Thus $d=0$, and $g-\Pi g=v\in L^q(\ga)$.
+\end{proof}
+
+\section*{Main Result}
+
+\begin{theorem}\label{thm:main}
+Let $(X,Y)$ have a nondegenerate bivariate Gaussian distribution, and let
+$1<q<\infty$.  If measurable functions $F$ and $G$ satisfy
+\[
+ F(X),G(Y)\in L^1,\qquad F(X)+G(Y)\in L^q,
+\]
+then $F(X),G(Y)\in L^q$.  Equivalently, every nondegenerate bivariate Gaussian
+density has the Smirnov property for every $1<q<\infty$.
+\end{theorem}
+
+\begin{proof}
+Separate affine changes of the two coordinates preserve all the stated
+integrability properties.  We may therefore assume that $X$ and $Y$ are
+standard normal with correlation $\rho$.  Nondegeneracy is precisely
+$|\rho|<1$.
+
+Write $H=F(X)+G(Y)$.  Conditional Jensen gives
+\[
+ A(X):=\E[H\mid X]\in L^q,
+ \qquad
+ B(Y):=\E[H\mid Y]\in L^q.
+\]
+The conditional laws of a standard bivariate Gaussian pair yield, as
+one-variable identities in $L^1(\ga)$,
+\[
+ A=F+P_\rho G,\qquad B=P_\rho F+G.
+\]
+Since $P_\rho$ is an $L^q$ contraction and
+$P_\rho^2=P_{\rho^2}$,
+\[
+ B-P_\rho A=(I-P_{\rho^2})G\in L^q(\ga).
+\]
+Lemma~\ref{lem:rigidity}, with $t=\rho^2<1$, implies
+$G-\int G\,d\ga\in L^q(\ga)$, and constants belong to $L^q(\ga)$.
+Thus $G\in L^q(\ga)$.  Finally,
+\[
+ F=A-P_\rho G\in L^q(\ga).
+\]
+This proves the claim.  (The same proof includes the independent case
+$\rho=0$.)
+\end{proof}
+
+\section*{Consequence for the Source Integral Equations}
+
+The remaining weight hypothesis in Mayerhofer's Theorem 3.1 can be evaluated
+explicitly.  Let $p>1$ be the exponent in that theorem (so its Smirnov
+exponent is the conjugate $q=p/(p-1)$).  For the standardized density
+\[
+ w_\rho(x,y)=\frac{1}{2\pi\sqrt{1-\rho^2}}
+ \exp\!\left(-\frac{x^2-2\rho xy+y^2}{2(1-\rho^2)}\right),
+\]
+condition (2.3) asks that $w_Xw_Y/w_\rho$ belong to $L^p(w_\rho)$.  Apart
+from a positive constant, the integrand in its $p$th power is the exponential
+of minus one half of the quadratic form with matrix
+\[
+ M=pI-\frac{p-1}{1-\rho^2}
+ \begin{pmatrix}1&-\rho\\-\rho&1\end{pmatrix}.
+\]
+The smaller eigenvalue of $M$ is
+\[
+ p-\frac{p-1}{1-|\rho|}
+   =\frac{1-p|\rho|}{1-|\rho|}.
+\]
+Thus condition (2.3) holds exactly when
+\[
+ p|\rho|<1,
+ \qquad\text{equivalently}\qquad
+ q>\frac{1}{1-|\rho|}.
+\]
+Consequently, Theorem~\ref{thm:main} supplies the previously missing Smirnov
+hypothesis, and Mayerhofer's uniqueness conclusion applies in this sharp
+parameter range whenever the theorem's stated assumptions on the marginals
+also hold.  Outside this range our Smirnov result remains valid, but the
+source theorem cannot be invoked because its separate condition (2.3) fails.
+
+\section*{Adversarial Checks}
+
+The proof does not assume that $F$ or $G$ is initially square-integrable:
+Hermite expansions are used only to estimate the bounded operator $T^m$ on
+$L^2$, followed by interpolation.  The actual functions enter the spectral
+argument only after $(I-T)^{-1}$ has been constructed on $L^q$.
+
+The possible constant obstruction is handled explicitly by $\Pi$.  The
+kernel of $I-P_t$ on $L^1(\ga)$ consists only of constants: the final
+$L^1$ convergence argument proves this rather than importing an $L^2$
+ergodicity claim.  Negative correlations cause no sign issue because the
+composition used in the proof is $P_\rho^2=P_{\rho^2}$.
+
+\section*{Novelty Check and Limitations}
+
+The four local run indexes were searched for arXiv:2101.02470, the exact
+source title, the bivariate-normal question, the Smirnov property, and
+Gaussian/Ornstein--Uhlenbeck variants; no matching solution or attempt was
+found.  The source context confirms that Remark 2.10 and the conclusion state
+a genuine open problem.
+
+A bounded web search on August 26, 2026 used the exact phrase ``Smirnov
+property'' together with ``bivariate normal'', ``Gaussian'', and
+``Ornstein--Uhlenbeck'', as well as the functional formulation involving
+$F(X)+G(Y)$.  It found the arXiv paper and its 2024 published version, which
+still describes the question as unknown, but no later resolution or this
+noise-operator proof.  This was not a comprehensive MathSciNet or zbMATH
+search, so the novelty assessment remains provisional.
+
+The theorem treats exactly two Gaussian coordinates.  Extending the argument
+to arbitrary multivariate Gaussian vectors would require controlling a coupled
+system of conditional-expectation operators and is not claimed here.
+
+\section*{Human Review Recommendation}
+
+Send to a specialist in Gaussian analysis or weighted $L^p$ spaces.  The main
+review points are the $L^q$ resolvent lemma, especially its $L^1$ fixed-point
+closure, and the precise scope of the uniqueness corollary relative to all the
+hypotheses of the source theorem.
+
+\begin{thebibliography}{9}
+\bibitem{Mayerhofer}
+E. Mayerhofer,
+\emph{The Smirnov Property for Weighted Lebesgue Spaces},
+arXiv:2101.02470 (2021; revised 2024), published in
+\emph{Mathematics} 12 (2024), no.~19, 3135,
+\href{https://doi.org/10.3390/math12193135}{doi:10.3390/math12193135}.
+\end{thebibliography}
+
+\end{document}

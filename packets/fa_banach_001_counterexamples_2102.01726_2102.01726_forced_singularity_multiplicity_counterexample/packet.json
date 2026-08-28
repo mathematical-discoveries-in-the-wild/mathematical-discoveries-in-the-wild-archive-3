@@ -1,0 +1,60 @@
+{
+  "archive_id": "archive-3",
+  "arxiv_ids": "2102.01726",
+  "author_list": [
+    "Faye Pasley Simon",
+    "Cynthia Vinzant"
+  ],
+  "claim_short": "The conjecture is false, including under a generic reading and inside the strictly hyperbolic locus. Put u=x+iy, v=x-iy, and write d=qn+r, 0<=r<n. The invariant monomial support shows that every invariant form has multiplicity at least ceil(r/2) at each forced point, and the unique extremal monomial shows that this is the generic exact multiplicity.",
+  "claim_type": "counterexample",
+  "code_bundle_size_bytes": 1362,
+  "copied_file_count": 6,
+  "database_packet_path": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/",
+  "files": {
+    "code_zip": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/code.zip",
+    "human_review_pdf": "",
+    "image_assets": [
+      "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "readme": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/files/README.md",
+    "solution_pdf": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/files/solution_packet.pdf",
+    "source_crops": [
+      "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/files/figures/open_problem_crop.png"
+    ],
+    "source_pdf_url": "https://arxiv.org/pdf/2102.01726v2",
+    "source_url": "https://arxiv.org/abs/2102.01726v2"
+  },
+  "has_pdf": "yes",
+  "has_readme": "yes",
+  "has_source_pdf": "yes",
+  "human_review_pdf": "",
+  "model": "GPT5.6",
+  "needs_manual_summary": "no",
+  "notes": "registry_status=candidate_full_negative_solution_likely_valid",
+  "novelty_status": "unknown",
+  "packet_class": "counterexamples",
+  "packet_path": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/",
+  "packet_title": "The forced multiplicity is ceil((d mod n)/2), not binomial(d mod n,2)",
+  "primary_arxiv_id": "2102.01726",
+  "proof_status": "likely_valid",
+  "readme_path": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/files/README.md",
+  "result_class": "counterexamples",
+  "result_id": "fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample",
+  "review_detail": "unverified",
+  "review_state": "unverified",
+  "review_verifier_id": "",
+  "review_verifier_name": "",
+  "row_id": "fa_banach_001:0334",
+  "run_id": "fa_banach_001",
+  "significance": "",
+  "solution_pdf": "packets/fa_banach_001_counterexamples_2102.01726_2102.01726_forced_singularity_multiplicity_counterexample/files/solution_packet.pdf",
+  "source_authors": "Faye Pasley Simon, Cynthia Vinzant",
+  "source_kind": "solutions_index",
+  "source_pdf": "runs/fa_banach_001/solutions/counterexamples/2102.01726_forced_singularity_multiplicity_counterexample/source_paper.pdf",
+  "source_pdf_url": "https://arxiv.org/pdf/2102.01726v2",
+  "source_question": "",
+  "source_title": "Invariant hyperbolic curves: determinantal representations and applications to the numerical range",
+  "source_url": "https://arxiv.org/abs/2102.01726v2",
+  "source_year": "2021",
+  "verification_status": "unverified"
+}

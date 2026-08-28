@@ -1,0 +1,282 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Wtwo}{\mathcal W_2}
+
+\title{Constant Spectral Data Do Not Control\\
+Matrix Schr\"odinger Maximal Regularity}
+\author{Run \texttt{fa\_banach\_001} -- lane 1}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.} Candidate full counterexample, likely valid, to
+pointwise-spectral reverse-H\"older criteria for the system maximal estimate.
+The packet also gives a sign-free positive repair under comparable
+eigenvalues. The source's broader search for a geometry-sensitive matrix
+condition remains open.
+
+\section{Source question}
+
+Bailey studies the class $\Wtwo$ associated with
+$H=-\Delta I_m+|V|$ and asks for a reverse-H\"older-type condition implying
+boundedness of $|V|(|V|-\Delta)^{-1}$ when $m>1$
+\cite[Section~5.3, printed p.~42]{Bailey}. The exact source passage is shown
+below.
+
+\begin{center}
+\includegraphics[width=0.96\textwidth,trim=0 104 0 8,clip]{figures/open_problem_crop.png}
+\end{center}
+
+For a measurable Hermitian positive-semidefinite matrix potential
+$W:\R^n\to\mathcal L(\C^m)$, put
+\[
+ H=-\Delta I_m+W.
+\]
+The assertion $W\in\Wtwo$ means
+\begin{equation}\label{eq:w2}
+ \|Wu\|_2+\|\Delta u\|_2\le C\|Hu\|_2,
+ \qquad u\in D(H).
+\end{equation}
+
+A first interpretation of the reverse-H\"older-type condition is to apply
+the scalar condition to $\|W(x)\|_{\op}$, a Schatten norm, the trace, or the
+ordered eigenvalue functions. The counterexample below rules out every
+condition depending only on this pointwise spectral data.
+
+\section{Proof intuition}
+
+The scalar obstruction is the unit-ball potential
+$v=\one_{B(0,1)}$ in $\R^3$. It has a bounded positive zero-energy solution
+for $-\Delta+v$. Cutting this solution off at radius $R$ leaves a fixed
+potential term but creates only an $O(R^{-1/2})$ residual.
+
+To make the matrix example spectrally featureless, place $v$ in one diagonal
+channel and its complement $1-v$ in the other. The resulting matrix is a
+rank-one orthogonal projection at every point. Its eigenvalues, trace,
+operator norm, and all Schatten norms are constant, but the bad scalar
+channel survives unchanged. Thus the obstruction is the spatial motion of
+the eigenspaces, information that pointwise eigenvalues cannot see.
+
+\section{Full constant-spectrum counterexample}
+
+\begin{theorem}\label{thm:negative}
+There is a bounded measurable real-symmetric potential
+$W:\R^3\to\mathcal L(\R^2)$ such that, almost everywhere,
+\[
+ W(x)^2=W(x),\qquad \operatorname{rank}W(x)=1,\qquad
+ \operatorname{spec}W(x)=\{0,1\},
+\]
+but $W\notin\Wtwo$.
+
+Consequently, both ordered eigenvalues are constant, every Schatten norm of
+$W(x)$ is identically one, and
+\[
+ \operatorname{tr}(W(x)^k)=1\qquad(k=1,2,\ldots).
+\]
+In particular, no hypothesis depending only on pointwise spectral data and
+satisfied by the constant spectrum $\{0,1\}$ can imply the matrix
+$\Wtwo$ estimate.
+\end{theorem}
+
+\begin{proof}
+Let $B=B(0,1)$, $v=\one_B$, and set
+\begin{equation}\label{eq:projection}
+ W(x)=
+ \begin{pmatrix}
+  1-v(x)&0\\
+  0&v(x)
+ \end{pmatrix}.
+\end{equation}
+Since $v^2=v$, the matrix in \eqref{eq:projection} is a rank-one orthogonal
+projection at every point away from the irrelevant boundary sphere.
+All asserted spectral identities follow immediately.
+
+It remains to disprove \eqref{eq:w2}. Put $a=1-\tanh1$ and define
+\[
+ h(r)=
+ \begin{cases}
+  \dfrac{\sinh r}{r\cosh1},&0<r\le1,\\[6pt]
+  1-\dfrac{a}{r},&r\ge1,
+ \end{cases}
+ \qquad h(0)=\dfrac1{\cosh1}.
+\]
+At $r=1$, both formulas have value $\tanh1$ and derivative
+$a=(\cosh1-\sinh1)/\cosh1$. Hence no surface delta term occurs, and direct
+radial differentiation gives
+\begin{equation}\label{eq:zero}
+ (-\Delta+v)h=0
+\end{equation}
+distributionally on $\R^3$.
+
+Choose a fixed smooth radial cutoff $\eta$ equal to one on $[0,1]$ and zero
+on $[2,\infty)$, and put
+\[
+ \eta_R(x)=\eta(|x|/R),\qquad
+ u_R=\eta_Rh,\qquad U_R=(0,u_R),\qquad R>2.
+\]
+The matching just checked implies $u_R\in H^2(\R^3)$, hence
+$U_R\in D(H)$. Since the second channel of $W$ is $v$,
+\begin{equation}\label{eq:fixed}
+ \|WU_R\|_2=\|vu_R\|_2=\|vh\|_2>0
+\end{equation}
+is independent of $R$. On the annulus $R<|x|<2R$, equation
+\eqref{eq:zero} yields
+\[
+ HU_R=
+ \left(0,-2\nabla\eta_R\cdot\nabla h-h\Delta\eta_R\right).
+\]
+There $h=O(1)$, $|\nabla h|=O(R^{-2})$,
+$|\nabla\eta_R|=O(R^{-1})$, and
+$|\Delta\eta_R|=O(R^{-2})$. The residual is therefore $O(R^{-2})$ on a
+set of volume $O(R^3)$, so
+\begin{equation}\label{eq:decay}
+ \|HU_R\|_2=O(R^{-1/2})\longrightarrow0.
+\end{equation}
+Equations \eqref{eq:fixed}--\eqref{eq:decay} contradict
+$\|WU\|_2\le C\|HU\|_2$, proving $W\notin\Wtwo$.
+\end{proof}
+
+\begin{corollary}\label{cor:spectral}
+Let $\mathfrak P$ be any pointwise-unitarily-invariant condition on
+positive-semidefinite matrix fields that depends only on their ordered
+eigenvalue functions. If $\mathfrak P$ holds for the constant eigenvalue list
+$(0,1)$, then $\mathfrak P$ does not imply membership in $\Wtwo$.
+\end{corollary}
+
+\begin{proof}
+The potential \eqref{eq:projection} has that eigenvalue list everywhere and
+fails $\Wtwo$ by Theorem~\ref{thm:negative}.
+\end{proof}
+
+This includes the Bochner interpretation
+\[
+ \left(\frac1{|Q|}\int_Q\|W(x)\|^q\,dx\right)^{1/q}
+ \le \frac{C}{|Q|}\int_Q\|W(x)\|\,dx,
+\]
+for any unitarily invariant matrix norm: both sides are the same constant.
+
+\section{A sign-free positive repair}
+
+The counterexample shows that some control of eigenspace geometry or of all
+quadratic-form directions is essential. One clean spectral repair is to
+prevent the eigenvalues from separating.
+
+\begin{theorem}\label{thm:positive}
+Let $W:\R^n\to\mathcal L(\C^m)$ be measurable and positive semidefinite.
+Write
+\[
+ \lambda(x)=\lambda_{\min}(W(x)),\qquad
+ \Lambda(x)=\lambda_{\max}(W(x)).
+\]
+If, for some $q\ge2$ and $\kappa\ge1$,
+\[
+ \lambda\in RH_q,\qquad \Lambda\le\kappa\lambda\quad\text{a.e.},
+\]
+then $W\in\Wtwo$. The constant depends only on the scalar
+$RH_q$ data, $n$, and $\kappa$. No off-diagonal sign condition is required,
+and complex Hermitian potentials are allowed.
+\end{theorem}
+
+\begin{proof}
+Let $h=-\Delta+\lambda$. Bailey's scalar theorem
+\cite[Theorem~5.1]{Bailey}, quoting Auscher--Ben Ali, gives uniformly for
+$\varepsilon>0$,
+\begin{equation}\label{eq:scalar}
+ \|\lambda(h+\varepsilon)^{-1}g\|_2\le C_s\|g\|_2.
+\end{equation}
+For $F\in L^2(\R^n;\C^m)$, the vector Kato inequality and
+$W\ge\lambda I_m$ give the pointwise resolvent domination
+\begin{equation}\label{eq:dom}
+ |(H+\varepsilon)^{-1}F|
+ \le (h+\varepsilon)^{-1}|F|.
+\end{equation}
+This uses no cooperativity or entrywise sign assumption.
+
+Since $|Wz|\le\Lambda|z|\le\kappa\lambda|z|$, equations
+\eqref{eq:scalar}--\eqref{eq:dom} imply
+\[
+ \|W(H+\varepsilon)^{-1}F\|_2\le\kappa C_s\|F\|_2.
+\]
+For $u\in D(H)$, take $F=(H+\varepsilon)u$, then let
+$\varepsilon\downarrow0$. This yields
+$\|Wu\|_2\le\kappa C_s\|Hu\|_2$. Finally,
+$-\Delta u=Hu-Wu$, which proves \eqref{eq:w2}.
+\end{proof}
+
+\section{The geometry-sensitive frontier}
+
+Davey and Isralowitz define a matrix reverse-H\"older class
+$\mathcal B_q$ by requiring
+\[
+ \left(\frac1{|Q|}\int_Q\langle W(x)e,e\rangle^q\,dx\right)^{1/q}
+ \le C\left\langle\left(\frac1{|Q|}\int_QW(x)\,dx\right)e,e\right\rangle
+\]
+uniformly over cubes $Q$ and constant vectors $e$
+\cite[Definition~2.1]{DI}. This condition detects eigenspace motion and is
+not contradicted by Theorem~\ref{thm:negative}: for $e=(0,1)$ the quadratic
+form is $\one_B$, and for $e=(1,0)$ it is $\one_{\R^3\setminus B}$; neither
+belongs to scalar $RH_q$.
+
+Addona, Leone, Lorenzi and Rhandi prove broader $L^p$ maximal estimates under
+comparable eigenvalues, a reverse-H\"older smallest eigenvalue, and
+nonpositive off-diagonal entries \cite[Theorem~6.1]{ALLR}.
+Theorem~\ref{thm:positive} removes the sign assumption at $p=2$.
+
+Thus the exact remaining frontier is geometry-sensitive: for example,
+whether membership in the directional matrix class $\mathcal B_2$ alone
+implies $\Wtwo$ is not settled by this packet.
+
+\section{Verification, search bounds, and recommendation}
+
+The script \texttt{code/verify\_cutoff\_counterexample.py} checks the
+projection identities, the matching conditions at $r=1$, and the exact radial
+cutoff residual. For radii from $8$ to $8192$,
+$\sqrt R\,\|HU_R\|_2$ stabilizes near $23.206$, while
+$\|WU_R\|_2=1.4650804067$ remains fixed. The proof itself is analytic.
+
+A bounded search through 27 August 2026 covered the run indexes, the exact
+source question, arXiv and web queries for matrix-valued Schr\"odinger
+maximal regularity, projection-valued potentials, constant spectrum, and
+matrix reverse-H\"older classes, plus source-level inspection of
+arXiv:2207.05790 and arXiv:2401.00479. No occurrence of the displayed
+constant-spectrum counterexample or an equivalent $\Wtwo$ obstruction was
+found. Novelty confidence is moderate because the construction is elementary.
+
+Human review should check the interpretation boundary in
+Corollary~\ref{cor:spectral}; the analytic failure of $\Wtwo$ is explicit.
+The packet should be treated as a full negative result for pointwise-spectral
+criteria, not as a characterization of all matrix reverse-H\"older
+hypotheses.
+
+\begin{thebibliography}{9}
+\bibitem{Bailey}
+J.~Bailey,
+\emph{The Kato Square Root Problem for Divergence Form Operators with
+Potential}, J. Fourier Anal. Appl. 26 (2020), article 46;
+arXiv:1812.10196.
+
+\bibitem{DI}
+B.~Davey and J.~Isralowitz,
+\emph{Exponential Decay Estimates for Fundamental Matrices of Generalized
+Schr\"odinger Systems}, arXiv:2207.05790 (2022), Definition~2.1.
+
+\bibitem{ALLR}
+D.~Addona, V.~Leone, L.~Lorenzi, and A.~Rhandi,
+\emph{$L^p$ Maximal Regularity for Vector-Valued Schr\"odinger Operators},
+arXiv:2401.00479 (2023).
+\end{thebibliography}
+
+\end{document}

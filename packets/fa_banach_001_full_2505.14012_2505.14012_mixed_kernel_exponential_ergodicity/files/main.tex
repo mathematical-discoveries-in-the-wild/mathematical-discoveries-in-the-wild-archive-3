@@ -1,0 +1,361 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}
+\newcommand{\HH}{\mathsf H}
+\newcommand{\PP}{\mathcal P_2}
+\newcommand{\Wtwo}{W_2}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\Law}{\operatorname{Law}}
+\newcommand{\E}{\mathbb E}
+
+\title{Mixed-Sign Stochastic Neural Fields:\\
+Full Exponential Ergodicity Without Kernel Definiteness}
+\author{Automated mathematics run \texttt{fa\_banach\_001}, lane 1}
+\date{26 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.91\textwidth}{
+\textbf{Status: full resolution of the stated mixed-kernel exponential-
+ergodicity problem, likely valid.}
+In the source's quantitative ergodicity regime, its invariant-measure,
+exponential-ergodicity, and exponential-mixing conclusions hold for arbitrary
+mixed-sign kernels.  The sign and compact-subspace assumptions are
+unnecessary.}}
+\end{center}
+
+\begin{abstract}
+Otsetova and T\"olle identify the extension of their main exponential-
+ergodicity result to kernels mixing excitation and inhibition as an open
+problem.  We resolve that question in the same quantitative regime.  If
+\[
+ \kappa:=2\alpha-2\lVert K\rVert\Lip(f)-\Lip(B)^2>0,
+\]
+then the Markov semigroup contracts the quadratic Wasserstein metric by
+\(e^{-\kappa t/2}\), has a unique invariant law with finite second moment, and
+converges exponentially to it from every finite-second-moment initial law.
+The proof uses synchronous coupling and a uniform It\^o moment estimate, so it
+does not use any sign or symmetry of the kernel, nor the source's compact
+nonlocal Hilbert subspace.  A direct corollary recovers the source's main
+conclusions under the dimensionally consistent version of its Assumption 5,
+with Assumptions 3 and 4 deleted.
+\end{abstract}
+
+\section{Source question}
+
+The source is A.-M. Otsetova and J. M. T\"olle, \emph{Ergodicity for
+stochastic neural field equations}, arXiv:2505.14012v1 (2025)\cite{source}.
+On PDF page 5, after describing their sign-definite theory, they write:
+\begin{quote}
+``It would be interesting to obtain similar results, when the kernel is
+neither non-negative or non-positive definite, relating to mixed inhibition
+and excitation.''
+\end{quote}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/open_problem_crop.png}
+  \caption{The open direction in the source paper, PDF page 5.}
+\end{figure}
+
+Immediately before the open sentence, the source describes its main
+contribution as existence of a unique invariant measure and exponential
+ergodicity under a quantitative relation between decay, the kernel, the
+activation, and the noise.  Thus the request concerns the exponential-
+ergodicity regime of Theorem 1.2(iii); the following sentence identifies
+metastability and Kramers' law as a separate open problem.
+
+The source's existence argument restricts the dynamics to a compactly embedded
+nonlocal Hilbert subspace built from a positive or negative part of the kernel.
+That route is unavailable for a general mixed-sign operator.  The result below
+replaces compactness by strict metric contraction.
+
+\section{Setting and statement}
+
+Let \(\HH=L^2(U,\rho)\), and consider the source equation
+\begin{equation}\label{eq:sde}
+ dX_t=(-\alpha X_t+K F(X_t))\,dt+B(X_t)\,dW_t,
+ \qquad X_0=x\in\HH,
+\end{equation}
+where \(F(u)(\xi)=f(u(\xi))\).  We retain Assumptions 1 and 2 of
+the source.  In particular, \(\HH\) is separable, \(K\in\mathcal L(\HH)\),
+\(f:\mathbb R\to\mathbb R\) is Lipschitz, and
+\(B:\HH\to L_2(V,\HH)\) is Lipschitz.  The source's Theorem 3.3 then gives a
+unique global strong solution and its time-homogeneous Markov semigroup.
+
+Set
+\[
+ L_f:=\Lip(f),\qquad L_B:=\Lip(B),\qquad
+ \kappa:=2\alpha-2\lVert K\rVert L_f-L_B^2.
+\]
+No self-adjointness or quadratic-form sign is imposed on \(K\).
+
+\begin{theorem}[Mixed-kernel contraction theorem]\label{thm:main}
+Assume \(\kappa>0\).  Then:
+\begin{enumerate}
+\item for all \(\nu,\eta\in\PP(\HH)\) and \(t\ge0\),
+\begin{equation}\label{eq:contraction}
+ \Wtwo(P_t^*\nu,P_t^*\eta)
+ \le e^{-\kappa t/2}\Wtwo(\nu,\eta);
+\end{equation}
+\item there is a unique invariant measure \(\mu\in\PP(\HH)\);
+\item every \(\nu\in\PP(\HH)\) satisfies
+\begin{equation}\label{eq:conv}
+ \Wtwo(P_t^*\nu,\mu)
+ \le e^{-\kappa t/2}\Wtwo(\nu,\mu);
+\end{equation}
+in particular, for every Lipschitz \(\phi:\HH\to\mathbb R\) for which the
+integrals exist,
+\[
+ \left|P_t\phi(x)-\int_{\HH}\phi\,d\mu\right|
+ \le \Lip(\phi)e^{-\kappa t/2}
+ \left(\int_{\HH}\lVert x-y\rVert^2\,\mu(dy)\right)^{1/2}.
+\]
+\end{enumerate}
+The conclusions hold for kernels with arbitrary mixtures of positive and
+negative spectrum.
+\end{theorem}
+
+\begin{corollary}[Exact mixed-kernel extension of the source theorem]
+\label{cor:source}
+Retain source Assumptions 1 and 2, allow \(K\) to have arbitrary mixed
+positive and negative spectrum, and write \(L_B\) for the Lipschitz constant
+specified in source Assumption 2.  If the dimensionally consistent form of
+the source's quantitative Assumption 5 holds,
+\begin{equation}\label{eq:sourcecondition}
+ 2\sqrt2\,\lVert K\rVert L_f+L_B^2<2\alpha,
+\end{equation}
+then all conclusions of Theorem~\ref{thm:main} hold.  In particular, the
+unique invariant law with second moment exists and the semigroup is
+exponentially ergodic and exponentially mixing, without source Assumptions 3
+and 4.
+\end{corollary}
+
+\begin{proof}
+Condition \eqref{eq:sourcecondition} implies
+\[
+ 2\alpha-2\lVert K\rVert L_f-L_B^2
+ >2(\sqrt2-1)\lVert K\rVert L_f\ge0.
+\]
+Hence \(\kappa>0\), and Theorem~\ref{thm:main} applies.  The theorem's
+\(W_2\) estimate implies both weak mixing and the bounded-Lipschitz
+(Fortet--Mourier) estimate used in the source.
+\end{proof}
+
+\section{Proof intuition}
+
+The sign assumption in the source is used to manufacture compactness, not to
+control the distance between two solutions.  Drive two solutions by the same
+Wiener process.  The linear decay contributes \(-2\alpha\) to the evolution of
+their squared distance, while the neural interaction costs at most
+\(2\lVert K\rVert L_f\) and the quadratic variation costs \(L_B^2\).
+Thus \(\kappa>0\) gives a strict mean-square contraction.
+
+Contraction alone gives uniqueness but not existence.  A second It\^o estimate
+absorbs the affine terms \(f(0)\) and \(B(0)\), giving a second-moment bound
+uniform in time.  The semigroup identity then makes \(P_t^*\delta_0\) a
+Wasserstein-Cauchy family: evolve its earlier and later laws for their common
+final time and contract the initial discrepancy.  Completeness of
+\((\PP(\HH),\Wtwo)\) supplies the invariant limit.
+
+\section{Proof}
+
+\subsection{Synchronous contraction}
+
+Let \(X_t^x\) and \(X_t^y\) solve \eqref{eq:sde} with initial conditions
+\(x,y\), driven by the same cylindrical Wiener process, and write
+\(D_t=X_t^x-X_t^y\).  Applying It\^o's formula to \(\lVert D_t\rVert^2\),
+localizing the martingale if necessary, and taking expectations gives
+\begin{align*}
+ \frac{d}{dt}\E\lVert D_t\rVert^2
+ &=-2\alpha\E\lVert D_t\rVert^2
+ +2\E\langle D_t,K(F(X_t^x)-F(X_t^y))\rangle\\
+ &\quad+\E\lVert B(X_t^x)-B(X_t^y)\rVert_{L_2(V,\HH)}^2.
+\end{align*}
+The Nemytskii map has Lipschitz constant \(L_f\).  Therefore
+\[
+ 2\langle D_t,K(F(X_t^x)-F(X_t^y))\rangle
+ \le 2\lVert K\rVert L_f\lVert D_t\rVert^2,
+\]
+and the noise term is bounded by \(L_B^2\lVert D_t\rVert^2\).  Hence
+\[
+ \frac{d}{dt}\E\lVert D_t\rVert^2
+ \le-\kappa\E\lVert D_t\rVert^2,
+\]
+so Gr\"onwall's lemma yields
+\begin{equation}\label{eq:pointcontract}
+ \E\lVert X_t^x-X_t^y\rVert^2
+ \le e^{-\kappa t}\lVert x-y\rVert^2.
+\end{equation}
+
+For any coupling of initial laws \(\nu,\eta\), use the coupled initial
+conditions and the same Wiener process.  Taking the infimum over initial
+couplings in \eqref{eq:pointcontract} proves \eqref{eq:contraction}.
+
+\subsection{A uniform second moment}
+
+All three alternatives in source Assumption 1 have
+\(m_\rho:=\int_U\rho<\infty\).  Put
+\[
+ c_f:=|f(0)|\sqrt{m_\rho},\qquad b_0:=\lVert B(0)\rVert_{L_2(V,\HH)}.
+\]
+Then
+\[
+ \lVert F(u)\rVert\le L_f\lVert u\rVert+c_f,
+ \qquad \lVert B(u)\rVert_{L_2}\le L_B\lVert u\rVert+b_0.
+\]
+Choose \(\varepsilon>0\) so that
+\[
+ q:=2\alpha-2\lVert K\rVert L_f-(1+\varepsilon)L_B^2>0;
+\]
+such a choice exists because \(\kappa>0\).  It\^o's formula and
+\((a+b)^2\le(1+\varepsilon)a^2+(1+\varepsilon^{-1})b^2\) give, for
+\(M_x(t):=\E\lVert X_t^x\rVert^2\),
+\begin{align*}
+ M_x'(t)
+ &\le-qM_x(t)+2\lVert K\rVert c_f\sqrt{M_x(t)}
+ +(1+\varepsilon^{-1})b_0^2\\
+ &\le-\frac q2M_x(t)
+ +\frac{2\lVert K\rVert^2c_f^2}{q}
+ +(1+\varepsilon^{-1})b_0^2.
+\end{align*}
+Define
+\[
+ \gamma:=\frac q2,
+ \qquad C_0:=\frac{2\lVert K\rVert^2c_f^2}{q}
+ +(1+\varepsilon^{-1})b_0^2.
+\]
+Another application of Gr\"onwall gives
+\begin{equation}\label{eq:moment}
+ M_x(t)\le e^{-\gamma t}\lVert x\rVert^2+\frac{C_0}{\gamma}
+ \qquad(t\ge0).
+\end{equation}
+In particular, the laws \(\nu_t:=P_t^*\delta_0\) have uniformly bounded
+second moments.
+
+\subsection{Existence, invariance, and uniqueness}
+
+Let \(r\ge t\) and write \(r=t+s\).  By the semigroup property and
+\eqref{eq:contraction},
+\begin{align*}
+ \Wtwo(\nu_r,\nu_t)
+ &=\Wtwo(P_t^*\nu_s,P_t^*\delta_0)\\
+ &\le e^{-\kappa t/2}\Wtwo(\nu_s,\delta_0)\\
+ &\le e^{-\kappa t/2}
+ \left(\sup_{a\ge0}\int_{\HH}\lVert z\rVert^2\,\nu_a(dz)\right)^{1/2}.
+\end{align*}
+The last supremum is finite by \eqref{eq:moment}.  Thus \((\nu_t)_{t\ge0}\)
+is Cauchy as \(t\to\infty\) in \(\Wtwo\).  Since \(\HH\) is complete and
+separable, \((\PP(\HH),\Wtwo)\) is complete\cite{Villani}; hence
+\(\nu_t\to\mu\in\PP(\HH)\).
+
+For fixed \(h\ge0\), contraction makes \(P_h^*\) continuous on
+\(\PP(\HH)\), and
+\[
+ P_h^*\mu=\lim_{t\to\infty}P_h^*\nu_t
+ =\lim_{t\to\infty}\nu_{t+h}=\mu.
+\]
+Thus \(\mu\) is invariant.  If \(\widetilde\mu\in\PP(\HH)\) is another
+invariant law, then for every \(t>0\),
+\[
+ \Wtwo(\mu,\widetilde\mu)
+ =\Wtwo(P_t^*\mu,P_t^*\widetilde\mu)
+ \le e^{-\kappa t/2}\Wtwo(\mu,\widetilde\mu).
+\]
+It follows that \(\mu=\widetilde\mu\).  Applying
+\eqref{eq:contraction} with \(\eta=\mu\) proves \eqref{eq:conv}.
+Finally, Kantorovich--Rubinstein duality and \(W_1\le W_2\) give the stated
+Lipschitz-observable estimate.  This completes the proof.
+
+\section{Sharpness of the contraction coefficient}
+
+The squared noise constant and the half-rate are not artifacts of the proof.
+Let \(\HH=\mathbb R^2\), let
+\[
+ K=\begin{pmatrix}a&0\\0&-b\end{pmatrix},
+ \qquad a\ge b>0,\qquad f(r)=r,
+\]
+and let \(B(u)q=\sigma q\,u\) for \(q\in\mathbb R\).  The kernel has genuinely
+mixed spectrum, \(\lVert K\rVert=a\), and \(L_B=|\sigma|\).  If two solutions
+start with a difference in the first eigendirection and are driven
+synchronously, their difference \(D_t\) obeys
+\[
+ dD_t=(-\alpha+a)D_t\,dt+\sigma D_t\,dW_t.
+\]
+Consequently
+\[
+ \mathbb E\lVert D_t\rVert^2
+ =e^{-(2\alpha-2a-\sigma^2)t}\lVert D_0\rVert^2.
+\]
+Thus \(\kappa=2\alpha-2\lVert K\rVert L_f-L_B^2\) is the exact
+mean-square exponent already for a mixed-spectrum linear example.  For two
+same-sign initial coordinates on this eigendirection, both laws are positive
+scalar multiples of the same lognormal random variable; their monotone
+coupling is optimal in one dimension.  Hence taking a square root gives the
+exact \(W_2\) scale \(e^{-\kappa t/2}\).
+
+\section{Verification and source comparison}
+
+The proof uses only source Assumptions 1 and 2, the operator norm of \(K\),
+and standard Hilbert-space It\^o calculus.  In particular, it never uses the
+quadratic form \(\langle Ku,u\rangle\), so mixed positive and negative
+spectrum causes no change.
+
+Two constant conventions deserve attention.  The source defines its noise
+constant by \(\lVert B(u)-B(v)\rVert_{L_2}\le C_B\lVert u-v\rVert\), but a
+quadratic-variation estimate then naturally contains \(C_B^2\).  Also,
+mean-square contraction at rate \(e^{-\kappa t}\) yields Wasserstein and
+Lipschitz-observable contraction at rate \(e^{-\kappa t/2}\), after taking a
+square root.  The statement here uses these squared/square-root conventions
+consistently.  The separate verifier report records an adversarial step check.
+
+\section{Resolution scope and novelty status}
+
+This is a full answer to the source's stated mixed-kernel exponential-
+ergodicity question in the quantitative regime in which the source formulates
+its main ergodicity theorem.  Corollary~\ref{cor:source} recovers that theorem's
+conclusions under its corrected smallness relation while deleting precisely
+the two sign-dependent assumptions.  The result is stronger in two respects:
+it assumes the sharper \(\kappa>0\) condition and gives \(W_2\) contraction.
+
+No claim is made about invariant measures when \(\kappa\le0\), invariant laws
+outside \(\PP(\HH)\), or the separately stated metastability and Kramers-law
+problem.  These are broader parameter or moment questions, not qualifications
+to the resolution of the source's strict-dissipation ergodicity question.
+
+The run's four lightweight indexes and local parsed arXiv corpus were searched
+using arXiv:2505.14012, the exact phrase about mixed inhibition and excitation,
+the paper title, and close keywords concerning neural fields and Wasserstein
+contraction.  Bounded web and arXiv searches used the same phrase and close
+variants.  No separate paper explicitly resolving this source question was
+found, including a check of the latest official arXiv source available on
+26 August 2026.  The abstract synchronous-contraction mechanism is standard
+in dissipative stochastic evolution equations, so the novelty claim is
+deliberately limited to the exact sign-free resolution and its proof for this
+source model.
+
+\raggedright
+\begin{thebibliography}{9}
+\bibitem{source}
+A.-M. Otsetova and J. M. T\"olle,
+\emph{Ergodicity for stochastic neural field equations},
+arXiv:2505.14012v1, 2025.
+
+\bibitem{Villani}
+C. Villani,
+\emph{Optimal Transport: Old and New},
+Grundlehren der mathematischen Wissenschaften 338, Springer, 2009.
+\end{thebibliography}
+
+\end{document}
